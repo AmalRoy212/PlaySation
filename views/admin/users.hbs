@@ -1,0 +1,495 @@
+{{!-- <h1>Edit Games</h1>
+
+<h1>Add Games</h1>
+<form action="" method="post" enctype="multipart/form-data">
+  <input type="file" name="image" required/>
+  <br />
+  <br />
+  <input type="text" name="name" id="" placeholder="Enter the name of game" required />
+  <br />
+  <br />
+  <input type="text" name="downloads" id="" placeholder="Downloads of game" required/>
+  <br />
+  <br />
+  <label for="cars">Category</label>
+  <select name="category" >
+    <option value="">{{gameData.category}}</option>
+    {{#each catNames}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <br />
+  <br />
+  <input
+    type="text"
+    name="price"
+    id=""
+    placeholder="Please enter the name of game"
+  />
+  <br>
+  <br>
+  <input type="submit" value="Create One">
+</form> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+     <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="/assets/img/logo/logo2.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Features
+      </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Product management </span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Admin Accessibilities</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/games">Games</a>
+            <a class="collapse-item" href="/admin/addgames">Add New Game</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Category Management</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Category Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/categoriesTable">Category Table</a>
+            <a class="collapse-item" href="/admin/categories">Add Category</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>User Management</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Users Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/usertable">Users</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOder" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Order Management</span>
+        </a>
+        <div id="collapseOder" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Oders Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/orders">Orders</a>
+            {{!-- <a class="collapse-item" href="/admin/addgames">Add New Game</a> --}}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- Sidebar -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <!-- TopBar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+          >
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="navbar-search" action="/admin/search" method="post">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        name="search"
+                        class="form-control bg-light border-1 small"
+                        placeholder="What do you want to look for?"
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                        style="border-color: #3f51b5;"
+                      />
+                      <div class="input-group-append">
+                        <input class="btn btn-primary" type="submit" value="Search">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-bell fa-fw"></i>
+                  <span class="badge badge-danger badge-counter">3+</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Alerts Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 12, 2019</div>
+                      <span class="font-weight-bold">A new monthly report is
+                        ready to download!</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-success">
+                        <i class="fas fa-donate text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 7, 2019</div>
+                      $290.29 has been deposited into your account!
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-warning">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 2, 2019</div>
+                      Spending Alert: We've noticed unusually high spending for
+                      your account.
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >Show All Alerts</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="messagesDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-envelope fa-fw"></i>
+                  <span class="badge badge-warning badge-counter">2</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="messagesDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Message Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img
+                        class="rounded-circle"
+                        src="img/man.png"
+                        style="max-width: 60px"
+                        alt=""
+                      />
+                      <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div class="font-weight-bold">
+                      <div class="text-truncate">Hi there! I am wondering if you
+                        can help me with a problem I've been having.</div>
+                      <div class="small text-gray-500">Udin Cilok · 58m</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img
+                        class="rounded-circle"
+                        src="img/girl.png"
+                        style="max-width: 60px"
+                        alt=""
+                      />
+                      <div class="status-indicator bg-default"></div>
+                    </div>
+                    <div>
+                      <div class="text-truncate">Am I a good boy? The reason I
+                        ask is because someone told me that people say this to
+                        all dogs, even if they aren't good...</div>
+                      <div class="small text-gray-500">Jaenab · 2w</div>
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >Read More Messages</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="messagesDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-tasks fa-fw"></i>
+                  <span class="badge badge-success badge-counter">3</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="messagesDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Task
+                  </h6>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Design Button
+                        <div class="small float-right"><b>50%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-success"
+                          role="progressbar"
+                          style="width: 50%"
+                          aria-valuenow="50"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Make Beautiful
+                        Transitions
+                        <div class="small float-right"><b>30%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-warning"
+                          role="progressbar"
+                          style="width: 30%"
+                          aria-valuenow="30"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Create Pie Chart
+                        <div class="small float-right"><b>75%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-danger"
+                          role="progressbar"
+                          style="width: 75%"
+                          aria-valuenow="75"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >View All Taks</a>
+                </div>
+              </li>
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/boy.png"
+                    style="max-width: 60px"
+                  />
+                  <span class="ml-2 d-none d-lg-inline text-white small">Maman
+                    Ketoprak</span>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:void(0);"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- Topbar -->
+          
+          <!-- Container Fluid-->
+          <div class="container-fluid" id="container-wrapper">
+            {{!-- ---------------------------------------------- --}}
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Users</h1>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
+                <li class="breadcrumb-item">Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Users Manage</li>
+              </ol>
+            </div>
+
+            <div class="row ">
+              <div class="col-lg-12 mb-4">
+                <!-- Simple Tables -->
+                <div style="width:100%">
+      <div class="container h-100 p-0">
+        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+          <div class="col-xl-9">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body" style="padding:2rem;">
+                <h6 class="m-0 font-weight-bold text-primary">User Management</h6>
+                <h6 style="color: green;">{{sccMssg}}</h6>
+                <h6 style="color: red;">{{adminMessage}}</h6>
+                <table class="table" style="margin-right:1rem;margin-top: 1rem;">
+                        <thead>
+                            <tr>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>FirstName</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>LastName</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Email</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Contact</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Block</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Verification</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each userData}}
+                                <tr>
+                                    <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.fname}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.lname}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.email}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.mobile}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                      <div style="float:left; display: flex;">
+                                        {{#if this.isBlocked}}
+                                          <a class="btn btn-primary p-1" style="font-size:x-small;" href="/admin/unblock?id={{this._id}}"><span style="margin-right:5px;">Unblock</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="key-outline"></ion-icon></a>
+                                        {{else}}
+                                          <a class="btn btn-danger p-1" style="font-size:x-small;" href="/admin/block?id={{this._id}}"><span style="margin-right:5px;">Block</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="person-circle-outline"></ion-icon></a>
+                                        {{/if}}
+                                      </div>
+                                    </td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                      {{#if this.is_verified}}
+                                        <a class="btn btn-warning p-1" style="font-size:x-small;" href="/admin/unverfyUser?id={{this._id}}"><span style="margin-right:5px;">UnVerify</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="stop-circle-outline"></ion-icon></a>
+                                      {{else}}
+                                        <a class="btn btn-success p-1" style="font-size:x-small;" href="/admin/verifyUser?id={{this._id}}"><span style="margin-right:5px;">Verify</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="ribbon-outline"></ion-icon></a>
+                                      {{/if}}
+                                    </td>
+                                </tr>
+                            {{/each}}<ion-icon ></ion-icon>
+                        </tbody>
+                    </table>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>      
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </body>
+  </html>

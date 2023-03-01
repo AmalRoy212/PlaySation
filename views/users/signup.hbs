@@ -1,0 +1,142 @@
+{{!-- <h1>SignUp</h1>
+<br>
+<br>
+<form action="/signup" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" id="" placeholder="Enter your name" required>
+    <br>
+    <br>
+    <input type="email" name="email" id="" placeholder="Enter your mail" required>
+    <br>
+    <br>
+    <input type="text" name="mobile" id="" placeholder="Enter your mobile" required>
+    <br>
+    <br>
+    <input type="file" name="image" required>
+    <br>
+    <br>
+    <input type="password" name="password" id="" placeholder="Enter your password" required>
+    <br>
+    <br>
+    <input type="submit" value="SingUp">
+    <br>
+    <br>
+    <a href="/login">Login</a>
+    <h4>{{message}}</h4>
+</form> --}}
+
+<div class="w3lsstatsaits" id="w3lsstatsaits" style="background-image: url(images/signup.jpeg);padding: 0;">
+  <div class="container-fluid" style="width: 100%;height: 700px;padding: 0;font-family: font-family: 'Anton', sans-serif;
+                font-family: 'Chivo Mono', monospace;
+                font-family: 'Courgette', cursive;
+                font-family: 'Teko', sans-serif;;">
+         <!-- Navigation -->
+      <div class="w3lsnavigation">
+        <nav
+          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
+        >
+
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar"
+              aria-expanded="false"
+              aria-controls="navbar"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Logo -->
+            <div class="logo">
+              <a class="navbar-brand logo-w3l button" href="#" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+                font-family: 'Chivo Mono', monospace;
+                font-family: 'Courgette', cursive;
+                font-family: 'Teko', sans-serif;;">PlayStation</a>
+            </div>
+            <!-- //Logo -->
+          </div>
+
+          <div id="navbar" class="navbar-collapse navbar-right collapse">
+            <ul
+              class="nav navbar-nav navbar-right cross-effect"
+              id="cross-effect">
+              <li><a style="font-size: smaller;"  href="/login">LogIn</a></li>
+              <li><a style="font-size: smaller;"  href="/admin">Admin</a></li>
+            </ul>
+          </div><!-- //Navbar-Collapse -->
+        </nav>
+    </div>
+      <!-- //Navigation -->
+
+
+
+
+    <div style="width: 100%;position:absolute;z-index: 1;top: 0; padding-top:10%;padding-left:5%;padding-right:5%;">
+      <div style="width: 100%;height: 400px;background-color: rgba(0, 0, 0, 0.663);border-radius:50px;">
+          <div class="img" style="float: left; width: 45%; position: absolute;top: 10rem;">
+            <h4 style="color:white;margin:1rem;margin-left:-2rem;">Sign Up With Us..!</h4>
+            <img style="margin-top:-2rem;" src="images/signUp.png" alt="">
+          </div>
+          <div class="signup" style="width: 50%;padding-left:5rem;padding-top:2rem;position: absolute;right: 10rem;">
+              <form action="/signup" method="post" enctype="multipart/form-data">
+                <!-- full name input -->
+                <div class="form-outline mb-4">
+                    <label style="color: rgb(203, 203, 203);" class="form-label text-warning" for="form2Example1">Full Name</label>
+                    <input type="text" name="fname" placeholder="Plase enter your First Name" id="fname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 48%;" class="form-control" required/>
+                    <input type="text" name="lname" placeholder="Plase enter your Last Name" id="lname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 48%;margin-left:24rem;margin-top: -34px;" class="form-control" required/>
+                </div>
+
+                <!-- email input -->
+                <div class="form-outline mb-4">
+                    <label style="color: rgb(184, 184, 184);" class="form-label text-warning" for="form2Example2">Email</label>
+                    <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid Email ID"  placeholder="Plase enter your Email" id="password" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0);" class="form-control" required/>
+                </div>
+
+                {{!-- mobile input --}}
+                <div class="form-outline mb-4">
+                    <label style="color: rgb(184, 184, 184);" class="form-label text-warning" for="form2Example2">Contact</label>
+                    <input type="text" name="mobile" pattern="[0-9]{10}" title="Contact Number should be Digits"  placeholder="Plase enter your Contact" id="mobile" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0);" class="form-control" required/>
+                </div>
+                
+                {{!-- image input --}}
+                {{!-- <div class="form-outline mb-4">
+                    <input type="file" accept="image/*" name="image" id="image" style="background-color: rgba(173, 173, 173, 0.62);color: rgb(14, 13, 13);" class="form-control" />
+                    <label style="color: rgb(184, 184, 184);" class="form-label text-warning" for="form2Example2">Image</label>
+                </div> --}}
+                
+                {{!-- password input --}}
+                <div class="form-outline mb-4" style="margin-bottom:2rem;">
+                    <label style="color: rgb(184, 184, 184);" class="form-label text-warning" for="form2Example2">Password</label>
+                    <input type="password" name="password" pattern=".{8,}" title="Eight or more characters" placeholder="Plase enter your password" id="password" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0);" class="form-control" required/>
+                </div>
+                          
+                <input type="submit" value="Sign Up" class="btn btn-success btn-block mb-4" style="width:50%;margin-left:25%;background-color: green;"> 
+                <!-- Submit button -->
+
+                <!-- Register buttons -->
+                
+                <div class="text-center">
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                            <label class="form-check-label" for="form2Example31" style="color: rgb(141, 141, 141);"> Remember me </label>
+                        </div>
+                        </div>
+                    </div>
+                    <p style="color: rgb(141, 141, 141);">Already have an Account? <a href="/login">SignIn</a></p>
+                    <H4 style="color: rgb(141, 141, 141);">{{userMessage}}</H4>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- Stats -->
+  </div>
+</div>

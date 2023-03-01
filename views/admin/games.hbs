@@ -1,0 +1,618 @@
+{{!-- <h1>Games</h1>
+<a href="/admin/addgames">Add New Game</a>
+<br />
+<br />
+<form action="/admin/search" method="post">
+  <input type="text" name="search" placeholder="Search" />
+  <input type="submit" value="Search" />
+</form>
+
+<table>
+  <tr>
+    <td style="padding: 2rem;"><b>Image</b></td>
+    <td style="padding: 2rem;"><b>Name</b></td>
+    <td style="padding: 2rem;"><b>Downloads</b></td>
+    <td style="padding: 2rem;"><b>Category</b></td>
+    <td style="padding: 2rem;"><b>Price</b></td>
+    <td style="padding: 2rem;"><b>Edit</b></td>
+    <td style="padding: 2rem;"><b>Delete</b></td>
+  </tr>
+  {{#each GameProducts}}
+    <tr>
+      <td style="padding: 2rem;"><img
+          style="width: 100Px;height: 50px;border: 2px solid black; border-radius:15px;"
+          src="/gameimages/{{this.image}}"
+          alt=""
+        /></td>
+      <td style="padding: 2rem;">{{this.name}}</td>
+      <td style="padding: 2rem;">{{this.downloads}}</td>
+      <td style="padding: 2rem;">{{this.category}}</td>
+      <td style="padding: 2rem;">{{this.price}}</td>
+      <td style="padding: 2rem;">
+        <form action="/admin/edit" method="post">
+          <input type="hidden" name="id" value="{{this._id}}" />
+          <input type="submit" value="Edit" style="margin-top:.8rem;" />
+        </form>
+      </td>
+      <td style="padding: 2rem;">
+        <form action="" method="post">
+          <input type="hidden" name="id" value="{{this._id}}" />
+          <input type="submit" value="Delete" style="margin-top:.8rem;" />
+        </form>
+      </td>
+      {{! <td style="padding: 2rem;"><a href="">Delete</a></td> }}
+      {{! want to edit the edit and deletee button a form format to pass the id }}
+    </tr>
+  {{/each}}
+  {{adminMessage}}
+</table> --}}
+
+
+{{!-- <html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="img/logo/logo.png" rel="icon" />
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/ruang-admin.min.css" rel="stylesheet" />
+  </head> --}}
+
+<body id="page-top">
+    <div id="wrapper">
+      <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="/assets/img/logo/logo2.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Features
+      </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Product management </span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Admin Accessibilities</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/games">Games</a>
+            <a class="collapse-item" href="/admin/addgames">Add New Game</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+          aria-controls="collapseForm">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Category Management</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Category Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/categoriesTable">Category Table</a>
+            <a class="collapse-item" href="/admin/categories">Add Category</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>User Management</span>
+        </a>
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Users Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/usertable">Users</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOder" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Order Management</span>
+        </a>
+        <div id="collapseOder" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Oders Management</h6>
+            <a class="collapse-item" href="/admin/home">Home</a>
+            <a class="collapse-item" href="/admin/orders">Orders</a>
+            {{!-- <a class="collapse-item" href="/admin/addgames">Add New Game</a> --}}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- Sidebar -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <!-- TopBar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+          >
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="navbar-search" action="/admin/search" method="post">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        name="search"
+                        class="form-control bg-light border-1 small"
+                        placeholder="What do you want to look for?"
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                        style="border-color: #3f51b5;"
+                      />
+                      <div class="input-group-append">
+                        <input class="btn btn-primary" type="submit" value="Search">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-bell fa-fw"></i>
+                  <span class="badge badge-danger badge-counter">3+</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Alerts Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 12, 2019</div>
+                      <span class="font-weight-bold">A new monthly report is
+                        ready to download!</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-success">
+                        <i class="fas fa-donate text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 7, 2019</div>
+                      $290.29 has been deposited into your account!
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-warning">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 2, 2019</div>
+                      Spending Alert: We've noticed unusually high spending for
+                      your account.
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >Show All Alerts</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="messagesDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-envelope fa-fw"></i>
+                  <span class="badge badge-warning badge-counter">2</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="messagesDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Message Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img
+                        class="rounded-circle"
+                        src="img/man.png"
+                        style="max-width: 60px"
+                        alt=""
+                      />
+                      <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div class="font-weight-bold">
+                      <div class="text-truncate">Hi there! I am wondering if you
+                        can help me with a problem I've been having.</div>
+                      <div class="small text-gray-500">Udin Cilok · 58m</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img
+                        class="rounded-circle"
+                        src="img/girl.png"
+                        style="max-width: 60px"
+                        alt=""
+                      />
+                      <div class="status-indicator bg-default"></div>
+                    </div>
+                    <div>
+                      <div class="text-truncate">Am I a good boy? The reason I
+                        ask is because someone told me that people say this to
+                        all dogs, even if they aren't good...</div>
+                      <div class="small text-gray-500">Jaenab · 2w</div>
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >Read More Messages</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="messagesDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-tasks fa-fw"></i>
+                  <span class="badge badge-success badge-counter">3</span>
+                </a>
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="messagesDropdown"
+                >
+                  <h6 class="dropdown-header">
+                    Task
+                  </h6>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Design Button
+                        <div class="small float-right"><b>50%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-success"
+                          role="progressbar"
+                          style="width: 50%"
+                          aria-valuenow="50"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Make Beautiful
+                        Transitions
+                        <div class="small float-right"><b>30%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-warning"
+                          role="progressbar"
+                          style="width: 30%"
+                          aria-valuenow="30"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item align-items-center" href="#">
+                    <div class="mb-3">
+                      <div class="small text-gray-500">Create Pie Chart
+                        <div class="small float-right"><b>75%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div
+                          class="progress-bar bg-danger"
+                          role="progressbar"
+                          style="width: 75%"
+                          aria-valuenow="75"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                  >View All Taks</a>
+                </div>
+              </li>
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/boy.png"
+                    style="max-width: 60px"
+                  />
+                  <span class="ml-2 d-none d-lg-inline text-white small">Maman
+                    Ketoprak</span>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="javascript:void(0);"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- Topbar -->
+          <!-- Container Fluid-->
+          <div class="container-fluid" id="container-wrapper">
+            {{!-- ---------------------------------------------- --}}
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Games</h1>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
+                <li class="breadcrumb-item">Game</li>
+                <li class="breadcrumb-item active" aria-current="page">Game Manage</li>
+              </ol>
+            </div>
+
+            <div class="row ">
+              <div class="col-lg-12 mb-4">
+                <!-- Simple Tables -->
+                <div style="width:100%">
+      <div class="container h-100 p-0">
+        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+          <div class="col-xl-9">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body" style="padding:2rem;">
+                <h6 class="m-0 font-weight-bold text-primary">Product Management</h6>
+                <h6 style="color: green;">{{sccMssg}}</h6>
+                <h6 style="color: red;">{{adminMessage}}</h6>
+                <table class="table" style="margin-right:1rem;margin-top: 1rem;color: rgb(0, 0, 0);">
+                        <thead>
+                            <tr>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>GameImage</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Name</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Category</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Price</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Downloads</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Edit</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Remove</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Video</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Versions</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each GameProducts}}
+                                <tr>
+                                  <td style="font-size:smaller;padding-left:0;padding-right:.5rem;"><img
+                                    style="width: 70Px;height: 30px;border:1px solid rgb(114, 114, 114); border-radius:5px;"src="/gameimages/{{this.image.[0]}}"alt=""/></td>
+                                    <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.name}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.category}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.price}}</td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:1rem;"><span style="margin-left:2rem;">{{this.downloads}}</span></td>
+                                    {{!-- <td style="font-size: smaller;padding-left:0;padding-right:.5rem;"></td> --}}
+                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;"><form action="/admin/edit" method="post">
+                                          <input type="hidden" name="id" value="{{this._id}}"/>
+                                          <div style="font-size:x-small;width:55px;height:25px;" class="btn btn-info p-1"><ion-icon name="cog-outline"></ion-icon><input class="btn btn-info p-1" style="font-size:x-small;height:25px;margin-top:-.3rem;border:none;" type="submit" value="Edit" name="settings-outline" style="margin-top:.8rem;"/></div>
+                                        </form>
+                                     </td>
+                                     <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                        {{#if this.deleted}}
+                                          <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
+                                            <a class="nav-link dropdown-toggle btn btn-primary p-1" style="font-size:x-small;width:55px;height:25px;" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="arrow-back-circle-outline"></ion-icon><span>Undo</span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="userDropdown" 
+                                              style="margin-left:-35rem;width:400px;margin-top:-5rem;background-color: rgba(0, 0, 0, 0.839);border-radius: 15px;">
+                                              <form action="/admin/undoDelete" method="post">
+                                                  <p style="width:300px;color:white;margin-left:4rem;margin-top: 1rem;">Are You Sure you Want to Retake The Game</p>
+                                                  <p style="margin-top:-.8rem;text-align: center;"><span style="color: rgb(0, 178, 0);">{{this.name}} </span> ??</p>
+                                                  <h6 style="margin-top:-.8rem;font-size: x-small;color:rgb(17, 255, 0);text-align: center;"><span style="color:white;">NOTE : </span>The Game will be available to every users</h6>
+                                                  <input type="hidden" name="id" value="{{this._id}}"/>
+                                                  <!-- Submit button -->
+                                                  <div style="padding-left:25%;display:flex;margin-top:-.8rem;">
+                                                      <a class="nav-link dropdown-toggle btn btn-warning p-1" style="font-size:x-small;width:60px;height:25px;margin:1rem" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"><span>Cancel</span>
+                                                      </a>
+                                                      <input class="btn btn-info p-1" style="font-size:x-small;width:60px;height:25px;margin:1rem;" type="submit" value="Get"/>
+                                                  </div>
+                                               </form>
+                                            </div>
+                                          </li>
+                                          <form action="/admin/undoDelete" method="post">
+                                            <input type="hidden" name="id" value="{{this.id}}"/>
+                                            {{!-- <input class="btn btn-primary p-1" style="font-size:x-small;width:46px;" type="submit" value="Undo" style="margin-top:.8rem;"/> --}}
+                                          </form>
+                                        {{else}}
+                                          <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
+                                            <a class="nav-link dropdown-toggle btn btn-danger p-1" style="font-size:x-small;width:55px;height:25px" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="trash-outline"></ion-icon><span style="padding:0;margin:0;">Remove</span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="userDropdown" 
+                                              style="margin-left:-35rem;width:400px;margin-top:-5rem;background-color: rgba(0, 0, 0, 0.839);border-radius: 15px;">
+                                              <form action="/admin/softdelete" method="post">
+                                                  <p style="width:300px;color:white;margin-left:4rem;margin-top: 1rem;">Are You Sure you Want to Delete The Game</p>
+                                                  <p style="margin-top:-.8rem;text-align: center;"><span style="color: rgb(0, 178, 0);">{{this.name}} </span> ??</p>
+                                                  <h6 style="margin-top:-.8rem;font-size: x-small;color:red;text-align: center;"><span style="color:white;">NOTE : </span>Once you delete the Game will not available for users</h6>
+                                                  <input type="hidden" name="id" value="{{this._id}}"/>
+                                                  <!-- Submit button -->
+                                                  <div style="padding-left:25%;display:flex;margin-top:-.8rem;">
+                                                      <a class="nav-link dropdown-toggle btn btn-success p-1" style="font-size:x-small;width:60px;height:25px;margin:1rem" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"><span>Cancel</span>
+                                                      </a>
+                                                      <input class="btn btn-danger p-1" style="font-size:x-small;width:60px;height:25px;margin:1rem;" type="submit" value="Delete"/>
+                                                      {{!-- <button type="submit" style="width:30%;height:27px;margin-top:-2rem;font-size:x-small;margin-left:2rem;background-color: red;" class="btn btn-danger btn-block p-0">Delete</button> --}}
+                                                  </div>
+                                               </form>
+                                            </div>
+                                          </li>
+                                          {{!-- <form action="/admin/softdelete" method="post">
+                                            <input type="hidden" name="id" value="{{this._id}}"/>
+                                            <input class="btn btn-danger p-1" style="font-size:x-small;margin-top:.8rem;" type="submit" value="Remove"/>
+                                          </form> --}}
+                                        {{/if}}
+                                      </td>
+                                      <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                        <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
+                                            <a class="nav-link btn btn-warning p-1" style="font-size:x-small;width:55px;height:25px" href="/admin/videoUpload?id={{this._id}}" id="videoUp" role="button"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="cloud-upload-outline"></ion-icon><span style="padding:0;margin:0;">Upload</span>
+                                            </a>
+                                            {{!-- <a href="/admin/videoUpload" class="btn-"></a> --}}
+                                          </li>
+                                      </td>
+                                      <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                        <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
+                                            <a class="nav-link btn btn-success p-1" style="font-size:x-small;width:55px;height:25px" href="/admin/versions?id={{this._id}}" id="videoUp" role="button"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="construct-outline"></ion-icon><span style="padding:0;margin:0;">Version</span>
+                                            </a>
+                                            {{!-- <a href="/admin/videoUpload" class="btn-"></a> --}}
+                                          </li>
+                                      </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>      
+          <!---ontainer Fluid-->
+        </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-secondary text-white" style="margin-top:3rem;border-radius: 10px;">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>copyright &copy;
+                <script> document.write(new Date().getFullYear()); </script>
+                - developed by
+                <b><a
+                    href=""
+                    target="_blank"
+                    style="color:rgb(56, 56, 56);"
+                  >AmalRoy</a></b>
+              </span>
+            </div>
+          </div>
+        </footer>
+        <!-- Footer -->
+      </div>
+    </div>
+
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

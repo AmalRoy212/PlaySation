@@ -1,0 +1,429 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');*{margin: 0;padding: 0;box-sizing: border-box;list-style: none;font-family: 'Montserrat', sans-serif}body{padding: 0}p{margin: 0%}.container{max-width: 900px;margin: 20px auto;overflow: hidden}.box-1{max-width: 450px;padding: 10px 40px;user-select: none}.box-1 img.pic{width: 20px;height: 20px;object-fit: cover}.box-1 img.mobile-pic{width: 100%;height: 200px;object-fit: cover}.box-1 .name{font-size: 11px;font-weight: 600}.dis{font-size: 12px;font-weight: 500}.box-2{max-width: 450px;padding: 10px 40px}.box-2 .box-inner-2 input.form-control{font-size: 12px;font-weight: 600}.box-2 .box-inner-2 .inputWithIcon{position: relative}.box-2 .box-inner-2 .inputWithIcon span{position: absolute;left: 15px;top: 8px}.box-2 .box-inner-2 .inputWithcheck{position: relative}.box-2 .box-inner-2 .inputWithcheck span{position: absolute;width: 20px;height: 20px;border-radius: 50%;background-color: green;font-size: 12px;color: white;display: flex;justify-content: center;align-items: center;right: 15px;top: 6px}.form-control:focus, .form-select:focus{box-shadow: none;outline: none;border: 1px solid #7700ff}.border:focus-within{border: 1px solid #7700ff !important}.box-2 .card-atm .form-control{border: none;box-shadow: none}.form-select{border-radius: 0;border-top-left-radius: 10px;border-top-right-radius: 10px}.address .form-control.zip{border-radius: 0;border-bottom-left-radius: 10px}.address .form-control.state{border-radius: 0;border-bottom-right-radius: 10px}.box-2 .box-inner-2 .btn.btn-outline-primary{width: 120px;padding: 10px;font-size: 11px;padding: 0% !important;display: flex;align-items: center;border: none;border-radius: 0;background-color: whitesmoke;color: black;font-weight: 600}.box-2 .box-inner-2 .btn.btn-primary{background-color: #7700ff;color: whitesmoke;font-size: 14px;display: flex;align-items: center;font-weight: 600;justify-content: center;border: none;padding: 10px}.box-2 .box-inner-2 .btn.btn-primary:hover{background-color: #7a34ca}.box-2 .box-inner-2 .btn.btn-primary .fas{font-size: 13px !important;color: whitesmoke}.carousel-indicators [data-bs-target]{width: 10px;height: 10px;border-radius: 50%}.carousel-inner{width: 100%;height: 200px}.carousel-item img{object-fit: cover;height: 100%}.carousel-control-prev{transform: translateX(-50%);opacity: 1}.carousel-control-prev:hover .fas.fa-arrow-left{transform: translateX(-5px)}.carousel-control-next{transform: translateX(50%);opacity: 1}.carousel-control-next:hover .fas.fa-arrow-right{transform: translateX(5px)}.fas.fa-arrow-left, .fas.fa-arrow-right{font-size: 0.8rem;transition: all .2s ease}.icon{width: 30px;height: 30px;background-color: #f8f9fa;color: black;display: flex;align-items: center;justify-content: center;border-radius: 50%;transform-origin: center;opacity: 1}.fas.fa-times{color: red}.fas, .fab{color: #6d6c6d}::placeholder{font-size: 12px}.couponCode{text-transform: uppercase;font-size: 0.7rem}#code{pointer-events: none;font-weight: 600}.close{cursor: pointer}.info{transform: translateX(-500px);animation: moving 1.5s;animation-fill-mode: forwards}.updates{transform: translateX(-500px);animation: moving 1.7s;animation-fill-mode: forwards}.different{transform: translateX(-500px);animation: moving 1.9s;animation-fill-mode: forwards}.black{transform: translateX(-500px);animation: moving 2.1s;animation-fill-mode: forwards}.white{transform: translateX(-500px);animation: moving 2.3s;animation-fill-mode: forwards}.pastel{transform: translateX(-500px);animation: moving 2.5s;animation-fill-mode: forwards}.footer{transform: translateX(-500px);animation: moving 2.6s;animation-fill-mode: forwards}@keyframes moving{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}.box-2{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.user{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.userdetails{transform: translateY(-500px);animation: img-top 2.0s;animation-fill-mode: forwards}.imgdetails{transform: translateY(-500px);animation: img-top 1.5s;animation-fill-mode: forwards}@keyframes img-top{0%{opacity: 0;transform: translateY(-500px)}100%{opacity: 1;transform: translateY(0px)}}@media (max-width:768px){.container{max-width: 700px;margin: 10px auto}.box-1, .box-2{max-width: 600px;padding: 20px 90px;margin: 20px auto}.box-2{transform: translateX(-500px);animation: box-side 2.6s;animation-fill-mode: forwards}@keyframes box-side{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}}@media (max-width:426px){.box-1, .box-2{max-width: 400px;padding: 20px 10px}::placeholder{font-size: 9px}}
+    </style>
+  </head>
+  <body>
+    <div id="view">
+      <!-- Navigation -->
+        <div class="w3lsnavigation">
+          <nav
+            class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
+          >
+
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar"
+              >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- Logo -->
+              <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;">
+                <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+                  font-family: 'Chivo Mono', monospace;
+                  font-family: 'Courgette', cursive;
+                  font-family: 'Teko', sans-serif;">PlayStation</a>
+              </div>
+              <!-- //Logo -->
+            </div>
+
+            <div id="navbar" class="navbar-collapse navbar-right collapse">
+              <ul
+                class="nav navbar-nav navbar-right cross-effect"
+                id="cross-effect" style="display: flex;flex-direction:row;"
+              >
+                  <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+                  <li><a style="font-size: x-small;" href="/products">Products</a></li>
+                  <li>
+                    <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+                      <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{cartCount}}
+                      </span>
+                    </a>
+                  </li>
+                  <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
+                    <div class="dropdown-menu" style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                      <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+                      <form action="/logout" method="post">
+                        <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+                      </form>
+                    </div>
+                  </li>
+              </ul>
+            </div><!-- //Navbar-Collapse -->
+
+          </nav>
+        </div>
+        <!-- //Navigation -->
+      <div class="wthreetabsaits" id="wthreetabsaits">
+        <h3>Game</h3>
+        <div class="container p-0 d-lg-flex">
+          <div style="width: 95%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
+            <div class="box-1 user" style="background:none;color: white;">
+            <div class="box-inner-1 pb-3 mb-3">
+            <div class="d-flex justify-content-between mb-3 userdetails">
+              <h4 class="fw-bold">{{theGame.name}}</h4>
+              <form action="/cart" method="post">
+                      <input type="hidden" name="hiddenGmId" value="{{theGame._id}}"> 
+                      <input style="width:100%;background-color: blue;" type="submit" value="AddCart" class="btn btn-primary btn-block mb-4">
+              </form>
+              {{!-- <button onclick="addToCart('{{theGame._id}}')" class="btn btn-warning"><ion-icon style="font-size: 15px;" name="game-controller-outline"></ion-icon></button> --}}
+              {{!-- <p class="fw-lighter"><span
+                  class="fas fa-dollar-sign"
+                ></span><b>{{theGame.price}}</b></p> --}}
+            </div>
+            <div
+              id="my"
+              class="carousel slide carousel-fade img-details"
+              data-bs-ride="carousel"
+              data-bs-interval="2000"
+            >
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#my"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#my"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#my"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="gameimages/{{theGame.image.[0]}}"
+                    class="d-block w-100"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="gameimages/{{theGame.image.[1]}}"
+                    class="d-block w-100"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="gameimages/{{theGame.image.[2]}}"
+                    class="d-block w-100"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#my"
+                data-bs-slide="prev"
+              >
+                <div class="icon"> <span class="fas fa-arrow-left"></span> </div>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#my"
+                data-bs-slide="next"
+              >
+                <div class="icon"> <span class="fas fa-arrow-right"></span> </div>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <div style="width:100%;height:100px;padding:2rem;" >
+              <button
+                type="button"
+                data-bs-target="#my"
+                data-bs-slide-to="0"
+                aria-label="Slide 1"
+                style="background: none;border:none;width:60px;"
+              >
+                <img  src="gameimages/{{theGame.image.[0]}}" alt="">
+              </button>
+              <button
+                type="button"
+                data-bs-target="#my"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+                style="background: none;border:none;width:60px;"
+              >
+                <img  src="gameimages/{{theGame.image.[1]}}" alt="">
+              </button>
+              <button
+                type="button"
+                data-bs-target="#my"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+                style="background: none;border:none;width:60px;"
+              >
+                <img  src="gameimages/{{theGame.image.[2]}}" alt="">
+              </button>
+              <button
+                type="button"
+                style="background: none;border:none;width:60px;color:black;"
+                onclick="showVideo()"
+              >
+                <img  src="gameimages/{{theGame.image.[2]}}" alt="">
+                <ion-icon style="font-size:30px;margin-top:-50%;" name="play-skip-forward-circle-outline"></ion-icon>
+              </button>
+            </div>
+            <button class="btn" onclick="showAbout()" style="border: 1px solid rgb(0, 255, 0);font-size: small; color: rgb(0, 255, 0); display: flex;">About the Game<ion-icon style="font-size:20px;" name="chevron-forward-circle-sharp"></ion-icon></button>
+            {{!-- <p class="dis my-3 info">{{theGame.dis}}</p> --}}
+            <p class="dis mb-3 updates">Free updates forever</p>
+            <p class="dis mb-3 different"><b>Game Details</b></p>
+            <div class="dis">
+              <p class="black"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Designers : </b>{{theGame.designers}}</p>
+              <p class="white"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Developed : </b>{{theGame.developed}}</p>
+              <p class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Published : </b>{{theGame.publisher}}</p>
+                <p class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Updated On : </b>{{lastUpdate.dateOfVersion}}</p>
+                <p class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Version : </b>{{lastUpdate.version}}</p>
+                <p class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b style="color: rgb(0, 255, 0);">Whats New ? : </b>{{lastUpdate.versionDetails}}</p>
+            </div>
+          </div>
+          {{!-- <form action="/cart" method="post">
+            <input type="hidden" name="hiddenGmId" value="{{theGame._id}}"> 
+            <input style="width:100%;background-color: blue;" type="submit" value="AddToFav" class="btn btn-primary btn-block mb-4">
+          </form> --}}
+        </div>
+        <div class="box-2" style="background:none;color: white;">
+          <div class="box-inner-2">
+            <div>
+              <p class="fw-bold">Payment Details</p>
+              <p class="dis mb-3">Complete your purchase by providing your payment
+                details</p>
+            </div>
+            <form action="">
+              <p class="dis my-3 info">{{theGame.dis}}</p>
+
+              <div class="mb-3">
+                <p class="dis fw-bold mb-2">Full name</p>
+                <input
+                  class="form-control"
+                  type="text"
+                  value="{{fullname}}"
+                />
+              </div>
+              <div class="mb-3">
+                <p class="dis fw-bold mb-2">Email address</p>
+                <input
+                  class="form-control"
+                  type="email"
+                  value="{{theUser.email}}"
+                />
+              </div>
+              <div class="mb-3">
+                <p class="dis fw-bold mb-2">Contact</p>
+                <input
+                  class="form-control"
+                  type="number"
+                  value="{{theUser.mobile}}"
+                />
+              </div>
+              <div>
+                <div class="my-3 cardname">
+                  <p class="dis fw-bold mb-2">Your Credentials</p>
+                  <div class="form-control" style="height: 15%;">
+                    <h5><b>Name  : </b>{{fullname}}</h5>
+                    <h5><b>Email  : </b>{{theUser.email}}</h5>
+                    <h5><b>Contact  : </b>{{theUser.mobile}}</h5>
+                  </div>
+                </div>
+                <div
+                      class="d-flex align-items-center justify-content-between mb-2"
+                    >
+                      <p>Flat Discount<span class="fas fa-check" style="color:rgb(4, 168, 4);margin-left:-.3rem;margin-top:-.2rem;"></span></p>
+                      <p name="subtotal"><span class="fas fa-dollar-sign" style="color:white;"></span>{{dis}}</p>
+                    </div>
+                    <div
+                      class="d-flex align-items-center justify-content-between mb-2"
+                    >
+                      <p class="fw-bold">Total</p>
+                      <p style="text-decoration: line-through;color: red;font-size: larger;" class="fw-bold"><span
+                          class="fas fa-dollar-sign" style="color:white;"
+                        ></span>{{theGame.price}}</p>
+                    </div>
+                    <a href="/check-out?id={{theGame._id}}" class="btn btn-primary mt-2" style="margin: 2rem;">Proceed<span
+                        class="fas fa-dollar-sign px-1"
+                      ></span>{{finalAmount}}
+                    </a>
+                    {{!-- <form action="/cart?id={{theGame._id}}" method="post" id="loginForm">
+                      <input style="width:50%;margin:1rem;margin-left:25%; background-color: blue;" type="submit" value="log in" class="btn btn-primary btn-block mb-4" > 
+                  </form> --}}
+                    {{!-- <a class="btn btn-primary mt-2" href="/cart?id={{theGame._id}}" style="background-color: rgb(44, 209, 11);">Add To Cart<span
+                        class="fa fa-shopping-cart px-1"></span></a> --}}
+                    
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+          <div style="position: fixed;top:10%;padding:5%;background-color: rgba(0, 0, 0, 0.553); display: none;z-index:3;" id="videoTab">
+            <video controls style="width: 80%;margin-left:8%;">
+              <source src="/gameVideos/{{theGame.video}}">
+            </video>
+            <button style="position: absolute; top:6%;background:none;color:white;border:none;" id="close-button"><span><ion-icon style="font-size:25px;" name="close-circle-outline"></ion-icon></span></button>
+          </div>
+          <div class="container-fluid" style="height:700px;padding:18%; position:absolute;top:7rem;background-color:rgba(255, 255, 255, 0.55); display: none;overflow-y: auto;" id="aboutGame">
+            <div style="position: absolute;top:10%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;">
+              <div style="display: flex;">
+                <img class="col-md-6" style="width:50%;" src="gameimages/{{theGame.image.[0]}}" alt="">
+                <div style="padding: 2rem;width:50%;" class="col-md-6"> 
+                  <h5 style="color:rgb(0, 255, 0);font-size:large;">{{theGame.name}}</h5>
+                  <h6 style="color:rgb(255, 255, 255);">{{theGame.category}}</h6>
+                </div>
+              </div>
+              <div>
+                <h4 style="color: rgb(0, 255, 0);">Game Details</h4>
+                <h5 style="color:rgb(0, 255, 0);margin-top:1rem;text-align: start;">PC Requirements</h5>
+                <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>OS : </b>Windows 10.</p>
+                <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>CPU : </b>Intel® Core™ i7-9700K or better.</p>
+                <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>RAM : </b>16GB of system memory.</p>
+                <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Graphics card : </b>NVIDIA GeForce RTX 2070, NVIDIA GeForce RTX 2060 Super, or NVIDIA GeForce GTX 1080 Ti.</p>
+                <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Storage : </b>At least 20GB of available space; SSD required.</p>
+              </div>
+              <div>
+                <h5 style="color:rgb(0, 255, 0);margin-top:1rem;text-align: start;">About Game</h5>
+                <p style="color: white;" class="black"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Designers : </b>{{theGame.designers}}</p>
+              <p style="color: white;" class="white"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Developed : </b>{{theGame.developed}}</p>
+              <p style="color: white;" class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b>Published : </b>{{theGame.publisher}}</p>
+                <h6 style="color: rgb(0, 255, 0);">News</h6>
+                <p style="color: white;" class="pastel"><span
+                  class="fas fa-arrow-right mb-3 pe-2"
+                ></span><b style="color: rgb(0, 255, 0);">{{theGame.name}} : </b>{{theGame.dis}}</p>
+              </div>
+              <div>
+                <h4 style="color: rgb(0, 255, 0);">Game Version Releases</h4>
+                {{#each gmUpdation}}
+                  <div style="border:1px solid rgb(0, 255, 0);margin-top:1rem;padding:1rem;">
+                    <h6 style="color: rgb(0, 255, 0);">Version -{{this.version}} Details</h6>
+                    <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Version : </b>{{this.version}}</p>
+                    <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Version Released On : </b>{{this.dateOfVersion}}</p>
+                    <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Platform : </b>{{this.platform}}</p>
+                    <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>New Features : </b>{{this.aboutGame}}</p>
+                    <p style="color: white;" class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Release Note : </b>{{this.versionDetails}}</p>
+                  </div>
+                {{/each}}
+              </div>
+              <button onclick="hideAbout()" style="position: absolute; top:5%;background:none;color:white;border:none;right:5%;"><span><ion-icon style="font-size:25px;" name="close-circle-outline"></ion-icon></span></button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+        </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+      var videoPlayer = document.getElementById('videoTab');
+      var closeButton = document.getElementById('close-button');
+
+      closeButton.addEventListener('click', function() {
+        videoPlayer.currentTime = 0;
+        videoPlayer.style.display = 'none';
+      });
+      
+      function showVideo(){
+        document.getElementById('videoTab').style.display = 'block'
+      }
+
+      function showAbout(){
+        document.getElementById('aboutGame').style.display = 'block'
+      }
+
+      function hideAbout(){
+        document.getElementById('aboutGame').style.display = 'none'
+      }
+    </script>
+
+    <script>
+        var valcode = document.querySelector("#discount")
+      var namecode = document.querySelector("#code")
+      namecode.textContent = valcode.value
+
+      var closeBtn = document.querySelector(".close")
+      var couponCode = document.querySelector(".couponCode")
+      closeBtn.addEventListener("click", function () {
+      close()
+      })
+      valcode.addEventListener("change", function () {
+      checkDiscountCoupon()
+      })
+
+      function checkDiscountCoupon() {
+      if (valcode.value.length === 0) {
+      // namecode.style.display = "none"
+      close()
+      }
+      else {
+      couponCode.classList.remove("d-none")
+      namecode.style.display = "inline"
+      namecode.textContent = valcode.value
+      }
+      }
+
+      function close() {
+      couponCode.classList.add("d-none")
+      valcode.value = ""
+      }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+

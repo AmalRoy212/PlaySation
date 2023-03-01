@@ -1,0 +1,592 @@
+<head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <style>
+    .box { background: lightblue; width: 0px; height: 0px; margin: 20px auto;
+    -webkit-transition: all .3s ease-in-out; -moz-transition: all .3s
+    ease-in-out; -o-transition: all .3s ease-in-out; transition: all .3s
+    ease-in-out; } .open-box { height: 150px; width: 150%; -webkit-transition:
+    all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -o-transition:
+    all .3s ease-in-out; transition: all .3s ease-in-out; } button { display:
+    block; margin: auto; }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    @keyframes trophy {
+	0% {
+		transform: translateY(500px);
+		opacity: 0;
+	}
+	35% {
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+@keyframes fly--up {
+	0% {
+		transform: translateY(10px);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	80% {
+		transform: translateY(-20vw);
+	}
+	100% {
+		transform: translateY(-15vw);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--down {
+	0% {
+		transform: translateY(-10px);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	80% {
+		transform: translateY(20vw);
+	}
+	100% {
+		transform: translateY(15vw);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--left {
+	0% {
+		transform: translateX(10px);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	80% {
+		transform: translateX(-35vw);
+	}
+	100% {
+		transform: translateX(-180px);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--right {
+	0% {
+		transform: translateX(-10px);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	80% {
+		transform: translateX(35vw);
+	}
+	100% {
+		transform: translateX(180px);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--up--left {
+	0% {
+		transform: rotate(135deg) translate(0vw,0vw);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		transform: rotate(135deg) translate(-3vw,20vw);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--up--right {
+	0% {
+		transform: rotate(45deg);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		transform: rotate(45deg) translate(-3vw,-20vw);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--down--left {
+	0% {
+		transform: rotate(45deg) translate(0vw,0vw);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		transform: rotate(45deg) translate(-3vw,20vw);
+		opacity: 0;
+	}
+}
+
+@keyframes fly--down--right {
+	0% {
+		transform: rotate(135deg) translate(0vw,0vw);
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		transform: rotate(135deg) translate(0vw,-20vw);
+		opacity: 0;
+	}
+}
+
+html,body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #82B1FF;
+}
+
+.view {
+	overflow: hidden;
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+}
+
+.trophy {
+	z-index: 1;
+	background-color: #fff;
+	height: 50%;
+	width: 50%;
+	border-radius: 100%;
+	animation: trophy 0.5s 1 forwards;
+}
+
+.action {
+	position: absolute;
+	top: 50%;
+	left: 46%;
+	transform: translate(-50%,-50%);
+	max-height: 300px;
+	height: 25vw;
+	max-width: 300px;
+	width: 25vw;
+	%confetti {
+		z-index: -1;
+		position: absolute;
+		height: 50px;
+		width: 10px;
+		border-radius: 10px;
+		animation-fill-mode: forwards;
+		animation-duration: 0.75s;
+		animation-iteration-count: 1;
+		transform-origin: center middle;
+		opacity: 0;
+	}
+	.confetti {
+		@extend %confetti;
+		top: 0;
+		left: calc(50% - 5px);
+		background-color: #FFEA00;
+		animation-name: fly--up;
+		animation-delay: 0.35s;
+		&.two {
+			top: auto;
+			bottom: 0;
+			animation-name: fly--down;
+		}
+		&.three,&.four {
+			top: calc(50% - 5px);
+			left: calc(50% - 25px);
+			height: 10px;
+			width: 50px;
+			animation-name: fly--left;
+		}
+		&.four {			
+			animation-name: fly--right;
+		}
+		&--purple {
+			@extend %confetti;
+			background-color: #6200EA;
+			animation-name: fly--up--left;
+			transform: rotate(135deg);
+			animation-delay: .5s;
+			left: 20%;
+			top: 20%;
+			&.two {
+				animation-name: fly--up--right;
+				left: auto;
+				right: 20%;
+				transform: rotate(45deg);
+			}
+			&.three {
+				top: auto;
+				bottom: 20%;
+				transform: rotate(45deg);
+				animation-name: fly--down--left;
+			}
+			&.four {
+				top: auto;
+				bottom: 20%;
+				left: auto;
+				right: 20%;
+				transform: rotate(135deg);
+				animation-name: fly--down--right;
+			}
+		}
+	}
+}
+  </style>
+</head>
+
+<body>
+  {{!-- <span id="cartImg" >{{data.cartCount}}dsfdsf</span> --}}
+  <!-- Navigation -->
+  <div class="w3lsnavigation">
+    <nav
+      class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
+    >
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navbar"
+          aria-expanded="false"
+          aria-controls="navbar"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Logo -->
+        <div
+          class="logo"
+          style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;"
+        >
+          <a
+            class="navbar-brand logo-w3l button"
+            href=""
+            style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+                font-family: 'Chivo Mono', monospace;
+                font-family: 'Courgette', cursive;
+                font-family: 'Teko', sans-serif;"
+          >PlayStation</a>
+        </div>
+        <!-- //Logo -->
+      </div>
+
+      <div id="navbar" class="navbar-collapse navbar-right collapse">
+        <ul
+          class="nav navbar-nav navbar-right cross-effect"
+          id="cross-effect"
+          style="display: flex;flex-direction:row;"
+        >
+          <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+          <li>
+            <a
+              style="font-size: x-small; padding: 0; margin-top: 7px;"
+              href="/cart"
+            >
+              <img
+                style="border-radius:7px; width: 25px;"
+                src="images/gm.jpeg"
+                alt=""
+              />
+              {{!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <span>{{cartCount}}</span>
+                    </span> --}}
+            </a>
+            <div
+              style="background-color:brown;width:15px;height: 15px;color:white;margin-top:-3rem;margin-left: 3rem;"
+              class="rounded-circle"
+            >
+              <span id="cartImg">{{cartCount}}</span>
+            </div>
+          </li>
+          <li><a
+              style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
+              href="#agilecontactw3ls"
+            ><img
+                style="border-radius:7px; width: 25px;height: 25px;"
+                src="images/search.png"
+                alt=""
+              /></a></li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"
+            ><img
+                style="border-radius:7px; width: 31px;"
+                src="images/Settings.png"
+                alt=""
+              /><b class="caret"></b></a>
+            <div
+              class="dropdown-menu"
+              style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));"
+            >
+              <a
+                style="font-size:small;color:azure;margin-left:1.4rem;"
+                href="/"
+              >Home</a>
+              <form action="/logout" method="post">
+                <input
+                  type="submit"
+                  value="LogOut"
+                  style="border: none;background: none;margin:0;color: rgb(0, 0, 0);"
+                />
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div><!-- //Navbar-Collapse -->
+
+    </nav>
+  </div>
+  <!-- //Navigation -->
+  {{! <section>
+        <div class="nav" style="width:100%;height:50px;background-color: rgba(0, 0, 0, 0.606); display: flex;">
+            <h1 style="color: white;position: absolute;left:0; width:20%;font-size:x-large;margin-top:1rem;">My Profile</h1>
+            <div style=" width:90%;"></div>
+            <a href="/" style="color: white;margin-top:2rem;">GoBackToHome</a>
+        </div>
+    </section> }}
+  <div class="wthreetabsaits" id="wthreetabsaits">
+    <section>
+      <h3
+        style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;"
+      >Black List</h3>
+      <div class="tabs tabs-style-line">
+        <nav class="container">
+          <ul>
+            <li><a
+                href="#section-line-1"
+                style="color: rgb(255, 255, 255);"
+              ><span>POPULAR</span></a></li>
+            {{#each newCatlist}}
+              <li><a
+                  href="#section-line-2"
+                  style="color: rgb(255, 255, 255);"
+                ><span>{{this}}</span></a></li>
+            {{/each}}
+          </ul>
+        </nav>
+        {{! <div id="hidden" style="width:90%;height:500px;display:none;position:absolute;z-index:3;margin:5rem;" class="box" id="box">
+            <button class="btn btn-primary" id="btnX">Buy Now</button>
+        </div> }}
+        <div class="content-wrap" style="padding:3rem;">
+          <section id="section-line-1 fade-in">
+            <div class="row">
+              {{#each games}}
+                <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px">
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="height: 50%;">
+                    <a href="/product-view?id={{this._id}}">
+                      <img src="gameimages/{{this.image.[0]}}" class="img-fluid" style="border-radius: 10px;margin-top:1rem;height:90%;"/>
+                    </a>
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+
+                      </div>
+                    </a>
+                  </div>
+                  <a href="/product-view?id={{this._id}}" style="color:black;">
+                    <div class="card-body">
+                      <h4 class="card-title"><b>{{this.name}}</b></h4>
+                      <h6 class="card-text" style="color: grey;"><b>{{this.category}}</b></h6>
+                      <h5 class="card-text" style="color:grey;">Downloads :<b>{{this.downloads}}</b></h5>
+                      <h4>Rs.<b style="color:rgb(0, 135, 0);">{{this.price}}</b>/-</h4>
+                      <a href="/check-out?id={{this._id}}" class="btn btn-primary">Buy Now</a>
+                      {{#if this.inCart}}
+                        <a id="goto" href="/cart" class="btn btn-success"><ion-icon style="font-size: 15px;" name="arrow-forward-circle-outline"></ion-icon></a>
+                      {{else}}
+                        <button onclick="addToCart('{{this._id}}')" class="btn btn-warning"><ion-icon style="font-size: 15px;" name="game-controller-outline"></ion-icon></button>
+                      {{/if}}
+                      {{!-- <button onclick="addToCart('{{this._id}}')" class="btn btn-warning"><ion-icon style="font-size: 15px;" name="game-controller-outline"></ion-icon></button> --}}
+                    </div>
+                  </a>
+                </div>
+              {{/each}}
+            </div>
+          </section>
+          <section id="section-line-2">
+            <div class="row">
+              {{#each catGame}}
+                <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px">
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="height: 50%;">
+                    <a href="/product-view?id={{this._id}}">
+                      <img src="gameimages/{{this.image.[0]}}" class="img-fluid" style="border-radius: 10px;margin-top:1rem;height:90%;"/>
+                    </a>
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+
+                      </div>
+                    </a>
+                  </div>
+                  <a href="/product-view?id={{this._id}}" style="color:black;">
+                    <div class="card-body">
+                      <h4 class="card-title"><b>{{this.name}}</b></h4>
+                      <h6 class="card-text" style="color: grey;"><b>{{this.category}}</b></h6>
+                      <h5 class="card-text" style="color:grey;">Downloads :<b>{{this.downloads}}</b></h5>
+                      <h4>Rs.<b style="color:rgb(0, 135, 0);">{{this.price}}</b>/-</h4>
+                      <a href="/check-out?id={{this._id}}" class="btn btn-primary">Buy Now</a>
+                      {{#if this.inCart}}
+                        <button class="btn btn-warning"><ion-icon style="font-size: 15px;" name="arrow-forward-circle-outline"></ion-icon></button>
+                      {{else}}
+                        <button onclick="addToCart('{{this._id}}')" class="btn btn-warning"><ion-icon style="font-size: 15px;" name="game-controller-outline"></ion-icon></button>
+                      {{/if}}
+                    </div>
+                  </a>
+                </div>
+              {{/each}}
+            </div>
+          </section>
+          <section id="section-line-3">
+            <div class="row">
+              {{#each catGameTwo}}
+                <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px">
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="height: 50%;">
+                    <a href="/product-view?id={{this._id}}">
+                      <img src="gameimages/{{this.image.[0]}}" class="img-fluid" style="border-radius: 10px;margin-top:1rem;height:90%;"/>
+                    </a>
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
+                      </div>
+                    </a>
+                  </div>
+                  <a href="/product-view?id={{this._id}}" style="color:black;">
+                    <div class="card-body">
+                      <h4 class="card-title"><b>{{this.name}}</b></h4>
+                      <h6 class="card-text" style="color: grey;"><b>{{this.category}}</b></h6>
+                      <h5 class="card-text" style="color:grey;">Downloads :<b>{{this.downloads}}</b></h5>
+                      <h4>Rs.<b style="color:rgb(0, 135, 0);">{{this.price}}</b>/-</h4>
+                      <a href="/check-out?id={{this._id}}" class="btn btn-primary">Buy Now</a>
+                      <button onclick="addToCart('{{this._id}}')" class="btn btn-warning"><ion-icon style="font-size: 15px;" name="game-controller-outline"></ion-icon></button>
+                    </div>
+                  </a>
+                </div>
+              {{/each}}
+            </div>
+          </section>
+          <div style="position:fixed;top:6rem;display:none;" id="success">
+            <div class="view" >
+            <div class="action">
+              <div class="bg-info" style="border-radius:15px;padding-top:.5rem;padding-bottom:.2rem;">
+                <div class="trophy" style="margin:6rem;margin-top:-3rem;margin-bottom:0rem;">
+                <svg fill="#FFD600" width="100%" height="100%" viewBox="0 0 24 24">
+                  <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
+                </svg>
+              </div>
+              {{!-- {{#if data.update}} --}}
+                <h4 style="color: rgb(255, 255, 255);width:100%;">Successfully Added To Fav List</h4>
+              {{!-- {{else}}
+                <h4 style="color: rgb(255, 255, 255);width:100%;">Already Added To Fav List</h4>
+              {{/if}} --}}
+              <div class="confetti"></div>
+              <div class="confetti two"></div>
+              <div class="confetti three"></div>
+              <div class="confetti four"></div>
+              <div class="confetti--purple"></div>
+              <div class="confetti--purple two"></div>
+              <div class="confetti--purple three"></div>
+              <div class="confetti--purple four"></div>
+              </div>
+            </div>
+          </div>
+          <div style="position:fixed;top:0;display:none;" id="already">
+            <div class="view" >
+            <div class="action">
+              <div class="bg-danger" style="border-radius:15px;padding-top:.5rem;padding-bottom:.2rem;">
+                <div class="trophy" style="margin:6rem;margin-top:-3rem;margin-bottom:0rem;">
+                <svg fill="#FFD600" width="100%" height="100%" viewBox="0 0 24 24">
+                  <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
+                </svg>
+              </div>
+              <h4 style="color: rgb(255, 255, 255);width:100%;">Already Added To Fav List</h4>
+              <div class="confetti"></div>
+              <div class="confetti two"></div>
+              <div class="confetti three"></div>
+              <div class="confetti four"></div>
+              <div class="confetti--purple"></div>
+              <div class="confetti--purple two"></div>
+              <div class="confetti--purple three"></div>
+              <div class="confetti--purple four"></div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div><!-- /content -->
+      </div><!-- /tabs -->
+    </section>
+  </div>
+  <script>
+    async function addToCart(id){ 
+      document.getElementById('success').style.display="block";
+      setTimeout(function(){
+        document.getElementById('success').style.display="none";
+      },2000)
+      console.log('njan keri',id,"userid"); 
+      const response = await fetch('/cart',{
+         method: 'POST', 
+         headers: { 
+          'Content-Type':'application/json', 
+        }, 
+        body: JSON.stringify({ 
+          hiddenGmId : id ,
+          fromFetch:true
+        }) 
+      }) 
+    let data = await response.json(); 
+    console.log(data,"=========",data.cartCount);
+    document.getElementById("cartImg").innerHTML = data.cartCount
+    console.log(data.cartCount); }
+  </script>
+  <script
+    src="https://code.jquery.com/jquery-3.6.3.js"
+    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+</body>

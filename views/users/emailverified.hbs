@@ -1,0 +1,61 @@
+<!-- Navigation -->
+      <div class="w3lsnavigation">
+        <nav
+          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
+        >
+
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar"
+              aria-expanded="false"
+              aria-controls="navbar"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Logo -->
+            <div class="logo">
+              <a class="navbar-brand logo-w3l button" href="#" style="font-family: font-family: 'Anton', sans-serif;
+                font-family: 'Chivo Mono', monospace;
+                font-family: 'Courgette', cursive;
+                font-family: 'Teko', sans-serif;;">PlayStation</a>
+            </div>
+            <!-- //Logo -->
+          </div>
+
+          <div id="navbar" class="navbar-collapse navbar-right collapse">
+            <ul
+              class="nav navbar-nav navbar-right cross-effect"
+              id="cross-effect">
+              <li><a style="font-size: smaller;"  href="/home">Home</a></li>
+              <li><a style="font-size: smaller;"  href="/login">LogIn</a></li>
+              <li><a style="font-size: smaller;"  href="/signup">SignUp</a></li>
+              <li><a style="font-size: smaller;" class="scroll" href="/admin">Admin</a></li>
+            </ul>
+          </div><!-- //Navbar-Collapse -->
+        </nav>
+    </div>
+      <!-- //Navigation -->
+<div class="container">
+    <img style="width: 40%;float: left;" src="images/verify.png" alt="">
+    <div style="padding: 10rem;margin-top: 3rem;">
+        <h3>Hello <b>{{userName}}</b></h3>
+        <h4>Congrats...! You Are Verified</h4>
+        <br>
+        {{#if user_Spied}}
+          <h6>Welcome to the community of <b>PlayStation</b> Gamings </h6>
+          <h6>Grab your Coupons on time and get the Max discounts on your favorites</h6>
+          <h6>Grab your First Time Member <a href="">FTM</a> Coupon here and Your coupon will be send to <a href="https://mail.google.com/mail">{{email}}</a></h6>
+          <h6>thank you for being a part of us and supporting our <a href="#">Terms & Policy</a></h6>
+          <h6>© 2023 PlayStation. All Rights Reserved | Design by #</h6>
+        {{else}}
+          <h5>Thank you..!</h5>
+          <h6>Keep your Account safe from malicious activities by verifying your account</h6>
+        {{/if}}
+    </div>
+</div>

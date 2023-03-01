@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>.box {
+        background: lightblue;
+        width: 0px;
+        height: 0px;
+        margin: 20px auto;
+        -webkit-transition: all .3s ease-in-out;
+          -moz-transition: all .3s ease-in-out;
+          -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+      }
+      
+      .open-box {
+          width: 500px;
+          height: 500px;
+        
+          -webkit-transition: all .3s ease-in-out;
+          -moz-transition: all .3s ease-in-out;
+          -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+      }
+      
+      button {
+        display: block;
+        margin: auto;
+      }</style> -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #252525;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .firstline{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 500px;
+        }
+        .shapes1,.shapes2,.shapes3,.shapes4,.shapes5{
+            width: 100px;
+            height: 100px;
+            transform: skew(30deg);
+            background-color: yellow;
+            box-shadow: 0 0 80px yellow, 0 0 100px yellow;
+            animation: anima1 2s infinite linear;
+            animation-delay: calc(0.05s*var(--i));
+        }
+        @keyframes anima1{
+            0%{
+                filter: hue-rotate(0deg);
+            }
+            50%{
+                margin-top: -50px;
+                box-shadow: 0 0 0 0 transparent;
+            }
+            100%{
+                filter: hue-rotate(360deg);
+                margin-top: 10px;
+            }
+        }
+        .secondline{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            margin-top: -230px;
+            margin-left: 60px;
+        }
+        .loading{
+            width: 500px;
+            background-color: transparent;
+            color: transparent;
+            text-align: center;
+            font-family: "source sans 3",sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            border-radius: 10px;
+            border: solid 2px yellow;
+            animation: loading 2s infinite linear;
+        }
+        @keyframes loading{
+            0%{
+                color: transparent;
+                border-color: transparent;
+            }
+            50%{
+                color: lightgreen;
+                box-shadow: 0 0 30px yellow;
+            }
+            100%{
+                color: transparent;
+            }
+        }
+        .thirdline{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 630px;
+            margin-top: -300px;
+        }
+        .shapes6,.shapes7,.shapes8,.shapes9,.shapes10{
+            width: 100px;
+            height: 100px;
+            transform: skew(-30deg);
+            background-color: yellow;
+            box-shadow: 0 0 80px yellow, 0 0 100px yellow;
+            animation: anima2 2s infinite linear;
+            animation-delay: calc(0.05s*var(--i));
+        }
+        @keyframes anima2{
+            0%{
+                filter: hue-rotate(0deg);
+            }
+            50%{
+                margin-top: 50px;
+                box-shadow: 0 0 0 0 transparent;
+            }
+            100%{
+                filter: hue-rotate(360deg);
+                margin-top: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,800;1,600&display=swap" 
+    rel="stylesheet">
+   
+   <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+     <div class="firstline">
+          <div class="shapes1" style="--i:1"></div>
+          <div class="shapes2" style="--i:2"></div>
+          <div class="shapes3" style="--i:3"></div>
+          <div class="shapes4" style="--i:4"></div>
+          <div class="shapes5" style="--i:5"></div>
+     </div>
+     <br>
+     <br>
+     <div class="secondline">
+          <div class="loading">Loading</div>
+     </div>
+     <br>
+     <br>
+     <div class="thirdline">
+          <div class="shapes6" style="--i:1"></div>
+          <div class="shapes7" style="--i:2"></div>
+          <div class="shapes8" style="--i:3"></div>
+          <div class="shapes9" style="--i:4"></div>
+          <div class="shapes10" style="--i:5"></div>
+     </div>
+   </body>
+
+    <!-- <div class="box" id="box"></div>
+
+    <button id="btnX" onclick="clicked()">click me</button> 
+
+
+
+    <div class="box" id="box"></div>
+
+    <button id="btn2" onclick="clicked()">click me</button>
+
+
+
+    <div class="box" id="box"></div>
+
+    <button id="hi" onclick="clicked('£hi')">click me</button>
+    <script>
+        function clicked(v)
+        var btn = document.getElementById('btnX');
+        btn.addEventListener("click", function(){
+        document.getElementById('box').classList.toggle("open-box");
+        });
+
+        function toggleCLass() {
+        var myBoxClasses = document.getElementsByClassName('box').classList;
+        if (myBoxClasses.contains("box-scale")) {
+            myBoxClasses.remove("box-scale");
+        } else {
+            myBoxClasses.add("box-scale");
+        }
+        }
+    </script> -->
+    <!-- </body> -->
+
+    <!-- <div class="box" id="box" style="width:100px;height:100px;background-color: black;">
+
+
+    </div>
+    <button class="btn" id="btn" onclick="display()">click me</button>
+    <script>
+        function display(){
+            document.getElementById('box').fadeIn('slow');
+            // document.getElementById('box').style.display="block";
+            // document.getElementById("myDIV").style.animation = "mynewmove 4s 2";
+            // document.getElementById('box').style.width="300px";
+            // document.getElementById('box').style.height="300px"
+
+        }
+    </script> -->
+</html>
+
+
