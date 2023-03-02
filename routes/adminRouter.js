@@ -92,7 +92,6 @@ adminRouter.get('/coupon/table',auth.isAdminLogin,adminController.loadCoponTable
 adminRouter.post('/coupon/send',auth.isAdminLogin,adminController.addingCouponsInUser);
 
 
-
 // adminRouter.get('*',function(req,res){
 //     try {
         

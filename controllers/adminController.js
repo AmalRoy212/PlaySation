@@ -239,7 +239,6 @@ const updateGames = async function(req,res){
         const id = req.query.id;
         let currentGames
         let imageFilename = req.files.map(file =>  file.filename);
-        console.log(imageFilename,"_____________",imageFilename.length)
         if(imageFilename.length == 0){
             currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
                 {$set:{
@@ -266,32 +265,6 @@ const updateGames = async function(req,res){
                 }}
             )
         }
-        // if(imageFilename){
-        //     currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
-        //         {$set:{
-        //             image:imageFilename,
-        //             name:req.body.name,
-        //             category:req.body.category,
-        //             price:req.body.price,
-        //             designers:req.body.designers,
-        //             developed:req.body.developed,
-        //             publisher:req.body.publisher,
-        //             dis:req.body.discription
-        //         }}
-        //     )
-        // }else{
-        //     currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
-        //         {$set:{
-        //             name:req.body.name,
-        //             category:req.body.category,
-        //             price:req.body.price,
-        //             designers:req.body.designers,
-        //             developed:req.body.developed,
-        //             publisher:req.body.publisher,
-        //             dis:req.body.discription
-        //         }}
-        //     )
-        // }
         if(currentGames){
             GameProducts=refershingGameProduct();
             res.redirect('/admin/games');
@@ -671,7 +644,6 @@ const addingCouponsInUser = async function(req,res){
         console.log(error.message);
     }
 }
-
 
 module.exports = {
     loadLogin,

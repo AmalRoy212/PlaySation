@@ -24,6 +24,8 @@ let sccMsg;
 let cartCount = 0;
 let update =false;
 let userResendMail;
+let gameCollection;
+let search;
 
 //securing the password
 async function securingPassword(password){
@@ -523,8 +525,10 @@ const loadProducts = async function(req,res){
         //want to make as function
         let newCatlist = [];
         let rndomLoc = [];
-        const games = await GamesModels.find({deleted:false}).lean()
-        const cates = await findTheCategories()
+        if(!search){
+            gameCollection = await GamesModels.find({deleted:false}).lean();
+        }
+        const cates = await findTheCategories();
         for(var i=0;i<2;i++){
             rndomLoc [i] = await Math.floor(await Math.random()*cates.length);
             if(i > 0 && rndomLoc[0] == rndomLoc[i]){
@@ -534,7 +538,8 @@ const loadProducts = async function(req,res){
         }
         const catGame = await GamesModels.find({category:newCatlist[0]});
         const catGameTwo = await GamesModels.find({category:newCatlist[1]});
-        res.render('products',{games,catGame,catGameTwo,newCatlist,cartCount});
+        res.render('products',{games:gameCollection,catGame,catGameTwo,newCatlist,cartCount});
+        search = false;
     } catch (error) {
         console.log(error.message);
     }
@@ -863,6 +868,26 @@ const checkingTheCouponValidity = async function(req,res){
     }
 }
 
+//loading the product page after searching
+const loadProductsBySearch = async function(req,res){
+    try {
+        search = true;
+        const searchInp = req.body.search;
+        gameCollection = await GamesModels.find({name:{$regex:searchInp}});
+        res.redirect('/products');
+        // if(GameProducts){
+        //     console.log(GameProducts);
+        //     res.render('games',{GameProducts});
+        // }else{
+        //     adminMessage = 'Search Not Found';
+        //     res.render('games',{adminMessage});
+        //     adminMessage = '';
+        // }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports={
     //sugnup is verified on bug
     loadSignup,
@@ -897,6 +922,7 @@ module.exports={
     deleteCartItem,
     googleAuth,
     resendOtp,
-    checkingTheCouponValidity
+    checkingTheCouponValidity,
+    loadProductsBySearch
     //resend otp want to fix there is a bug on the redirection the otp checking variable want to clear after 59 sec finish
 }
