@@ -88,6 +88,9 @@ adminRouter.get('/banner',auth.isAdminLogin,adminController.loadBannerPage);
 adminRouter.post('/banner',auth.isAdminLogin,upload.array('images',4),adminController.addBannerImages);
 adminRouter.get('/coupon',auth.isAdminLogin,adminController.loadCouponPage);
 adminRouter.post('/coupon',auth.isAdminLogin,adminController.creatingCoupon);
+adminRouter.get('/coupon/table',auth.isAdminLogin,adminController.loadCoponTable);
+adminRouter.post('/coupon/send',auth.isAdminLogin,adminController.addingCouponsInUser);
+adminRouter.post('/find/user',auth.isAdminLogin,adminController.findingUsers)
 
 
 

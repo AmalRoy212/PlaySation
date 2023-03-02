@@ -352,7 +352,7 @@
     let discountFeild = document.getElementById('discount');
 
       discountFeild.addEventListener('click',function(){
-          fetch('http://localhost:3000/coupon', {
+          fetch('/coupon', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
@@ -435,7 +435,7 @@
 
     let userFullName = userfName+' '+userlName;
 
-    const response = await fetch('http://localhost:3000/check-out', {
+    const response = await fetch('/check-out', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -463,7 +463,6 @@
         "currency": "INR",
         "order_id": oderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response){
-          console.log("koooo successs");
             console.log(oderData.Order);
             //location.href=("/payment")
         },

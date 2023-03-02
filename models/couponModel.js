@@ -25,6 +25,14 @@ const coupon = mongoose.Schema({
         type:Number,
         require:true
     },
+    isActive:{
+        type:Boolean,
+        default:true
+    },
+    isCommon:{
+        type:Boolean,
+        default:false
+    },
     users:{
         type:Array,
         default:null

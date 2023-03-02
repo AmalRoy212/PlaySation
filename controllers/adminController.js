@@ -6,6 +6,7 @@ const userModel = require('../models/userModel');
 const OrderModel = require('../models/orderModel');
 const bannerModel = require('../models/bannerModel');
 const couponModel = require('../models/couponModel');
+const { findOneAndUpdate } = require('../models/adminModel');
 
 let adminMessage;
 let GameProducts;
@@ -531,14 +532,16 @@ const addBannerImages = async function(req,res){
 const loadCouponPage = async function(req,res){
     try {
         const couponCodes = await couponModel.find();
-        res.render('coupons',{couponCodes});
+        res.render('coupons',{couponCodes,adminMessage,sccMssg});
+        adminMessage = '';
+        sccMssg = ''
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //adding new coupon in database
- const creatingCoupon = async function(req,res){
+const creatingCoupon = async function(req,res){
     try {
         let coupon = req.body.couponCode;
         let flag = 0;
@@ -572,14 +575,68 @@ const loadCouponPage = async function(req,res){
                 minAmount:minAmount
             });
             const couponCode = await newCoupon.save();
+            if(couponCode.availability == 'common'){
+                console.log('578 --------------------common')
+                await userModel.updateMany({$addToSet:{coupons:couponCode.couponCode}});
+                await couponModel.findByIdAndUpdate({_id:couponCode.id},{isCommon:true});
+            }
+            sccMssg = 'Coupon Successfully Added'
+            res.redirect('/admin/coupon');
             console.log(couponCode);
+        }else{
+            adminMessage = 'The Coupon is already there in you list'
+            res.redirect('/admin/coupon');
         }
 
     } catch (error) {
         console.log(error.message);
     }
- }
+}
 
+//loding the coupon table 
+const loadCoponTable = async function(req,res){
+    try {
+        const coupons = await couponModel.find();
+        let user = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
+        const userCoupon = user.coupons;
+        console.log(user)
+        user.forEach((element)=>{
+            element.fname = element.fname+" "+element.lname;
+        })
+        console.log(user)
+        // const fullname = user.fname+" "+user.lname;
+
+        res.render('couponTable',{coupons,user,sccMssg});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//sending the coupons to user 
+const addingCouponsInUser = async function(req,res){
+    try {
+        const couponId = req.body.id;
+        const user = req.body.users;
+        const couponCode = await couponModel.findById({_id:couponId});
+        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode } });
+        sccMssg = 'Succesfully Sent to user'
+        res.redirect('/admin/coupon/table');
+        console.log('----------------617',couponId,theUser);
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//getting users for avoind the users those got the coupon
+const findingUsers = async function(req,res){
+    try {
+        const cID = req.body.couponId;
+        console.log(cID);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 module.exports = {
     loadLogin,
     laodAdminHome,
@@ -611,7 +668,10 @@ module.exports = {
     loadBannerPage,
     addBannerImages,
     loadCouponPage,
-    creatingCoupon
+    creatingCoupon,
+    loadCoponTable,
+    addingCouponsInUser,
+    findingUsers
 }
 //category adding by admin
 //user products page
