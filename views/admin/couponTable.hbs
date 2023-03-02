@@ -513,8 +513,8 @@
                                           
                                         {{else}}
                                           <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
-                                            <a class="nav-link dropdown-toggle btn btn-primary p-1" style="font-size:x-small;width:55px;height:25px" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                                              aria-haspopup="true" onclick="checkingUser({{this._id}})" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="trash-outline"></ion-icon><span style="padding:0;margin:0;">Send</span>
+                                            <a class="nav-link dropdown-toggle btn btn-primary p-1" style="font-size:x-small;width:55px;height:25px" href="admin/coupon/send" id="userDropdown" role="button" data-toggle="dropdown"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="trash-outline"></ion-icon><span style="padding:0;margin:0;">Send</span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="userDropdown" 
                                               style="margin-left:-20%;width:400px;margin-top:-5%;background-color: rgba(0, 0, 0, 0.839);border-radius: 15px;">
@@ -596,19 +596,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
-    <script>
-        function checkingUser(id){
-            const response = await fetch('/admin/find/user', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    coupounId : id
-                }),
-            })
-        }
-    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </body>

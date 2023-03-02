@@ -33,6 +33,10 @@ const coupon = mongoose.Schema({
         type:Boolean,
         default:false
     },
+    send:{
+        type:Array,
+        default:null
+    },
     users:{
         type:Array,
         default:null

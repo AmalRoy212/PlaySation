@@ -12,6 +12,7 @@ let adminMessage;
 let GameProducts;
 let userBlocked ;
 let sccMssg;
+let userCoupon
 
 
 //function for creating new categories
@@ -236,20 +237,62 @@ const loadGameEdit = async function(req,res){
 const updateGames = async function(req,res){
     try {
         const id = req.query.id;
-        const imageFilename = req.files.map(file =>  file.filename);
-        const game = await GamesModel.findByIdAndUpdate({ _id:id },
-            {$set:{
-                image:imageFilename,
-                name:req.body.name,
-                category:req.body.category,
-                price:req.body.price,
-                designers:req.body.designers,
-                developed:req.body.developed,
-                publisher:req.body.publisher,
-                dis:req.body.discription
-            }}
-        )
-        if(game){
+        let currentGames
+        let imageFilename = req.files.map(file =>  file.filename);
+        console.log(imageFilename,"_____________",imageFilename.length)
+        if(imageFilename.length == 0){
+            currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
+                {$set:{
+                    name:req.body.name,
+                    category:req.body.category,
+                    price:req.body.price,
+                    designers:req.body.designers,
+                    developed:req.body.developed,
+                    publisher:req.body.publisher,
+                    dis:req.body.discription
+                }}
+            )
+        }else{
+            currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
+                {$set:{
+                    image:imageFilename,
+                    name:req.body.name,
+                    category:req.body.category,
+                    price:req.body.price,
+                    designers:req.body.designers,
+                    developed:req.body.developed,
+                    publisher:req.body.publisher,
+                    dis:req.body.discription
+                }}
+            )
+        }
+        // if(imageFilename){
+        //     currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
+        //         {$set:{
+        //             image:imageFilename,
+        //             name:req.body.name,
+        //             category:req.body.category,
+        //             price:req.body.price,
+        //             designers:req.body.designers,
+        //             developed:req.body.developed,
+        //             publisher:req.body.publisher,
+        //             dis:req.body.discription
+        //         }}
+        //     )
+        // }else{
+        //     currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
+        //         {$set:{
+        //             name:req.body.name,
+        //             category:req.body.category,
+        //             price:req.body.price,
+        //             designers:req.body.designers,
+        //             developed:req.body.developed,
+        //             publisher:req.body.publisher,
+        //             dis:req.body.discription
+        //         }}
+        //     )
+        // }
+        if(currentGames){
             GameProducts=refershingGameProduct();
             res.redirect('/admin/games');
         }
@@ -597,7 +640,7 @@ const creatingCoupon = async function(req,res){
 const loadCoponTable = async function(req,res){
     try {
         const coupons = await couponModel.find();
-        let user = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
+        userCoupon = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
         const userCoupon = user.coupons;
         console.log(user)
         user.forEach((element)=>{
@@ -619,24 +662,17 @@ const addingCouponsInUser = async function(req,res){
         const user = req.body.users;
         const couponCode = await couponModel.findById({_id:couponId});
         const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode } });
+        //get the use id and manage the array of sending the user while rendering the coupon table
+
         sccMssg = 'Succesfully Sent to user'
         res.redirect('/admin/coupon/table');
         console.log('----------------617',couponId,theUser);
-        
     } catch (error) {
         console.log(error.message);
     }
 }
 
-//getting users for avoind the users those got the coupon
-const findingUsers = async function(req,res){
-    try {
-        const cID = req.body.couponId;
-        console.log(cID);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+
 module.exports = {
     loadLogin,
     laodAdminHome,
@@ -671,10 +707,12 @@ module.exports = {
     creatingCoupon,
     loadCoponTable,
     addingCouponsInUser,
-    findingUsers
 }
 //category adding by admin
 //user products page
 //user categorized view 
 //admin session
 //want to check the login isblocked by admin
+
+//important
+//want to fix the users who is eligible to send the coupon
