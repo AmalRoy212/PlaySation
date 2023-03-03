@@ -592,13 +592,11 @@ const creatingCoupon = async function(req,res){
             });
             const couponCode = await newCoupon.save();
             if(couponCode.availability == 'common'){
-                console.log('578 --------------------common')
                 await userModel.updateMany({$addToSet:{coupons:couponCode.couponCode}});
                 await couponModel.findByIdAndUpdate({_id:couponCode.id},{isCommon:true});
             }
             sccMssg = 'Coupon Successfully Added'
             res.redirect('/admin/coupon');
-            console.log(couponCode);
         }else{
             adminMessage = 'The Coupon is already there in you list'
             res.redirect('/admin/coupon');
@@ -613,15 +611,11 @@ const creatingCoupon = async function(req,res){
 const loadCoponTable = async function(req,res){
     try {
         const coupons = await couponModel.find();
-        userCoupon = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
+        const user = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
         const userCoupon = user.coupons;
-        console.log(user)
         user.forEach((element)=>{
             element.fname = element.fname+" "+element.lname;
         })
-        console.log(user)
-        // const fullname = user.fname+" "+user.lname;
-
         res.render('couponTable',{coupons,user,sccMssg});
     } catch (error) {
         console.log(error.message);

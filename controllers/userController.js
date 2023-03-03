@@ -10,6 +10,7 @@ const randomString = require('randomstring');
 const Razorpay = require('razorpay');
 const passport = require('passport');
 const bannerModel = require('../models/bannerModel');
+const CouponModel = require('../models/couponModel');
 
 let userMessage
 let usrId
@@ -861,10 +862,10 @@ const resendOtp = async function(req,res){
 //checking the coupon is valid or not
 const checkingTheCouponValidity = async function(req,res){
     try {
-        const couponCode = req.body.inpCoupon;
-        console.log('..........873',couponCode);
-        coupn = '000000';
-        res.json({coupn})
+        const userCoupon = await userModel.findById({_id:req.session.user},{_id:0,coupons:1});
+        const availCoupon = userCoupon.coupons[0];
+        const theCoupon = await CouponModel.findOne({couponCode:availCoupon})
+        res.json({availCoupon,theCoupon})
     } catch (error) {
         console.log(error.message);
     }

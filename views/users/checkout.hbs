@@ -281,10 +281,12 @@
                     name="discode"
                   />
                   <input type="hidden"  id="hiddenCoupon">
+                  <input type="hidden" id="theCoupon">
                   <div style="width: 200px;height:20px;border:1px solid rgb(148, 0, 0);border-radius: 10px;display: none; color: rgb(175, 0, 0);font-weight:lighter;padding:1%;margin:1%;" id="messageBox">
                     <span id="exclam"><i style="color: rgb(100, 0, 0);display:none" class="fas fa-exclamation-circle"></i></span>
                     <i id="check" style="color: rgb(49, 245, 0);display:none" class="fas fa-check-circle"></i>
                   </div>
+                  <div style="height:20px;width:100px;background-color: #7700ff;" id="coupon"></div>
                 </div>
                 
                 <div class="d-flex flex-column dis">
@@ -363,8 +365,11 @@
           }).then(response => {
               return response.json();
             }).then(data => {
-              console.log(data.coupn);
-              document.getElementById('hiddenCoupon').value=data.coupn
+              console.log(data.availCoupon,data.theCoupon);
+              document.getElementById('hiddenCoupon').value=data.availCoupon
+              document.getElementById('theCoupon').value = data.theCoupon
+              const newD = document.getElementById('theCoupon').value
+              console.log(newD.couponCode)
             })  
       })
       console.log(coupon);
@@ -377,14 +382,17 @@
       let intervals = setInterval(function() {
         let discountFeild = document.getElementById('discount').value;
         let theCoupon = document.getElementById('hiddenCoupon').value
+        let thewholeCoupon = document.getElementById('theCoupon').value
 
         if(discountFeild){
           document.getElementById('messageBox').style.display = 'block'
             console.log(theCoupon,".....",discountFeild);
           if(theCoupon == discountFeild){
+            const discount = (totalPrice/thewholeCoupon.couponDiscount)*100
+            console.log(discount,totalPrice,thewholeCoupon.couponDiscount)
             const lastPrice = totalPrice - 100;
-            priceFeild.innerHTML = lastPrice
-            document.getElementById('newPrice').value = lastPrice;
+            priceFeild.innerHTML = discount
+            document.getElementById('newPrice').value = discount;
             document.getElementById('disTab').style.display = 'block'
             document.getElementById('messageBox').innerHTML = 'Coupon Applied'
             document.getElementById('messageBox').style.border = '1px solid rgb(0, 255, 0)'
@@ -411,7 +419,7 @@
 
           console.log('its else');
         }
-      },100);   
+      },1000);   
  </script>
 
   {{!-- fetch --}}
