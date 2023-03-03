@@ -259,7 +259,12 @@ body {
 		}
 	}
 }
+input:focus {
+  outline: none;
+}
+
   </style>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
@@ -335,18 +340,29 @@ body {
                 style="border-radius:7px; width: 25px;height: 25px;"
                 src="images/search.png"
                 alt=""
-              /></a></li>
-          <li class="dropdown">
+              /></a>
+          </li>
+           {{!-- <li>
+            <form action="/logout" method="post">
+                <input
+                  type="submit"
+                  value="LogOut"
+                  class="btn btn-success"
+                  style="margin:0;color: rgb(255, 255, 255);padding: 0;margin-left: 5px; margin-top: 7px;"
+                />
+              </form>
+          </li> --}}
+          <li class="dropdown no-arrow">
             <a
               href="#"
               class="dropdown-toggle"
               data-toggle="dropdown"
-              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"
+              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;margin-right:4px;"
             ><img
                 style="border-radius:7px; width: 31px;"
                 src="images/Settings.png"
                 alt=""
-              /><b class="caret"></b></a>
+              /></a>
             <div
               class="dropdown-menu"
               style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));"
@@ -382,6 +398,15 @@ body {
       <h3
         style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;"
       >Black List</h3>
+      <div style="padding:2%;">
+        {{!-- search bar --}}
+       
+          <div style="display:flex;width:60%;border: 1px solid rgb(0, 255, 0);border-radius: 20px;background-color: rgba(0, 0, 0, 0.659);height: 40px;">
+            <input value="{{input}}" type="text" id="searchInput" name="searchInput" placeholder="Find Your Favorites" style="color: rgb(0, 255, 0);font-size:large;width:90%;height: 30px;padding:1%;margin: .5%;background: none;border: none;">
+            <button id="btn-search" style="margin-left:.5%;border: none;background: none; color: rgb(0, 255, 0);margin-top:-.3%;"><ion-icon style="font-size:40px;padding:0;margin:0;" name="search-circle"></ion-icon></button>
+          </div>
+       
+      </div>
       <div class="tabs tabs-style-line">
         <nav class="container">
           <ul>
@@ -411,7 +436,6 @@ body {
                     </a>
                     <a href="#!">
                       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
-
                       </div>
                     </a>
                   </div>
@@ -545,6 +569,16 @@ body {
     </section>
   </div>
   <script>
+    document.getElementById('btn-search').onclick=(e)=>{
+      window.location.href=`/products?search=${document.getElementById('searchInput').value}`
+    };
+    document.getElementById('searchInput').onchange=(e)=>{
+      if(!e.target.value)
+      window.location.href=`/products`
+    };
+  </script>
+
+  <script>
     async function addToCart(id){ 
       document.getElementById('success').style.display="block";
       setTimeout(function(){
@@ -564,7 +598,8 @@ body {
     let data = await response.json(); 
     console.log(data,"=========",data.cartCount);
     document.getElementById("cartImg").innerHTML = data.cartCount
-    console.log(data.cartCount); }
+    console.log(data.cartCount);
+    }
   </script>
   <script
     src="https://code.jquery.com/jquery-3.6.3.js"

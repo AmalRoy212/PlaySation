@@ -525,8 +525,10 @@ const loadProducts = async function(req,res){
         //want to make as function
         let newCatlist = [];
         let rndomLoc = [];
-        if(!search){
+        if(!req.query.search){
             gameCollection = await GamesModels.find({deleted:false}).lean();
+        }else{
+            gameCollection = await GamesModels.find({name:{$regex:req.query.search}});
         }
         const cates = await findTheCategories();
         for(var i=0;i<2;i++){
@@ -538,7 +540,7 @@ const loadProducts = async function(req,res){
         }
         const catGame = await GamesModels.find({category:newCatlist[0]});
         const catGameTwo = await GamesModels.find({category:newCatlist[1]});
-        res.render('products',{games:gameCollection,catGame,catGameTwo,newCatlist,cartCount});
+        res.render('products',{games:gameCollection,catGame,catGameTwo,newCatlist,cartCount,input:req.query.search});
         search = false;
     } catch (error) {
         console.log(error.message);
@@ -868,25 +870,6 @@ const checkingTheCouponValidity = async function(req,res){
     }
 }
 
-//loading the product page after searching
-const loadProductsBySearch = async function(req,res){
-    try {
-        search = true;
-        const searchInp = req.body.search;
-        gameCollection = await GamesModels.find({name:{$regex:searchInp}});
-        res.redirect('/products');
-        // if(GameProducts){
-        //     console.log(GameProducts);
-        //     res.render('games',{GameProducts});
-        // }else{
-        //     adminMessage = 'Search Not Found';
-        //     res.render('games',{adminMessage});
-        //     adminMessage = '';
-        // }
-    } catch (error) {
-        console.log(error.message);
-    }
-}
 
 module.exports={
     //sugnup is verified on bug
@@ -923,6 +906,5 @@ module.exports={
     googleAuth,
     resendOtp,
     checkingTheCouponValidity,
-    loadProductsBySearch
     //resend otp want to fix there is a bug on the redirection the otp checking variable want to clear after 59 sec finish
 }
