@@ -74,7 +74,6 @@
   </head> --}}
 
 <body id="page-top">
-    <h1>{{user}}</h1>
     <div id="wrapper">
       <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -484,12 +483,12 @@
                             <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Coupon Code</b></th>
                             <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Created</b></th>
                             <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Expire On</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Discount(in %)</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Discount</b></th>
                             <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Min Amount</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Edit</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Remove</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Video</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Versions</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Availability</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Send</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Manage</b></th>
+                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Delete</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -499,8 +498,9 @@
                                     <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.couponCode}}</td>
                                     <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.createdON}}</td>
                                     <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.expDate}}</td>
-                                    <td style="font-size: smaller;padding-left:0;padding-right:1rem;"><span style="margin-left:2rem;">{{this.couponDiscount}}%</span></td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:1rem;"><span style="margin-left:2rem;">{{this.couponDiscount}}/-</span></td>
                                     <td style="font-size: smaller;padding-left:0;padding-right:1rem;"><span style="margin-left:2rem;">{{this.minAmount}}/-</span></td>
+                                    <td style="font-size: smaller;padding-left:0;padding-right:1rem;"><span>{{this.availability}}</span></td>
                                     {{!-- <td style="font-size: smaller;padding-left:0;padding-right:.5rem;"></td> --}}
                                     {{!-- <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
                                         <form action="/admin/edit" method="post">
@@ -513,8 +513,8 @@
                                           
                                         {{else}}
                                           <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
-                                            <a class="nav-link dropdown-toggle btn btn-primary p-1" style="font-size:x-small;width:55px;height:25px" href="admin/coupon/send" id="userDropdown" role="button" data-toggle="dropdown"
-                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="trash-outline"></ion-icon><span style="padding:0;margin:0;">Send</span>
+                                            <a class="nav-link dropdown-toggle btn p-1" style="background-color:rgb(0, 135, 0);font-size:x-small;width:55px;height:25px;color:white;" href="admin/coupon/send" id="userDropdown" role="button" data-toggle="dropdown"
+                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="gift"></ion-icon><span style="padding:0;margin:0;">Send</span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="userDropdown" 
                                               style="margin-left:-20%;width:400px;margin-top:-5%;background-color: rgba(0, 0, 0, 0.839);border-radius: 15px;">
@@ -548,19 +548,27 @@
                                       </td>
                                       <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
                                         <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
-                                            <a class="nav-link btn btn-warning p-1" style="font-size:x-small;width:55px;height:25px" href="/admin/videoUpload?id={{this._id}}" id="videoUp" role="button"
-                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="cloud-upload-outline"></ion-icon><span style="padding:0;margin:0;">Upload</span>
-                                            </a>
+                                          {{#if this.isActive}}
+                                            <form action="/admin/coupon/deactive" method="post">
+                                              <input type="hidden" name="deleteCoupon" value="{{this._id}}">
+                                              <input type="submit" class="nav-link btn btn-danger p-1" style="font-size:x-small;width:55px;height:25px" value="Deactivate">
+                                            </form>
+                                          {{else}}
+                                            <form action="/admin/coupon/activate" method="post">
+                                              <input type="hidden" name="deleteCoupon" value="{{this._id}}">
+                                              <input type="submit" class="nav-link btn btn-info p-1" style="font-size:x-small;width:55px;height:25px" value="Activate">
+                                            </form>
+                                          {{/if}}
                                             {{!-- <a href="/admin/videoUpload" class="btn-"></a> --}}
                                           </li>
                                       </td>
                                       <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
                                         <li class="nav-item dropdown no-arrow" style="list-style-type:none;">
-                                            <a class="nav-link btn btn-success p-1" style="font-size:x-small;width:55px;height:25px" href="/admin/versions?id={{this._id}}" id="videoUp" role="button"
-                                              aria-haspopup="true" aria-expanded="false"><ion-icon style="float:left;color: rgb(255, 255, 255);margin-top: .1rem;" name="construct-outline"></ion-icon><span style="padding:0;margin:0;">Version</span>
-                                            </a>
-                                            {{!-- <a href="/admin/videoUpload" class="btn-"></a> --}}
-                                          </li>
+                                          <form action="/admin/coupon/delete" method="post">
+                                           <input type="hidden" name="deleteCoupon" value="{{this._id}}">
+                                            <input type="submit" class="nav-link btn btn-danger p-1" style="font-size:x-small;width:55px;height:25px" value="Delete">
+                                          </form>
+                                        </li>
                                       </td>
                                 </tr>
                             {{/each}}

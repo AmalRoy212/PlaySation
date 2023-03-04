@@ -286,7 +286,7 @@
                     <span id="exclam"><i style="color: rgb(100, 0, 0);display:none" class="fas fa-exclamation-circle"></i></span>
                     <i id="check" style="color: rgb(49, 245, 0);display:none" class="fas fa-check-circle"></i>
                   </div>
-                  <div style="height:20px;width:100px;background-color: #7700ff;" id="coupon"></div>
+                  <input type="hidden" id="couponUsed">
                 </div>
                 
                 <div class="d-flex flex-column dis">
@@ -366,30 +366,31 @@
               return response.json();
             }).then(data => {
               console.log(data.availCoupon,data.theCoupon);
-              document.getElementById('hiddenCoupon').value=data.availCoupon
-              document.getElementById('theCoupon').value = data.theCoupon
-              const newD = document.getElementById('theCoupon').value
-              console.log(newD.couponCode)
+              document.getElementById('hiddenCoupon').value=data.availCoupon;
+              document.getElementById('theCoupon').value = data.theCoupon;
+              console.log(data.theCoupon),'______________________';
             })  
       })
       console.log(coupon);
   </script>
 
  <script>
+      let used = false
       let priceFeild = document.getElementById('totalPrice');
       let totalPrice = document.getElementById('newPrice').value;
 
       let intervals = setInterval(function() {
         let discountFeild = document.getElementById('discount').value;
         let theCoupon = document.getElementById('hiddenCoupon').value
-        let thewholeCoupon = document.getElementById('theCoupon').value
-
+        let coupDis = document.getElementById('theCoupon').value
         if(discountFeild){
           document.getElementById('messageBox').style.display = 'block'
             console.log(theCoupon,".....",discountFeild);
-          if(theCoupon == discountFeild){
-            const discount = (totalPrice/thewholeCoupon.couponDiscount)*100
-            console.log(discount,totalPrice,thewholeCoupon.couponDiscount)
+          if(theCoupon == discountFeild){  
+            used = true;
+            document.getElementById('couponUsed').value = used
+            const discount = totalPrice - coupDis
+            console.log(discount,totalPrice,coupDis)
             const lastPrice = totalPrice - 100;
             priceFeild.innerHTML = discount
             document.getElementById('newPrice').value = discount;
@@ -401,6 +402,8 @@
             document.getElementById('check').style.display = 'block'
             console.log('done');
           }else{
+            used = false;
+            document.getElementById('couponUsed').value = used
             document.getElementById('newPrice').value = totalPrice;
             priceFeild.innerHTML = totalPrice;
             document.getElementById('disTab').style.display = 'none';
@@ -416,7 +419,6 @@
           priceFeild.innerHTML = totalPrice;
           document.getElementById('disTab').style.display = 'none';
           document.getElementById('messageBox').style.display = 'none'
-
           console.log('its else');
         }
       },1000);   
@@ -425,9 +427,10 @@
   {{!-- fetch --}}
   <script>
     document.getElementById('rzp-button1').onclick = async function(e){
-      console.log("call in this script")
+            console.log("call in this script")
     e.preventDefault();
 
+    let usedCoupon = document.getElementById('couponUsed').value
     let country = document.getElementById('country').value;
     let zip = document.getElementById('zipCode').value;
     let state = document.getElementById('state').value;
@@ -442,6 +445,8 @@
     let gameId = document.getElementById('gameId').value;
 
     let userFullName = userfName+' '+userlName;
+
+    console.log(usedCoupon,'------------------');
 
     const response = await fetch('/check-out', {
       method: 'POST', // or 'PUT'
@@ -460,7 +465,8 @@
           userName:userFullName,
           userMobile:userMobile,
           userMail:userMail,
-          gameId:gameId
+          gameId:gameId,
+          usedCoupon:usedCoupon
       }),
     })
 

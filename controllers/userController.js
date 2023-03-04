@@ -619,7 +619,7 @@ const proceedToPay = async function(req,res){
 //loading game when click load and play
 const loadGame = async function(req,res){
     try {
-        res.render('gameload',setTimeout(loadHome,5000))
+        res.render('gameload',setTimeout(loadHome,20000))
     } catch (error) {
         console.log(error.message);
     }
@@ -632,6 +632,12 @@ const createNeworder = async function(req,res){
         console.log(req.body)
         let productPrice = req.body.amount;
         productPrice = parseInt(productPrice);
+
+        if(req.body.usedCoupon){
+            const disCode = req.body.discount;
+            const upUserCoupon = await userModel.findByIdAndUpdate(req.session.user, {$pop: {coupons:-1}});
+            console.log(upUserCoupon);
+        }
         const instance = new Razorpay({ key_id: 'rzp_test_qmjEny8LnAs8hb', key_secret: '0Bg7w3NJUvynTzMpA9QYzahK' })
         const Order = await instance.orders.create({
             amount: productPrice,
@@ -646,7 +652,6 @@ const createNeworder = async function(req,res){
             const gamId = req.body.gameId;
             const game = await GamesModels.findById({_id:gamId});
             const user = await userModel.findById({_id:usId});
-            const orderName = user.fname+user.lname+"/"+game.name;
             const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
             console.log(orderData);
         }
@@ -864,7 +869,8 @@ const checkingTheCouponValidity = async function(req,res){
     try {
         const userCoupon = await userModel.findById({_id:req.session.user},{_id:0,coupons:1});
         const availCoupon = userCoupon.coupons[0];
-        const theCoupon = await CouponModel.findOne({couponCode:availCoupon})
+        let theCoupon = await CouponModel.findOne({couponCode:availCoupon});
+        theCoupon = theCoupon.couponDiscount
         res.json({availCoupon,theCoupon})
     } catch (error) {
         console.log(error.message);

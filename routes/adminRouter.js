@@ -90,6 +90,11 @@ adminRouter.get('/coupon',auth.isAdminLogin,adminController.loadCouponPage);
 adminRouter.post('/coupon',auth.isAdminLogin,adminController.creatingCoupon);
 adminRouter.get('/coupon/table',auth.isAdminLogin,adminController.loadCoponTable);
 adminRouter.post('/coupon/send',auth.isAdminLogin,adminController.addingCouponsInUser);
+adminRouter.post('find',auth.isAdminLogin,adminController.fidingCoupon);
+adminRouter.post('/coupon/delete',adminController.deleteCoupon);
+adminRouter.post('/coupon/deactive',adminController.deactivateCoupon);
+adminRouter.post('/coupon/activate',adminController.activateCoupon);
+
 
 
 // adminRouter.get('*',function(req,res){

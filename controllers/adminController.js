@@ -639,6 +639,50 @@ const addingCouponsInUser = async function(req,res){
     }
 }
 
+//finding the coupons 
+const fidingCoupon = async function(req,res){
+    try {
+        const coupCode = req.body.currentCoupon;
+        const theCoupon = await couponModel.find({couponCode:coupCode});
+        res.json({theCoupon})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//deteing coupon
+const deleteCoupon = async function(req,res){
+    try {
+        const coupon = req.body.deleteCoupon;
+        await couponModel.findOneAndDelete({_id:coupon});
+        res.redirect('/admin/coupon/table');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//deactivaing the coupon
+const deactivateCoupon = async function(req,res){
+    try {
+        const coupon = req.body.deleteCoupon;
+        await couponModel.findOneAndUpdate({_id:coupon},{isActive:false});
+        res.redirect('/admin/coupon/table');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//activating the coupon
+ const activateCoupon = async function(req,res){
+    try {
+        const coupon = req.body.deleteCoupon;
+        await couponModel.findOneAndUpdate({_id:coupon},{isActive:true});
+        res.redirect('/admin/coupon/table');
+    } catch (error) {
+        console.log(error.message)
+    }
+ }
+
 module.exports = {
     loadLogin,
     laodAdminHome,
@@ -673,6 +717,10 @@ module.exports = {
     creatingCoupon,
     loadCoponTable,
     addingCouponsInUser,
+    fidingCoupon,
+    deleteCoupon,
+    deactivateCoupon,
+    activateCoupon
 }
 //category adding by admin
 //user products page
