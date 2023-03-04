@@ -58,7 +58,7 @@ userRouter.get('/otpverify',userController.loadOtp);
 userRouter.post('/otpverify',userController.userOtpVeriying);
 userRouter.get('/userprofile',auth.isLogin,userController.loadUserProfile);
 userRouter.post('/userprofile',userController.loadEditProfile);
-userRouter.get('/edituser',auth.isLogin,userController.laodProfileEdit);
+// userRouter.get('/edituser',auth.isLogin,userController.laodProfileEdit);
 userRouter.post('/edituser',userController.updateUserDetails);
 userRouter.get('/products',auth.isLogin,userController.loadProducts);
 userRouter.get('/product-view',auth.isLogin,userController.loadingCheckout);
@@ -75,6 +75,7 @@ userRouter.get('/google',passport.authenticate('google',{scope:['profile','email
 userRouter.get('/google/auth',passport.authenticate('google',{failureRedirect:'/failed'}), userController.googleAuth);
 userRouter.get('/reload/otp',userController.resendOtp);
 userRouter.post('/coupon',auth.isLogin,userController.checkingTheCouponValidity);
+userRouter.post('/game/search',userController.findGames)
 // userRouter.get('*',function(req,res){
 //     try {
 //         res.render('error');

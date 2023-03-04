@@ -261,6 +261,7 @@ body {
 }
 input:focus {
   outline: none;
+  background:none;
 }
 
   </style>
@@ -398,14 +399,22 @@ input:focus {
       <h3
         style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;"
       >Black List</h3>
-      <div style="padding:2%;">
+      <div style="padding:2%;display: flex;">
         {{!-- search bar --}}
        
           <div style="display:flex;width:60%;border: 1px solid rgb(0, 255, 0);border-radius: 20px;background-color: rgba(0, 0, 0, 0.659);height: 40px;">
-            <input value="{{input}}" type="text" id="searchInput" name="searchInput" placeholder="Find Your Favorites" style="color: rgb(0, 255, 0);font-size:large;width:90%;height: 30px;padding:1%;margin: .5%;background: none;border: none;">
-            <button id="btn-search" style="margin-left:.5%;border: none;background: none; color: rgb(0, 255, 0);margin-top:-.3%;"><ion-icon style="font-size:40px;padding:0;margin:0;" name="search-circle"></ion-icon></button>
+            <form action="/game/search" method="post" style="display:flex;width: 100%;">
+              <input type="text" id="searchInput" name="search" placeholder="Find Your Favorites" style="color: rgb(0, 255, 0);font-size:large;width:90%;height: 30px;padding:1%;margin: .5%;background: none;border: none;">
+              <button id="search" type="submit" style="margin-left:.5%;border: none;background: none; color: rgb(0, 255, 0);margin-top:-.3%;"><ion-icon style="font-size:40px;padding:0;margin:0;" name="search-circle"></ion-icon></button>
+            </form>
           </div>
-       
+        <div id="searchABout" style="border-radius:15px;display: flex;margin-left:.5%;border:none;background:linear-gradient(rgb(30, 0, 255),rebeccapurple);height:40px;max-width: fit-content;">
+          <form action="/products" method="get" style="display: flex;">
+            <h4 id="searchKey" style="color: white;margin:.7rem;margin-top:.9rem;"></h4>
+            <button id="refresh" type="submit" style="margin-left:.5%;border: none;background: none; color: rgb(0, 255, 0);margin-top:.3rem;"><ion-icon style="font-size:30px;padding:0;margin:0;" name="close-circle"></ion-icon></button>
+          </form>
+          <input type="hidden" value="{{searchedValue}}" id="searchedValue">
+        </div>
       </div>
       <div class="tabs tabs-style-line">
         <nav class="container">
@@ -569,13 +578,25 @@ input:focus {
     </section>
   </div>
   <script>
-    document.getElementById('btn-search').onclick=(e)=>{
-      window.location.href=`/products?search=${document.getElementById('searchInput').value}`
-    };
-    document.getElementById('searchInput').onchange=(e)=>{
-      if(!e.target.value)
-      window.location.href=`/products`
-    };
+    const input = document.getElementById('searchedValue').value;
+    console.log(" -------------------",input);
+    document.getElementById('searchKey').innerHTML = input;
+
+
+    document.getElementById('search').onclick=(e)=>{
+      localStorage.setItem('status','true');
+      let status = localStorage.getItem('status');
+    }
+    document.getElementById('refresh').onclick=(e)=>{
+      localStorage.setItem('status','false');
+      let status = localStorage.getItem('status');
+      
+    }
+    if(localStorage.getItem('status') == "true"){
+      document.getElementById('searchABout').style.display = 'block';
+    }else{
+      document.getElementById('searchABout').style.display = 'none';
+    }
   </script>
 
   <script>

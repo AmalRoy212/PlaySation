@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const games = mongoose.Schema({
     image:{
        type:Array,
-       required:true
+       require:true
     },
     video:{
         type:String,

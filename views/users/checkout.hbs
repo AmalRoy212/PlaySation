@@ -307,7 +307,7 @@
                       </p>
                       
                     </div>
-                    <p style="display:none;" id="disTab" name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
+                    <p style="display:none;color: rgb(0, 24, 209);font-weight: bold;" id="disTab" name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span></p>
                   </div>
                   {{!-- <div>
                     <div class="d-flex align-items-center">
@@ -316,12 +316,12 @@
                       <p name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
                     </div>
                   </div> --}}
-                  {{!-- <div
+                  <div
                     class="d-flex align-items-center justify-content-between mb-2"
                   >
-                    <p>Spacial Token<span>(20%)</span></p>
-                    <p name="spacialtoken" value="2.80" style="pointer-events: none;"><span style="color:white;" class="fas fa-dollar-sign"></span>2.80</p>
-                  </div> --}}
+                    <p>Spacial Token</p>
+                    <p name="spacialtoken" value="5.80" style="pointer-events: none;"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
+                  </div>
                   <div
                     class="d-flex align-items-center justify-content-between mb-2"
                   >
@@ -391,10 +391,10 @@
             document.getElementById('couponUsed').value = used
             const discount = totalPrice - coupDis
             console.log(discount,totalPrice,coupDis)
-            const lastPrice = totalPrice - 100;
             priceFeild.innerHTML = discount
             document.getElementById('newPrice').value = discount;
             document.getElementById('disTab').style.display = 'block'
+            document.getElementById('disTab').innerHTML = coupDis
             document.getElementById('messageBox').innerHTML = 'Coupon Applied'
             document.getElementById('messageBox').style.border = '1px solid rgb(0, 255, 0)'
             document.getElementById('messageBox').style.color = 'rgb(0, 255, 0)'
@@ -421,13 +421,13 @@
           document.getElementById('messageBox').style.display = 'none'
           console.log('its else');
         }
-      },1000);   
+      },100);   
  </script>
 
   {{!-- fetch --}}
   <script>
     document.getElementById('rzp-button1').onclick = async function(e){
-            console.log("call in this script")
+    console.log("call in this script")
     e.preventDefault();
 
     let usedCoupon = document.getElementById('couponUsed').value

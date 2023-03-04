@@ -673,7 +673,7 @@ const deactivateCoupon = async function(req,res){
 }
 
 //activating the coupon
- const activateCoupon = async function(req,res){
+const activateCoupon = async function(req,res){
     try {
         const coupon = req.body.deleteCoupon;
         await couponModel.findOneAndUpdate({_id:coupon},{isActive:true});
@@ -681,7 +681,7 @@ const deactivateCoupon = async function(req,res){
     } catch (error) {
         console.log(error.message)
     }
- }
+}
 
 module.exports = {
     loadLogin,
@@ -720,7 +720,7 @@ module.exports = {
     fidingCoupon,
     deleteCoupon,
     deactivateCoupon,
-    activateCoupon
+    activateCoupon,
 }
 //category adding by admin
 //user products page

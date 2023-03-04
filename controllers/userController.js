@@ -27,6 +27,7 @@ let update =false;
 let userResendMail;
 let gameCollection;
 let search;
+let searchedValue
 
 //securing the password
 async function securingPassword(password){
@@ -526,11 +527,14 @@ const loadProducts = async function(req,res){
         //want to make as function
         let newCatlist = [];
         let rndomLoc = [];
-        if(!req.query.search){
+        if(!search){
             gameCollection = await GamesModels.find({deleted:false}).lean();
-        }else{
-            gameCollection = await GamesModels.find({name:{$regex:req.query.search}});
         }
+        // if(!req.query.search){
+        //     gameCollection = await GamesModels.find({deleted:false}).lean();
+        // }else{
+        //     gameCollection = await GamesModels.find({name:{$regex:req.query.search}});
+        // }
         const cates = await findTheCategories();
         for(var i=0;i<2;i++){
             rndomLoc [i] = await Math.floor(await Math.random()*cates.length);
@@ -541,7 +545,7 @@ const loadProducts = async function(req,res){
         }
         const catGame = await GamesModels.find({category:newCatlist[0]});
         const catGameTwo = await GamesModels.find({category:newCatlist[1]});
-        res.render('products',{games:gameCollection,catGame,catGameTwo,newCatlist,cartCount,input:req.query.search});
+        res.render('products',{games:gameCollection,catGame,catGameTwo,newCatlist,cartCount,searchedValue});
         search = false;
     } catch (error) {
         console.log(error.message);
@@ -877,6 +881,17 @@ const checkingTheCouponValidity = async function(req,res){
     }
 }
 
+//find the games while user search from the home
+const findGames = async function(req,res){
+    try {
+        searchedValue = req.body.search;
+        gameCollection = await GamesModels.find({name:{$regex:searchedValue}});
+        res.redirect('/products');
+        search = true;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 module.exports={
     //sugnup is verified on bug
@@ -913,5 +928,6 @@ module.exports={
     googleAuth,
     resendOtp,
     checkingTheCouponValidity,
+    findGames
     //resend otp want to fix there is a bug on the redirection the otp checking variable want to clear after 59 sec finish
 }
