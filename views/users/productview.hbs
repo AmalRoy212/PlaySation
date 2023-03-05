@@ -301,14 +301,14 @@
             </form>
           </div>
         </div>
-          <div style="position: fixed;top:10%;padding:5%;background-color: rgba(0, 0, 0, 0.553); display: none;z-index:3;" id="videoTab">
-            <video controls style="width: 80%;margin-left:8%;">
+          <div style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(0, 0, 0, 0.553); display: none;z-index:3;" id="videoTab">
+            <video controls style="width: 80%;margin-left:8%;margin-top:2%;">
               <source src="/gameVideos/{{theGame.video}}">
             </video>
-            <button style="position: absolute; top:6%;background:none;color:white;border:none;" id="close-button"><span><ion-icon style="font-size:25px;" name="close-circle-outline"></ion-icon></span></button>
+            <button style="position: absolute; top:13%;background:none;color:white;border:none;" id="close-button"><span><ion-icon style="font-size:25px;" name="close-circle-outline"></ion-icon></span></button>
           </div>
-          <div class="container-fluid" style="height:700px;padding:18%; position:absolute;top:7rem;background-color:rgba(255, 255, 255, 0.55); display: none;overflow-y: auto;" id="aboutGame">
-            <div style="position: absolute;top:20%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;">
+          <div class="container-fluid" style="height:700px;padding:18%; position:absolute;top:5%;background-color:rgba(255, 255, 255, 0); display: none;overflow-y: auto;" id="aboutGame">
+            <div style="position: fixed;top:20%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;height:500px;overflow-y: auto;">
               <div style="display: flex;">
                 <img class="col-md-6" style="width:50%;" src="gameimages/{{theGame.image.[0]}}" alt="">
                 <div style="padding: 2rem;width:50%;" class="col-md-6"> 

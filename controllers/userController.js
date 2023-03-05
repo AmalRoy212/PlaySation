@@ -914,7 +914,7 @@ const checkingTheCouponValidity = async function(req,res){
 const findGames = async function(req,res){
     try {
         searchedValue = req.body.search;
-        gameCollection = await GamesModels.find({name:{$regex:searchedValue}});
+        gameCollection = await GamesModels.find({name:{$regex: searchedValue , $options: 'i'}});
         res.redirect('/products');
         search = true;
     } catch (error) {
