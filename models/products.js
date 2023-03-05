@@ -49,10 +49,6 @@ const games = mongoose.Schema({
         type:Boolean,
         default:false
     },
-    isPaymentCom:{
-        type:Boolean,
-        default:false
-    },
     inCart:{
         type:Boolean,
         default:false

@@ -482,7 +482,6 @@
         "order_id": oderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "handler": function (response){
             console.log(oderData.Order);
-            location.href=("/payment")
             fetch('/order',{
               method: 'POST', // or 'PUT'
               headers: {
@@ -503,7 +502,11 @@
                   gameId:gameId,
                   usedCoupon:usedCoupon
               }),
-            })
+            }).then(response => {
+              return response.json();
+            }).then(data => {
+              location.href=("/payment")
+            })  
         },
         "prefill": {
             "name":userFullName, //your customer's name

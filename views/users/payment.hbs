@@ -103,34 +103,40 @@
                             <tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Name</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{fullname}}</td>
+                                <input type="hidden" value="{{fullname}}"  id="name">
                             </tr>
                             <tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Email</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{theUserData.email}}</td>
+                                <input type="hidden" value="{{theUserData.email}}"  id="email">
                             </tr>
                             <tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Contact</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{theUserData.mobile}}</td>
+                                <input type="hidden" value="{{theUserData.mobile}}"  id="mobile">
                             </tr>
                             <tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Game</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{theGameData.name}}</td>
+                                <input type="hidden" value="{{theGameData.name}}"  id="game">
                             </tr><tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Category</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{theGameData.category}}</td>
+                                <input type="hidden" value="{{theGameData.category}}"  id="cate">
                             </tr>
                             </tr>
                             {{!-- <tr>
                                 <td style="padding-right:7rem;font-size:smaller;">Order ID</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{orderData._id}}</td>
                             </tr> --}}
-                            <tr>
+                            {{!-- <tr>
                                 <td style="padding-right:3rem;font-size:smaller;">Order Name</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{orderData.orderName}}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td style="padding-right:3rem;font-size:smaller;">Discount Code</td>
                                 <td style="padding-right:7rem;font-size:smaller;">{{orderData.disCode}}</td>
+                                <input type="hidden" value="{{orderData.disCode}}"  id="dis">
                             </tr>
                             <tr>
                                 {{!-- <tr style="font-size: smaller;">
@@ -150,14 +156,17 @@
                                 <tr style="font-size: smaller;">
                                     <td>Billing Adress</td>
                                     <td>Country : {{orderData.country}}</td>
+                                    <input type="hidden" value="{{orderData.country}}"  id="ad1">
                                 </tr>
                                 <tr style="font-size: smaller;">
                                     <td></td>
                                     <td>State : {{orderData.state}}</td>
+                                    <input type="hidden" value="{{orderData.state}}"  id="ad2">
                                 </tr>
                                 <tr style="font-size: smaller;">
                                     <td></td>
                                     <td>ZipCode : {{orderData.zipCode}}</td>
+                                    <input type="hidden" value="{{orderData.zipCode}}"  id="ad3">
                                 </tr style="font-size: smaller;">
                             </tr>
                             <tr>
@@ -210,6 +219,7 @@
                         </div>
                     {{!-- <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;" href="/products">Countinue Shoping</a>
                     <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;" href="/">Go to Home</a> --}}
+                    <input type="hidden" value="{{theUserData.myLastPrice}}" id="price">
                 </div>
         <div style="width: 178%;margin-left: -22rem;display: flex;padding:3rem">
           <a class="btn btn-success rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;" href="/products">Countinue Shoping</a>
@@ -220,9 +230,31 @@
     </div>
         </div>
       </div>
+      <h1>{{theUserData.myOrders.[0]}}</h1>
     </div>
     <script>
+      
+      
+      let user = document.getElementById('name').value;
+      console.log(user,email,mobile,game,cate,dis);
+    </script>
+    <script>
       function downloadInvoice(){
+        let user = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let mobile = document.getElementById('mobile').value;
+        let game = document.getElementById('game').value;
+        let cate = document.getElementById('cate').value;
+        let dis = document.getElementById('dis').value;
+        let country = document.getElementById('ad1').value;
+        let state = document.getElementById('ad2').value;
+        let zip = document.getElementById('ad3').value;
+        let price = document.getElementById('price').value
+
+        const date = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options);
+
         var data = {
           // Customize enables you to provide your own templates
           // Please review the documentation for instructions and examples
@@ -231,61 +263,49 @@
           },
           "images": {
               // The logo on top of your invoice
-              "logo": "https://public.easyinvoice.cloud/img/logo_en_original.png",
+              "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
               // The invoice background
-              "background": "https://public.easyinvoice.cloud/img/watermark-draft.jpg"
+              "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
           },
           // Your own data
           "sender": {
-              "company": "Sample Corp",
-              "address": "Sample Street 123",
-              "zip": "1234 AB",
-              "city": "Sampletown",
-              "country": "Samplecountry"
+              "company": "PlayStation",
+              "address": "15205 North Kierland Blvd. Suite 100",
+              "zip": "85254",
+              "city": "Scottsdale",
+              "country": "United States"
               //"custom1": "custom value 1",
               //"custom2": "custom value 2",
               //"custom3": "custom value 3"
           },
           // Your recipient
           "client": {
-              "company": "Client Corp",
-              "address": "Clientstreet 456",
-              "zip": "4567 CD",
-              "city": "Clientcity",
-              "country": "Clientcountry"
+              "company": user,
+              "address": email,
+              "zip": zip,
+              "city": state,
+              "country": country
               // "custom1": "custom value 1",
               // "custom2": "custom value 2",
               // "custom3": "custom value 3"
           },
           "information": {
               // Invoice number
-              "number": "2021.0001",
+              "number": mobile,
               // Invoice data
-              "date": "12-12-2021",
+              "date": formattedDate,
               // Invoice due date
-              "due-date": "31-12-2021"
+              "due-date": "Paid Online"
           },
           // The products you would like to see on your invoice
           // Total values are being calculated automatically
           "products": [
               {
-                  "quantity": 2,
-                  "description": "Product 1",
-                  "tax-rate": 6,
-                  "price": 33.87
+                  "quantity": 1,
+                  "description": game,
+                  "tax-rate": 0,
+                  "price": price
               },
-              {
-                  "quantity": 4.1,
-                  "description": "Product 2",
-                  "tax-rate": 6,
-                  "price": 12.34
-              },
-              {
-                  "quantity": 4.5678,
-                  "description": "Product 3",
-                  "tax-rate": 21,
-                  "price": 6324.453456
-              }
           ],
           // The message you would like to display on the bottom of your invoice
           "bottom-notice": "Kindly pay your invoice within 15 days.",

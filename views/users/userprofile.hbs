@@ -78,6 +78,12 @@
       <section>
         <div class="wthreetabsaits" style="" id="wthreetabsaits">
           <h3 style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;">Me</h3>
+          {{#if userDatas.isGoogle}}
+            <div style="max-height: fit-content;max-width: fit-content;margin-left: auto;margin-right: auto;border: 2px solid rgb(255, 255, 0);border-radius:10px;">
+              <a style="margin:2rem;font-size: large;color:rgb(255, 255, 0);" href="/edituser?id={{userDatas._id}}">{{googleMsg}}</a>
+            </div>
+          {{else}}
+          {{/if}}
           <section style="background-color: rgba(68, 68, 68, 0.742); width:90%;margin:5rem;border-radius:20px;">
                 <div class="row g-0">
                 <div
@@ -108,8 +114,8 @@
                     </div>
                     <!-- Email input -->
                     <div class="form-outline mb-4" style="display: flex;margin-top:-1rem;">
-                    <input style="width: 45%; margin-left: 1.5rem;" id="fname"  value="{{userDatas.fname}}" pattern="[A-Za-z]{3}" title="Name should be atleast three words and sould be characters" type="text" name="fname" placeholder="Enter your first name" class="form-control" required/>
-                    <input style="width: 45%; margin-left: 1rem;" id="lname" value="{{userDatas.lname}}" pattern="[A-Za-z]{2}" title="Name should be atleast two words and sould be characters" type="text" name="lname" placeholder="Enter your first last" class="form-control" required/>
+                    <input style="width: 45%; margin-left: 1.5rem;" id="fname"  value="{{userDatas.fname}}" type="text" name="fname" placeholder="Enter your first name" class="form-control" required/>
+                    <input style="width: 45%; margin-left: 1rem;" id="lname" value="{{userDatas.lname}}"  type="text" name="lname" placeholder="Enter your first last" class="form-control" required/>
                     </div>
 
                     <!-- Password input -->
@@ -120,7 +126,7 @@
 
                     <div class="form-outline mb-4">
                     <label class="form-label" style="margin-left: 1.5rem;" for="form2Example2">Mobile</label>
-                    <input type="text" name="mobile" id="mobile" value="{{userDatas.mobile}}" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" title="Contact Number should be Digits"  placeholder="Enter your Contact" style="width: 93%; margin-left: 1.5rem;" class="form-control" required/>
+                    <input type="text" name="mobile" id="mobile" value="{{userDatas.mobile}}" pattern="[0-9]{10}" title="Contact Number should be Digits"  placeholder="Enter your Contact" style="width: 93%; margin-left: 1.5rem;" class="form-control" required/>
                     </div>
                     <br />
                     <!-- Submit button -->

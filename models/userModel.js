@@ -34,6 +34,18 @@ const userSchema = new mongoose.Schema({
         type:Array,
         default:null
     },
+    isGoogle:{
+        type:Boolean,
+        default:false
+    },
+    myLastPrice:{
+        type:Number,
+        default:null
+    },
+    myOrders:{
+        type:Array,
+        default:null
+    },
     cartItems:[
         {
             gameId:{

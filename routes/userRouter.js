@@ -58,7 +58,7 @@ userRouter.get('/otpverify',userController.loadOtp);
 userRouter.post('/otpverify',userController.userOtpVeriying);
 userRouter.get('/userprofile',auth.isLogin,userController.loadUserProfile);
 userRouter.post('/userprofile',userController.loadEditProfile);
-// userRouter.get('/edituser',auth.isLogin,userController.laodProfileEdit);
+userRouter.get('/edituser',auth.isLogin,userController.laodProfileEdit);
 userRouter.post('/edituser',userController.updateUserDetails);
 userRouter.get('/products',auth.isLogin,userController.loadProducts);
 userRouter.get('/product-view',auth.isLogin,userController.loadingCheckout);

@@ -27,7 +27,8 @@ let update =false;
 let userResendMail;
 let gameCollection;
 let search;
-let searchedValue
+let searchedValue;
+let googleMsg ;
 
 //securing the password
 async function securingPassword(password){
@@ -90,15 +91,19 @@ async function insertingAccount(userdataObj){
         const encPassword = await securingPassword(userdataObj.password);
         const fname = userdataObj.fname;
         const email = userdataObj.email;
+        const lname = userdataObj.lname;
+        const mobile = userdataObj.mobile;
+        console.log(userdataObj.mobile,'----------------------------94');
         const user = new User({
             fname:fname,
-            lname:userObject.lname,
+            lname:lname,
             email:email,
-            mobile:userObject.mobile,
+            mobile:mobile,
             // image:imgFilename,
             password:encPassword,
             is_admin:0
         })
+        console.log('_________lname_________________________90')
         const userData = await user.save();
         return userData;
     } catch (error) {
@@ -465,7 +470,7 @@ const loadUserProfile = async function(req,res){
         const userDatas = await User.findById({ _id:userHomeId});
         const userFullname = userDatas.fname+" "+userDatas.lname
         const gameDatas = await GamesModels.find({isDownload:true});
-        res.render('userprofile',{userDatas,userFullname,userHomeId,gameDatas,userMessage,sccMsg,cartCount})
+        res.render('userprofile',{userDatas,userFullname,userHomeId,gameDatas,userMessage,sccMsg,cartCount,googleMsg})
         userMessage = '';
         sccMsg = '';
     } catch (error) {
@@ -499,26 +504,39 @@ const laodProfileEdit = async function(req,res){
 //updating the user while the posting from the edit page 
 const updateUserDetails = async function(req,res){
     try {
-        // const userEmail = req.body.email;
-        console.log('--------------------------------488');
-        const userId = req.session.user;
-        if(userId){
-            const userFound = await User.findById({email:userEmail});
-            if(userFound != null){
-                const updatedUser = await User.findByIdAndUpdate(
-                    {_id:userId},
-                    {
-                      fname:req.body.fname,
-                      lname:req.body.lname , 
-                      email:req.body.email,
-                      mobile:req.body.mobile,
+        let userId = req.session.user;
+        if(req.body.password){
+            const encPass = await securingPassword(req.body.password)
+            const updatedUser = await User.findByIdAndUpdate(
+                {_id:userId},
+                {$set:{
+                        mobile:req.body.mobile,
+                        password:encPass
                     }
-                );
-                res.redirect('/userprofile');
-            }else if(userFound == null){
-                //want to fix the else condition
-                userMessage = 'Email ID not exist';
-                res.redirect('/edituser');
+                }
+            );
+            res.redirect('/userprofile');
+            googleMsg =''
+        }else{
+            if(userId){
+            const userFound = await User.findById({_id:userId});
+                if(userFound != null){
+                    const updatedUser = await User.findByIdAndUpdate(
+                        {_id:userId},
+                        {$set:{
+                                fname:req.body.fname,
+                                lname:req.body.lname , 
+                                email:req.body.email,
+                                mobile:req.body.mobile,
+                            }
+                        }
+                    );
+                    res.redirect('/userprofile');
+                }else if(userFound == null){
+                    //want to fix the else condition
+                    userMessage = 'Email ID not exist';
+                    res.redirect('/edituser');
+                }
             }
         }
     } catch (error) {
@@ -638,7 +656,7 @@ const createNeworder = async function(req,res){
         //checking the copoun is used or not
         if(req.body.usedCoupon){
             const disCode = req.body.discount;
-            const upUserCoupon = await userModel.findByIdAndUpdate(req.session.user, {$pop: {coupons:-1}});
+            const upUserCoupon = await userModel.findByIdAndUpdate({_id:req.session.user}, {$pop: {coupons:-1}});
         }
         //the razorpay order
         const instance = new Razorpay({ key_id: 'rzp_test_qmjEny8LnAs8hb', key_secret: '0Bg7w3NJUvynTzMpA9QYzahK' })
@@ -664,10 +682,11 @@ const onPaymentSuccess = async function(req,res){
         const usId = req.session.user;
         const gamId = req.body.gameId;
         const Order = req.session.newOrder;
-        const game = await GamesModels.findByIdAndUpdate({_id:gamId},{$set:{isPaymentCom:true}});
-        const user = await userModel.findById({_id:usId});
         const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
-        console.log(orderData);
+        const price = orderData.total;
+        await userModel.findByIdAndUpdate({_id:usId},{$set:{myLastPrice:price}});
+        await userModel.findByIdAndUpdate({_id:usId},{$addToSet:{myOrders:orderData}});
+        res.json({orderData})
     } catch (error) {
         console.log(error.message);
     }
@@ -678,12 +697,13 @@ const loadPaymentSuccess = async function(req,res){
     try {
         const game = req.session.gameID;
         const user = req.session.user;
-        const order = req.session.Order
-        console.log("session"+req.session);
+        const order = req.session.newOrder
         const theGameData = await GamesModels.findById({_id:game});
         const theUserData = await userModel.findById({_id:user});
         const fullname = theUserData.fname+" "+theUserData.lname;
-        res.render('payment',{theGameData,theUserData,fullname,cartCount,order});
+        res.render('payment',{theGameData,theUserData,fullname,cartCount,orderData:order});
+        // const upUserCoupon = await userModel.findByIdAndUpdate(req.session.user, {$pop: {:-1}});
+
     } catch (error) {
         console.log(error.message);
     }
@@ -819,33 +839,34 @@ const googleAuth = async function(req,res){
         const userData = await User.findOne({email:email}); 
         if(userData){
             if(userData.email == email){
-                // const matchPass = await bcrypt.compare(password,userData.password);
-                // if(matchPass){
-                    // if(userData.is_verified === 1){
-                        // if(userData.isBlocked == false){
-                            req.session.user= userData.id;
-                            isLoggedIn=true
-                            userHomeId = userData._id;
-                            res.redirect('/');
-                        // }else{
-                            // userMessage ="Account temporarily blocked"
-                            // res.redirect('/login')
-                        // }
-                    // }else{
-                    //     userMessage ="Please verify Your mail"
-                    //     res.redirect('/login')
-                    // }
-                // }else{
-                //     userMessage ="invalid Creditials"
-                //     res.redirect('/login')
-                // }
+                console.log('user founded on data');
+                if(userData.isBlocked == false){
+                    req.session.user= userData.id;
+                     isLoggedIn=true
+                    userHomeId = userData._id;
+                    res.redirect('/');
+                }else{
+                    userMessage ="Account temporarily blocked"
+                    res.redirect('/login')
+                }
             }else{
                 userMessage ="invalid Creditials"
                 res.redirect('/login')
             }
         }else{
-            userMessage ="invalid User"
-            res.redirect('/login')
+            console.log('no user found');
+            userdataObj = {
+                fname : req.user.name.givenName,
+                lname : req.user.name.familyName,
+                email : req.user.emails[0].value,
+                mobile : 0000000,
+                password : req.user.emails[0].value,
+            }
+            console.log('-------------------------------870',userdataObj,'++++++===============870')
+            const newUser = await insertingAccount(userdataObj);
+            await userModel.findOneAndUpdate({email:email},{$set:{isGoogle:true}})
+            googleMsg = 'Please Update your Contact and Password'
+            res.redirect('/');
         }
         res.redirect('/')
     } catch (error) {
