@@ -169,8 +169,13 @@ async function creatingOrder(userId,game,orderObject,razorOrder){
     try {
         // const rndmKey = await randomGenertor();
         console.log('____________hitted on order creation___________167',razorOrder);
-        let today = new Date();
-        today = today.toLocaleDateString();
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1; 
+        let day = date.getDate();
+
+        let formattedDate = `${day}/${month}/${year}`; 
+        // today = today.toLocaleDateString();
         // console.log(rndmKey,"__________________________________147")
         const userD = await userModel.findById({_id:userId});
         const gameD = await GamesModels.findById({_id:game})
@@ -178,7 +183,7 @@ async function creatingOrder(userId,game,orderObject,razorOrder){
         const newOrder = new orderModel({
             orderId:razorOrder.id,
             userId:userId,
-            orderDate:today,
+            orderDate:formattedDate,
             gameId:game,
             userName:razorOrder.receipt,
             userMail:userD.email,
@@ -600,7 +605,9 @@ const loadPayment = async function(req,res){
     try {
         const gameId = req.query.id;
         const userId = req.session.user;
+        console.log("Here we are --------------------------60",gameId)
         const theGame = await GamesModels.findById({_id:gameId});
+        console.log("this is second time");
         const theUser = await userModel.findById({_id:userId})
         const lastPrice = theGame.price - dis;
         const newPrice = lastPrice - 5.80;
@@ -608,15 +615,6 @@ const loadPayment = async function(req,res){
         res.render('checkout',{theGame,theUser,lastPrice,newPrice,cartCount});
     } catch (error) {
         console.log(error.message)
-    }
-}
-
-//sendint the details and rendering the paying page
-const proceedToPay = async function(req,res){
-    try {
-        
-    } catch (error) {
-        console.log(error.message);
     }
 }
 
@@ -648,6 +646,7 @@ const createNeworder = async function(req,res){
             currency: "INR",
             receipt: req.body.userName,
         })
+        req.session.order = Order
         if(Order){
             console.log('order confirmed....................634');
             const orderDetails = req.body;
@@ -671,11 +670,12 @@ const loadPaymentSuccess = async function(req,res){
     try {
         const game = req.session.gameID;
         const user = req.session.user;
+        const order = req.session.Order
         console.log("session"+req.session);
         const theGameData = await GamesModels.findById({_id:game});
         const theUserData = await userModel.findById({_id:user});
         const fullname = theUserData.fname+" "+theUserData.lname;
-        res.render('payment',{theGameData,theUserData,fullname,cartCount});
+        res.render('payment',{theGameData,theUserData,fullname,cartCount,order});
     } catch (error) {
         console.log(error.message);
     }
@@ -916,7 +916,6 @@ module.exports={
     loadErrorPage,
     downloadingGame,
     loadingCheckout,
-    proceedToPay,
     loadPayment,
     loadGame,
     createNeworder,

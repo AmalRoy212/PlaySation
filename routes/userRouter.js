@@ -62,10 +62,10 @@ userRouter.post('/userprofile',userController.loadEditProfile);
 userRouter.post('/edituser',userController.updateUserDetails);
 userRouter.get('/products',auth.isLogin,userController.loadProducts);
 userRouter.get('/product-view',auth.isLogin,userController.loadingCheckout);
-userRouter.post('/product-view',auth.isLogin,userController.proceedToPay)
+// userRouter.post('/product-view',auth.isLogin,userController.proceedToPay)
 userRouter.get('/check-out',auth.isLogin,userController.loadPayment);
 userRouter.post('/check-out',auth.isLogin,userController.createNeworder);
-userRouter.get('/payment',auth.isLogin,userController.loadPaymentSuccess,()=> console.log('hey pay'))
+userRouter.get('/payment',auth.isLogin,userController.loadPaymentSuccess)
 userRouter.get('/load-game',auth.isLogin,userController.loadGame);
 userRouter.get('/cart',auth.isLogin,userController.loadCart);
 userRouter.post('/cart',auth.isLogin,userController.creatingCartItem);

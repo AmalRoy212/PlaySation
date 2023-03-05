@@ -12,6 +12,7 @@
     </style>
   </head>
   <body>
+
     <div id="view">
       <!-- Navigation -->
         <div class="w3lsnavigation">
@@ -74,6 +75,7 @@
           </nav>
         </div>
         <!-- //Navigation -->
+        
       <div class="wthreetabsaits" id="wthreetabsaits">
         <h3>Game</h3>
         <div class="container p-0 d-lg-flex">
@@ -220,6 +222,7 @@
                 ></span><b style="color: rgb(0, 255, 0);">Whats New ? : </b>{{lastUpdate.versionDetails}}</p>
             </div>
           </div>
+
           {{!-- <form action="/cart" method="post">
             <input type="hidden" name="hiddenGmId" value="{{theGame._id}}"> 
             <input style="width:100%;background-color: blue;" type="submit" value="AddToFav" class="btn btn-primary btn-block mb-4">
@@ -305,7 +308,7 @@
             <button style="position: absolute; top:6%;background:none;color:white;border:none;" id="close-button"><span><ion-icon style="font-size:25px;" name="close-circle-outline"></ion-icon></span></button>
           </div>
           <div class="container-fluid" style="height:700px;padding:18%; position:absolute;top:7rem;background-color:rgba(255, 255, 255, 0.55); display: none;overflow-y: auto;" id="aboutGame">
-            <div style="position: absolute;top:10%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;">
+            <div style="position: absolute;top:20%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;">
               <div style="display: flex;">
                 <img class="col-md-6" style="width:50%;" src="gameimages/{{theGame.image.[0]}}" alt="">
                 <div style="padding: 2rem;width:50%;" class="col-md-6"> 
@@ -356,6 +359,8 @@
           </div>
       </div>
     </div>
+                                      <h1>{{TheGame}}</h1>
+
   </div>
         </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
