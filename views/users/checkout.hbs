@@ -341,7 +341,11 @@
               </div>
             </div>
              {{!-- <input type="submit" class="btn btn-primary" value="Pay" style="width:100%;"> --}}
-             <button class="btn btn-primary" style="width:100%;margin-top:1rem;" id="rzp-button1">Pay Now</button>
+             {{#if TheGame.isPaymentCom}}
+              <button class="btn btn-warning" style="width:100%;margin-top:1rem;height:30px;font-size: small">DOWNLOAD</button>
+             {{else}}
+              <button class="btn btn-primary" style="width:100%;margin-top:1rem;height:30px;font-size: small;" id="rzp-button1">Pay Now</button>
+             {{/if}}
           </form>
         </div>
       </div>
@@ -479,6 +483,27 @@
         "handler": function (response){
             console.log(oderData.Order);
             location.href=("/payment")
+            fetch('/order',{
+              method: 'POST', // or 'PUT'
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  amount:newPrice,
+                  prodPrice:prodPrice,
+                  country:country,
+                  zip:zip,
+                  state:state,
+                  uniqueID:uniqueID,
+                  discount:discount,
+                  prodPrice:prodPrice,
+                  userName:userFullName,
+                  userMobile:userMobile,
+                  userMail:userMail,
+                  gameId:gameId,
+                  usedCoupon:usedCoupon
+              }),
+            })
         },
         "prefill": {
             "name":userFullName, //your customer's name

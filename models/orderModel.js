@@ -30,7 +30,7 @@ const order = mongoose.Schema({
         require:true
     },
     actualPrice:{
-        type:String,
+        type:Number,
         require:true
     },
     country:{

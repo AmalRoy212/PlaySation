@@ -635,35 +635,43 @@ const createNeworder = async function(req,res){
         let productPrice = req.body.amount;
         productPrice = parseInt(productPrice);
 
+        //checking the copoun is used or not
         if(req.body.usedCoupon){
             const disCode = req.body.discount;
             const upUserCoupon = await userModel.findByIdAndUpdate(req.session.user, {$pop: {coupons:-1}});
-            console.log(upUserCoupon);
         }
+        //the razorpay order
         const instance = new Razorpay({ key_id: 'rzp_test_qmjEny8LnAs8hb', key_secret: '0Bg7w3NJUvynTzMpA9QYzahK' })
         const Order = await instance.orders.create({
             amount: productPrice,
             currency: "INR",
             receipt: req.body.userName,
         })
-        req.session.order = Order
-        if(Order){
-            console.log('order confirmed....................634');
-            const orderDetails = req.body;
-            console.log(req.body);
-            const usId = req.session.user;
-            const gamId = req.body.gameId;
-            const game = await GamesModels.findById({_id:gamId});
-            const user = await userModel.findById({_id:usId});
-            const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
-            console.log(orderData);
-        }
+        req.session.newOrder = Order
         res.json({Order,instance});
 
     } catch (error) {
         console.log(error.message);
     }
 }
+
+//placing an order after getting the response from the razorpay payment
+const onPaymentSuccess = async function(req,res){
+    try {
+        console.log('order confirmed....................634');
+        const orderDetails = req.body;
+        console.log(req.body);
+        const usId = req.session.user;
+        const gamId = req.body.gameId;
+        const Order = req.session.newOrder;
+        const game = await GamesModels.findByIdAndUpdate({_id:gamId},{$set:{isPaymentCom:true}});
+        const user = await userModel.findById({_id:usId});
+        const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
+        console.log(orderData);
+    } catch (error) {
+        console.log(error.message);
+    }
+} 
 
 //rendering the payment success page
 const loadPaymentSuccess = async function(req,res){
@@ -893,6 +901,8 @@ const findGames = async function(req,res){
     }
 }
 
+
+
 module.exports={
     //sugnup is verified on bug
     loadSignup,
@@ -927,6 +937,7 @@ module.exports={
     googleAuth,
     resendOtp,
     checkingTheCouponValidity,
-    findGames
+    findGames,
+    onPaymentSuccess
     //resend otp want to fix there is a bug on the redirection the otp checking variable want to clear after 59 sec finish
 }
