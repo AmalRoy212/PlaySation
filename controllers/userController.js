@@ -29,6 +29,8 @@ let gameCollection;
 let search;
 let searchedValue;
 let googleMsg ;
+let canDownload = false ;
+
 
 //securing the password
 async function securingPassword(password){
@@ -619,8 +621,8 @@ const loadingCheckout = async function(req,res){
 
 //rendering the payment 
 const loadPayment = async function(req,res){
-    const dis = 100;
     try {
+        const dis = 100;
         const gameId = req.query.id;
         const userId = req.session.user;
         console.log("Here we are --------------------------60",gameId)
@@ -629,8 +631,15 @@ const loadPayment = async function(req,res){
         const theUser = await userModel.findById({_id:userId})
         const lastPrice = theGame.price - dis;
         const newPrice = lastPrice - 5.80;
+        if(theUser.myOrders.lenght >= 0){
+            theUser.myOrders.forEach((elements)=>{
+                if(elements == gameId){
+                    canDownload = true ;
+                }
+            })
+        }
         req.session.gameID = gameId ;
-        res.render('checkout',{theGame,theUser,lastPrice,newPrice,cartCount});
+        res.render('checkout',{theGame,theUser,lastPrice,newPrice,cartCount,canDownload});
     } catch (error) {
         console.log(error.message)
     }
@@ -683,9 +692,13 @@ const onPaymentSuccess = async function(req,res){
         const gamId = req.body.gameId;
         const Order = req.session.newOrder;
         const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
+        let downCount = await GamesModels.findById({_id:gamId},{_id:0,downloads:1});
+        console.log(downCount,'------------------696');
+        downCount = downCount.downloads + 1;
+        await GamesModels.findByIdAndUpdate({_id:gamId},{$set:{downloads:downCount}});
         const price = orderData.total;
         await userModel.findByIdAndUpdate({_id:usId},{$set:{myLastPrice:price}});
-        await userModel.findByIdAndUpdate({_id:usId},{$addToSet:{myOrders:orderData}});
+        await userModel.findByIdAndUpdate({_id:usId},{$addToSet:{myOrders:orderData.gamId}}); 
         res.json({orderData})
     } catch (error) {
         console.log(error.message);
