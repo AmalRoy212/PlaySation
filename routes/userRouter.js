@@ -76,7 +76,7 @@ userRouter.get('/google/auth',passport.authenticate('google',{failureRedirect:'/
 userRouter.get('/reload/otp',userController.resendOtp);
 userRouter.post('/coupon',auth.isLogin,userController.checkingTheCouponValidity);
 userRouter.post('/game/search',userController.findGames);
-userRouter.post('/order',userController.onPaymentSuccess)
+userRouter.post('/order',userController.onPaymentSuccess);
 // userRouter.get('*',function(req,res){
 //     try {
 //         res.render('error');

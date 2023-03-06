@@ -95,6 +95,7 @@ adminRouter.post('/coupon/delete',adminController.deleteCoupon);
 adminRouter.post('/coupon/deactive',adminController.deactivateCoupon);
 adminRouter.post('/coupon/activate',adminController.activateCoupon);
 adminRouter.get('/sales',adminController.topSaleGames);
+adminRouter.post('/order/details',adminController.getOrderData);
 
 
 // adminRouter.get('*',function(req,res){

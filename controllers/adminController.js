@@ -7,6 +7,8 @@ const OrderModel = require('../models/orderModel');
 const bannerModel = require('../models/bannerModel');
 const couponModel = require('../models/couponModel');
 const { findOneAndUpdate } = require('../models/adminModel');
+const fs = require('fs');
+
 
 let adminMessage;
 let GameProducts;
@@ -706,6 +708,16 @@ const topSaleGames = async function(req,res){
     }
 }
 
+//getting the whole order data for pdf donwloading
+const getOrderData = async function(req,res){
+    try {
+        const fullOrderDetails = await OrderModel.find().lean();
+        res.json(fullOrderDetails);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadLogin,
     laodAdminHome,
@@ -744,7 +756,8 @@ module.exports = {
     deleteCoupon,
     deactivateCoupon,
     activateCoupon,
-    topSaleGames
+    topSaleGames,
+    getOrderData
 }
 //category adding by admin
 //user products page

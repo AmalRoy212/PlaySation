@@ -2,51 +2,47 @@
 
 <h1>Add Games</h1>
 <form action="" method="post" enctype="multipart/form-data">
-  <input type="file" name="image" required/>
+  <input type="file" name="image" required />
   <br />
   <br />
   <input type="text" name="name" id="" placeholder="Enter the name of game" required />
   <br />
   <br />
-  <input type="text" name="downloads" id="" placeholder="Downloads of game" required/>
+  <input type="text" name="downloads" id="" placeholder="Downloads of game" required />
   <br />
   <br />
   <label for="cars">Category</label>
-  <select name="category" >
+  <select name="category">
     <option value="">{{gameData.category}}</option>
     {{#each catNames}}
-        <option value="{{this}}">{{this}}</option>
+    <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
   <br />
   <br />
-  <input
-    type="text"
-    name="price"
-    id=""
-    placeholder="Please enter the name of game"
-  />
+  <input type="text" name="price" id="" placeholder="Please enter the name of game" />
   <br>
   <br>
   <input type="submit" value="Create One">
 </form> --}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     ion-icon {
-      font-size:15px;
-       --ionicon-stroke-width:40px;
-    } 
+      font-size: 15px;
+      --ionicon-stroke-width: 40px;
+    }
   </style>
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-     <!-- Sidebar -->
+  <div id="wrapper">
+    <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
@@ -154,480 +150,518 @@
       </li>
     </ul>
     <!-- Sidebar -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-          <!-- TopBar -->
-          <nav
-            class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
-          >
-            <button
-              id="sidebarToggleTop"
-              class="btn btn-link rounded-circle mr-3"
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown no-arrow">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="searchDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-search fa-fw"></i>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                  aria-labelledby="searchDropdown"
-                >
-                  <form class="navbar-search" action="/admin/search" method="post">
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        name="search"
-                        class="form-control bg-light border-1 small"
-                        placeholder="What do you want to look for?"
-                        aria-label="Search"
-                        aria-describedby="basic-addon2"
-                        style="border-color: #3f51b5;"
-                      />
-                      <div class="input-group-append">
-                        <input class="btn btn-primary" type="submit" value="Search">
-                      </div>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="navbar-search" action="/admin/search" method="post">
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control bg-light border-1 small"
+                      placeholder="What do you want to look for?" aria-label="Search" aria-describedby="basic-addon2"
+                      style="border-color: #3f51b5;" />
+                    <div class="input-group-append">
+                      <input class="btn btn-primary" type="submit" value="Search">
                     </div>
-                  </form>
-                </div>
-              </li>
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-bell fa-fw"></i>
-                  <span class="badge badge-danger badge-counter">3+</span>
-                </a>
-                <div
-                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="alertsDropdown"
-                >
-                  <h6 class="dropdown-header">
-                    Alerts Center
-                  </h6>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="small text-gray-500">December 12, 2019</div>
-                      <span class="font-weight-bold">A new monthly report is
-                        ready to download!</span>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-success">
-                        <i class="fas fa-donate text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="small text-gray-500">December 7, 2019</div>
-                      $290.29 has been deposited into your account!
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-warning">
-                        <i class="fas fa-exclamation-triangle text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="small text-gray-500">December 2, 2019</div>
-                      Spending Alert: We've noticed unusually high spending for
-                      your account.
-                    </div>
-                  </a>
-                  <a
-                    class="dropdown-item text-center small text-gray-500"
-                    href="#"
-                  >Show All Alerts</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="messagesDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-envelope fa-fw"></i>
-                  <span class="badge badge-warning badge-counter">2</span>
-                </a>
-                <div
-                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="messagesDropdown"
-                >
-                  <h6 class="dropdown-header">
-                    Message Center
-                  </h6>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-list-image mr-3">
-                      <img
-                        class="rounded-circle"
-                        src="img/man.png"
-                        style="max-width: 60px"
-                        alt=""
-                      />
-                      <div class="status-indicator bg-success"></div>
-                    </div>
-                    <div class="font-weight-bold">
-                      <div class="text-truncate">Hi there! I am wondering if you
-                        can help me with a problem I've been having.</div>
-                      <div class="small text-gray-500">Udin Cilok · 58m</div>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-list-image mr-3">
-                      <img
-                        class="rounded-circle"
-                        src="img/girl.png"
-                        style="max-width: 60px"
-                        alt=""
-                      />
-                      <div class="status-indicator bg-default"></div>
-                    </div>
-                    <div>
-                      <div class="text-truncate">Am I a good boy? The reason I
-                        ask is because someone told me that people say this to
-                        all dogs, even if they aren't good...</div>
-                      <div class="small text-gray-500">Jaenab · 2w</div>
-                    </div>
-                  </a>
-                  <a
-                    class="dropdown-item text-center small text-gray-500"
-                    href="#"
-                  >Read More Messages</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="messagesDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-tasks fa-fw"></i>
-                  <span class="badge badge-success badge-counter">3</span>
-                </a>
-                <div
-                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="messagesDropdown"
-                >
-                  <h6 class="dropdown-header">
-                    Task
-                  </h6>
-                  <a class="dropdown-item align-items-center" href="#">
-                    <div class="mb-3">
-                      <div class="small text-gray-500">Design Button
-                        <div class="small float-right"><b>50%</b></div>
-                      </div>
-                      <div class="progress" style="height: 12px;">
-                        <div
-                          class="progress-bar bg-success"
-                          role="progressbar"
-                          style="width: 50%"
-                          aria-valuenow="50"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="dropdown-item align-items-center" href="#">
-                    <div class="mb-3">
-                      <div class="small text-gray-500">Make Beautiful
-                        Transitions
-                        <div class="small float-right"><b>30%</b></div>
-                      </div>
-                      <div class="progress" style="height: 12px;">
-                        <div
-                          class="progress-bar bg-warning"
-                          role="progressbar"
-                          style="width: 30%"
-                          aria-valuenow="30"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="dropdown-item align-items-center" href="#">
-                    <div class="mb-3">
-                      <div class="small text-gray-500">Create Pie Chart
-                        <div class="small float-right"><b>75%</b></div>
-                      </div>
-                      <div class="progress" style="height: 12px;">
-                        <div
-                          class="progress-bar bg-danger"
-                          role="progressbar"
-                          style="width: 75%"
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    class="dropdown-item text-center small text-gray-500"
-                    href="#"
-                  >View All Taks</a>
-                </div>
-              </li>
-              <div class="topbar-divider d-none d-sm-block"></div>
-              <li class="nav-item dropdown no-arrow">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <img
-                    class="img-profile rounded-circle"
-                    src="img/boy.png"
-                    style="max-width: 60px"
-                  />
-                  <span class="ml-2 d-none d-lg-inline text-white small">Maman
-                    Ketoprak</span>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="userDropdown"
-                >
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a
-                    class="dropdown-item"
-                    href="javascript:void(0);"
-                    data-toggle="modal"
-                    data-target="#logoutModal"
-                  >
-                    <i
-                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
-                    ></i>
-                    Logout
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <!-- Topbar -->
-          
-          <!-- Container Fluid-->
-          <div class="container-fluid" id="container-wrapper">
-            {{!-- ---------------------------------------------- --}}
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Orders</h1>
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
-                <li class="breadcrumb-item">Orders</li>
-                <li class="breadcrumb-item active" aria-current="page">Orders Manage</li>
-              </ol>
-            </div>
-
-            <div class="row ">
-              <div class="col-lg-12 mb-4">
-                <!-- Simple Tables -->
-                <div style="width:100%">
-      <div class="container h-100 p-0" style="padding:7rem;padding-top:1rem;">
-        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
-          <div class="col-xl-9">
-            <div class="card" style="border-radius: 15px;">
-              <div class="card-body" style="padding:2rem;">
-                <h6 class="m-0 font-weight-bold text-primary">Orders Management</h6>
-                <h6 style="color: green;">{{sccMssg}}</h6>
-                <h6 style="color: red;">{{adminMessage}}</h6>
-                <table class="table" style="margin-right:1rem;margin-top: 1rem;color: rgb(0, 0, 0);">
-                        <thead>
-                            <tr>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>OrderID</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Game</b></th>
-                            {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>User</b></th> --}}
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Mail</b></th>
-                            {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Game</b></th> --}}
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Price</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>DisCode</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Country</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>State</b></th>
-                            <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>View</b></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each ordersData}}
-                                <tr>
-                                    <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.orderId}}</td>
-                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.gameName}}</td>
-                                    <td style="font-size:x-small;padding-left:0;padding-right:.5rem;">{{this.userMail}}</td>
-                                    {{!-- <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.gameName}}</td> --}}
-                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.total}}</td>
-                                    <td style="font-size:x-small ;padding-left:0;padding-right:.5rem;">{{this.discount}}</td>
-                                    <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.country}}</td>
-                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.state}}</td>
-                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
-                                        <li class="dropdown no-arrow" style="list-style-type:none;"> 
-                                            <a href="#" class="dropdown-toggle btn btn-success p-1" data-toggle="dropdown" style="padding:1rem;margin-left:3px; margin-top:4px;width:55px;height:25px;"><span style="font-size:x-small;">View</span><ion-icon style="float: left; " name="documents-outline"></ion-icon></a>
-                                            <div class="dropdown-menu p-0" style="border-radius:20px;margin-left:-40rem;width:650px;background:linear-gradient(rgb(0, 132, 255),rgb(218, 218, 218));margin-top:6rem;">
-                                                <div class="container" style="padding:1rem;">
-                                                    <form action="/admin/editCategories" method="post">
-                                                        <h5 style="color: white;text-align: center;">OD</h5>
-                                                        <div style="display:flex;flex-direction:row;">
-                                                            <h4 style="color:white;"><span style="color:rgb(0, 255, 47);font-size:medium;margin-top: -1rem;"><b>{{this.gameName}}</b></span></h4><ion-icon name="eye-outline"></ion-icon>
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding:0;margin-top: -3px;margin-left:75%; margin-top: 4px;position: absolute;right:5px;top:5px"><ion-icon style="color:white;" size="large" name="close-circle-outline"></ion-icon></a> 
-                                                        </div>
-                                                        <div style="display:flex;flex-direction:row;">
-                                                            <table style="color:black;width:47%;margin-right:6%;">
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;">Order ID</th>
-                                                                    <td style="font-size:smaller;border-color: black;padding:0;">{{this.orderId}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;">User Name</th>
-                                                                    <td style="font-size:smaller;border-color: black;padding:0;">{{this.userName}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;">Mail</th>
-                                                                    <td style="font-size:smaller;border-color: black;padding:0;">{{this.userMail}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;">Game Name</th>
-                                                                    <td style="font-size:smaller;border-color: black;padding:0;">{{this.gameName}}</td>
-                                                                </tr>
-                                                            </table>
-                                                            <table style="color:black;width:47%;margin-bottom: 2rem;">
-                                                                {{!-- <tr>
-                                                                    <td style="font-size:small;color: rgb(55, 0, 255);border:none;padding:0;">
-                                                                        <b>Card Details</b>
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;border-color: black;padding:0;padding-left:4rem;">Card Holder</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;border-color: black;padding:0;">{{this.cardHolder}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;border:none;padding:0;padding-left:4rem;" class="pt-0">Card Number</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;border:none;padding:0;" class="pt-0">{{this.cardNumber}}</td>
-                                                                        </tr>  
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;border:none;padding:0;padding-left:4rem;" class="pt-0">Card Ex</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;border:none;padding:0;" class="pt-0">{{this.cardExpr}}</td>
-                                                                        </tr>  
-                                                                    </td>
-                                                                </tr> --}}
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;"></th>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;"></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="font-size:small;color: rgb(55, 0, 255);border:none; width:200px;padding:0;">
-                                                                        <b>Billing Address</b>
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;padding: 0;border-color: black;padding-left:4rem;">Country</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;padding: 0;border-color: black;">{{this.country}}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;border:none;padding: 0;border-color: black;padding-left:4rem;" class="pt-0">State</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;border:none;padding: 0;border-color: black;" class="pt-0">{{this.state}}</td>
-                                                                        </tr>  
-                                                                        <tr>
-                                                                            <th style="font-size:smaller;border:none;padding: 0;border-color: black;padding-left:4rem;" class="pt-0">ZipCode</th>
-                                                                            <td style="font-size:smaller;margin-left:3rem;border:none;padding: 0;border-color: black;" class="pt-0">{{this.zipCode}}</td>
-                                                                        </tr>  
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;border-color: black;padding:0;">Product Price</th>
-                                                                    <td style="font-size:smaller;border-color: black;padding:0;">Rs. <b style="font-size: small;color:rgb(182, 0, 0);">{{this.actualPrice}}</b>/-</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;padding: 0;border-color: black;">DisCode</th>
-                                                                    <td style="font-size:smaller;padding: 0;border-color: black;">{{this.discount}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th style="font-size:smaller;padding: 0;border-color: black;">Final Amount</th>
-                                                                    <td style="font-size:small;padding: 0;border-color: black;"><b style="color: rgb(30, 119, 0);">{{this.total}}</b></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        
-                                                        <div class="form-outline" style="display: flex;flex-direction: row;">
-                                                            <input style="margin:10px;rem;margin-left:60%;font-size: smaller;" type="submit" class="btn btn-warning" value="Manage Order">
-                                                            <input style="margin:10px;rem;margin-left:2%;font-size: smaller;" type="submit" class="btn btn-danger" value="Cancel Order">
-                                                            {{!-- <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Category Name</label>
-                                                            <input type="text" name="category" required type="text" style="width:100%;height:30px;" class="form-control" /> --}}
-                                                            <input type="hidden" id="hiddenId" value="{{this.id}}" name="hiddenId">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </td>
-
-                                    
-                                      {{!-- <div style="float:left; display:flex;">
-                                        {{#if this.isBlocked}}
-                                          <a class="btn btn-primary p-1" style="font-size:x-small;" href="/admin/unblock?id={{this._id}}"><span style="margin-right:5px;">Unblock</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="key-outline"></ion-icon></a>
-                                        {{else}}
-                                          <a class="btn btn-danger p-1" style="font-size:x-small;" href="/admin/block?id={{this._id}}"><span style="margin-right:5px;">Block</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="person-circle-outline"></ion-icon></a>
-                                        {{/if}}
-                                      </div>
-                                    </td>
-                                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
-                                      {{#if this.is_verified}}
-                                        <a class="btn btn-warning p-1" style="font-size:x-small;" href="/admin/unverfyUser?id={{this._id}}"><span style="margin-right:5px;">UnVerify</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="stop-circle-outline"></ion-icon></a>
-                                      {{else}}
-                                        <a class="btn btn-success p-1" style="font-size:x-small;" href="/admin/verifyUser?id={{this._id}}"><span style="margin-right:5px;">Verify</span><ion-icon style="padding:0;margin:0;height:15px;float:left;" size="small" name="ribbon-outline"></ion-icon></a>
-                                      {{/if}}
-                                    </td> --}}
-                                </tr>
-                            {{/each}}<ion-icon ></ion-icon>
-                        </tbody>
-                    </table>
+                  </div>
+                </form>
               </div>
-              
-            </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is
+                      ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for
+                    your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <span class="badge badge-warning badge-counter">2</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                  Message Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/man.png" style="max-width: 60px" alt="" />
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you
+                      can help me with a problem I've been having.</div>
+                    <div class="small text-gray-500">Udin Cilok · 58m</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/girl.png" style="max-width: 60px" alt="" />
+                    <div class="status-indicator bg-default"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Am I a good boy? The reason I
+                      ask is because someone told me that people say this to
+                      all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Jaenab · 2w</div>
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-tasks fa-fw"></i>
+                <span class="badge badge-success badge-counter">3</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                  Task
+                </h6>
+                <a class="dropdown-item align-items-center" href="#">
+                  <div class="mb-3">
+                    <div class="small text-gray-500">Design Button
+                      <div class="small float-right"><b>50%</b></div>
+                    </div>
+                    <div class="progress" style="height: 12px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </a>
+                <a class="dropdown-item align-items-center" href="#">
+                  <div class="mb-3">
+                    <div class="small text-gray-500">Make Beautiful
+                      Transitions
+                      <div class="small float-right"><b>30%</b></div>
+                    </div>
+                    <div class="progress" style="height: 12px;">
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </a>
+                <a class="dropdown-item align-items-center" href="#">
+                  <div class="mb-3">
+                    <div class="small text-gray-500">Create Pie Chart
+                      <div class="small float-right"><b>75%</b></div>
+                    </div>
+                    <div class="progress" style="height: 12px;">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">View All Taks</a>
+              </div>
+            </li>
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px" />
+                <span class="ml-2 d-none d-lg-inline text-white small">Maman
+                  Ketoprak</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
 
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          {{!-- ---------------------------------------------- --}}
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Orders</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
+              <li class="breadcrumb-item">Orders</li>
+              <li class="breadcrumb-item active" aria-current="page">Orders Manage</li>
+            </ol>
           </div>
-        </div>      
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  </body>
-  </html>
+
+          <div class="row ">
+            <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div style="width:100%">
+                <div class="container h-100 p-0" style="padding:7rem;padding-top:1rem;">
+                  <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+                    <div class="col-xl-9">
+                      <div class="card" style="border-radius: 15px;">
+                        <div class="card-body" style="padding:2rem;">
+                          <h6 class="m-0 font-weight-bold text-primary">Orders Management</h6>
+                          <a class="btn btn-primary rounded-pill"
+                            style="width: 30%; margin:1rem;font-size:small;margin-left:70%; color: white;"
+                            onclick="downloadInvoice()">Download Report</a>
+
+                          <h6 style="color: green;">{{sccMssg}}</h6>
+                          <h6 style="color: red;">{{adminMessage}}</h6>
+                          <table class="table" style="margin-right:1rem;margin-top: 1rem;color: rgb(0, 0, 0);">
+                            <thead>
+                              <tr>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
+                                  <b>OrderID</b></th>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Game</b>
+                                </th>
+                                {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
+                                  <b>User</b></th> --}}
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Mail</b>
+                                </th>
+                                {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
+                                  <b>Game</b></th> --}}
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Price</b>
+                                </th>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
+                                  <b>DisCode</b></th>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
+                                  <b>Country</b></th>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>State</b>
+                                </th>
+                                <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>View</b>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each ordersData}}
+                              <tr>
+                                <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.orderId}}</td>
+                                <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.gameName}}
+                                </td>
+                                <td style="font-size:x-small;padding-left:0;padding-right:.5rem;">{{this.userMail}}</td>
+                                {{!-- <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                  {{this.gameName}}</td> --}}
+                                <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.total}}</td>
+                                <td style="font-size:x-small ;padding-left:0;padding-right:.5rem;">{{this.discount}}
+                                </td>
+                                <td style="font-size:smaller;padding-left:0;padding-right:.5rem;">{{this.country}}</td>
+                                <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">{{this.state}}</td>
+                                <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                                  <li class="dropdown no-arrow" style="list-style-type:none;">
+                                    <a href="#" class="dropdown-toggle btn btn-success p-1" data-toggle="dropdown"
+                                      style="padding:1rem;margin-left:3px; margin-top:4px;width:55px;height:25px;"><span
+                                        style="font-size:x-small;">View</span><ion-icon style="float: left; "
+                                        name="documents-outline"></ion-icon></a>
+                                    <div class="dropdown-menu p-0"
+                                      style="border-radius:20px;margin-left:-40rem;width:650px;background:linear-gradient(rgb(0, 132, 255),rgb(218, 218, 218));margin-top:6rem;">
+                                      <div class="container" style="padding:1rem;">
+                                        <form action="/admin/editCategories" method="post">
+                                          <h5 style="color: white;text-align: center;">OD</h5>
+                                          <div style="display:flex;flex-direction:row;">
+                                            <h4 style="color:white;"><span
+                                                style="color:rgb(0, 255, 47);font-size:medium;margin-top: -1rem;"><b>{{this.gameName}}</b></span>
+                                            </h4><ion-icon name="eye-outline"></ion-icon>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                              style="font-size: x-small; padding:0;margin-top: -3px;margin-left:75%; margin-top: 4px;position: absolute;right:5px;top:5px"><ion-icon
+                                                style="color:white;" size="large"
+                                                name="close-circle-outline"></ion-icon></a>
+                                          </div>
+                                          <div style="display:flex;flex-direction:row;">
+                                            <table style="color:black;width:47%;margin-right:6%;">
+                                              <tr>
+                                                <th style="font-size:smaller;border-color: black;padding:0;">Order ID
+                                                </th>
+                                                <td style="font-size:smaller;border-color: black;padding:0;">
+                                                  {{this.orderId}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th style="font-size:smaller;border-color: black;padding:0;">User Name
+                                                </th>
+                                                <td style="font-size:smaller;border-color: black;padding:0;">
+                                                  {{this.userName}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th style="font-size:smaller;border-color: black;padding:0;">Mail</th>
+                                                <td style="font-size:smaller;border-color: black;padding:0;">
+                                                  {{this.userMail}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th style="font-size:smaller;border-color: black;padding:0;">Game Name
+                                                </th>
+                                                <td style="font-size:smaller;border-color: black;padding:0;">
+                                                  {{this.gameName}}</td>
+                                              </tr>
+                                            </table>
+                                            <table style="color:black;width:47%;margin-bottom: 2rem;">
+                                              {{!-- <tr>
+                                                <td
+                                                  style="font-size:small;color: rgb(55, 0, 255);border:none;padding:0;">
+                                                  <b>Card Details</b>
+                                              <tr>
+                                                <th
+                                                  style="font-size:smaller;border-color: black;padding:0;padding-left:4rem;">
+                                                  Card Holder</th>
+                                                <td
+                                                  style="font-size:smaller;margin-left:3rem;border-color: black;padding:0;">
+                                                  {{this.cardHolder}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th style="font-size:smaller;border:none;padding:0;padding-left:4rem;"
+                                                  class="pt-0">Card Number</th>
+                                                <td style="font-size:smaller;margin-left:3rem;border:none;padding:0;"
+                                                  class="pt-0">{{this.cardNumber}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th style="font-size:smaller;border:none;padding:0;padding-left:4rem;"
+                                                  class="pt-0">Card Ex</th>
+                                                <td style="font-size:smaller;margin-left:3rem;border:none;padding:0;"
+                                                  class="pt-0">{{this.cardExpr}}</td>
+                                              </tr>
+                                </td>
+                              </tr> --}}
+                              <tr>
+                                <th style="font-size:smaller;border-color: black;padding:0;"></th>
+                                <th style="font-size:smaller;border-color: black;padding:0;"></th>
+                              </tr>
+                              <tr>
+                                <td style="font-size:small;color: rgb(55, 0, 255);border:none; width:200px;padding:0;">
+                                  <b>Billing Address</b>
+                              <tr>
+                                <th style="font-size:smaller;padding: 0;border-color: black;padding-left:4rem;">Country
+                                </th>
+                                <td style="font-size:smaller;margin-left:3rem;padding: 0;border-color: black;">
+                                  {{this.country}}</td>
+                              </tr>
+                              <tr>
+                                <th
+                                  style="font-size:smaller;border:none;padding: 0;border-color: black;padding-left:4rem;"
+                                  class="pt-0">State</th>
+                                <td
+                                  style="font-size:smaller;margin-left:3rem;border:none;padding: 0;border-color: black;"
+                                  class="pt-0">{{this.state}}</td>
+                              </tr>
+                              <tr>
+                                <th
+                                  style="font-size:smaller;border:none;padding: 0;border-color: black;padding-left:4rem;"
+                                  class="pt-0">ZipCode</th>
+                                <td
+                                  style="font-size:smaller;margin-left:3rem;border:none;padding: 0;border-color: black;"
+                                  class="pt-0">{{this.zipCode}}</td>
+                              </tr>
+                              </td>
+                              </tr>
+                              <tr>
+                                <th style="font-size:smaller;border-color: black;padding:0;">Product Price</th>
+                                <td style="font-size:smaller;border-color: black;padding:0;">Rs. <b
+                                    style="font-size: small;color:rgb(182, 0, 0);">{{this.actualPrice}}</b>/-</td>
+                              </tr>
+                              <tr>
+                                <th style="font-size:smaller;padding: 0;border-color: black;">DisCode</th>
+                                <td style="font-size:smaller;padding: 0;border-color: black;">{{this.discount}}</td>
+                              </tr>
+                              <tr>
+                                <th style="font-size:smaller;padding: 0;border-color: black;">Final Amount</th>
+                                <td style="font-size:small;padding: 0;border-color: black;"><b
+                                    style="color: rgb(30, 119, 0);">{{this.total}}</b></td>
+                              </tr>
+                          </table>
+                        </div>
+
+                        <div class="form-outline" style="display: flex;flex-direction: row;">
+                          <input style="margin:10px;rem;margin-left:60%;font-size: smaller;" type="submit"
+                            class="btn btn-warning" value="Manage Order">
+                          <input style="margin:10px;rem;margin-left:2%;font-size: smaller;" type="submit"
+                            class="btn btn-danger" value="Cancel Order">
+                          {{!-- <label class="form-label" style="font-size:x-small;margin:0;"
+                            for="form2Example1">Category Name</label>
+                          <input type="text" name="category" required type="text" style="width:100%;height:30px;"
+                            class="form-control" /> --}}
+                          <input type="hidden" id="hiddenId" value="{{this.id}}" name="hiddenId">
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                    </li>
+                    </td>
+
+
+                    {{!-- <div style="float:left; display:flex;">
+                      {{#if this.isBlocked}}
+                      <a class="btn btn-primary p-1" style="font-size:x-small;"
+                        href="/admin/unblock?id={{this._id}}"><span style="margin-right:5px;">Unblock</span><ion-icon
+                          style="padding:0;margin:0;height:15px;float:left;" size="small"
+                          name="key-outline"></ion-icon></a>
+                      {{else}}
+                      <a class="btn btn-danger p-1" style="font-size:x-small;" href="/admin/block?id={{this._id}}"><span
+                          style="margin-right:5px;">Block</span><ion-icon
+                          style="padding:0;margin:0;height:15px;float:left;" size="small"
+                          name="person-circle-outline"></ion-icon></a>
+                      {{/if}}
+                    </div>
+                    </td>
+                    <td style="font-size: smaller;padding-left:0;padding-right:.5rem;">
+                      {{#if this.is_verified}}
+                      <a class="btn btn-warning p-1" style="font-size:x-small;"
+                        href="/admin/unverfyUser?id={{this._id}}"><span
+                          style="margin-right:5px;">UnVerify</span><ion-icon
+                          style="padding:0;margin:0;height:15px;float:left;" size="small"
+                          name="stop-circle-outline"></ion-icon></a>
+                      {{else}}
+                      <a class="btn btn-success p-1" style="font-size:x-small;"
+                        href="/admin/verifyUser?id={{this._id}}"><span style="margin-right:5px;">Verify</span><ion-icon
+                          style="padding:0;margin:0;height:15px;float:left;" size="small"
+                          name="ribbon-outline"></ion-icon></a>
+                      {{/if}}
+                    </td> --}}
+                    </tr>
+                    {{/each}}<ion-icon></ion-icon>
+                    </tbody>
+                    </table>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+            <script>
+              function downloadInvoice() {
+                fetch('/admin/order/details', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                }).then(response => {
+                  return response.json();
+                }).then(fullOrderDetails => {
+                  const date = new Date();
+                  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                  const formattedDate = date.toLocaleDateString('en-US', options);
+
+                  var data = {
+                    // Customize enables you to provide your own templates
+                    // Please review the documentation for instructions and examples
+                    "customize": {
+                        //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+                    },
+                    "images": {
+                        // The logo on top of your invoice
+                        "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
+                        // The invoice background
+                        "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
+                    },
+                    // Your own data
+                    "sender": {
+                        "company": "PlayStation",
+                        "address": "15205 North Kierland Blvd. Suite 100",
+                        "zip": "85254",
+                        "city": "Scottsdale",
+                        "country": "United States"
+                        //"custom1": "custom value 1",
+                        //"custom2": "custom value 2",
+                        //"custom3": "custom value 3"
+                    },
+                    // The products you would like to see on your invoice
+                    // Total values are being calculated automatically
+                    "products": fullOrderDetails,
+                    // The message you would like to display on the bottom of your invoice
+                    "bottom-notice": "Kindly pay your invoice within 15 days.",
+                    // Settings to customize your invoice
+                    "settings": {
+                        "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+                        // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
+                        // "tax-notation": "gst", // Defaults to 'vat'
+                        // "margin-top": 25, // Defaults to '25'
+                        // "margin-right": 25, // Defaults to '25'
+                        // "margin-left": 25, // Defaults to '25'
+                        // "margin-bottom": 25, // Defaults to '25'
+                        // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
+                        // "height": "1000px", // allowed units: mm, cm, in, px
+                        // "width": "500px", // allowed units: mm, cm, in, px
+                        // "orientation": "landscape", // portrait or landscape, defaults to portrait
+                    },
+                    // Translate your invoice to your preferred language
+                    "translate": {
+                        // "invoice": "FACTUUR",  // Default to 'INVOICE'
+                        // "number": "Nummer", // Defaults to 'Number'
+                        // "date": "Datum", // Default to 'Date'
+                        // "due-date": "Verloopdatum", // Defaults to 'Due Date'
+                        // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
+                        // "products": "Producten", // Defaults to 'Products'
+                        // "quantity": "Aantal", // Default to 'Quantity'
+                        // "price": "Prijs", // Defaults to 'Price'
+                        // "product-total": "Totaal", // Defaults to 'Total'
+                        // "total": "Totaal" // Defaults to 'Total'
+                    },
+                };
+                })
+              }
+            </script>
+</body>
+
+</html>
