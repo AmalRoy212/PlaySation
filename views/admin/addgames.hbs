@@ -347,7 +347,7 @@
                     <label for="cars" style="font-size:x-small;margin:0;">Category</label>
                     <select class="form-select" name="category" aria-placeholder="Select Category" style="width: 90%;height:40px;" aria-label="Default select example">
                       {{#each catNames}}
-                          <option value="{{this}}">{{this}}</option>
+                          <option value="{{this._id}}">{{this}}</option>
                       {{/each}}
                     </select>
                     <div class="form-outline">

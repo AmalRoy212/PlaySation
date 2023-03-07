@@ -91,10 +91,12 @@ body {
         <button
           type="button"
           class="navbar-toggle collapsed"
-          data-toggle="collapse"
+          {{!-- data-toggle="collapse"
           data-target="#navbar"
           aria-expanded="false"
-          aria-controls="navbar"
+          aria-controls="navbar" --}}
+          onclick="showNav()"
+          style="position: absolute;top:0;right:0;"
         >
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -104,7 +106,7 @@ body {
         <!-- Logo -->
         <div
           class="logo"
-          style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;"
+          style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left:0;"
         >
           <a
             class="navbar-brand logo-w3l button"
@@ -209,7 +211,7 @@ body {
   <div class="wthreetabsaits" id="wthreetabsaits">
     <section>
       <h3
-        style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;"
+        style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;margin-top:1.5rem;"
       >Black List</h3>
       <div style="padding:2%;">
         {{!-- search bar --}}
@@ -248,7 +250,7 @@ body {
         </div> }}
         <div class="content-wrap" style="padding:3rem;">
           <section id="section-line-1 fade-in">
-            <div class="row">
+            <div class="row" style="display: flex;justify-content: center;">
               {{#each games}}
                 <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px">
                   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="height: 50%;">
@@ -379,6 +381,9 @@ body {
     </section>
   </div>
   <script>
+    function showNav(){
+      document.getElementById('navbar').style.display = 'block'
+    }
     let path = document.querySelector(".tick");
     let length = path.getTotalLength();
 
