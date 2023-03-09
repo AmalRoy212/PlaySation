@@ -83,124 +83,94 @@ body {
 <body>
   {{!-- <span id="cartImg" >{{data.cartCount}}dsfdsf</span> --}}
   <!-- Navigation -->
-  <div class="w3lsnavigation">
-    <nav
-      class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
-    >
-      <div class="navbar-header">
-        <button
-          type="button"
-          class="navbar-toggle collapsed"
-          {{!-- data-toggle="collapse"
-          data-target="#navbar"
-          aria-expanded="false"
-          aria-controls="navbar" --}}
-          onclick="showNav()"
-          style="position: absolute;top:0;right:0;"
-        >
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- Logo -->
-        <div
-          class="logo"
-          style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left:0;"
-        >
-          <a
-            class="navbar-brand logo-w3l button"
-            href=""
-            style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
-                font-family: 'Chivo Mono', monospace;
-                font-family: 'Courgette', cursive;
-                font-family: 'Teko', sans-serif;"
-          >PlayStation</a>
+    <div class="w3lsnavigation">
+      <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" id="btnNav"
+            aria-expanded="false" aria-controls="navbar"
+            style="position: absolute;right: 0;top:0;">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Logo -->
+          <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left: 0;">
+            <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+                  font-family: 'Chivo Mono', monospace;
+                  font-family: 'Courgette', cursive;
+                  font-family: 'Teko', sans-serif;">PlayStation</a>
+          </div>
+          <!-- //Logo -->
         </div>
-        <!-- //Logo -->
-      </div>
-
-      <div id="navbar" class="navbar-collapse navbar-right collapse">
-        <ul
-          class="nav navbar-nav navbar-right cross-effect"
-          id="cross-effect"
-          style="display: flex;flex-direction:row;"
-        >
-          <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
-          <li>
-            <a
-              style="font-size: x-small; padding: 0; margin-top: 7px;"
-              href="/cart"
-            >
-              <img
-                style="border-radius:7px; width: 25px;"
-                src="images/gm.jpeg"
-                alt=""
-              />
-              {{!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      <span>{{cartCount}}</span>
-                    </span> --}}
-            </a>
-            <div
-              style="background-color:brown;width:15px;height: 15px;color:white;margin-top:-3rem;margin-left: 3rem;"
-              class="rounded-circle"
-            >
-              <span id="cartImg">{{cartCount}}</span>
-            </div>
-          </li>
-          <li><a
-              style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
-              href="#agilecontactw3ls"
-            ><img
-                style="border-radius:7px; width: 25px;height: 25px;"
-                src="images/search.png"
-                alt=""
-              /></a>
-          </li>
-           {{!-- <li>
-            <form action="/logout" method="post">
-                <input
-                  type="submit"
-                  value="LogOut"
-                  class="btn btn-success"
-                  style="margin:0;color: rgb(255, 255, 255);padding: 0;margin-left: 5px; margin-top: 7px;"
-                />
-              </form>
-          </li> --}}
-          <li class="dropdown no-arrow">
-            <a
-              href="#"
-              class="dropdown-toggle"
-              data-toggle="dropdown"
-              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;margin-right:4px;"
-            ><img
-                style="border-radius:7px; width: 31px;"
-                src="images/Settings.png"
-                alt=""
-              /></a>
-            <div
-              class="dropdown-menu"
-              style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));"
-            >
-              <a
-                style="font-size:small;color:azure;margin-left:1.4rem;"
-                href="/"
-              >Home</a>
-              <form action="/logout" method="post">
-                <input
-                  type="submit"
-                  value="LogOut"
-                  style="border: none;background: none;margin:0;color: rgb(0, 0, 0);"
-                />
-              </form>
-            </div>
-          </li>
-        </ul>
-      </div><!-- //Navbar-Collapse -->
-
-    </nav>
-  </div>
-  <!-- //Navigation -->
+        <div id="" class="navbar-collapse navbar-right collapse">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+            style="display: flex;flex-direction:row;">
+            <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+            <li><a style="font-size: x-small;" href="/products">Products</a></li>
+            <li>
+              <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+                <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{cartCount}}
+                </span>
+              </a>
+            </li>
+            <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
+                href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;"
+                  src="images/search.png" alt=""></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+              <div class="dropdown-menu"
+                style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                {{!-- <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a> --}}
+                <form action="/logout" method="post">
+                  <input type="submit" value="LogOut"
+                    style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {{!-- hidden  --}}
+         <div id="navbar" style="width:100%;max-height: fit-content;display: none;margin-top:5%;">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+            style="display: flex;flex-direction:column;">
+            <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+            <li><a style="font-size: x-small;" href="/products">Products</a></li>
+            <li>
+              <a style="font-size: x-small; padding: 0;" href="/cart">
+                <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{cartCount}}
+                </span>
+              </a>
+            </li>
+            <li><a class="scroll" style="font-size: x-small; padding: 0;"
+                href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;"
+                  src="images/search.png" alt=""></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                style="font-size: x-small; padding: 0;"><img
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+              <div class="dropdown-menu"
+                style="border-radius: 20px;margin:1rem;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+                <form action="/logout" method="post">
+                  <input type="submit" value="LogOut"
+                    style="border: none;background: none;margin:0;color: rgb(0, 0, 0);font-size: medium;"/>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- //Navbar-Collapse -->
+      </nav>
+    </div>
+    <!-- //Navigation -->
   {{! <section>
         <div class="nav" style="width:100%;height:50px;background-color: rgba(0, 0, 0, 0.606); display: flex;">
             <h1 style="color: white;position: absolute;left:0; width:20%;font-size:x-large;margin-top:1rem;">My Profile</h1>
@@ -252,7 +222,7 @@ body {
           <section id="section-line-1 fade-in">
             <div class="row" style="display: flex;justify-content: center;">
               {{#each games}}
-                <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px">
+                <div class="card" style="height: 270px;width:200px; margin:2rem;border-radius:10px;background:linear-gradient(rgb(0, 153, 255),rebeccaPurple);border: none;">
                   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" style="height: 50%;">
                     <a href="/product-view?id={{this._id}}">
                       <img src="gameimages/{{this.image.[0]}}" class="img-fluid" style="border-radius: 10px;margin-top:1rem;height:90%;"/>
@@ -267,7 +237,7 @@ body {
                       <h4 class="card-title"><b>{{this.name}}</b></h4>
                       <h6 class="card-text" style="color: grey;"><b>{{this.category}}</b></h6>
                       <h5 class="card-text" style="color:grey;">Downloads :<b>{{this.downloads}}</b></h5>
-                      <h4>Rs.<b style="color:rgb(0, 135, 0);">{{this.price}}</b>/-</h4>
+                      <h4>Rs.<b style="color:rgb(0, 255, 0);">{{this.price}}</b>/-</h4>
                       <a href="/check-out?id={{this._id}}" class="btn btn-primary">Buy Now</a>
                       {{#if this.inCart}}
                         <a id="goto" href="/cart" class="btn btn-success"><ion-icon style="font-size: 15px;" name="arrow-forward-circle-outline"></ion-icon></a>
@@ -340,20 +310,22 @@ body {
               {{/each}}
             </div>
           </section>
-          <div style="background: rgba(0, 0, 0, 0);width:200px;height:200px;display: block;padding-left:32%;position: fixed;top:27%;display: none;z-index:9;" id="success">
-          <div style="width:40rem;height:30rem;background: rgb(206, 206, 206);padding:1rem;border-radius: 20px;">
-             <div class="svg-container" style="margin-left:36%;margin-top:3rem;">    
-              <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
-                  <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22"/>
-                  <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17"/>
-              </svg>
-            </div>
-            <div style="padding:1rem;">
-               <h4>Successfully Added To FavList</h4>
-               <a class="btn btn-success rounded-pill" style="width: 93%;float: left; margin:1rem;font-size:small;margin-top:2rem;" href="/cart">Goto MyFav</a>
-            </div>
+          <div class="continaer-fluid" style="display: flex;justify-content: center;">
+            <div style="background: rgba(0, 0, 0, 0);width:35rem;height:25rem;display: block;position: fixed;top:27%;display: none;z-index:9;" id="success">
+              <div style="width:100%;height:100%;background: rgb(240, 240, 240);padding:3rem;border-radius: 20px;">
+                <div class="svg-container" style="display: flex;justify-content: center;">    
+                  <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
+                      <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22"/>
+                      <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17"/>
+                  </svg>
+                </div>
+                <div style="padding:1rem;">
+                  <h4>Successfully Added To FavList</h4>
+                  <a class="btn btn-success rounded-pill" style="width: 93%;float: left; margin:1rem;font-size:small;margin-top:2rem;" href="/cart">Goto MyFav</a>
+                </div>
+              </div>
+           </div>
           </div>
-        </div>
           <div style="position:fixed;top:0;display:none;" id="already">
             <div class="view" >
             <div class="action">
@@ -380,6 +352,18 @@ body {
       </div><!-- /tabs -->
     </section>
   </div>
+  <script>
+    let content = document.getElementById('navbar');
+    let button = document.getElementById('btnNav');
+
+    button.addEventListener("click", function() {
+      if (content.style.display === "none") {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    });
+  </script>
   <script>
     function showNav(){
       document.getElementById('navbar').style.display = 'block'

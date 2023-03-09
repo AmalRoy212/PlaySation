@@ -393,15 +393,16 @@
       <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
 
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-            aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" id="btnNav"
+            aria-expanded="false" aria-controls="navbar"
+            style="position: absolute;right: 0;top:0;">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
           <!-- Logo -->
-          <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;">
+          <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left: 0;">
             <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
                   font-family: 'Chivo Mono', monospace;
                   font-family: 'Courgette', cursive;
@@ -409,8 +410,7 @@
           </div>
           <!-- //Logo -->
         </div>
-
-        <div id="navbar" class="navbar-collapse navbar-right collapse">
+        <div id="" class="navbar-collapse navbar-right collapse">
           <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
             style="display: flex;flex-direction:row;">
             <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
@@ -429,10 +429,10 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                 style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img
-                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
               <div class="dropdown-menu"
                 style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
-                <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+                {{!-- <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a> --}}
                 <form action="/logout" method="post">
                   <input type="submit" value="LogOut"
                     style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
@@ -440,19 +440,219 @@
               </div>
             </li>
           </ul>
-        </div><!-- //Navbar-Collapse -->
-
+        </div>
+        {{!-- hidden  --}}
+         <div id="navbar" style="width:100%;max-height: fit-content;display: none;margin-top:5%;">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+            style="display: flex;flex-direction:column;">
+            <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+            <li><a style="font-size: x-small;" href="/products">Products</a></li>
+            <li>
+              <a style="font-size: x-small; padding: 0;" href="/cart">
+                <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{cartCount}}
+                </span>
+              </a>
+            </li>
+            <li><a class="scroll" style="font-size: x-small; padding: 0;"
+                href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;"
+                  src="images/search.png" alt=""></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                style="font-size: x-small; padding: 0;"><img
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+              <div class="dropdown-menu"
+                style="border-radius: 20px;margin:1rem;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+                <form action="/logout" method="post">
+                  <input type="submit" value="LogOut"
+                    style="border: none;background: none;margin:0;color: rgb(0, 0, 0);font-size: medium;"/>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- //Navbar-Collapse -->
       </nav>
     </div>
     <!-- //Navigation -->
 
     <div class="wthreetabsaits" id="wthreetabsaits">
       <h3>Game</h3>
-      <div class="container-fluid" style="padding:5%;">
+      <div class="container-fluid p-5">
         <div>
+          <div class="row">
+            <div class="col-md-8 ">
+              <div class="box user " style="background:none;color: white;">
+                <div class="box-inner-1 pb-3 mb-3">
+                  <div class="d-flex justify-content-between mb-3 userdetails">
+                    <h4 class="fw-bold" style="color: rgb(0, 255, 0);font-size:large;">{{theGame.name}}</h4>
+                    <form action="/cart" method="post">
+                      <input type="hidden" name="hiddenGmId" value="{{theGame._id}}">
+                      <input style="width:100%;background-color: blue;" type="submit" value="AddCart"
+                        class="btn btn-primary btn-block mb-4">
+                    </form>
+                  </div>
 
+                  <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel"
+                    data-bs-interval="2000" style="width:97%;">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="0" class="active" aria-current="true"
+                        aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner" style="height:70%;">
+                      <div class="carousel-item active">
+                        <img src="gameimages/{{theGame.image.[0]}}" class="d-block w-100" />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="gameimages/{{theGame.image.[1]}}" class="d-block w-100" />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="gameimages/{{theGame.image.[2]}}" class="d-block w-100" />
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#my" data-bs-slide="prev">
+                      <div class="icon"> <span class="fas fa-arrow-left"></span> </div>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#my" data-bs-slide="next">
+                      <div class="icon"> <span class="fas fa-arrow-right"></span> </div>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                    <div style="width:100%;height:100px;display: flex;justify-content: center;">
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="0" aria-label="Slide 1"
+                        style="background: none;border:none;width:60px;" class="m-1">
+                        <img src="gameimages/{{theGame.image.[0]}}" alt="">
+                      </button>
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="1" aria-label="Slide 2" style="background: none;border:none;width:60px;
+                      class=" m-1"">
+                        <img src="gameimages/{{theGame.image.[1]}}" alt="">
+                      </button>
+                      <button type="button" data-bs-target="#my" data-bs-slide-to="2" aria-label="Slide 3"
+                        style="background: none;border:none;width:60px;" class="m-1">
+                        <img src="gameimages/{{theGame.image.[2]}}" alt="">
+                      </button>
+                      <button type="button" style="background: none;border:none;width:60px;color:black;"
+                        onclick="showVideo()">
+                        <img src="gameimages/{{theGame.image.[2]}}" alt="">
+                        <ion-icon style="font-size:30px;margin-top:-50%;"
+                          name="play-skip-forward-circle-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                  {{!-- <button class="btn" onclick="showAbout()"
+                    style="border: 1px solid rgb(0, 255, 0);font-size: small; color: rgb(0, 255, 0); display: flex;">About
+                    the Game<ion-icon style="font-size:20px;" name="chevron-forward-circle-sharp"></ion-icon></button>
+                  <p class="dis mb-3 updates">Free updates forever</p>
+                  <p class="dis mb-3 different"><b>Game Details</b></p>
+                  <div class="dis">
+                    <p class="black"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Designers :
+                      </b>{{theGame.designers}}</p>
+                    <p class="white"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Developed :
+                      </b>{{theGame.developed}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Published :
+                      </b>{{theGame.publisher}}</p>
+                    <p class="dis my-3 info">{{theGame.dis}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Updated On :
+                      </b>{{lastUpdate.dateOfVersion}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Version :
+                      </b>{{lastUpdate.version}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b
+                        style="color: rgb(0, 255, 0);width: fit-content;max-height: fit-content;">Whats New ? : </b>{{lastUpdate.versionDetails}}</p>
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box pt-5" style="background:none;color: white;">
+                <div class="box-inner-2">
+                  <div>
+                    <p class="fw-bold">Payment Details</p>
+                    <p class="dis mb-3">Complete your purchase by providing your payment
+                      details</p>
+                  </div>
+                  <form action="">
+                    <div class="mb-3">
+                      <p class="dis fw-bold mb-2">Full name</p>
+                      <input class="form-control" type="text" value="{{fullname}}" />
+                    </div>
+                    <div class="mb-3">
+                      <p class="dis fw-bold mb-2">Email address</p>
+                      <input class="form-control" type="email" value="{{theUser.email}}" />
+                    </div>
+                    <div class="mb-3">
+                      <p class="dis fw-bold mb-2">Contact</p>
+                      <input class="form-control" type="number" value="{{theUser.mobile}}" />
+                    </div>
+                    <div>
+                      <div class="my-3 cardname">
+                        <p class="dis fw-bold mb-2">Your Credentials</p>
+                        <div class="form-control" style="height: 15%;">
+                          <h5><b>Name : </b>{{fullname}}</h5>
+                          <h5><b>Email : </b>{{theUser.email}}</h5>
+                          <h5><b>Contact : </b>{{theUser.mobile}}</h5>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <p>Flat Discount<span class="fas fa-check"
+                            style="color:rgb(4, 168, 4);margin-left:-.3rem;margin-top:-.2rem;"></span></p>
+                        <p name="subtotal"><span class="fas fa-dollar-sign" style="color:white;"></span>{{dis}}</p>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <p class="fw-bold">Total</p>
+                        <p style="text-decoration: line-through;color: red;font-size: larger;" class="fw-bold"><span
+                            class="fas fa-dollar-sign" style="color:white;"></span>{{theGame.price}}</p>
+                      </div>
+                      <a href="/check-out?id={{theGame._id}}" class="btn btn-primary mt-2"
+                        style="margin: 2rem;width:90%;font-size: medium;">Proceed<span style="color: rgb(0, 255, 0);" class="fas fa-dollar-sign px-1"></span>{{finalAmount}}
+                      </a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="box user " style="background:none;color: white;">
+                <div class="box-inner-1 pb-3 mb-3">
+                  <button class="btn" onclick="showAbout()"
+                    style="border: 1px solid rgb(0, 255, 0);font-size: small; color: rgb(0, 255, 0); display: flex;">About
+                    the Game<ion-icon style="font-size:20px;" name="chevron-forward-circle-sharp"></ion-icon></button>
+                  <p class="dis mb-3 updates">Free updates forever</p>
+                  <p class="dis mb-3 different"><b>Game Details</b></p>
+                  <div class="dis">
+                    <p class="black"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Designers :
+                      </b>{{theGame.designers}}</p>
+                    <p class="white"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Developed :
+                      </b>{{theGame.developed}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Published :
+                      </b>{{theGame.publisher}}</p>
+                    <p class="dis my-3 info">{{theGame.dis}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Updated On :
+                      </b>{{lastUpdate.dateOfVersion}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Version :
+                      </b>{{lastUpdate.version}}</p>
+                    <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b
+                        style="color: rgb(0, 255, 0);width: fit-content;max-height: fit-content;">Whats New ? : </b>{{lastUpdate.versionDetails}}</p>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
-        <div style="width: 100%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
+      </div>
+      {{!-- <div class="container-fluid" style="padding:5%;">
+        <div style="width: 100%;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
+          <div class="row">
+            <div class="col-8 bg-danger" style="width:70%;height:100px;">
+
+            </div>
+            <div class="col-4 bg-warning" style="width:30%;height:100px;">
+
+            </div>
+          </div>
           <div class="box-1 user " style="background:none;color: white;">
             <div class="box-inner-1 pb-3 mb-3">
               <div class="d-flex justify-content-between mb-3 userdetails">
@@ -462,11 +662,8 @@
                   <input style="width:100%;background-color: blue;" type="submit" value="AddCart"
                     class="btn btn-primary btn-block mb-4">
                 </form>
-                {{!-- <button onclick="addToCart('{{theGame._id}}')" class="btn btn-warning"><ion-icon
-                    style="font-size: 15px;" name="game-controller-outline"></ion-icon></button> --}}
-                {{!-- <p class="fw-lighter"><span class="fas fa-dollar-sign"></span><b>{{theGame.price}}</b></p> --}}
               </div>
-              
+
               <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel"
                 data-bs-interval="2000">
                 <div class="carousel-indicators">
@@ -494,7 +691,7 @@
                   <div class="icon"> <span class="fas fa-arrow-right"></span> </div>
                   <span class="visually-hidden">Next</span>
                 </button>
-                <div style="width:100%;height:100px;padding:2rem;">
+                <div style="width:100%;height:100px;padding:2rem; display: flex;">
                   <button type="button" data-bs-target="#my" data-bs-slide-to="0" aria-label="Slide 1"
                     style="background: none;border:none;width:60px;">
                     <img src="gameimages/{{theGame.image.[0]}}" alt="">
@@ -510,15 +707,15 @@
                   <button type="button" style="background: none;border:none;width:60px;color:black;"
                     onclick="showVideo()">
                     <img src="gameimages/{{theGame.image.[2]}}" alt="">
-                    <ion-icon style="font-size:30px;margin-top:-50%;" name="play-skip-forward-circle-outline"></ion-icon>
+                    <ion-icon style="font-size:30px;margin-top:-50%;"
+                      name="play-skip-forward-circle-outline"></ion-icon>
                   </button>
                 </div>
               </div>
-              
+
               <button class="btn" onclick="showAbout()"
                 style="border: 1px solid rgb(0, 255, 0);font-size: small; color: rgb(0, 255, 0); display: flex;">About
                 the Game<ion-icon style="font-size:20px;" name="chevron-forward-circle-sharp"></ion-icon></button>
-              {{!-- <p class="dis my-3 info">{{theGame.dis}}</p> --}}
               <p class="dis mb-3 updates">Free updates forever</p>
               <p class="dis mb-3 different"><b>Game Details</b></p>
               <div class="dis">
@@ -536,12 +733,6 @@
                     style="color: rgb(0, 255, 0);">Whats New ? : </b>{{lastUpdate.versionDetails}}</p>
               </div>
             </div>
-
-            {{!-- <form action="/cart" method="post">
-              <input type="hidden" name="hiddenGmId" value="{{theGame._id}}">
-              <input style="width:100%;background-color: blue;" type="submit" value="AddToFav"
-                class="btn btn-primary btn-block mb-4">
-            </form> --}}
           </div>
           <div class="box-2" style="background:none;color: white;float:right;">
             <div class="box-inner-2">
@@ -587,22 +778,14 @@
                   <a href="/check-out?id={{theGame._id}}" class="btn btn-primary mt-2"
                     style="margin: 2rem;">Proceed<span class="fas fa-dollar-sign px-1"></span>{{finalAmount}}
                   </a>
-                  {{!-- <form action="/cart?id={{theGame._id}}" method="post" id="loginForm">
-                    <input style="width:50%;margin:1rem;margin-left:25%; background-color: blue;" type="submit"
-                      value="log in" class="btn btn-primary btn-block mb-4">
-                  </form> --}}
-                  {{!-- <a class="btn btn-primary mt-2" href="/cart?id={{theGame._id}}"
-                    style="background-color: rgb(44, 209, 11);">Add To Cart<span
-                      class="fa fa-shopping-cart px-1"></span></a> --}}
-
                 </div>
             </div>
           </div>
           </form>
         </div>
-      </div>
+      </div> --}}
       <div
-        style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(255, 255, 255, 0.5); display: none;z-index:3;"
+        style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(255, 255, 255, 0.5); display: none;z-index:3;justify-content: center;height:100%;"
         id="videoTab">
         <video controls style="width: 80%;margin-left:8%;margin-top:2%; border-radius: 10px; ">
           <source src="/gameVideos/{{theGame.video}}">
@@ -612,12 +795,12 @@
               name="close-circle-outline"></ion-icon></span></button>
       </div>
       <div class="container-fluid"
-        style="height:700px;padding:18%; position:absolute;top:5%;background-color:rgba(255, 255, 255, 0.5); display: none; overflow: auto;"
+        style="height:100%;padding:18%; position:fixed;top:0;background-color:rgba(255, 255, 255, 0.5); display: none; overflow: auto;"
         id="aboutGame">
         <div
           style="position: fixed;top:20%;padding:5%;background-color: rgba(0, 0, 0, 0.898); z-index:3;border-radius:20px; width:60%;margin-bottom:5rem;height:500px;overflow-y: auto;">
           <div style="display: flex;">
-            <img class="col-md-6" style="width:50%;" src="gameimages/{{theGame.image.[0]}}" alt="">
+            <img class="col-md-6" style="width:50%;object-fit: cover;" src="gameimages/{{theGame.image.[0]}}" alt="">
             <div style="padding: 2rem;width:50%;" class="col-md-6">
               <h5 style="color:rgb(0, 255, 0);font-size:large;">{{theGame.name}}</h5>
               <h6 style="color:rgb(255, 255, 255);">{{theGame.category}}</h6>
@@ -678,6 +861,18 @@
   </div>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    let content = document.getElementById('navbar');
+    let button = document.getElementById('btnNav');
+
+    button.addEventListener("click", function() {
+      if (content.style.display === "none") {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
+      }
+    });
+  </script>
 
   <script>
     var videoPlayer = document.getElementById('videoTab');
@@ -687,34 +882,34 @@
       videoPlayer.currentTime = 0;
       videoPlayer.style.display = 'none';
     });
-   let videoTab = document.getElementById('videoTab');
-  videoTab.addEventListener('mouseleave', function() {
-  document.body.style.overflow = 'auto';
-});
+    let videoTab = document.getElementById('videoTab');
+    videoTab.addEventListener('mouseleave', function () {
+      document.body.style.overflow = 'auto';
+    });
 
     function showVideo() {
       document.getElementById('videoTab').style.display = 'block'
-           let videoTab = document.getElementById('videoTab');
-    videoTab.addEventListener('mouseenter', function() {
-  document.body.style.overflow = 'hidden';
-});
+      let videoTab = document.getElementById('videoTab');
+      videoTab.addEventListener('mouseenter', function () {
+        document.body.style.overflow = 'hidden';
+      });
     }
 
     function showAbout() {
       document.getElementById('aboutGame').style.display = 'block'
-       let aboutGame = document.getElementById('aboutGame');
-    aboutGame.addEventListener('mouseenter', function() {
-  document.body.style.overflow = 'hidden';
-});
+      let aboutGame = document.getElementById('aboutGame');
+      aboutGame.addEventListener('mouseenter', function () {
+        document.body.style.overflow = 'hidden';
+      });
     }
 
     function hideAbout() {
       document.getElementById('aboutGame').style.display = 'none'
-     
-let aboutGame = document.getElementById('aboutGame');
-  aboutGame.addEventListener('mouseleave', function() {
-  document.body.style.overflow = 'auto';
-});
+
+      let aboutGame = document.getElementById('aboutGame');
+      aboutGame.addEventListener('mouseleave', function () {
+        document.body.style.overflow = 'auto';
+      });
 
     }
   </script>

@@ -1,308 +1,369 @@
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
   <style>
-        .dropdown-toggle::after {
-            content: none;
-        }
-    </style>
-  </head>
+    .dropdown-toggle::after {
+      content: none;
+    }
+  </style>
+</head>
 
 
-  <body>
-    <!-- Navigation -->
-      <div class="w3lsnavigation">
-        <nav
-          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
-        >
+<body>
+  <!-- Navigation -->
+    <div class="w3lsnavigation">
+      <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
 
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navbar"
-              aria-expanded="false"
-              aria-controls="navbar"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Logo -->
-            <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;">
-              <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
-                font-family: 'Chivo Mono', monospace;
-                font-family: 'Courgette', cursive;
-                font-family: 'Teko', sans-serif;">PlayStation</a>
-            </div>
-            <!-- //Logo -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" id="btnNav"
+            aria-expanded="false" aria-controls="navbar"
+            style="position: absolute;right: 0;top:0;">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Logo -->
+          <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left: 0;">
+            <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+                  font-family: 'Chivo Mono', monospace;
+                  font-family: 'Courgette', cursive;
+                  font-family: 'Teko', sans-serif;">PlayStation</a>
           </div>
+          <!-- //Logo -->
+        </div>
+        <div id="" class="navbar-collapse navbar-right collapse">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+            style="display: flex;flex-direction:row;">
+            <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+            <li><a style="font-size: x-small;" href="/products">Products</a></li>
+            <li>
+              <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+                <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{cartCount}}
+                </span>
+              </a>
+            </li>
+            <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
+                href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;"
+                  src="images/search.png" alt=""></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+              <div class="dropdown-menu"
+                style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                {{!-- <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a> --}}
+                <form action="/logout" method="post">
+                  <input type="submit" value="LogOut"
+                    style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {{!-- hidden  --}}
+         <div id="navbar" style="width:100%;max-height: fit-content;display: none;margin-top:5%;">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+            style="display: flex;flex-direction:column;">
+            <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+            <li><a style="font-size: x-small;" href="/products">Products</a></li>
+            <li>
+              <a style="font-size: x-small; padding: 0;" href="/cart">
+                <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{cartCount}}
+                </span>
+              </a>
+            </li>
+            <li><a class="scroll" style="font-size: x-small; padding: 0;"
+                href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;"
+                  src="images/search.png" alt=""></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                style="font-size: x-small; padding: 0;"><img
+                  style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+              <div class="dropdown-menu"
+                style="border-radius: 20px;margin:1rem;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+                <form action="/logout" method="post">
+                  <input type="submit" value="LogOut"
+                    style="border: none;background: none;margin:0;color: rgb(0, 0, 0);font-size: medium;"/>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- //Navbar-Collapse -->
+      </nav>
+    </div>
+    <!-- //Navigation -->
 
-          <div id="navbar" class="navbar-collapse navbar-right collapse">
-            <ul
-              class="nav navbar-nav navbar-right cross-effect"
-              id="cross-effect" style="display: flex;flex-direction:row;"
-            >
-                <li><a style="font-size: x-small;" href="/products">Products</a></li>
-                <li>
-                  <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
-                    <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {{cartCount}}
-                    </span>
-                  </a>
-                </li>                
-                <li><a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
-                  <div class="dropdown-menu" style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
-                    <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
-                    <form action="/logout" method="post">
-                      <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+  <section>
+    <div class="wthreetabsaits" style="" id="wthreetabsaits">
+      <h3 style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;">Me</h3>
+      {{#if userDatas.isGoogle}}
+      <div
+        style="max-height: fit-content;max-width: fit-content;margin-left: auto;margin-right: auto;border: 2px solid rgb(255, 255, 0);border-radius:10px;">
+        <a style="margin:2rem;font-size: large;color:rgb(255, 255, 0);"
+          href="/edituser?id={{userDatas._id}}">{{googleMsg}}</a>
+      </div>
+      {{else}}
+      {{/if}}
+      <section style="background-color: rgba(68, 68, 68, 0.742); width:90%;border-radius:20px;margin: 5%;">
+        <div class="row g-0">
+          <div class="col-lg-4 gradient-custom text-center text-white"
+            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="Avatar"
+              class="img-fluid my-5" style="width: 80px;" />
+            <h5 style="color:rgb(0, 255, 13);"><b>{{userFullname}}</b></h5>
+            <p style="color: rgb(0, 0, 0);">Gamer</p>
+            <div style="display: flex;justify-content: center;">
+              <li class="dropdown" style="list-style-type:none;width:50%;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                  style="font-size: x-small; padding: 0; margin-top: 4px;margin-left:-3rem;"><i
+                    style="color:white;margin-left:10rem;width: 50px;" class="far fa-edit mb-5 fa-2xl"></i></a>
+                <div class="dropdown-menu " style="border-radius: 20px; width:100%;margin-top:-2rem;">
+                  {{!-- user editing tab --}}
+                  <div class="container" style="padding:1rem;background-color:rgba(0, 255, 255, 0);">
+                    <form action="/edituser" method="post">
+                      <h4
+                        style="margin-bottom:4rem;text-decoration: underline;text-decoration-color:rgb(0, 185, 0);text-underline-offset:1rem;">
+                        Edit Me</h4>
+                      <div class="form-outline mb-4" style="display: flex;">
+                        <label class="form-label" style="width: 45%; margin-left: 1.5rem;" for="form2Example1">First
+                          Name</label>
+                        <label class="form-label" style="width: 45%; margin-left: 5rem;margin-right: 5rem;"
+                          for="form2Example1">Last Name</label>
+                      </div>
+                      <!-- Email input -->
+                      <div class="form-outline mb-4" style="display: flex;margin-top:-1rem;">
+                        <input style="width: 45%; margin-left: 1.5rem;" id="fname" value="{{userDatas.fname}}"
+                          type="text" name="fname" placeholder="Enter your first name" class="form-control" required />
+                        <input style="width: 45%; margin-left: 1rem;" id="lname" value="{{userDatas.lname}}" type="text"
+                          name="lname" placeholder="Enter your first last" class="form-control" required />
+                      </div>
+
+                      <!-- Password input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" style="margin-left: 1.5rem;" for="form2Example2">Email</label>
+                        <input type="email" name="email" id="email" value="{{userDatas.email}}"
+                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid Email ID"
+                          placeholder="Enter your Email" style="width: 93%; margin-left: 1.5rem;" class="form-control"
+                          required />
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" style="margin-left: 1.5rem;" for="form2Example2">Mobile</label>
+                        <input type="text" name="mobile" id="mobile" value="{{userDatas.mobile}}" pattern="[0-9]{10}"
+                          title="Contact Number should be Digits" placeholder="Enter your Contact"
+                          style="width: 93%; margin-left: 1.5rem;" class="form-control" required />
+                      </div>
+                      <br />
+                      <!-- Submit button -->
+                      <button type="submit" style="width: 30%; margin-left:35%;"
+                        class="btn btn-primary btn-block mb-4">Update</button>
+                    </form>
+                    <button class="btn btn-info" onclick="editMe({{userDatas._id}})">press</button>
+                  </div>
+                </div>
+              </li>
+
+              {{!-- <a href="/edituser?id={{userHomeId}}"><i style="color:white;" class="far fa-edit mb-5 fa-2xl"
+                  style="width: 50px;"></i></a> --}}
+              <li class="dropdown" style="list-style-type:none;width:50%">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                  style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;">
+                  <i style="color:white;margin-left:-10rem;width: 50px;" class="fa-solid fa-key fa-xl me-3"></i></a>
+                <div class="dropdown-menu animated--fade-in" style="border-radius: 20px; width:100%;margin-top:-2rem;">
+                  {{!-- user editing tab --}}
+                  <div style="padding:1rem;background-color:rgba(0, 255, 255, 0);padding-left:1rem;">
+                    <form action="/editPassword" method="post">
+                      <h4
+                        style="margin-bottom:4rem;text-decoration: underline;text-decoration-color:rgb(0, 185, 0);text-underline-offset:1rem;">
+                        Reset Password</h4>
+                      <h6 style="margin-bottom:1rem;color:red;">{{userMessage}}</h6>
+                      <h6 style="margin-bottom:1rem;color:green;">{{sccMsg}}</h6>
+                      <!-- Email input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">Current
+                          Password</label>
+                        <input type="password" name="crPassword" id="currentPass"
+                          placeholder="Enter your Current Password" style="width: 92%; margin-left: 1.3rem;"
+                          class="form-control" required />
+                      </div>
+
+                      <!-- Password input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">New Password</label>
+                        <input type="password" name="newPassOne" id="newPass" pattern=".{8,}"
+                          title="Eight or more characters" placeholder="Enter New Password"
+                          style="width: 92%; margin-left: 1.3rem;" class="form-control" required />
+                        {{!-- <h6 style="margin:.5rem;color:red;">{{userMessage}}</h6> --}}
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">Re-Enter
+                          Password</label>
+                        <input type="password" name="newPassTwo" id="reNewPass" pattern=".{8,}"
+                          title="Eight or more characters" placeholder="Re-Enter New Password"
+                          style="width: 92%; margin-left: 1.3rem;" class="form-control" required />
+                        {{!-- <h6 style="margin-bottom:1rem;color:red;">{{userMessage}}</h6> --}}
+                      </div>
+                      <br />
+                      <!-- Submit button -->
+                      <button type="submit" style="width: 30%; margin-left:35%;background-color: green;"
+                        class="btn btn-primary btn-block mb-4">Reset</button>
                     </form>
                   </div>
-                </li>
-            </ul>
-          </div><!-- //Navbar-Collapse -->
-
-        </nav>
-      </div>
-      <!-- //Navigation -->
-
-      <section>
-        <div class="wthreetabsaits" style="" id="wthreetabsaits">
-          <h3 style="text-decoration: underline;text-decoration-color:rgb(0, 255, 0);text-underline-offset:1rem;">Me</h3>
-          {{#if userDatas.isGoogle}}
-            <div style="max-height: fit-content;max-width: fit-content;margin-left: auto;margin-right: auto;border: 2px solid rgb(255, 255, 0);border-radius:10px;">
-              <a style="margin:2rem;font-size: large;color:rgb(255, 255, 0);" href="/edituser?id={{userDatas._id}}">{{googleMsg}}</a>
+                </div>
+              </li>
             </div>
-          {{else}}
-          {{/if}}
-          <section style="background-color: rgba(68, 68, 68, 0.742); width:90%;margin:5rem;border-radius:20px;">
-                <div class="row g-0">
-                <div
-                  class="col-md-4 gradient-custom text-center text-white"
-                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;"
-                >
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                    alt="Avatar"
-                    class="img-fluid my-5"
-                    style="width: 80px;"
-                  />
 
-
-                    <h5 style="color:rgb(0, 255, 13);"><b>{{userFullname}}</b></h5>
-                    <p style="color: rgb(0, 0, 0);">Gamer</p>
-                    <div style="display: flex;">
-                    <li class="dropdown" style="list-style-type:none;width:50%;"> 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i style="color:white;margin-left:10rem;width: 50px;" class="far fa-edit mb-5 fa-2xl"></i></a>
-                    <div class="dropdown-menu " style="border-radius: 20px; width:260%;margin-top:-2rem;">
-                    {{!-- user editing tab --}}
-                    <div class="container" style="padding:1rem;background-color:rgba(0, 255, 255, 0);">
-                    <form action="/edituser" method="post">
-                    <h4 style="margin-bottom:4rem;text-decoration: underline;text-decoration-color:rgb(0, 185, 0);text-underline-offset:1rem;">Edit Me</h4>
-                    <div class="form-outline mb-4" style="display: flex;">
-                    <label class="form-label" style="width: 45%; margin-left: 1.5rem;" for="form2Example1">First Name</label>
-                    <label class="form-label" style="width: 45%; margin-left: 5rem;margin-right: 5rem;" for="form2Example1">Last Name</label>
-                    </div>
-                    <!-- Email input -->
-                    <div class="form-outline mb-4" style="display: flex;margin-top:-1rem;">
-                    <input style="width: 45%; margin-left: 1.5rem;" id="fname"  value="{{userDatas.fname}}" type="text" name="fname" placeholder="Enter your first name" class="form-control" required/>
-                    <input style="width: 45%; margin-left: 1rem;" id="lname" value="{{userDatas.lname}}"  type="text" name="lname" placeholder="Enter your first last" class="form-control" required/>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                    <label class="form-label" style="margin-left: 1.5rem;" for="form2Example2">Email</label>
-                    <input type="email" name="email" id="email" value="{{userDatas.email}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid Email ID"  placeholder="Enter your Email" style="width: 93%; margin-left: 1.5rem;" class="form-control" required/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <label class="form-label" style="margin-left: 1.5rem;" for="form2Example2">Mobile</label>
-                    <input type="text" name="mobile" id="mobile" value="{{userDatas.mobile}}" pattern="[0-9]{10}" title="Contact Number should be Digits"  placeholder="Enter your Contact" style="width: 93%; margin-left: 1.5rem;" class="form-control" required/>
-                    </div>
-                    <br />
-                    <!-- Submit button -->
-                    <button type="submit" style="width: 30%; margin-left:35%;" class="btn btn-primary btn-block mb-4">Update</button>
-                </form>
-                <button class="btn btn-info" onclick="editMe({{userDatas._id}})">press</button>
-
+          </div>
+          <div style="color:white;" class="col-lg-8">
+            <div class="card-body p-4">
+              <h5>About <b>{{userFullname}}</b></h5>
+              <hr class="mt-0 mb-4" />
+              <div class="row pt-1">
+                <div class="col-6 mb-3">
+                  <h5>Email</h5>
+                  <h6 style="color: rgb(0, 255, 0);">{{userDatas.email}}</h6>
                 </div>
-                </div>
-                </li>
-                
-                    {{!-- <a href="/edituser?id={{userHomeId}}"><i style="color:white;" class="far fa-edit mb-5 fa-2xl" style="width: 50px;"></i></a> --}}
-                  <li class="dropdown" style="list-style-type:none;width:50%"> 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i style="color:white;margin-left:-10rem;width: 50px;" class="fa-solid fa-key fa-xl me-3"></i></a>
-                    <div class="dropdown-menu animated--fade-in" style="border-radius: 20px; width:200%;margin-top:-2rem;">
-                    {{!-- user editing tab --}}
-                    <div class="container" style="padding:1rem;background-color:rgba(0, 255, 255, 0);padding-left:1rem;">
-                    <form action="/editPassword" method="post">
-                    <h4 style="margin-bottom:4rem;text-decoration: underline;text-decoration-color:rgb(0, 185, 0);text-underline-offset:1rem;">Reset Password</h4>
-                    <h6 style="margin-bottom:1rem;color:red;">{{userMessage}}</h6>
-                    <h6 style="margin-bottom:1rem;color:green;">{{sccMsg}}</h6>
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                    <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">Current Password</label>
-                    <input type="password" name="crPassword" id="currentPass" placeholder="Enter your Current Password" style="width: 92%; margin-left: 1.3rem;" class="form-control" required/>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                    <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">New Password</label>
-                    <input type="password" name="newPassOne" id="newPass" pattern=".{8,}" title="Eight or more characters" placeholder="Enter New Password" style="width: 92%; margin-left: 1.3rem;" class="form-control" required/>
-                    {{!-- <h6 style="margin:.5rem;color:red;">{{userMessage}}</h6> --}}
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <label class="form-label" style="margin-left: 1.3rem;" for="form2Example2">Re-Enter Password</label>
-                    <input type="password" name="newPassTwo" id="reNewPass" pattern=".{8,}" title="Eight or more characters" placeholder="Re-Enter New Password" style="width: 92%; margin-left: 1.3rem;" class="form-control" required/>
-                    {{!-- <h6 style="margin-bottom:1rem;color:red;">{{userMessage}}</h6> --}}
-                    </div>
-                    <br />
-                    <!-- Submit button -->
-                    <button type="submit" style="width: 30%; margin-left:35%;background-color: green;" class="btn btn-primary btn-block mb-4">Reset</button>
-                </form>
-                </div>
-                </div>
-                </li>
-                  </div>
-                    
-                </div>
-                <div style="color:white;" class="col-md-8">
-                  <div class="card-body p-4">
-                    <h5>About <b>{{userFullname}}</b></h5>
-                    <hr class="mt-0 mb-4" />
-                    <div class="row pt-1">
-                      <div class="col-6 mb-3">
-                        <h5>Email</h5>
-                        <h6 style="color: rgb(0, 255, 0);">{{userDatas.email}}</h6>
-                      </div>
-                      <div class="col-6 mb-3">
-                        <h5>Phone</h5>
-                        <h6 style="color: rgb(0, 255, 0);">{{userDatas.mobile}}</h6>
-                      </div>
-                    </div>
-                    <h5>Information</h5>
-                    <hr class="mt-0 mb-4" />
-                    <div class="row pt-1">
-                      <div class="col-6 mb-3">
-                        <h6>Recent</h6>
-                        <h6 style="color: rgb(0, 255, 0);">Lorem ipsum</h6>
-                      </div>
-                      <div class="col-6 mb-3">
-                        <h6>Most Viewed</h6>
-                        <h6 style="color: rgb(0, 255, 0);">Dolor sit amet</h6>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-start" style="padding:1rem;">
-                      <a href=""><i style="color:white;" class="fab fa-facebook-f fa-lg me-3"></i></a>
-                      <a href="#!" style="margin-left: 3rem;color:white;"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                      <a href="#!" style="margin-left: 3rem;color:white;"><i class="fab fa-instagram fa-lg"></i></a>
-                      {{#if userMessage}}
-                        <h5 style="margin-left:15rem;margin-top:-1rem;color:red;">{{userMessage}}</h5>
-                      {{else}}
-                        <h4 style="margin-left:15rem;margin-top:-1rem;color:green;">{{sccMsg}}</h4>
-                      {{/if}}
-                    </div>
-                  </div>
+                <div class="col-6 mb-3">
+                  <h5>Phone</h5>
+                  <h6 style="color: rgb(0, 255, 0);">{{userDatas.mobile}}</h6>
                 </div>
               </div>
+              <h5>Information</h5>
+              <hr class="mt-0 mb-4" />
+              <div class="row pt-1">
+                <div class="col-6 mb-3">
+                  <h6>Recent</h6>
+                  <h6 style="color: rgb(0, 255, 0);">Lorem ipsum</h6>
+                </div>
+                <div class="col-6 mb-3">
+                  <h6>Most Viewed</h6>
+                  <h6 style="color: rgb(0, 255, 0);">Dolor sit amet</h6>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start" style="padding:1rem;">
+                <a href=""><i style="color:white;" class="fab fa-facebook-f fa-lg me-3"></i></a>
+                <a href="#!" style="margin-left: 3rem;color:white;"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                <a href="#!" style="margin-left: 3rem;color:white;"><i class="fab fa-instagram fa-lg"></i></a>
+                {{#if userMessage}}
+                <h5 style="margin-left:15rem;margin-top:-1rem;color:red;">{{userMessage}}</h5>
+                {{else}}
+                <h4 style="margin-left:15rem;margin-top:-1rem;color:green;">{{sccMsg}}</h4>
+                {{/if}}
+              </div>
             </div>
-    </section>
+          </div>
+        </div>
+    </div>
+    </div>
+  </section>
 
-      {{!-- user starts --}}
-      <div class="w3lsstatsaits" id="w3lsstatsaits" style="background-image: url(images/dpBnr.jpeg);padding: 0;">
-        <div class="container-fluid" style="width: 100%;height:100px;padding: 0;font-family: font-family: 'Anton', sans-serif;
+  {{!-- user starts --}}
+  <div class="w3lsstatsaits" id="w3lsstatsaits" style="background-image: url(images/dpBnr.jpeg);padding: 0;">
+    <div class="container-fluid" style="width: 100%;height:100px;padding: 0;font-family: font-family: 'Anton', sans-serif;
                       font-family: 'Chivo Mono', monospace;
                       font-family: 'Courgette', cursive;
                       font-family: 'Teko', sans-serif;;">
-        </div>
-      </div>
-<section>
-        <div class="wthreetabsaits" style="" id="wthreetabsaits">
-        <section>
-            <h3>Downloads</h3>
-            <div class="tabs tabs-style-line">
-            <nav class="container">
-                <ul>
-                <li><a href="#section-line-1" style="color: aliceblue;"><span></span></a></li>
-                <li><a href="#section-line-2" style="color: aliceblue;"><span></span></a></li>
-                <li><a href="#section-line-3" style="color: aliceblue;margin-left:7rem;"><span></span></a></li>
-                <li><a href="#section-line-4" style="color: aliceblue;margin-left:7rem;"><span></span></a></li>
-                </ul>
-            </nav>
-            <div class="content-wrap" style="padding:3rem;">
-                <section id="section-line-1">
-                    <div class="row">
-                        {{#each gameDatas}}
-                            <div class="card" style="height:200px;width:200px; margin:2rem;border-radius:10px">
-                                <div
-                                class="bg-image hover-overlay ripple"
-                                data-mdb-ripple-color="light"
-                                style="width:100%;height:50%;"
-                                >
-                                  <img
-                                      src="gameimages/{{this.image}}"
-                                      class="img-fluid"
-                                      style="border-radius: 10px;margin-top:1rem;width:100%;height:100%;"
-                                  />
-                                  <a href="#!">
-                                      <div
-                                      class="mask"
-                                      style="background-color: rgba(251, 251, 251, 0.15);"
-                                      ></div>
-                                  </a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title"><b>{{this.name}}</b></h4>
-                                    <h6 class="card-text"><b>{{this.category}}</b></h6>
-                                    {{!-- <h5 class="card-text">Downloads :<b>{{this.downloads}}</b></h5>
-                                    <h4>Rs. {{this.price}}/-</h4> --}}
-                                    <a href="/load-game" class="btn btn-primary">Load & Play</a>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                </section>
-            </div><!-- /content -->
-            </div><!-- /tabs -->
-        </section>
     </div>
-    </section>
-    <script>
-      function editMe(id){
-        let fname = document.getElementById('fname').value;
-        let lname = document.getElementById('lname').value;
-        let email = document.getElementById('email').value;
-        let mobile = document.getElementById('mobile').value;
+  </div>
+  <section>
+    <div class="wthreetabsaits" style="" id="wthreetabsaits">
+      <section>
+        <h3>Downloads</h3>
+        <div class="tabs tabs-style-line">
+          <nav class="container">
+            <ul>
+              <li><a href="#section-line-1" style="color: aliceblue;"><span></span></a></li>
+              <li><a href="#section-line-2" style="color: aliceblue;"><span></span></a></li>
+              <li><a href="#section-line-3" style="color: aliceblue;margin-left:7rem;"><span></span></a></li>
+              <li><a href="#section-line-4" style="color: aliceblue;margin-left:7rem;"><span></span></a></li>
+            </ul>
+          </nav>
+          <div class="content-wrap" style="padding:3rem;">
+            <section id="section-line-1">
+              <div class="row" style="display: flex;justify-content: center;">
+                {{#each gameDatas}}
+                <div class="card" style="height:200px;width:200px; margin:2rem;border-radius:10px">
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light"
+                    style="width:100%;height:50%;">
+                    <img src="gameimages/{{this.image.[0]}}" class="img-fluid"
+                      style="border-radius: 10px;margin-top:1rem;width:100%;height:100%;" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title"><b>{{this.name}}</b></h4>
+                    <h6 class="card-text"><b>{{this.category}}</b></h6>
+                    {{!-- <h5 class="card-text">Downloads :<b>{{this.downloads}}</b></h5>
+                    <h4>Rs. {{this.price}}/-</h4> --}}
+                    <a href="/load-game" class="btn btn-primary">Load & Play</a>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </section>
+          </div><!-- /content -->
+        </div><!-- /tabs -->
+      </section>
+    </div>
+  </section>
+   <script>
+    let content = document.getElementById('navbar');
+    let button = document.getElementById('btnNav');
 
-        console.log('called edit me')
-        let response = await fetch('/edituser',{
-          method:'POST'
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            fname,
-            lname,
-            email,
-            mobile
-          })
-        })
-        let data = await response.json();  
+    button.addEventListener("click", function () {
+      if (content.style.display === "none") {
+        content.style.display = "block";
+      } else {
+        content.style.display = "none";
       }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  </body>
+    });
+  </script>
+  <script>
+    function editMe(id) {
+      let fname = document.getElementById('fname').value;
+      let lname = document.getElementById('lname').value;
+      let email = document.getElementById('email').value;
+      let mobile = document.getElementById('mobile').value;
+
+      console.log('called edit me')
+      let response = await fetch('/edituser', {
+        method: 'POST'
+          headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fname,
+          lname,
+          email,
+          mobile
+        })
+      })
+      let data = await response.json();
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
-      
-    

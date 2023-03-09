@@ -23,6 +23,58 @@
     <a href="/login">Login</a>
     <h4>{{message}}</h4>
 </form> --}}
+<style>
+  @media screen and (max-width: 2000px) {
+    .login-hoder {
+      padding-top: 5%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .login-hoder {
+      padding-top: 10%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .login-hoder {
+      padding-top: 20%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .login-hoder {
+      padding-top: 30%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .login-hoder {
+      padding-top: 35%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    .login-hoder {
+      padding-top: 50%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+</style>
 
 <div class="w3lsstatsaits" id="w3lsstatsaits" style="background-image: url(images/signup.jpeg);padding: 0;">
   <div class="container-fluid" style="width: 100%;height: 700px;padding: 0;font-family: font-family: 'Anton', sans-serif;
@@ -72,20 +124,22 @@
       <!-- //Navigation -->
 
 
-
-
-    <div style="width: 100%;position:absolute;z-index: 1;top: 0; padding-top:10%;padding-left:5%;padding-right:5%;">
-      <div style="width: 100%;height: 400px;background-color: rgba(0, 0, 0, 0.663);border-radius:50px;">
-          <div class="img" style="float: left; width: 45%; position: absolute;top: 10rem;">
-            <img style="margin-top:-2rem;" src="images/signUp.png" alt="">
+      <div style="width: 100%;z-index: 1;padding:10%;display: flex;justify-items: center;" class="login-hoder">
+      <div style="width: 100%;max-height: fit-content;background-color: rgba(0, 0, 0, 0.663);border-radius:50px;padding:5%;">
+        <div class="login" style="width: 100%;">
+          <div style="width:100%;height:10%;">
+            {{#if userMessage}}
+            <H6 style="color: rgb(255, 0, 0);">{{userMessage}}</H6>
+            {{else}}
+            <H5 style="color: rgb(0, 255, 17);">{{sccMsg}}</H5>
+            {{/if}}
           </div>
-          <div class="signup" style="width: 50%;padding-left:5rem;padding-top:2rem;position: absolute;right: 10rem;">
-              <form action="/signup" method="post" enctype="multipart/form-data">
+          <form action="/signup" method="post">
                 <!-- full name input -->
-                <div class="form-outline mb-4">
-                    <label style="color: rgb(203, 203, 203);" class="form-label text-warning" for="form2Example1">Full Name</label>
-                    <input type="text" name="fname" placeholder="Plase enter your First Name" id="fname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 48%;" class="form-control" required/>
-                    <input type="text" name="lname" placeholder="Plase enter your Last Name" id="lname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 48%;margin-left:24rem;margin-top: -34px;" class="form-control" required/>
+                <label style="color: rgb(203, 203, 203);" class="form-label text-warning" for="form2Example1">Full Name</label>
+                <div class="form-outline mb-4" style="display: flex;">
+                    <input type="text" name="fname" placeholder="Plase enter your First Name" id="fname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 50%;" class="form-control" required/>
+                    <input type="text" name="lname" placeholder="Plase enter your Last Name" id="lname" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0); width: 50%;"class="form-control" required/>
                 </div>
 
                 <!-- email input -->
@@ -132,8 +186,10 @@
                     <H4 style="color: rgb(141, 141, 141);">{{userMessage}}</H4>
                 </div>
               </form>
-            </div>
-          </div>
+        </div>
+        {{!-- <div class="img" style="float: left; width: 45%; position: absolute;right: 5rem; top: 23rem;">
+          <img style="margin-top:2rem;" src="images/log1.png" alt="">
+        </div> --}}
       </div>
     </div>
     <!-- Stats -->
