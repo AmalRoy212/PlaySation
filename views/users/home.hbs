@@ -98,11 +98,13 @@
     />
     <!-- //Font-Awesome-File-Links -->
     <style>
-      .nav-btn.{
- 
-      }
-      .navigs{
-        font-size: small;
+      @media screen and (min-width: 768px) {
+        /* show the div when the screen size is 768px or larger */
+        .nav-hidden-div {
+          display: flex;
+          display: block;
+          float: right;
+        }
       }
     </style>
 
@@ -120,7 +122,6 @@
         <nav
           class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
         >
-
           <div class="navbar-header">
             <button
               type="button"
@@ -144,7 +145,6 @@
             </div>
             <!-- //Logo -->
           </div>
-
           <div id="navbar" class="navbar-collapse navbar-right collapse">
             <ul
               class="nav navbar-nav navbar-right cross-effect"
@@ -160,39 +160,41 @@
                 <li><a class="scroll" style="font-size: x-small;" href="#wthreeblogsaits">BLOG</a></li>
                 <li><a class="scroll" style="font-size: x-small;" href="#w3portfolioaits">PORTFOLIO</a></li>
                 <li><a class="scroll" style="font-size: x-small;" href="#agilecontactw3ls">CONTACT</a></li>
-                <li>
-                  <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
-                    <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
-                    <span style="margin-left:-1rem;background-color: rgb(20, 117, 3);font-size:smaller;font-weight:lighter;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {{cartCount}}
-                    </span>
-                  </a>
-                </li>
-                {{!-- <li><a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li> --}}
-                <li class="nav-item dropdown no-arrow">
-                  <a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt="">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right p-1 shadow animated--grow-in"
-                    aria-labelledby="searchDropdown" style="border-radius: 10px;">
-                    <form action="/game/search" method="post" class="navbar-search" style="display: flex;">
-                      <input style="background-color: rgba(38, 38, 38, 0.379);width:80%;border: 1px solid rgb(0, 255, 0);color: rgb(255, 255, 255);border-radius: 10px;" type="text" name="search" placeholder="Search your Favorite Games">
-                      <button type="submit" style="width:20%;background: none;border: none;color: rgb(0, 255, 0);"><ion-icon style="font-size:30px;" name="search-circle-outline"></ion-icon></button>
-                    </form>
-                  </div>
-                </li>
-                {{!-- <li><a class="scroll" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 30px;" src="images/Settings.png" alt=""></a></li> --}}
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding:0;margin-top: -3px;margin-left: 3px; margin-top: 4px;margin-right:3px;"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
-                  <div class="dropdown-menu" style="border-radius: 20px; width:70px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
-                    <a style="font-size:x-small;margin: 1.3rem;" href="/userprofile">My Profile</a>
-                    <a style="font-size:x-small;margin: 1.3rem;" href="/products">Products</a>
-                    <form action="/logout" method="post">
-                      <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: aliceblue;" />
-                    </form>
-                  </div>
-                </li>
+                <div id="navdiv" style="display: flex;right: 0;float: right;" class="">
+                  <li>
+                    <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+                      <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+                      <span style="margin-left:-1rem;background-color: rgb(20, 117, 3);font-size:smaller;font-weight:lighter;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{cartCount}}
+                      </span>
+                    </a>
+                  </li>
+                  {{!-- <li><a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li> --}}
+                  <li class="nav-item dropdown no-arrow">
+                    <a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px; background-color: rgb(0, 0, 0, 0);" class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right p-1 shadow animated--grow-in"
+                      aria-labelledby="searchDropdown" style="border-radius: 10px;">
+                      <form action="/game/search" method="post" class="navbar-search" style="display: flex;">
+                        <input style="background-color: rgba(38, 38, 38, 0.379);width:80%;border: 1px solid rgb(0, 255, 0);color: rgb(255, 255, 255);border-radius: 10px;" type="text" name="search" placeholder="Search your Favorite Games">
+                        <button type="submit" style="width:20%;background: none;border: none;color: rgb(0, 255, 0);"><ion-icon style="font-size:30px;" name="search-circle-outline"></ion-icon></button>
+                      </form>
+                    </div>
+                  </li>
+                  {{!-- <li><a class="scroll" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 30px;" src="images/Settings.png" alt=""></a></li> --}}
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding:0;margin-top: -3px;margin-left: 3px; margin-top: 4px;margin-right:3px; background-color: rgb(0, 0, 0, 0);"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""></a>
+                    <div class="dropdown-menu" style="border-radius: 20px; width:70px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+                      <a style="font-size:x-small;margin: 1.3rem;" href="/userprofile">My Profile</a>
+                      <a style="font-size:x-small;margin: 1.3rem;" href="/products">Products</a>
+                      <form action="/logout" method="post">
+                        <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: aliceblue;" />
+                      </form>
+                    </div>
+                  </li>
+                </div>
 
                 {{!-- <button class="btn nav-btn" style="width: 27px;height: 27px;padding: 0;background: none;margin-top: 12px;"><img style="border-radius: 7px;margin-right:10px;" src="images/search.png" alt=""></button>
                 <button class="btn nav-btn" style="width: 27px;height: 27px;padding: 0;background: none;margin-top: 12px;margin-left: 4px;"><img style="border-radius: 7px;" src="images/Cartimg.png" alt=""></button>
@@ -213,19 +215,19 @@
       <!-- Slider -->
       <div class="slider">
         <ul class="rslides" id="slider">
-          <li style="height:600px;" class="first-slide w3ls">
+          <li class="first-slide w3ls">
             <img style="object-fit: cover;" src="/gameimages/{{banners.image.[0]}}" alt="Game Robo" />
           </li>
           {{!-- <li class="second-slide aits">
             <img src="images/slide-2.jpeg" alt="Game Robo" />
           </li> --}}
-          <li style="height:600px;" class="third-slide w3-agileits">
+          <li class="third-slide w3-agileits">
             <img style="object-fit: cover;" src="/gameimages/{{banners.image.[1]}}" alt="Game Robo" />
           </li>
-          <li style="height:600px;" class="fourth-slide agileinfo">
+          <li class="fourth-slide agileinfo">
             <img style="object-fit: cover;" src="/gameimages/{{banners.image.[2]}}" alt="Game Robo" />
           </li>
-          <li style="height:600px;" class="fifth-slide wthree">
+          <li class="fifth-slide wthree">
             <img style="object-fit: cover;" src="/gameimages/{{banners.image.[3]}}" alt="Game Robo" />
           </li>
         </ul>

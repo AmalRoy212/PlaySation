@@ -1,127 +1,177 @@
 {{!-- <h1>Login Your account</h1>
 
 <form action="/loginVerification" method="post">
-    <input type="email" name="email"  placeholder="Plase enter your email">
-    <br>
-    <br>
-    <input type="password" name="password"  placeholder="Plase enter your password">
-    <br>
-    <br>
-    <input type="submit" value="log in" > 
-    <br>
-    <br>
-    <a href="/">SignUp</a>  
-    <br>
-    <a >Forget Paswword</a> 
-    {{userMessage}}
+  <input type="email" name="email" placeholder="Plase enter your email">
+  <br>
+  <br>
+  <input type="password" name="password" placeholder="Plase enter your password">
+  <br>
+  <br>
+  <input type="submit" value="log in">
+  <br>
+  <br>
+  <a href="/">SignUp</a>
+  <br>
+  <a>Forget Paswword</a>
+  {{userMessage}}
 </form> --}}
-    {{!-- <h1>____________________________________________________________</h1> --}}
+{{!-- <h1>____________________________________________________________</h1> --}}
+<style>
+  @media screen and (max-width: 2000px) {
+    .login-hoder {
+      padding-top: 5%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
 
-      
+  @media screen and (max-width: 1500px) {
+    .login-hoder {
+      padding-top: 10%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .login-hoder {
+      padding-top: 20%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .login-hoder {
+      padding-top: 30%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .login-hoder {
+      padding-top: 35%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    .login-hoder {
+      padding-top: 50%;
+      padding-bottom: 20%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+  }
+</style>
+
 <div class="w3lsstatsaits" id="w3lsstatsaits" style="background-image: url(images/logIn.jpeg);padding: 0;">
   <div class="container-fluid" style="width: 100%;height: 600px;padding: 0;font-family: font-family: 'Anton', sans-serif;
                 font-family: 'Chivo Mono', monospace;
                 font-family: 'Courgette', cursive;
                 font-family: 'Teko', sans-serif;;">
-         <!-- Navigation -->
-      <div class="w3lsnavigation">
-        <nav
-          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
-        >
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+      <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
 
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navbar"
-              aria-expanded="false"
-              aria-controls="navbar"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Logo -->
-            <div class="logo">
-              <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Logo -->
+          <div class="logo">
+            <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
                 font-family: 'Chivo Mono', monospace;
                 font-family: 'Courgette', cursive;
                 font-family: 'Teko', sans-serif;">PlayStation</a>
-            </div>
-            <!-- //Logo -->
           </div>
+          <!-- //Logo -->
+        </div>
 
-          <div id="navbar" class="navbar-collapse navbar-right collapse">
-            <ul
-              class="nav navbar-nav navbar-right cross-effect"
-              id="cross-effect">
-              <li><a style="font-size: smaller;" href="/signup">SignUp</a></li>
-              <li><a style="font-size: smaller;" href="/admin">Admin</a></li>
-            </ul>
-          </div><!-- //Navbar-Collapse -->
-        </nav>
+        <div id="navbar" class="navbar-collapse navbar-right collapse">
+          <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect">
+            <li><a style="font-size: smaller;" href="/signup">SignUp</a></li>
+            <li><a style="font-size: smaller;" href="/admin">Admin</a></li>
+          </ul>
+        </div><!-- //Navbar-Collapse -->
+      </nav>
     </div>
     <!-- //Navigation -->
 
-    <div style="width: 100%;position:absolute;z-index: 1;top: 0; padding-top:20%;padding-left:5%;padding-right:5%;">
-      <div style="width: 100%;height: 280px;background-color: rgba(0, 0, 0, 0.663);border-radius:50px;">
-          <div class="login" style="width: 50%;padding-left:5rem;padding-top:2rem;">
-            <div style="width:100%;height:10%;">
-              {{#if userMessage}}
-                <H6 style="color: rgb(255, 0, 0);">{{userMessage}}</H6>
-              {{else}}
-                <H5 style="color: rgb(0, 255, 17);">{{sccMsg}}</H5>
-              {{/if}}
+    <div style="width: 100%;z-index: 1;" class="login-hoder">
+      <div style="width: 100%;max-height: fit-content;background-color: rgba(0, 0, 0, 0.663);border-radius:50px;padding:5%;">
+        <div class="login" style="width: 100%;">
+          <div style="width:100%;height:10%;">
+            {{#if userMessage}}
+            <H6 style="color: rgb(255, 0, 0);">{{userMessage}}</H6>
+            {{else}}
+            <H5 style="color: rgb(0, 255, 17);">{{sccMsg}}</H5>
+            {{/if}}
+          </div>
+          <form action="/loginVerification" method="post" id="loginForm">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label style="color: rgb(203, 203, 203);" class="form-label text-warning" for="form2Example1">Email
+                address</label>
+              <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter valid Email ID"
+                name="email" id="email" placeholder="Plase enter your email" id="email"
+                style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0);" class="form-control" />
             </div>
-            <form action="/loginVerification" method="post" id="loginForm">
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <label style="color: rgb(203, 203, 203);" class="form-label text-warning" for="form2Example1">Email address</label>
-                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter valid Email ID" name="email" id="email"  placeholder="Plase enter your email" id="email" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0);" class="form-control" />
-                </div>
 
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <label style="color: rgb(184, 184, 184);" class="form-label text-warning" for="form2Example2">Password</label>
-                    <input type="password" pattern=".{8,}" title="Eight or more characters" name="password" id="password"  placeholder="Plase enter your password" id="password" style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0)" class="form-control" />
-                </div>
-
-                <div style="display: flex;">
-                  <input style="width:50%;margin:1rem;margin-left:25%; background-color: blue;" type="submit" value="log in" class="btn btn-primary btn-block mb-4" > 
-                  <a class="btn btn-danger" style="background-color:red;margin: 1rem;font-size: larger;height:35px;width:35px;text-align: center;border-radius:50%;" href="/google"><b>G +</b></a>
-                </div>        
-                <!-- Submit button -->
-
-                <!-- Register buttons -->
-                
-                <div class="text-center">
-                    <!-- 2 column grid layout for inline styling -->
-                    <div class="row mb-4">
-                        <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31" style="color: rgb(141, 141, 141);"> Remember me </label>
-                        </div>
-                        </div>
-                        <div class="col">
-                        <!-- Simple link -->
-                        <a href="/forgetverify">Forgot password?</a>
-                        </div>
-                    </div>
-                    <p style="color: rgb(141, 141, 141);">Not a member? <a href="/signup">Register</a></p>
-                </div>
-            </form>
-                  </div>
-                  <div class="img" style="float: left; width: 45%; position: absolute;right: 5rem; top: 23rem;">
-                      <img style="margin-top:2rem;" src="images/log1.png" alt="">
-                  </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label style="color: rgb(184, 184, 184);" class="form-label text-warning"
+                for="form2Example2">Password</label>
+              <input type="password" pattern=".{8,}" title="Eight or more characters" name="password" id="password"
+                placeholder="Plase enter your password" id="password"
+                style="background-color: rgba(57, 57, 57, 0.558);color: rgb(30, 225, 0)" class="form-control" />
             </div>
+
+            <div style="display: flex;">
+              <input style="width:50%;margin:1rem;margin-left:25%; background-color: blue;" type="submit" value="log in"
+                class="btn btn-primary btn-block mb-4">
+              <a class="btn btn-danger"
+                style="background-color:red;margin: 1rem;font-size: larger;height:35px;width:35px;text-align: center;border-radius:50%;"
+                href="/google"><b>G +</b></a>
+            </div>
+            <!-- Submit button -->
+
+            <!-- Register buttons -->
+
+            <div class="text-center">
+              <!-- 2 column grid layout for inline styling -->
+              <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                  <!-- Checkbox -->
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                    <label class="form-check-label" for="form2Example31" style="color: rgb(141, 141, 141);"> Remember me
+                    </label>
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Simple link -->
+                  <a href="/forgetverify">Forgot password?</a>
+                </div>
+              </div>
+              <p style="color: rgb(141, 141, 141);">Not a member? <a href="/signup">Register</a></p>
+            </div>
+          </form>
+        </div>
+        {{!-- <div class="img" style="float: left; width: 45%; position: absolute;right: 5rem; top: 23rem;">
+          <img style="margin-top:2rem;" src="images/log1.png" alt="">
+        </div> --}}
       </div>
     </div>
-    <!-- Stats -->
   </div>
+  <!-- Stats -->
 </div>
-
+</div>

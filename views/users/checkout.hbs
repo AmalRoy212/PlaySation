@@ -1,424 +1,721 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');*{margin: 0;padding: 0;box-sizing: border-box;list-style: none;font-family: 'Montserrat', sans-serif}body{padding: 0}p{margin: 0%}.container{max-width: 900px;margin: 20px auto;overflow: hidden}.box-1{max-width: 450px;padding: 10px 40px;user-select: none}.box-1 img.pic{width: 20px;height: 20px;object-fit: cover}.box-1 img.mobile-pic{width: 100%;height: 200px;object-fit: cover}.box-1 .name{font-size: 11px;font-weight: 600}.dis{font-size: 12px;font-weight: 500}.box-2{max-width: 450px;padding: 10px 40px}.box-2 .box-inner-2 input.form-control{font-size: 12px;font-weight: 600}.box-2 .box-inner-2 .inputWithIcon{position: relative}.box-2 .box-inner-2 .inputWithIcon span{position: absolute;left: 15px;top: 8px}.box-2 .box-inner-2 .inputWithcheck{position: relative}.box-2 .box-inner-2 .inputWithcheck span{position: absolute;width: 20px;height: 20px;border-radius: 50%;background-color: green;font-size: 12px;color: white;display: flex;justify-content: center;align-items: center;right: 15px;top: 6px}.form-control:focus, .form-select:focus{box-shadow: none;outline: none;border: 1px solid #7700ff}.border:focus-within{border: 1px solid #7700ff !important}.box-2 .card-atm .form-control{border: none;box-shadow: none}.form-select{border-radius: 0;border-top-left-radius: 10px;border-top-right-radius: 10px}.address .form-control.zip{border-radius: 0;border-bottom-left-radius: 10px}.address .form-control.state{border-radius: 0;border-bottom-right-radius: 10px}.box-2 .box-inner-2 .btn.btn-outline-primary{width: 120px;padding: 10px;font-size: 11px;padding: 0% !important;display: flex;align-items: center;border: none;border-radius: 0;background-color: whitesmoke;color: black;font-weight: 600}.box-2 .box-inner-2 .btn.btn-primary{background-color: #7700ff;color: whitesmoke;font-size: 14px;display: flex;align-items: center;font-weight: 600;justify-content: center;border: none;padding: 10px}.box-2 .box-inner-2 .btn.btn-primary:hover{background-color: #7a34ca}.box-2 .box-inner-2 .btn.btn-primary .fas{font-size: 13px !important;color: whitesmoke}.carousel-indicators [data-bs-target]{width: 10px;height: 10px;border-radius: 50%}.carousel-inner{width: 100%;height: 200px}.carousel-item img{object-fit: cover;height: 100%}.carousel-control-prev{transform: translateX(-50%);opacity: 1}.carousel-control-prev:hover .fas.fa-arrow-left{transform: translateX(-5px)}.carousel-control-next{transform: translateX(50%);opacity: 1}.carousel-control-next:hover .fas.fa-arrow-right{transform: translateX(5px)}.fas.fa-arrow-left, .fas.fa-arrow-right{font-size: 0.8rem;transition: all .2s ease}.icon{width: 30px;height: 30px;background-color: #f8f9fa;color: black;display: flex;align-items: center;justify-content: center;border-radius: 50%;transform-origin: center;opacity: 1}.fas.fa-times{color: red}.fas, .fab{color: #6d6c6d}::placeholder{font-size: 12px}.couponCode{text-transform: uppercase;font-size: 0.7rem}#code{pointer-events: none;font-weight: 600}.close{cursor: pointer}.info{transform: translateX(-500px);animation: moving 1.5s;animation-fill-mode: forwards}.updates{transform: translateX(-500px);animation: moving 1.7s;animation-fill-mode: forwards}.different{transform: translateX(-500px);animation: moving 1.9s;animation-fill-mode: forwards}.black{transform: translateX(-500px);animation: moving 2.1s;animation-fill-mode: forwards}.white{transform: translateX(-500px);animation: moving 2.3s;animation-fill-mode: forwards}.pastel{transform: translateX(-500px);animation: moving 2.5s;animation-fill-mode: forwards}.footer{transform: translateX(-500px);animation: moving 2.6s;animation-fill-mode: forwards}@keyframes moving{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}.box-2{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.user{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.userdetails{transform: translateY(-500px);animation: img-top 2.0s;animation-fill-mode: forwards}.imgdetails{transform: translateY(-500px);animation: img-top 1.5s;animation-fill-mode: forwards}@keyframes img-top{0%{opacity: 0;transform: translateY(-500px)}100%{opacity: 1;transform: translateY(0px)}}@media (max-width:768px){.container{max-width: 700px;margin: 10px auto}.box-1, .box-2{max-width: 600px;padding: 20px 90px;margin: 20px auto}.box-2{transform: translateX(-500px);animation: box-side 2.6s;animation-fill-mode: forwards}@keyframes box-side{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}}@media (max-width:426px){.box-1, .box-2{max-width: 400px;padding: 20px 10px}::placeholder{font-size: 9px}}
-    </style>
-    <style>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-      @supports (animation: grow .5s cubic-bezier(.25, .25, .25, 1) forwards) {
-          .tick {
-              stroke-opacity: 0;
-              stroke-dasharray: 29px;
-              stroke-dashoffset: 29px;
-              animation: draw .5s cubic-bezier(.25, .25, .25, 1) forwards;
-              animation-delay: .6s
-          }
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
-          .circle {
-              fill-opacity: 0;
-              stroke: #219a00;
-              stroke-width: 16px;
-              transform-origin: center;
-              transform: scale(0);
-              animation: grow 1s cubic-bezier(.25, .25, .25, 1.25) forwards;   
-          }   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+      font-family: 'Montserrat', sans-serif
+    }
+
+    body {
+      padding: 0
+    }
+
+    p {
+      margin: 0%
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      overflow: hidden
+    }
+
+    .box-1 {
+      max-width: 450px;
+      padding: 10px 40px;
+      user-select: none
+    }
+
+    .box-1 img.pic {
+      width: 20px;
+      height: 20px;
+      object-fit: cover
+    }
+
+    .box-1 img.mobile-pic {
+      width: 100%;
+      height: 200px;
+      object-fit: cover
+    }
+
+    .box-1 .name {
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .dis {
+      font-size: 12px;
+      font-weight: 500
+    }
+
+    .box-2 {
+      max-width: 450px;
+      padding: 10px 40px
+    }
+
+    .box-2 .box-inner-2 input.form-control {
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .box-2 .box-inner-2 .inputWithIcon {
+      position: relative
+    }
+
+    .box-2 .box-inner-2 .inputWithIcon span {
+      position: absolute;
+      left: 15px;
+      top: 8px
+    }
+
+    .box-2 .box-inner-2 .inputWithcheck {
+      position: relative
+    }
+
+    .box-2 .box-inner-2 .inputWithcheck span {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: green;
+      font-size: 12px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 15px;
+      top: 6px
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      box-shadow: none;
+      outline: none;
+      border: 1px solid #7700ff
+    }
+
+    .border:focus-within {
+      border: 1px solid #7700ff !important
+    }
+
+    .box-2 .card-atm .form-control {
+      border: none;
+      box-shadow: none
+    }
+
+    .form-select {
+      border-radius: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px
+    }
+
+    .address .form-control.zip {
+      border-radius: 0;
+      border-bottom-left-radius: 10px
+    }
+
+    .address .form-control.state {
+      border-radius: 0;
+      border-bottom-right-radius: 10px
+    }
+
+    .box-2 .box-inner-2 .btn.btn-outline-primary {
+      width: 120px;
+      padding: 10px;
+      font-size: 11px;
+      padding: 0% !important;
+      display: flex;
+      align-items: center;
+      border: none;
+      border-radius: 0;
+      background-color: whitesmoke;
+      color: black;
+      font-weight: 600
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary {
+      background-color: #7700ff;
+      color: whitesmoke;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      justify-content: center;
+      border: none;
+      padding: 10px
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary:hover {
+      background-color: #7a34ca
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary .fas {
+      font-size: 13px !important;
+      color: whitesmoke
+    }
+
+    .carousel-indicators [data-bs-target] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
+
+    .carousel-inner {
+      width: 100%;
+      height: 200px
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 100%
+    }
+
+    .carousel-control-prev {
+      transform: translateX(-50%);
+      opacity: 1
+    }
+
+    .carousel-control-prev:hover .fas.fa-arrow-left {
+      transform: translateX(-5px)
+    }
+
+    .carousel-control-next {
+      transform: translateX(50%);
+      opacity: 1
+    }
+
+    .carousel-control-next:hover .fas.fa-arrow-right {
+      transform: translateX(5px)
+    }
+
+    .fas.fa-arrow-left,
+    .fas.fa-arrow-right {
+      font-size: 0.8rem;
+      transition: all .2s ease
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      background-color: #f8f9fa;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transform-origin: center;
+      opacity: 1
+    }
+
+    .fas.fa-times {
+      color: red
+    }
+
+    .fas,
+    .fab {
+      color: #6d6c6d
+    }
+
+    ::placeholder {
+      font-size: 12px
+    }
+
+    .couponCode {
+      text-transform: uppercase;
+      font-size: 0.7rem
+    }
+
+    #code {
+      pointer-events: none;
+      font-weight: 600
+    }
+
+    .close {
+      cursor: pointer
+    }
+
+    .info {
+      transform: translateX(-500px);
+      animation: moving 1.5s;
+      animation-fill-mode: forwards
+    }
+
+    .updates {
+      transform: translateX(-500px);
+      animation: moving 1.7s;
+      animation-fill-mode: forwards
+    }
+
+    .different {
+      transform: translateX(-500px);
+      animation: moving 1.9s;
+      animation-fill-mode: forwards
+    }
+
+    .black {
+      transform: translateX(-500px);
+      animation: moving 2.1s;
+      animation-fill-mode: forwards
+    }
+
+    .white {
+      transform: translateX(-500px);
+      animation: moving 2.3s;
+      animation-fill-mode: forwards
+    }
+
+    .pastel {
+      transform: translateX(-500px);
+      animation: moving 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .footer {
+      transform: translateX(-500px);
+      animation: moving 2.6s;
+      animation-fill-mode: forwards
+    }
+
+    @keyframes moving {
+      0% {
+        opacity: 0;
+        transform: translateX(-500px)
       }
 
-      @keyframes grow {
-          60% {
-              transform: scale(.8);
-              stroke-width: 4px;
-              fill-opacity: 0;
-          }
-          100% {
-              transform: scale(.9);
-              stroke-width: 8px;
-              fill-opacity: 1;
-              fill: #219a00;
-          }
+      100% {
+        opacity: 1;
+        transform: translateX(0px)
+      }
+    }
+
+    .box-2 {
+      transform: translateY(-500px);
+      animation: img-top 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .user {
+      transform: translateY(-500px);
+      animation: img-top 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .userdetails {
+      transform: translateY(-500px);
+      animation: img-top 2.0s;
+      animation-fill-mode: forwards
+    }
+
+    .imgdetails {
+      transform: translateY(-500px);
+      animation: img-top 1.5s;
+      animation-fill-mode: forwards
+    }
+
+    @keyframes img-top {
+      0% {
+        opacity: 0;
+        transform: translateY(-500px)
       }
 
-      @keyframes draw {
-          0%, 100% { stroke-opacity: 1; }
-          100% { stroke-dashoffset: 0; }
+      100% {
+        opacity: 1;
+        transform: translateY(0px)
       }
-      :root {
-        --theme-color: var(--color-purple);
+    }
+
+    @media (max-width:768px) {
+      .container {
+        max-width: 700px;
+        margin: 10px auto
       }
 
-      body {
-          height: 100vh;
-          justify-content: center;
-          align-items: center;
+      .box-1,
+      .box-2 {
+        max-width: 600px;
+        padding: 20px 90px;
+        margin: 20px auto
       }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-      <div class="w3lsnavigation">
-        <nav
-          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
-        >
 
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navbar"
-              aria-expanded="false"
-              aria-controls="navbar"
-              style="position: absolute;right: 0;top: 0;"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Logo -->
-            <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left:0;">
-              <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+      .box-2 {
+        transform: translateX(-500px);
+        animation: box-side 2.6s;
+        animation-fill-mode: forwards
+      }
+
+      @keyframes box-side {
+        0% {
+          opacity: 0;
+          transform: translateX(-500px)
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateX(0px)
+        }
+      }
+    }
+
+    @media (max-width:426px) {
+
+      .box-1,
+      .box-2 {
+        max-width: 400px;
+        padding: 20px 10px
+      }
+
+      ::placeholder {
+        font-size: 9px
+      }
+    }
+  </style>
+  <style>
+    @supports (animation: grow .5s cubic-bezier(.25, .25, .25, 1) forwards) {
+      .tick {
+        stroke-opacity: 0;
+        stroke-dasharray: 29px;
+        stroke-dashoffset: 29px;
+        animation: draw .5s cubic-bezier(.25, .25, .25, 1) forwards;
+        animation-delay: .6s
+      }
+
+      .circle {
+        fill-opacity: 0;
+        stroke: #219a00;
+        stroke-width: 16px;
+        transform-origin: center;
+        transform: scale(0);
+        animation: grow 1s cubic-bezier(.25, .25, .25, 1.25) forwards;
+      }
+    }
+
+    @keyframes grow {
+      60% {
+        transform: scale(.8);
+        stroke-width: 4px;
+        fill-opacity: 0;
+      }
+
+      100% {
+        transform: scale(.9);
+        stroke-width: 8px;
+        fill-opacity: 1;
+        fill: #219a00;
+      }
+    }
+
+    @keyframes draw {
+
+      0%,
+      100% {
+        stroke-opacity: 1;
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    :root {
+      --theme-color: var(--color-purple);
+    }
+
+    body {
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <div class="w3lsnavigation">
+    <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar" style="position: absolute;right: 0;top: 0;">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Logo -->
+        <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;left:0;">
+          <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
                 font-family: 'Chivo Mono', monospace;
                 font-family: 'Courgette', cursive;
                 font-family: 'Teko', sans-serif;">PlayStation</a>
-            </div>
-            <!-- //Logo -->
-          </div>
+        </div>
+        <!-- //Logo -->
+      </div>
 
-          <div id="navbar" class="navbar-collapse navbar-right collapse">
-            <ul
-              class="nav navbar-nav navbar-right cross-effect"
-              id="cross-effect" style="display: flex;flex-direction:row;"
-            >
-                <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
-                <li><a style="font-size: x-small;" href="/products">Products</a></li>
-                <li>
-                  <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
-                    <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {{cartCount}}
-                    </span>
-                  </a>
-                </li>
-                <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
-                  <div class="dropdown-menu" style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
-                    <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
-                    <form action="/logout" method="post">
-                      <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
-                    </form>
-                  </div>
-                </li>
-            </ul>
-          </div><!-- //Navbar-Collapse -->
+      <div id="navbar" class="navbar-collapse navbar-right collapse">
+        <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+          style="display: flex;flex-direction:row;">
+          <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+          <li><a style="font-size: x-small;" href="/products">Products</a></li>
+          <li>
+            <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+              <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{cartCount}}
+              </span>
+            </a>
+          </li>
+          <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
+              href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png"
+                alt=""></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img
+                style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
+            <div class="dropdown-menu"
+              style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+              <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+              <form action="/logout" method="post">
+                <input type="submit" value="LogOut"
+                  style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div><!-- //Navbar-Collapse -->
 
-        </nav>
-      </div>
-      <!-- //Navigation -->
-    <div class="wthreetabsaits" id="wthreetabsaits">
-      <h3>Game</h3>
-      <div class="container p-0 d-lg-flex">
-        <div style="width: 95%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
-          <div class="box-1 user" style="color:white;">
-        <div class="box-inner-1 pb-3 mb-3">
-          <div class="d-flex justify-content-between mb-3 userdetails">
-            <h4 style="color: rgb(0, 255, 0);" id="game" value="{{theGame.name}}" class="fw-bold">{{theGame.name}}</h4>
-            <h6 style="color: rgb(0, 255, 0);font-size:medium;" class="fw-lighter"><span
-                class="fas fa-dollar-sign"
-                style="color:white;"
-              ></span><b> {{theGame.price}}</b></h6>
-          </div>
-          <div
-            id="my"
-            class="carousel slide carousel-fade img-details"
-            data-bs-ride="carousel"
-            data-bs-interval="2000"
-          >
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#my"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#my"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#my"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
+    </nav>
+  </div>
+  <!-- //Navigation -->
+  <div class="wthreetabsaits" id="wthreetabsaits">
+    <h3>Game</h3>
+    <div class="container p-0 d-lg-flex">
+      <div style="width: 95%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
+        <div class="box-1 user" style="color:white;">
+          <div class="box-inner-1 pb-3 mb-3">
+            <div class="d-flex justify-content-between mb-3 userdetails">
+              <h4 style="color: rgb(0, 255, 0);" id="game" value="{{theGame.name}}" class="fw-bold">{{theGame.name}}
+              </h4>
+              <h6 style="color: rgb(0, 255, 0);font-size:medium;" class="fw-lighter"><span class="fas fa-dollar-sign"
+                  style="color:white;"></span><b> {{theGame.price}}</b></h6>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  src="gameimages/{{theGame.image.[0]}}"
-                  class="d-block w-100"
-                />
+            <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel"
+              data-bs-interval="2000">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#my" data-bs-slide-to="0" class="active" aria-current="true"
+                  aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#my" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#my" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
-              <div class="carousel-item">
-                <img
-                  src="gameimages/{{theGame.image.[1]}}"
-                  class="d-block w-100"
-                />
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="gameimages/{{theGame.image.[0]}}" class="d-block w-100" />
+                </div>
+                <div class="carousel-item">
+                  <img src="gameimages/{{theGame.image.[1]}}" class="d-block w-100" />
+                </div>
+                <div class="carousel-item">
+                  <img src="gameimages/{{theGame.image.[2]}}" class="d-block w-100" />
+                </div>
               </div>
-              <div class="carousel-item">
-                <img
-                  src="gameimages/{{theGame.image.[2]}}"
-                  class="d-block w-100"
-                />
-              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#my" data-bs-slide="prev">
+                <div class="icon"> <span class="fas fa-arrow-left"></span> </div>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#my" data-bs-slide="next">
+                <div class="icon"> <span class="fas fa-arrow-right"></span> </div>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#my"
-              data-bs-slide="prev"
-            >
-              <div class="icon"> <span class="fas fa-arrow-left"></span> </div>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#my"
-              data-bs-slide="next"
-            >
-              <div class="icon"> <span class="fas fa-arrow-right"></span> </div>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-          <p class="dis my-3 info">{{theGame.dis}}</p>
-          <p class="dis mb-3 updates">{{theGame.designers}}Free updates forever</p>
-          <p class="dis mb-3 different"><b>Game Details</b></p>
-          <div class="dis">
-            <p class="black"><span
-                class="fas fa-arrow-right mb-3 pe-2"
-              ></span><b>Designers : </b>{{theGame.designers}}</p>
-            <p class="white"><span
-                class="fas fa-arrow-right mb-3 pe-2"
-              ></span><b>Developed : </b>{{theGame.developed}}</p>
-            <p class="pastel"><span
-                class="fas fa-arrow-right mb-3 pe-2"
-              ></span><b>Published : </b>{{theGame.publisher}}</p>
+            <p class="dis my-3 info">{{theGame.dis}}</p>
+            <p class="dis mb-3 updates">{{theGame.designers}}Free updates forever</p>
+            <p class="dis mb-3 different"><b>Game Details</b></p>
+            <div class="dis">
+              <p class="black"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Designers :
+                </b>{{theGame.designers}}</p>
+              <p class="white"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Developed :
+                </b>{{theGame.developed}}</p>
+              <p class="pastel"><span class="fas fa-arrow-right mb-3 pe-2"></span><b>Published :
+                </b>{{theGame.publisher}}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="box-2" style="color:white;">
-        <div class="box-inner-2">
-          <div>
-            <p class="fw-bold">Payment Details</p>
-            <p class="dis mb-3">Complete your purchase</p>
-          </div>
-        <form action="">
-            <div class="mb-3">
-              <p class="dis fw-bold mb-2">Email address</p>
-              <input
-                class="form-control"
-                type="email"
-                value="{{theUser.email}}"
-                id="userMail"
-              />
-              <input type="hidden" name="userfName" value="{{theUser.fname}}" id="userfName">
-              <input type="hidden" name="userlName" value="{{theUser.lname}}" id="userlName">
-              <input type="hidden" name="userMobile" value="{{theUser.mobile}}" id="userMobile">
-              <input type="hidden" name="gameId" value="{{theGame._id}}" id="gameId">
+        <div class="box-2" style="color:white;">
+          <div class="box-inner-2">
+            <div>
+              <p class="fw-bold">Payment Details</p>
+              <p class="dis mb-3">Complete your purchase</p>
             </div>
-            {{!-- <div> --}}
-              {{!-- <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Select Payment Method
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <input class="dropdown-item" name="cardType" value="Credit Card" id="cardType" type="button" onclick="card(1)"></input>
-                  <input class="dropdown-item" name="cardType" value="Debit Card" id="cardType" type="button" onclick="card(2)"></input>
-                  <a class="dropdown-item" type="button" onclick="gapay()">Gpay</a>
-                </div>
-              </div> --}}
-              {{!-- <div style="display:none;" id="hidden-card">
-                <p class="dis fw-bold mb-2">Card details</p>
-                <div
-                  class="d-flex align-items-center justify-content-between card-atm border rounded"
-                >
-                  <div class="fab fa-cc-visa ps-3"></div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Card Details"
-                    name="cardNumber"
-                  />
-                  <div class="d-flex w-50">
-                    <input
-                      type="text"
-                      class="form-control px-0"
-                      placeholder="MM/YY"
-                      name="cardEx"
-                    />
-                    <input
-                      type="password"
-                      maxlength="3"
-                      class="form-control px-0"
-                      placeholder="CVV"
-                      name="cardCvv"
-                    />
+            <form action="">
+              <div class="mb-3">
+                <p class="dis fw-bold mb-2">Email address</p>
+                <input class="form-control" type="email" value="{{theUser.email}}" id="userMail" />
+                <input type="hidden" name="userfName" value="{{theUser.fname}}" id="userfName">
+                <input type="hidden" name="userlName" value="{{theUser.lname}}" id="userlName">
+                <input type="hidden" name="userMobile" value="{{theUser.mobile}}" id="userMobile">
+                <input type="hidden" name="gameId" value="{{theGame._id}}" id="gameId">
+              </div>
+              {{!-- <div> --}}
+                {{!-- <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Payment Method
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <input class="dropdown-item" name="cardType" value="Credit Card" id="cardType" type="button"
+                      onclick="card(1)"></input>
+                    <input class="dropdown-item" name="cardType" value="Debit Card" id="cardType" type="button"
+                      onclick="card(2)"></input>
+                    <a class="dropdown-item" type="button" onclick="gapay()">Gpay</a>
                   </div>
-                </div>
-                <div class="my-3 cardname">
-                  <p class="dis fw-bold mb-2">Cardholder name</p>
-                <input class="form-control" name="cardholder" type="text" />
-              </div> --}}
-            {{!-- </div> --}}
-              <div class="address">
-                <p class="dis fw-bold mb-3">Billing address</p>
-                <select class="form-select" id="country" name="country" aria-label="Default select example">
-                  <option selected hidden>India</option>
-                  <option value="India">United States</option>
-                  <option value="Australia">Australia</option>
-                  <option value="Canada">Canada</option>
-                </select>
-                <div class="d-flex">
-                  <input
-                    class="form-control zip"
-                    type="text"
-                    placeholder="ZIP"
-                    name="zipcode"
-                    id="zipCode"
-                    required
-                  />
-                  <input
-                    class="form-control state"
-                    type="text"
-                    placeholder="State"
-                    name="state"
-                    id="state"
-                    required
-                  />
-                </div>
-                <div class="my-3">
-                  <p class="dis fw-bold mb-2">Unique ID</p>
-                  <div class="inputWithcheck">
-                    <input
-                      class="form-control"
-                      type="text"
-                      value="GB012345B9"
-                      id="unique"
-                      name="uniqueid"
-                    />
-                    <span class="fas fa-check"></span>
-                  </div>
-                </div>
-                <div class="my-3">
-                  <p class="dis fw-bold mb-2">Discount Code</p>
-                  <input
-                    class="form-control text-uppercase"
-                    type="text"
-                    id="discount"
-                    name="discode"
-                  />
-                  <input type="hidden"  id="hiddenCoupon">
-                  <input type="hidden" id="theCoupon">
-                  <div style="width: 200px;height:20px;border:1px solid rgb(148, 0, 0);border-radius: 10px;display: none; color: rgb(175, 0, 0);font-weight:lighter;padding:1%;margin:1%;" id="messageBox">
-                    <span id="exclam"><i style="color: rgb(100, 0, 0);display:none" class="fas fa-exclamation-circle"></i></span>
-                    <i id="check" style="color: rgb(49, 245, 0);display:none" class="fas fa-check-circle"></i>
-                  </div>
-                  <input type="hidden" id="couponUsed">
-                </div>
-                
-                <div class="d-flex flex-column dis">
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-2"
-                  >
-                    <p>Subtotal</p>
-                    <p name="subtotal"><span style="color:white;" class="fas fa-dollar-sign"></span>{{lastPrice}}</p>
-                    <input type="hidden" name="" id="prodPrice" value="{{lastPrice}}">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div class="d-flex align-items-center">
-                      <p class="pe-2">Discount
-                        <span class="d-inline-flex align-items-center justify-content-between bg-light px-2 couponCode" style="color:black;">
-                          <span id="code" class="pe-2"></span>
-                          <span class="fas fa-times close"></span>
-                        </span>
-                      </p>
-                      
+                </div> --}}
+                {{!-- <div style="display:none;" id="hidden-card">
+                  <p class="dis fw-bold mb-2">Card details</p>
+                  <div class="d-flex align-items-center justify-content-between card-atm border rounded">
+                    <div class="fab fa-cc-visa ps-3"></div>
+                    <input type="text" class="form-control" placeholder="Card Details" name="cardNumber" />
+                    <div class="d-flex w-50">
+                      <input type="text" class="form-control px-0" placeholder="MM/YY" name="cardEx" />
+                      <input type="password" maxlength="3" class="form-control px-0" placeholder="CVV" name="cardCvv" />
                     </div>
-                    <p style="display:none;color: rgb(0, 24, 209);font-weight: bold;" id="disTab" name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span></p>
                   </div>
-                  {{!-- <div>
-                    <div class="d-flex align-items-center">
-                      <p class="pe-2">Discount</p>
-                      <input type="text" name="dicount" id="discountFeild" style="color: #1aff00;">
-                      <p name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
+                  <div class="my-3 cardname">
+                    <p class="dis fw-bold mb-2">Cardholder name</p>
+                    <input class="form-control" name="cardholder" type="text" />
+                  </div> --}}
+                  {{!--
+                </div> --}}
+                <div class="address">
+                  <p class="dis fw-bold mb-3">Billing address</p>
+                  <select class="form-select" id="country" name="country" aria-label="Default select example">
+                    <option selected hidden>India</option>
+                    <option value="India">United States</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Canada">Canada</option>
+                  </select>
+                  <div class="d-flex">
+                    <input class="form-control zip" type="text" placeholder="ZIP" name="zipcode" id="zipCode"
+                      required />
+                    <input class="form-control state" type="text" placeholder="State" name="state" id="state"
+                      required />
+                  </div>
+                  <div class="my-3">
+                    <p class="dis fw-bold mb-2">Unique ID</p>
+                    <div class="inputWithcheck">
+                      <input class="form-control" type="text" value="GB012345B9" id="unique" name="uniqueid" />
+                      <span class="fas fa-check"></span>
                     </div>
-                  </div> --}}
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-2"
-                  >
-                    <p>Spacial Token</p>
-                    <p name="spacialtoken" value="5.80" style="pointer-events: none;"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
                   </div>
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-2"
-                  >
-                    <p class="fw-bold">Total</p>
-                    <p style="color:rgb(0, 255, 0);" id="totalPrice" class="fw-bold"><span
-                        style="color:white;"
-                        class="fas fa-dollar-sign"
-                        name="totalamount"
-                      ></span>{{newPrice}}</p>
-                    <input type="hidden" name="" id="newPrice" value="{{newPrice}}">
+                  <div class="my-3">
+                    <p class="dis fw-bold mb-2">Discount Code</p>
+                    <input class="form-control text-uppercase" type="text" id="discount" name="discode" />
+                    <input type="hidden" id="hiddenCoupon">
+                    <input type="hidden" id="theCoupon">
+                    <div
+                      style="width: 200px;height:20px;border:1px solid rgb(148, 0, 0);border-radius: 10px;display: none; color: rgb(175, 0, 0);font-weight:lighter;padding:1%;margin:1%;"
+                      id="messageBox">
+                      <span id="exclam"><i style="color: rgb(100, 0, 0);display:none"
+                          class="fas fa-exclamation-circle"></i></span>
+                      <i id="check" style="color: rgb(49, 245, 0);display:none" class="fas fa-check-circle"></i>
+                    </div>
+                    <input type="hidden" id="couponUsed">
                   </div>
-                  {{!-- <div type="submit" class="btn btn-primary mt-2">Pay<span
-                      class="fas fa-dollar-sign px-1"
-                    ></span>16.80
-                  </div> --}}
+
+                  <div class="d-flex flex-column dis">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <p>Subtotal</p>
+                      <p name="subtotal"><span style="color:white;" class="fas fa-dollar-sign"></span>{{lastPrice}}</p>
+                      <input type="hidden" name="" id="prodPrice" value="{{lastPrice}}">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <div class="d-flex align-items-center">
+                        <p class="pe-2">Discount
+                          <span
+                            class="d-inline-flex align-items-center justify-content-between bg-light px-2 couponCode"
+                            style="color:black;">
+                            <span id="code" class="pe-2"></span>
+                            <span class="fas fa-times close"></span>
+                          </span>
+                        </p>
+
+                      </div>
+                      <p style="display:none;color: rgb(0, 24, 209);font-weight: bold;" id="disTab" name="discount">
+                        <span style="color:white;" class="fas fa-dollar-sign"></span></p>
+                    </div>
+                    {{!-- <div>
+                      <div class="d-flex align-items-center">
+                        <p class="pe-2">Discount</p>
+                        <input type="text" name="dicount" id="discountFeild" style="color: #1aff00;">
+                        <p name="discount"><span style="color:white;" class="fas fa-dollar-sign"></span>5.80</p>
+                      </div>
+                    </div> --}}
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <p>Spacial Token</p>
+                      <p name="spacialtoken" value="5.80" style="pointer-events: none;"><span style="color:white;"
+                          class="fas fa-dollar-sign"></span>5.80</p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <p class="fw-bold">Total</p>
+                      <p style="color:rgb(0, 255, 0);" id="totalPrice" class="fw-bold"><span style="color:white;"
+                          class="fas fa-dollar-sign" name="totalamount"></span>{{newPrice}}</p>
+                      <input type="hidden" name="" id="newPrice" value="{{newPrice}}">
+                    </div>
+                    {{!-- <div type="submit" class="btn btn-primary mt-2">Pay<span
+                        class="fas fa-dollar-sign px-1"></span>16.80
+                    </div> --}}
+                  </div>
                 </div>
               </div>
-            </div>
-             {{!-- <input type="submit" class="btn btn-primary" value="Pay" style="width:100%;"> --}}
-             <h1>{{canDownload}}</h1>
-             {{#if canDownload}}
-              <button class="btn btn-warning" style="width:100%;margin-top:1rem;height:30px;font-size: small">DOWNLOAD</button>
-             {{else}}
-              <button class="btn btn-primary" style="width:100%;margin-top:1rem;height:30px;font-size: small;" id="rzp-button1">Pay Now</button>
-             {{/if}}
-          </form>
-        </div>
-      </div>
-        </div>
-        <div style="background: rgba(0, 0, 0, 0);width:200px;height:200px;display: block;padding-left:35%;position:fixed;top:30%;display: none;z-index:9;" id="complete">
-          <div style="width:40rem;height:30rem;background: rgb(206, 206, 206);padding:1rem;border-radius: 20px;">
-             <div class="svg-container" style="margin-left:36%;margin-top:3rem;">    
-              <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
-                  <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22"/>
-                  <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17"/>
-              </svg>
-            </div>
-            <div style="padding:1rem;">
-               <h4>Order Successfully Completed</h4>
-               <a class="btn btn-primary rounded-pill" style="width: 93%;float: left; margin:1rem;font-size:small;margin-top:2rem;" href="/payment">Download Invoice</a>
-            </div>
+              {{!-- <input type="submit" class="btn btn-primary" value="Pay" style="width:100%;"> --}}
+              <h1>{{canDownload}}</h1>
+              {{#if canDownload}}
+              <button class="btn btn-warning"
+                style="width:100%;margin-top:1rem;height:30px;font-size: small">DOWNLOAD</button>
+              {{else}}
+              <button class="btn btn-primary" style="width:100%;margin-top:1rem;height:30px;font-size: small;"
+                id="rzp-button1">Pay Now</button>
+              {{/if}}
+            </form>
           </div>
         </div>
-         
       </div>
-      
+      <div
+        style="background: rgba(0, 0, 0, 0);width:200px;height:200px;display: block;padding-left:35%;position:fixed;top:30%;display: none;z-index:9;"
+        id="complete">
+        <div style="width:40rem;height:30rem;background: rgb(206, 206, 206);padding:1rem;border-radius: 20px;">
+          <div class="svg-container" style="margin-left:36%;margin-top:3rem;">
+            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48"
+              aria-hidden="true">
+              <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+              <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+            </svg>
+          </div>
+          <div style="padding:1rem;">
+            <h4>Order Successfully Completed</h4>
+            <a class="btn btn-primary rounded-pill"
+              style="width: 93%;float: left; margin:1rem;font-size:small;margin-top:2rem;" href="/payment">Download
+              Invoice</a>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+  </div>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     let path = document.querySelector(".tick");
@@ -429,230 +726,235 @@
   <script>
     let discountFeild = document.getElementById('discount');
 
-      discountFeild.addEventListener('click',function(){
-          fetch('/coupon', {
+    discountFeild.addEventListener('click', function () {
+      fetch('/coupon', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          inpCoupon: discountFeild
+        }),
+      }).then(response => {
+        return response.json();
+      }).then(data => {
+        console.log(data.availCoupon, data.theCoupon);
+        document.getElementById('hiddenCoupon').value = data.availCoupon;
+        document.getElementById('theCoupon').value = data.theCoupon;
+        console.log(data.theCoupon), '______________________';
+      })
+    })
+    console.log(coupon);
+  </script>
+
+  <script>
+    let used = false
+    let priceFeild = document.getElementById('totalPrice');
+    let totalPrice = document.getElementById('newPrice').value;
+
+    let intervals = setInterval(function () {
+      let discountFeild = document.getElementById('discount').value;
+      let theCoupon = document.getElementById('hiddenCoupon').value
+      let coupDis = document.getElementById('theCoupon').value
+      if (discountFeild) {
+        document.getElementById('messageBox').style.display = 'block'
+        console.log(theCoupon, ".....", discountFeild);
+        if (theCoupon == discountFeild) {
+          used = true;
+          document.getElementById('couponUsed').value = used
+          const discount = totalPrice - coupDis
+          console.log(discount, totalPrice, coupDis)
+          priceFeild.innerHTML = discount
+          document.getElementById('newPrice').value = discount;
+          document.getElementById('disTab').style.display = 'block'
+          document.getElementById('disTab').innerHTML = coupDis
+          document.getElementById('messageBox').innerHTML = 'Coupon Applied'
+          document.getElementById('messageBox').style.border = '1px solid rgb(0, 255, 0)'
+          document.getElementById('messageBox').style.color = 'rgb(0, 255, 0)'
+          document.getElementById('exclam').style.display = 'none'
+          document.getElementById('check').style.display = 'block'
+          console.log('done');
+        } else {
+          used = false;
+          document.getElementById('couponUsed').value = used
+          document.getElementById('newPrice').value = totalPrice;
+          priceFeild.innerHTML = totalPrice;
+          document.getElementById('disTab').style.display = 'none';
+          document.getElementById('messageBox').innerHTML = 'Please enter a valid Coupoun'
+          document.getElementById('messageBox').style.border = '1px solid red'
+          document.getElementById('messageBox').style.color = 'red'
+          document.getElementById('exclam').style.display = 'block'
+          document.getElementById('check').style.display = 'none'
+        }
+        console.log('its interval');
+      } else {
+        document.getElementById('newPrice').value = totalPrice;
+        priceFeild.innerHTML = totalPrice;
+        document.getElementById('disTab').style.display = 'none';
+        document.getElementById('messageBox').style.display = 'none'
+        console.log('its else');
+      }
+    }, 100);   
+  </script>
+
+  {{!-- fetch --}}
+  <script>
+    document.getElementById('rzp-button1').onclick = async function (e) {
+      console.log("call in this script")
+      e.preventDefault();
+
+      let usedCoupon = document.getElementById('couponUsed').value
+      let country = document.getElementById('country').value;
+      let zip = document.getElementById('zipCode').value;
+      let state = document.getElementById('state').value;
+      let uniqueID = document.getElementById('unique').value;
+      let discount = document.getElementById('discount').value;
+      let prodPrice = document.getElementById('prodPrice').value;
+      let newPrice = document.getElementById('newPrice').value;
+      let userfName = document.getElementById('userfName').value;
+      let userlName = document.getElementById('userlName').value;
+      let userMobile = document.getElementById('userMobile').value;
+      let userMail = document.getElementById('userMail').value;
+      let gameId = document.getElementById('gameId').value;
+
+      let userFullName = userfName + ' ' + userlName;
+
+      console.log(usedCoupon, '------------------');
+
+      const response = await fetch('/check-out', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: newPrice,
+          prodPrice: prodPrice,
+          country: country,
+          zip: zip,
+          state: state,
+          uniqueID: uniqueID,
+          discount: discount,
+          prodPrice: prodPrice,
+          userName: userFullName,
+          userMobile: userMobile,
+          userMail: userMail,
+          gameId: gameId,
+          usedCoupon: usedCoupon
+        }),
+      })
+
+      let oderData = await response.json();
+      var options = {
+        "key": "rzp_test_qmjEny8LnAs8hb", // Enter the Key ID generated from the Dashboard
+        "amount": newPrice * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "order_id": oderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function (response) {
+          console.log(oderData.Order);
+          fetch('/order', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                inpCoupon :discountFeild
+              amount: newPrice,
+              prodPrice: prodPrice,
+              country: country,
+              zip: zip,
+              state: state,
+              uniqueID: uniqueID,
+              discount: discount,
+              prodPrice: prodPrice,
+              userName: userFullName,
+              userMobile: userMobile,
+              userMail: userMail,
+              gameId: gameId,
+              usedCoupon: usedCoupon
             }),
           }).then(response => {
-              return response.json();
-            }).then(data => {
-              console.log(data.availCoupon,data.theCoupon);
-              document.getElementById('hiddenCoupon').value=data.availCoupon;
-              document.getElementById('theCoupon').value = data.theCoupon;
-              console.log(data.theCoupon),'______________________';
-            })  
-      })
-      console.log(coupon);
-  </script>
-
- <script>
-      let used = false
-      let priceFeild = document.getElementById('totalPrice');
-      let totalPrice = document.getElementById('newPrice').value;
-
-      let intervals = setInterval(function() {
-        let discountFeild = document.getElementById('discount').value;
-        let theCoupon = document.getElementById('hiddenCoupon').value
-        let coupDis = document.getElementById('theCoupon').value
-        if(discountFeild){
-          document.getElementById('messageBox').style.display = 'block'
-            console.log(theCoupon,".....",discountFeild);
-          if(theCoupon == discountFeild){  
-            used = true;
-            document.getElementById('couponUsed').value = used
-            const discount = totalPrice - coupDis
-            console.log(discount,totalPrice,coupDis)
-            priceFeild.innerHTML = discount
-            document.getElementById('newPrice').value = discount;
-            document.getElementById('disTab').style.display = 'block'
-            document.getElementById('disTab').innerHTML = coupDis
-            document.getElementById('messageBox').innerHTML = 'Coupon Applied'
-            document.getElementById('messageBox').style.border = '1px solid rgb(0, 255, 0)'
-            document.getElementById('messageBox').style.color = 'rgb(0, 255, 0)'
-            document.getElementById('exclam').style.display = 'none'
-            document.getElementById('check').style.display = 'block'
-            console.log('done');
-          }else{
-            used = false;
-            document.getElementById('couponUsed').value = used
-            document.getElementById('newPrice').value = totalPrice;
-            priceFeild.innerHTML = totalPrice;
-            document.getElementById('disTab').style.display = 'none';
-            document.getElementById('messageBox').innerHTML = 'Please enter a valid Coupoun'
-            document.getElementById('messageBox').style.border = '1px solid red'
-            document.getElementById('messageBox').style.color = 'red'
-            document.getElementById('exclam').style.display = 'block'
-            document.getElementById('check').style.display = 'none'
-          }
-          console.log('its interval');
-        }else{
-          document.getElementById('newPrice').value = totalPrice;
-          priceFeild.innerHTML = totalPrice;
-          document.getElementById('disTab').style.display = 'none';
-          document.getElementById('messageBox').style.display = 'none'
-          console.log('its else');
-        }
-      },100);   
- </script>
-
-  {{!-- fetch --}}
-  <script>
-    document.getElementById('rzp-button1').onclick = async function(e){
-    console.log("call in this script")
-    e.preventDefault();
-
-    let usedCoupon = document.getElementById('couponUsed').value
-    let country = document.getElementById('country').value;
-    let zip = document.getElementById('zipCode').value;
-    let state = document.getElementById('state').value;
-    let uniqueID = document.getElementById('unique').value;
-    let discount = document.getElementById('discount').value;
-    let prodPrice = document.getElementById('prodPrice').value;
-    let newPrice = document.getElementById('newPrice').value;
-    let userfName = document.getElementById('userfName').value;
-    let userlName = document.getElementById('userlName').value;
-    let userMobile = document.getElementById('userMobile').value;
-    let userMail = document.getElementById('userMail').value;
-    let gameId = document.getElementById('gameId').value;
-
-    let userFullName = userfName+' '+userlName;
-
-    console.log(usedCoupon,'------------------');
-
-    const response = await fetch('/check-out', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          amount:newPrice,
-          prodPrice:prodPrice,
-          country:country,
-          zip:zip,
-          state:state,
-          uniqueID:uniqueID,
-          discount:discount,
-          prodPrice:prodPrice,
-          userName:userFullName,
-          userMobile:userMobile,
-          userMail:userMail,
-          gameId:gameId,
-          usedCoupon:usedCoupon
-      }),
-    })
-
-    let oderData = await response.json();
-      var options = {
-        "key": "rzp_test_qmjEny8LnAs8hb", // Enter the Key ID generated from the Dashboard
-        "amount":newPrice*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "INR",
-        "order_id": oderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": function (response){
-            console.log(oderData.Order);
-            fetch('/order',{
-              method: 'POST', // or 'PUT'
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                  amount:newPrice,
-                  prodPrice:prodPrice,
-                  country:country,
-                  zip:zip,
-                  state:state,
-                  uniqueID:uniqueID,
-                  discount:discount,
-                  prodPrice:prodPrice,
-                  userName:userFullName,
-                  userMobile:userMobile,
-                  userMail:userMail,
-                  gameId:gameId,
-                  usedCoupon:usedCoupon
-              }),
-            }).then(response => {
-              return response.json();
-            }).then(data => {
-              document.getElementById('complete').style.display = 'block'
-              //location.href=("/payment")
-            })  
+            return response.json();
+          }).then(data => {
+            document.getElementById('complete').style.display = 'block'
+            //location.href=("/payment")
+          })
         },
         "prefill": {
-            "name":userFullName, //your customer's name
-            "email":userMail,
-            "contact": userMobile
+          "name": userFullName, //your customer's name
+          "email": userMail,
+          "contact": userMobile
         },
         "notes": {
-            "address": "Razorpay Corporate Office"
+          "address": "Razorpay Corporate Office"
         },
         "theme": {
-            "color": "#3399cc"
+          "color": "#3399cc"
         }
-        };
-        var rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (response){
-               /* alert(response.error.code);
-                alert(response.error.description);
-                alert(response.error.source);
-                alert(response.error.step);
-                alert(response.error.reason);
-                alert(response.error.metadata.order_id);
-                alert(response.error.metadata.payment_id);*/
-        });
-    rzp1.open();
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.on('payment.failed', function (response) {
+        /* alert(response.error.code);
+         alert(response.error.description);
+         alert(response.error.source);
+         alert(response.error.step);
+         alert(response.error.reason);
+         alert(response.error.metadata.order_id);
+         alert(response.error.metadata.payment_id);*/
+      });
+      rzp1.open();
     }
   </script>
-    <script>
+  <script>
 
-      //to manage the card details show and hide
-     /* function card(val){
-        document.getElementById('hidden-card').style.display='block'
-        if(val==1){
-          document.getElementById('cardType').value = "Credit Card"
-          console.log(document.getElementById('cardType').value)*/
-        //  fetch("http://localhost:3000/check-out?id=63d837e4316c89c82ba1acd5")
-      /*  }else{
-          document.getElementById('cardType').value = "Debit Card"
-          console.log(document.getElementById('cardType').value)
-        }
-      }*/
-        var valcode = document.querySelector("#discount")
-var namecode = document.querySelector("#code")
-namecode.textContent = valcode.value
+    //to manage the card details show and hide
+    /* function card(val){
+       document.getElementById('hidden-card').style.display='block'
+       if(val==1){
+         document.getElementById('cardType').value = "Credit Card"
+         console.log(document.getElementById('cardType').value)*/
+    //  fetch("http://localhost:3000/check-out?id=63d837e4316c89c82ba1acd5")
+    /*  }else{
+        document.getElementById('cardType').value = "Debit Card"
+        console.log(document.getElementById('cardType').value)
+      }
+    }*/
+    var valcode = document.querySelector("#discount")
+    var namecode = document.querySelector("#code")
+    namecode.textContent = valcode.value
 
-var closeBtn = document.querySelector(".close")
-var couponCode = document.querySelector(".couponCode")
-closeBtn.addEventListener("click", function () {
-close()
-})
-valcode.addEventListener("change", function () {
-checkDiscountCoupon()
-})
+    var closeBtn = document.querySelector(".close")
+    var couponCode = document.querySelector(".couponCode")
+    closeBtn.addEventListener("click", function () {
+      close()
+    })
+    valcode.addEventListener("change", function () {
+      checkDiscountCoupon()
+    })
 
-function checkDiscountCoupon() {
-if (valcode.value.length === 0) {
-// namecode.style.display = "none"
-close()
-}
-else {
-couponCode.classList.remove("d-none")
-namecode.style.display = "inline"
-namecode.textContent = valcode.value
-}
-}
+    function checkDiscountCoupon() {
+      if (valcode.value.length === 0) {
+        // namecode.style.display = "none"
+        close()
+      }
+      else {
+        couponCode.classList.remove("d-none")
+        namecode.style.display = "inline"
+        namecode.textContent = valcode.value
+      }
+    }
 
-function close() {
-couponCode.classList.add("d-none")
-valcode.value = ""
-}
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  </body>
+    function close() {
+      couponCode.classList.add("d-none")
+      valcode.value = ""
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

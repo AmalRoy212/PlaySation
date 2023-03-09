@@ -8,6 +8,7 @@ const path = require('path');
 const expHbs = require('express-handlebars');
 const nocache = require('nocache');
 const cors = require('cors');
+const  colour = require('colors');
 require('dotenv').config();
 
 
@@ -45,4 +46,4 @@ app.get('*',function(req,res){
 })
 
 
-app.listen(3000);
+app.listen(3000,()=>console.log("listening on port 3000".rainbow));
