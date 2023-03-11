@@ -42,6 +42,47 @@ async function securingPassword(password){
     }
 }
 
+//creating a new coupon function
+async function creatingCoupon(coupon){
+    try {
+        let flag = 0;
+        coupon.trimEnd();
+        coupon  = coupon.toUpperCase();
+        let discountAmount = 100;
+        const expDate = "onlyForToday";
+        const availability = "common";
+        const minAmount = 100;
+        let date = new Date();
+        date = date.toLocaleDateString();
+        const coupons = await CouponModel.find({},{_id:0,couponCode:1})
+
+        coupons.forEach((element)=>{
+            if(element.couponCode == coupon ){
+                flag = 1;
+            }
+        });
+
+        if(flag == 0){
+            const newCoupon = new CouponModel({
+                couponCode:coupon,
+                couponDiscount:discountAmount,
+                createdON:date,
+                expDate:expDate,
+                availability:availability,
+                minAmount:minAmount
+            });
+            const couponCode = await newCoupon.save();
+            if(couponCode.availability == 'common'){
+                await userModel.findByIdAndUpdate({_id:req.session.user},{$addToSet:{coupons:couponCode.couponCode}});
+                await CouponModel.findByIdAndUpdate({_id:couponCode.id},{isCommon:true});
+            }
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 //finding the array of the user cartItmes 
 async function findTheCartItmes(id){
     try {
@@ -95,7 +136,6 @@ async function insertingAccount(userdataObj){
         const email = userdataObj.email;
         const lname = userdataObj.lname;
         const mobile = userdataObj.mobile;
-        console.log(userdataObj.mobile,'----------------------------94');
         const user = new User({
             fname:fname,
             lname:lname,
@@ -105,7 +145,6 @@ async function insertingAccount(userdataObj){
             password:encPassword,
             is_admin:0
         })
-        console.log('_________lname_________________________90')
         const userData = await user.save();
         return userData;
     } catch (error) {
@@ -118,7 +157,6 @@ async function sendingVerificationMail(userName,email,userID){
     try {
         const newOtp= await createOtp();
         otpChecking = newOtp;
-        // console.log(newOtp,'__________________________________90')
         const transport = nodemailer.createTransport({
             host:'smtp.gmail.com',
             port:587,
@@ -174,19 +212,14 @@ async function validatingOtp(currentOtp,userOtp){
 //creating a new order
 async function creatingOrder(userId,game,orderObject,razorOrder){
     try {
-        // const rndmKey = await randomGenertor();
-        console.log('____________hitted on order creation___________167',razorOrder);
         let date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth() + 1; 
         let day = date.getDate();
 
         let formattedDate = `${day}/${month}/${year}`; 
-        // today = today.toLocaleDateString();
-        // console.log(rndmKey,"__________________________________147")
         const userD = await userModel.findById({_id:userId});
         const gameD = await GamesModels.findById({_id:game})
-        console.log('____________hitted on order creation___________173F',orderObject);
         const newOrder = new orderModel({
             orderId:razorOrder.id,
             userId:userId,
@@ -206,7 +239,6 @@ async function creatingOrder(userId,game,orderObject,razorOrder){
             total:orderObject.amount
         })
         const orderCompleted = await newOrder.save();
-        console.log('done_____________________________________________175',orderCompleted);
         return orderCompleted;
     } catch (error) {
         console.log(error.message);
@@ -326,13 +358,23 @@ const verifyingUser = async function(req,res){
 //rendering home
 const loadHome = async function(req,res){
     try {
-        // const userId = req.session.user;
-        const banners = await bannerModel.findOne();
-        console.log(banners);
+        let userUp
+        const banner = await bannerModel.find();
         const gamesData = await GamesModels.find().lean();
-        // cartCount = await findTheCartItmes(userId);
-        // cartCount = cartCount.length;
-        res.render('home',{isLoggedIn,gamesData,cartCount,banners});
+        let today = new Date()
+        today = today.toString();
+        today = today.split(' ');
+        if(today[0] == 'Fri'){
+            let currCoupon = 'BLACKFRIDAY'
+            await creatingCoupon(currCoupon);
+            if(req.session.user){
+                let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon}`
+                userUp = await userModel.findByIdAndUpdate({_id:req.session.user}, { $addToSet: { coupons:currCoupon,notifications: notification} });
+            }
+
+        }
+        const userNot = userUp?.notifications;
+        res.render('home',{isLoggedIn,gamesData,cartCount,banners:banner[0],userNot});
     } catch (error) {
         console.log(error.message);
     }
@@ -625,7 +667,6 @@ const loadPayment = async function(req,res){
         const dis = 100;
         const gameId = req.query.id;
         const userId = req.session.user;
-        console.log("Here we are --------------------------60",gameId)
         const theGame = await GamesModels.findById({_id:gameId});
         console.log("this is second time");
         const theUser = await userModel.findById({_id:userId})
@@ -685,7 +726,6 @@ const createNeworder = async function(req,res){
 //placing an order after getting the response from the razorpay payment
 const onPaymentSuccess = async function(req,res){
     try {
-        console.log('order confirmed....................634');
         const orderDetails = req.body;
         console.log(req.body);
         const usId = req.session.user;
@@ -693,7 +733,6 @@ const onPaymentSuccess = async function(req,res){
         const Order = req.session.newOrder;
         const orderData = await creatingOrder(usId,gamId,orderDetails,Order);
         let downCount = await GamesModels.findById({_id:gamId},{_id:0,downloads:1});
-        console.log(downCount,'------------------696');
         downCount = downCount.downloads + 1;
         await GamesModels.findByIdAndUpdate({_id:gamId},{$set:{downloads:downCount}});
         const price = orderData.total;
@@ -715,7 +754,6 @@ const loadPaymentSuccess = async function(req,res){
         const theUserData = await userModel.findById({_id:user});
         const fullname = theUserData.fname+" "+theUserData.lname;
         res.render('payment',{theGameData,theUserData,fullname,cartCount,orderData:order});
-        // const upUserCoupon = await userModel.findByIdAndUpdate(req.session.user, {$pop: {:-1}});
 
     } catch (error) {
         console.log(error.message);
@@ -742,12 +780,10 @@ const loadCart = async function(req,res){
 //posting item to the cart 
 const creatingCartItem = async function(req,res){
     try {
-        console.log("create cart------------------706");
         var flag = 0 ;
         const id = req.session.user;
         let productId = req.body.hiddenGmId;
         let currentGame = await GamesModels.findById({_id:productId})
-        // let users = await userModel.findById({_id:id});
         const gameIdiesCart = await findTheCartItmes(id);
         cartCount = gameIdiesCart.length;
         for(var i =0;i<gameIdiesCart.length;i++){
@@ -775,7 +811,6 @@ const creatingCartItem = async function(req,res){
             )
         }else{
             update = false;
-            console.log("else_______________________________ flag = 1");
         }
         const gamesOfusr = await findTheCartItmes(id);
         cartCount = gamesOfusr.length;
@@ -826,7 +861,6 @@ const deleteCartItem = async function(req,res){
         const userID = req.session.user;
         const cartGameId = req.body.cartGameId;
         console.log(req.body);
-        console.log(cartGameId+"gameid of 754 ----------------------------------");
         const user = await userModel.findById({_id : userID})
         let userCart = user.cartItems;
         for(var i=0;i<userCart.length;i++){
@@ -875,7 +909,6 @@ const googleAuth = async function(req,res){
                 mobile : 0000000,
                 password : req.user.emails[0].value,
             }
-            console.log('-------------------------------870',userdataObj,'++++++===============870')
             const newUser = await insertingAccount(userdataObj);
             await userModel.findOneAndUpdate({email:email},{$set:{isGoogle:true}})
             googleMsg = 'Please Update your Contact and Password'
@@ -894,14 +927,11 @@ const resendOtp = async function(req,res){
         if(user_Spied){
             const email = userObject.email;
             userData = await userModel.findOne({email:email});
-            console.log(email+"________________________836");
         }else if(editSpied){
             const userId = req.session.user;
             userData = await userModel.findOne({_id:userId});
-            console.log(userId+"____________________840");
         }else{
             userData = await userModel.findOne({email:userResendMail});
-            console.log(userResendMail,"+++++++++++++844");
         }
         await sendingVerificationMail(userData.fname,userData.email,userData._id);
         res.redirect('/otpverify',);

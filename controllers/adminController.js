@@ -630,12 +630,11 @@ const addingCouponsInUser = async function(req,res){
         const couponId = req.body.id;
         const user = req.body.users;
         const couponCode = await couponModel.findById({_id:couponId});
-        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode } });
+        const notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${couponCode.couponCode}`
+        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode,notifications: notification} });
         //get the use id and manage the array of sending the user while rendering the coupon table
-
         sccMssg = 'Succesfully Sent to user'
         res.redirect('/admin/coupon/table');
-        console.log('----------------617',couponId,theUser);
     } catch (error) {
         console.log(error.message);
     }
