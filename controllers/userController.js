@@ -401,11 +401,11 @@ const loadHome = async function (req, res) {
             { new: true }
           )
           .then((updatedUser) => {
-            console.log(updatedUser.favorites,"-----------------------------404");
           })
           .catch((error) => {
             console.log(error);
           });
+          userUp = await userModel.findById({_id:req.session.user});
       }
     }
     const userNot = userUp?.notifications;
