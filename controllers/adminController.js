@@ -12,17 +12,17 @@ const fs = require('fs');
 
 let adminMessage;
 let GameProducts;
-let userBlocked ;
+let userBlocked;
 let sccMssg;
 let userCoupon
 
 
 //function for creating new categories
-async function creatingCategories(categoryName){
+async function creatingCategories(categoryName) {
     try {
         // const newCate = await capitalizingTheFirst(categoryName)
         const newCategory = new Category({
-            gameCategory:categoryName
+            gameCategory: categoryName
         })
         await newCategory.save()
     } catch (error) {
@@ -31,7 +31,7 @@ async function creatingCategories(categoryName){
 }
 
 //refershing the Category page 
-async function refershCategory(){
+async function refershCategory() {
     try {
         const gmCates = await Category.find();
         return gmCates;
@@ -41,32 +41,32 @@ async function refershCategory(){
 }
 
 //first letter capitalising
-async function capitalizingTheFirst(category){
+async function capitalizingTheFirst(category) {
     try {
-        const pattern = /\s*(?:&|and)\s*/i ; 
+        const pattern = /\s*(?:&|and)\s*/i;
         category = category.trim();
         category = category.trimEnd();
-        let theNewCate = pattern.test(category)?category.split(/\s*(?:&|and)\s*/i):category
-        if(Array.isArray(theNewCate)){
-            for(var i=0;i<theNewCate.length;i++){
+        let theNewCate = pattern.test(category) ? category.split(/\s*(?:&|and)\s*/i) : category
+        if (Array.isArray(theNewCate)) {
+            for (var i = 0; i < theNewCate.length; i++) {
                 let tempLetter = await theNewCate[i].split('');
                 tempLetter[0] = await tempLetter[0].toUpperCase();
-                for(var j=1;j<tempLetter.length;j++){
+                for (var j = 1; j < tempLetter.length; j++) {
                     tempLetter[j] = tempLetter[j].toLowerCase();
                 }
                 tempLetter = await tempLetter.join('');
-                if(i != theNewCate.length-1){
-                    theNewCate[i] = tempLetter+" & ";
-                }else{
+                if (i != theNewCate.length - 1) {
+                    theNewCate[i] = tempLetter + " & ";
+                } else {
                     theNewCate[i] = tempLetter;
                 }
             }
             theNewCate = theNewCate.join('');
-        }else{
+        } else {
             theNewCate = theNewCate.split('');
             theNewCate[0] = await theNewCate[0].toUpperCase();
-            for(var i=1;i<theNewCate.length;i++){
-                theNewCate[i] = await  theNewCate[i].toLowerCase();
+            for (var i = 1; i < theNewCate.length; i++) {
+                theNewCate[i] = await theNewCate[i].toLowerCase();
             }
             theNewCate = await theNewCate.join('')
         }
@@ -77,13 +77,13 @@ async function capitalizingTheFirst(category){
 }
 
 //finding the categories
-async function findTheCategories(){
+async function findTheCategories() {
     try {
         const categoryCollection = await Category.find();
-        let i =0;
+        let i = 0;
         let catNames = [];
-        for(i=0;i<categoryCollection.length;i++){
-            catNames[i]=categoryCollection[i].gameCategory
+        for (i = 0; i < categoryCollection.length; i++) {
+            catNames[i] = categoryCollection[i].gameCategory
         }
         return catNames;
     } catch (error) {
@@ -92,17 +92,17 @@ async function findTheCategories(){
 }
 
 //adding a new game to the database
-async function addingGameDatas(gameObject,imageFile){
+async function addingGameDatas(gameObject, imageFile) {
     try {
         const newGame = new GamesModel({
-            image:imageFile,
-            name:gameObject.name,
-            category:gameObject.category,
-            price:gameObject.price,
-            designers:gameObject.designers,
-            developed:gameObject.developed,
-            publisher:gameObject.publisher,
-            dis:gameObject.discription
+            image: imageFile,
+            name: gameObject.name,
+            category: gameObject.category,
+            price: gameObject.price,
+            designers: gameObject.designers,
+            developed: gameObject.developed,
+            publisher: gameObject.publisher,
+            dis: gameObject.discription
         })
         const insertedGame = await newGame.save();
         return insertedGame
@@ -112,7 +112,7 @@ async function addingGameDatas(gameObject,imageFile){
 }
 
 //refershing the gamesProduct array when the page refresh
-async function refershingGameProduct(){
+async function refershingGameProduct() {
     try {
         const refreshed = await GamesModel.find();
         return refreshed
@@ -124,35 +124,35 @@ async function refershingGameProduct(){
 /*-----------rendering methods-----------------*/
 
 //rendering the login page to admin
-const loadLogin = async function(req,res){
+const loadLogin = async function (req, res) {
     try {
-        res.render('login',{adminMessage});
-        adminMessage='';
+        res.render('login', { adminMessage });
+        adminMessage = '';
     } catch (error) {
         console.log(error.message)
     }
 }
 
 //verifying the admin loaggin
-const verfyingAdmin = async function(req,res){
+const verfyingAdmin = async function (req, res) {
     try {
         const adEmail = req.body.email;
         const adPassword = req.body.password;
-        const adminData = await AdminModel.findOne({email:adEmail});
-        if(adminData){
-            if(adminData.email == adEmail){
-                if(adPassword == adminData.password){
+        const adminData = await AdminModel.findOne({ email: adEmail });
+        if (adminData) {
+            if (adminData.email == adEmail) {
+                if (adPassword == adminData.password) {
                     req.session.adminLog = true
-                        res.redirect('/admin/home')
-                }else{
+                    res.redirect('/admin/home')
+                } else {
                     adminMessage = 'Credantials does not exist';
                     res.redirect('/admin');
                 }
-            }else{
+            } else {
                 adminMessage = 'Credantials does not exist';
                 res.redirect('/admin');
             }
-        }else{
+        } else {
             adminMessage = 'Account not found';
             res.redirect('/admin');
         }
@@ -162,7 +162,7 @@ const verfyingAdmin = async function(req,res){
 }
 
 //loading the home page of admin
-const laodAdminHome = async function(req,res){
+const laodAdminHome = async function (req, res) {
     try {
         res.render('home')
     } catch (error) {
@@ -171,31 +171,31 @@ const laodAdminHome = async function(req,res){
 }
 
 //loding the products page 
-const loadGameProducts = async function(req,res){
+const loadGameProducts = async function (req, res) {
     try {
         GameProducts = await refershingGameProduct()
-        res.render('games',{GameProducts,});
+        res.render('games', { GameProducts, });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //loading the new product add page
-const addNewGamesLoad = async function(req,res){
+const addNewGamesLoad = async function (req, res) {
     try {
         const catNames = await findTheCategories();
-        res.render('addgames',{catNames});
+        res.render('addgames', { catNames });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //posting a new game to database 
-const addGameData = async function(req,res){
+const addGameData = async function (req, res) {
     try {
-        const imageFilename = req.files.map(file =>  file.filename);
-        const gameData = await addingGameDatas(req.body,imageFilename);
-        if(gameData){
+        const imageFilename = req.files.map(file => file.filename);
+        const gameData = await addingGameDatas(req.body, imageFilename);
+        if (gameData) {
             res.redirect('/admin/games')
         }
     } catch (error) {
@@ -204,16 +204,16 @@ const addGameData = async function(req,res){
 }
 
 //search managing 
-const findigGames = async function(req,res){
+const findigGames = async function (req, res) {
     try {
         const adminSearch = req.body.search;
-        GameProducts = await GamesModel.find({name:{$regex:adminSearch}});
-        if(GameProducts){
+        GameProducts = await GamesModel.find({ name: { $regex: adminSearch } });
+        if (GameProducts) {
             console.log(GameProducts);
-            res.render('games',{GameProducts});
-        }else{
+            res.render('games', { GameProducts });
+        } else {
             adminMessage = 'Search Not Found';
-            res.render('games',{adminMessage});
+            res.render('games', { adminMessage });
             adminMessage = '';
         }
     } catch (error) {
@@ -222,13 +222,13 @@ const findigGames = async function(req,res){
 }
 
 //loading the update page of game datas
-const loadGameEdit = async function(req,res){
+const loadGameEdit = async function (req, res) {
     try {
         const productId = req.body.id;
-        const gameData = await GamesModel.findById({_id:productId});
+        const gameData = await GamesModel.findById({ _id: productId });
         const catColl = await findTheCategories();
-        if(gameData){
-            res.render('editgames',{gameData,catColl})
+        if (gameData) {
+            res.render('editgames', { gameData, catColl })
         }
     } catch (error) {
         console.log(error.message)
@@ -236,39 +236,43 @@ const loadGameEdit = async function(req,res){
 }
 
 //editing the product details
-const updateGames = async function(req,res){
+const updateGames = async function (req, res) {
     try {
         const id = req.query.id;
         let currentGames
-        let imageFilename = req.files.map(file =>  file.filename);
-        if(imageFilename.length == 0){
-            currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
-                {$set:{
-                    name:req.body.name,
-                    category:req.body.category,
-                    price:req.body.price,
-                    designers:req.body.designers,
-                    developed:req.body.developed,
-                    publisher:req.body.publisher,
-                    dis:req.body.discription
-                }}
+        let imageFilename = req.files.map(file => file.filename);
+        if (imageFilename.length == 0) {
+            currentGames = await GamesModel.findByIdAndUpdate({ _id: id },
+                {
+                    $set: {
+                        name: req.body.name,
+                        category: req.body.category,
+                        price: req.body.price,
+                        designers: req.body.designers,
+                        developed: req.body.developed,
+                        publisher: req.body.publisher,
+                        dis: req.body.discription
+                    }
+                }
             )
-        }else{
-            currentGames = await GamesModel.findByIdAndUpdate({ _id:id },
-                {$set:{
-                    image:imageFilename,
-                    name:req.body.name,
-                    category:req.body.category,
-                    price:req.body.price,
-                    designers:req.body.designers,
-                    developed:req.body.developed,
-                    publisher:req.body.publisher,
-                    dis:req.body.discription
-                }}
+        } else {
+            currentGames = await GamesModel.findByIdAndUpdate({ _id: id },
+                {
+                    $set: {
+                        image: imageFilename,
+                        name: req.body.name,
+                        category: req.body.category,
+                        price: req.body.price,
+                        designers: req.body.designers,
+                        developed: req.body.developed,
+                        publisher: req.body.publisher,
+                        dis: req.body.discription
+                    }
+                }
             )
         }
-        if(currentGames){
-            GameProducts=refershingGameProduct();
+        if (currentGames) {
+            GameProducts = refershingGameProduct();
             res.redirect('/admin/games');
         }
 
@@ -278,10 +282,10 @@ const updateGames = async function(req,res){
 }
 
 //loading the user data table 
-const loadUserDataTable = async function(req,res){
+const loadUserDataTable = async function (req, res) {
     try {
         const userData = await userModel.find({});
-        res.render('users',{userData,sccMssg,adminMessage});
+        res.render('users', { userData, sccMssg, adminMessage });
         sccMssg = '';
         adminMessage = '';
     } catch (error) {
@@ -290,11 +294,11 @@ const loadUserDataTable = async function(req,res){
 }
 
 //blocking and unblocking the user
-const blockManagment = async function(req,res){
+const blockManagment = async function (req, res) {
     try {
-     const id = req.query.id;
-     userBlocked = false;
-     const user = await userModel.findOneAndUpdate({_id:id},{$set:{isBlocked:true}})
+        const id = req.query.id;
+        userBlocked = false;
+        const user = await userModel.findOneAndUpdate({ _id: id }, { $set: { isBlocked: true } })
         res.redirect('/admin/usertable')
 
     } catch (error) {
@@ -302,11 +306,11 @@ const blockManagment = async function(req,res){
     }
 }
 
-const  unblock = async(req,res)=>{
+const unblock = async (req, res) => {
     try {
         const id = req.query.id;
-     const user = await userModel.findOneAndUpdate({_id:id},{$set:{isBlocked:false}})
-     userBlocked = true;
+        const user = await userModel.findOneAndUpdate({ _id: id }, { $set: { isBlocked: false } })
+        userBlocked = true;
         res.redirect('/admin/usertable')
     } catch (error) {
         console.log(error);
@@ -314,10 +318,10 @@ const  unblock = async(req,res)=>{
 }
 
 //soft deletion of game data
-const softDeleteData = async function(req,res){
+const softDeleteData = async function (req, res) {
     try {
         const id = req.body.id;
-        await GamesModel.findByIdAndUpdate({_id:id},{$set:{deleted:true}});
+        await GamesModel.findByIdAndUpdate({ _id: id }, { $set: { deleted: true } });
         res.redirect('/admin/games');
     } catch (error) {
         console.log(error.message)
@@ -325,22 +329,22 @@ const softDeleteData = async function(req,res){
 }
 
 //hard deletion of game data 
-const deleteGames = async function(req,res){
+const deleteGames = async function (req, res) {
     try {
         const id = req.body.id;
         const gameData = refershingGameProduct();
-        await GamesModel.findByIdAndDelete({_id:id});
-        res.render('games',{gameData,});
+        await GamesModel.findByIdAndDelete({ _id: id });
+        res.render('games', { gameData, });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //loading the category page 
-const laodCategories = async function(req,res){
+const laodCategories = async function (req, res) {
     try {
         const currentCat = await Category.find();
-        res.render('category',{currentCat,adminMessage});
+        res.render('category', { currentCat, adminMessage });
         adminMessage = '';
     } catch (error) {
         console.log(error.message);
@@ -348,18 +352,18 @@ const laodCategories = async function(req,res){
 }
 
 //adding a new category to the data base 
-const addingNewCategory = async function(req,res){
+const addingNewCategory = async function (req, res) {
     try {
         let flag = 0;
         let cate = req.body.category
         cate = await capitalizingTheFirst(cate)
         // const editCate = cate.split()
-        let found = await Category.find({gameCategory:cate});
-        if(found.length == 0){
+        let found = await Category.find({ gameCategory: cate });
+        if (found.length == 0) {
             await creatingCategories(cate);
             sccMssg = 'The Category is Successsfully added';
             res.redirect('/admin/categories');
-        }else{
+        } else {
             adminMessage = 'The Category is already in your list';
             res.redirect('/admin/categories');
         }
@@ -369,10 +373,10 @@ const addingNewCategory = async function(req,res){
 }
 
 //loading the category table
-const loadCategoryTable =async function(req,res){
+const loadCategoryTable = async function (req, res) {
     try {
         const currentCat = await Category.find();
-        res.render('cateTable',{currentCat,adminMessage})
+        res.render('cateTable', { currentCat, adminMessage })
         adminMessage = '';
     } catch (error) {
         console.log(error.message)
@@ -380,11 +384,11 @@ const loadCategoryTable =async function(req,res){
 }
 
 //updating the category
-const updateCategory = async function(req,res){
+const updateCategory = async function (req, res) {
     try {
         const cateId = req.body.hiddenId;
         const admnCate = req.body.category;
-        await Category.findByIdAndUpdate({_id:cateId},{$set:{gameCategory:admnCate}});
+        await Category.findByIdAndUpdate({ _id: cateId }, { $set: { gameCategory: admnCate } });
         adminMessage = 'Successfully Edited..!'
         res.redirect('/admin/categoriesTable')
     } catch (error) {
@@ -393,10 +397,10 @@ const updateCategory = async function(req,res){
 }
 
 //deleting the categories
-const deleteCategory = async function(req,res){
+const deleteCategory = async function (req, res) {
     try {
         const categid = req.body.categoryId;
-        await Category.findByIdAndDelete({_id:categid});
+        await Category.findByIdAndDelete({ _id: categid });
         adminMessage = 'Successfully Deleted..!'
         res.redirect('/admin/categoriesTable')
     } catch (error) {
@@ -405,14 +409,14 @@ const deleteCategory = async function(req,res){
 }
 
 //unverfiying user
-const unverfyUser = async function(req,res){
+const unverfyUser = async function (req, res) {
     try {
         const userId = req.query.id;
-        const unVfdUse = await userModel.findByIdAndUpdate({_id:userId},{$addToSet:{is_verified:0}});
-        if(unVfdUse){
+        const unVfdUse = await userModel.findByIdAndUpdate({ _id: userId }, { $addToSet: { is_verified: 0 } });
+        if (unVfdUse) {
             sccMssg = 'Successfully Unverified User';
             res.redirect('/admin/usertable');
-        }else{
+        } else {
             adminMessage = 'Cannot Find the Data';
             res.redirect('/admin/usertable');
         }
@@ -422,28 +426,28 @@ const unverfyUser = async function(req,res){
 }
 
 //verfying the user from the admin side
-const adminVerfyingUser = async function(req,res){
+const adminVerfyingUser = async function (req, res) {
     try {
         const userId = req.query.id;
-        const upUser = await userModel.findByIdAndUpdate({_id:userId},{$addToSet:{is_verified:1}});
-        if(upUser){
+        const upUser = await userModel.findByIdAndUpdate({ _id: userId }, { $addToSet: { is_verified: 1 } });
+        if (upUser) {
             sccMssg = 'Successfully Verified User';
             res.redirect('/admin/usertable');
-        }else{
+        } else {
             adminMessage = 'Cannot Find the Data'
             res.redirect('/admin/usertable');
         }
-        
+
     } catch (error) {
         console.log(error.message)
     }
 }
 
 //undo deletion of product 
-const undoDetelition = async function(req,res){
+const undoDetelition = async function (req, res) {
     try {
         const id = req.body.id;
-        await GamesModel.findByIdAndUpdate({_id:id},{$set:{deleted:false}});
+        await GamesModel.findByIdAndUpdate({ _id: id }, { $set: { deleted: false } });
         res.redirect('/admin/games');
     } catch (error) {
         console.log(error.message);
@@ -451,50 +455,50 @@ const undoDetelition = async function(req,res){
 }
 
 //loading the oder page 
-const loadOrders = async function(req,res){
+const loadOrders = async function (req, res) {
     try {
         const ordersData = await OrderModel.find();
-        res.render('orders',{ordersData});
+        res.render('orders', { ordersData });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //loading the video uploading page 
-const loadVideoUpdaload = async function(req,res){
+const loadVideoUpdaload = async function (req, res) {
     try {
         const gameId = req.query.id;
-        res.render('videoupload',{gameId});
+        res.render('videoupload', { gameId });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //uplaoding new video 
-const videoUploading = async function(req,res){
+const videoUploading = async function (req, res) {
     try {
         const video = req.file.filename;
         const gameId = req.body.hiddenGmId;
-        const newVideoUp = await GamesModel.findByIdAndUpdate({_id:gameId},{$set:{video:video}});
+        const newVideoUp = await GamesModel.findByIdAndUpdate({ _id: gameId }, { $set: { video: video } });
         res.redirect('/admin/games');
-        console.log(video,"----------455---------",gameId);
+        console.log(video, "----------455---------", gameId);
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //managin the version controlling page loading
-const loadVersionsUpdation = async function(req,res){
+const loadVersionsUpdation = async function (req, res) {
     try {
         const gameid = req.query.id;
-        res.render('newversion',{gameid});
+        res.render('newversion', { gameid });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //updating the version of game
-const versionsUpdation = async function(req,res){
+const versionsUpdation = async function (req, res) {
     try {
         const gameid = req.body.hiddenGmId;
         const gmVersion = req.body.version;
@@ -503,19 +507,20 @@ const versionsUpdation = async function(req,res){
         const platform = req.body.platform;
         const date = new Date();
         const dtFormat = date.toLocaleDateString();
-        const theGame = await GamesModel.findById({_id:gameid}); 
-        if(theGame){
-            await GamesModel.findByIdAndUpdate({_id:gameid},
-            {$addToSet:{
-                gameVersions:{
-                        version:gmVersion,
-                        dateOfVersion:dtFormat,
-                        platform:platform,
-                        aboutGame:aboutGm,
-                        versionDetails:vrsnDetails,
+        const theGame = await GamesModel.findById({ _id: gameid });
+        if (theGame) {
+            await GamesModel.findByIdAndUpdate({ _id: gameid },
+                {
+                    $addToSet: {
+                        gameVersions: {
+                            version: gmVersion,
+                            dateOfVersion: dtFormat,
+                            platform: platform,
+                            aboutGame: aboutGm,
+                            versionDetails: vrsnDetails,
+                        }
                     }
-                }
-            })
+                })
             res.redirect('/admin/games');
         }
     } catch (error) {
@@ -524,21 +529,21 @@ const versionsUpdation = async function(req,res){
 }
 
 //loding banner managin page 
-const loadBannerPage = async function(req,res){
+const loadBannerPage = async function (req, res) {
     try {
-        res.render('addBanner',{adminMessage});
+        res.render('addBanner', { adminMessage });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //psting the banner images on the databse 
-const addBannerImages = async function(req,res){
+const addBannerImages = async function (req, res) {
     try {
-        const imageFilename = req.files.map(file =>  file.filename);
+        const imageFilename = req.files.map(file => file.filename);
         console.log(imageFilename);
-        if(imageFilename){
-            await bannerModel.findOneAndUpdate({$set:{image:imageFilename}});
+        if (imageFilename) {
+            await bannerModel.findOneAndUpdate({ $set: { image: imageFilename } });
         }
         adminMessage = 'SuccesFully Uploaded the Banner Images';
         res.redirect('/admin/banner')
@@ -547,10 +552,10 @@ const addBannerImages = async function(req,res){
     }
 }
 //loading the coupon page
-const loadCouponPage = async function(req,res){
+const loadCouponPage = async function (req, res) {
     try {
         const couponCodes = await couponModel.find();
-        res.render('coupons',{couponCodes,adminMessage,sccMssg});
+        res.render('coupons', { couponCodes, adminMessage, sccMssg });
         adminMessage = '';
         sccMssg = ''
     } catch (error) {
@@ -559,12 +564,12 @@ const loadCouponPage = async function(req,res){
 }
 
 //adding new coupon in database
-const creatingCoupon = async function(req,res){
+const creatingCoupon = async function (req, res) {
     try {
         let coupon = req.body.couponCode;
         let flag = 0;
         coupon.trimEnd();
-        coupon  = coupon.toUpperCase();
+        coupon = coupon.toUpperCase();
         console.log(coupon);
         let discountAmount = req.body.discountAmount;
         const expDate = req.body.expDate;
@@ -573,30 +578,30 @@ const creatingCoupon = async function(req,res){
         let date = new Date();
         date = date.toLocaleDateString();
 
-        const coupons = await couponModel.find({},{_id:0,couponCode:1})
-        coupons.forEach((element)=>{
-            if(element.couponCode == coupon ){
+        const coupons = await couponModel.find({}, { _id: 0, couponCode: 1 })
+        coupons.forEach((element) => {
+            if (element.couponCode == coupon) {
                 flag = 1;
             }
         });
 
-        if(flag == 0){
+        if (flag == 0) {
             const newCoupon = new couponModel({
-                couponCode:coupon,
-                couponDiscount:discountAmount,
-                createdON:date,
-                expDate:expDate,
-                availability:availability,
-                minAmount:minAmount
+                couponCode: coupon,
+                couponDiscount: discountAmount,
+                createdON: date,
+                expDate: expDate,
+                availability: availability,
+                minAmount: minAmount
             });
             const couponCode = await newCoupon.save();
-            if(couponCode.availability == 'common'){
-                await userModel.updateMany({$addToSet:{coupons:couponCode.couponCode}});
-                await couponModel.findByIdAndUpdate({_id:couponCode.id},{isCommon:true});
+            if (couponCode.availability == 'common') {
+                await userModel.updateMany({ $addToSet: { coupons: couponCode.couponCode } });
+                await couponModel.findByIdAndUpdate({ _id: couponCode.id }, { isCommon: true });
             }
             sccMssg = 'Coupon Successfully Added'
             res.redirect('/admin/coupon');
-        }else{
+        } else {
             adminMessage = 'The Coupon is already there in you list'
             res.redirect('/admin/coupon');
         }
@@ -607,28 +612,28 @@ const creatingCoupon = async function(req,res){
 }
 
 //loding the coupon table 
-const loadCoponTable = async function(req,res){
+const loadCoponTable = async function (req, res) {
     try {
         const coupons = await couponModel.find();
-        const user = await userModel.find({},{_id:1,fname:1,lname:1,email:1,coupons:1});
+        const user = await userModel.find({}, { _id: 1, fname: 1, lname: 1, email: 1, coupons: 1 });
         const userCoupon = user.coupons;
-        user.forEach((element)=>{
-            element.fname = element.fname+" "+element.lname;
+        user.forEach((element) => {
+            element.fname = element.fname + " " + element.lname;
         })
-        res.render('couponTable',{coupons,user,sccMssg});
+        res.render('couponTable', { coupons, user, sccMssg });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //sending the coupons to user 
-const addingCouponsInUser = async function(req,res){
+const addingCouponsInUser = async function (req, res) {
     try {
         const couponId = req.body.id;
         const user = req.body.users;
-        const couponCode = await couponModel.findById({_id:couponId});
+        const couponCode = await couponModel.findById({ _id: couponId });
         const notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${couponCode.couponCode}`
-        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode,notifications: notification} });
+        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode, notifications: notification } });
         //get the use id and manage the array of sending the user while rendering the coupon table
         sccMssg = 'Succesfully Sent to user'
         res.redirect('/admin/coupon/table');
@@ -638,21 +643,21 @@ const addingCouponsInUser = async function(req,res){
 }
 
 //finding the coupons 
-const fidingCoupon = async function(req,res){
+const fidingCoupon = async function (req, res) {
     try {
         const coupCode = req.body.currentCoupon;
-        const theCoupon = await couponModel.find({couponCode:coupCode});
-        res.json({theCoupon})
+        const theCoupon = await couponModel.find({ couponCode: coupCode });
+        res.json({ theCoupon })
     } catch (error) {
         console.log(error.message);
     }
 }
 
 //deteing coupon
-const deleteCoupon = async function(req,res){
+const deleteCoupon = async function (req, res) {
     try {
         const coupon = req.body.deleteCoupon;
-        await couponModel.findOneAndDelete({_id:coupon});
+        await couponModel.findOneAndDelete({ _id: coupon });
         res.redirect('/admin/coupon/table');
     } catch (error) {
         console.log(error.message);
@@ -660,10 +665,10 @@ const deleteCoupon = async function(req,res){
 }
 
 //deactivaing the coupon
-const deactivateCoupon = async function(req,res){
+const deactivateCoupon = async function (req, res) {
     try {
         const coupon = req.body.deleteCoupon;
-        await couponModel.findOneAndUpdate({_id:coupon},{isActive:false});
+        await couponModel.findOneAndUpdate({ _id: coupon }, { isActive: false });
         res.redirect('/admin/coupon/table');
     } catch (error) {
         console.log(error.message);
@@ -671,10 +676,10 @@ const deactivateCoupon = async function(req,res){
 }
 
 //activating the coupon
-const activateCoupon = async function(req,res){
+const activateCoupon = async function (req, res) {
     try {
         const coupon = req.body.deleteCoupon;
-        await couponModel.findOneAndUpdate({_id:coupon},{isActive:true});
+        await couponModel.findOneAndUpdate({ _id: coupon }, { isActive: true });
         res.redirect('/admin/coupon/table');
     } catch (error) {
         console.log(error.message)
@@ -682,19 +687,19 @@ const activateCoupon = async function(req,res){
 }
 
 //findin the sales report
-const topSaleGames = async function(req,res){
+const topSaleGames = async function (req, res) {
     try {
         console.log(req.body);
-        const mostDown = await GamesModel.find({},{_id:0,name:1,downloads:1}).sort({downloads:-1}).limit(7).lean()
-        console.log(mostDown,'691')
-        let gameNames =[]
+        const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean()
+        console.log(mostDown, '691')
+        let gameNames = []
         let gameDownloades = []
-        mostDown.forEach((element)=>{
+        mostDown.forEach((element) => {
             gameNames.push(element.name)
             gameDownloades.push(element.downloads)
         })
 
-        console.log(gameNames,gameDownloades,'--692')
+        console.log(gameNames, gameDownloades, '--692')
         res.json({
             gameNames,
             gameDownloades
@@ -705,7 +710,7 @@ const topSaleGames = async function(req,res){
 }
 
 //getting the whole order data for pdf donwloading
-const getOrderData = async function(req,res){
+const getOrderData = async function (req, res) {
     try {
         const fullOrderDetails = await OrderModel.find().lean();
         res.json(fullOrderDetails);
