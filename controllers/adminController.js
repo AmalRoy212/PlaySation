@@ -572,11 +572,8 @@ const creatingCoupon = async function(req,res){
         const minAmount = req.body.mintAmount
         let date = new Date();
         date = date.toLocaleDateString();
-        console.log(req.body);
 
         const coupons = await couponModel.find({},{_id:0,couponCode:1})
-        console.log(coupons,'556 --coupon name');
-
         coupons.forEach((element)=>{
             if(element.couponCode == coupon ){
                 flag = 1;
