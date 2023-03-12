@@ -375,21 +375,26 @@
                             <thead>
                               <tr>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
-                                  <b>OrderID</b></th>
+                                  <b>OrderID</b>
+                                </th>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Game</b>
                                 </th>
                                 {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
-                                  <b>User</b></th> --}}
+                                  <b>User</b>
+                                </th> --}}
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Mail</b>
                                 </th>
                                 {{!-- <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
-                                  <b>Game</b></th> --}}
+                                  <b>Game</b>
+                                </th> --}}
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>Price</b>
                                 </th>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
-                                  <b>DisCode</b></th>
+                                  <b>DisCode</b>
+                                </th>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col">
-                                  <b>Country</b></th>
+                                  <b>Country</b>
+                                </th>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>State</b>
                                 </th>
                                 <th style="font-size: smaller;padding-left:0;padding-right:0;" scope="col"><b>View</b>
@@ -592,13 +597,115 @@
             <script>
               function downloadInvoice() {
                 fetch('/admin/order/details', {
+                  method: 'POST', // or 'PUT'
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                }).then((response)=>{})
+
+                var data = {
+                  // Customize enables you to provide your own templates
+                  // Please review the documentation for instructions and examples
+                  "customize": {
+                    //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+                  },
+                  "images": {
+                    // The logo on top of your invoice
+                    "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
+                    // The invoice background
+                    "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
+                  },
+                  // Your own data
+                  "sender": {
+                    "company": "PlayStation",
+                    "address": "15205 North Kierland Blvd. Suite 100",
+                    "zip": "85254",
+                    "city": "Scottsdale",
+                    "country": "United States"
+                    //"custom1": "custom value 1",
+                    //"custom2": "custom value 2",
+                    //"custom3": "custom value 3"
+                  },
+                  // Your recipient
+                  "client": {
+                    "company": user,
+                    "address": email,
+                    "zip": zip,
+                    "city": state,
+                    "country": country
+                    // "custom1": "custom value 1",
+                    // "custom2": "custom value 2",
+                    // "custom3": "custom value 3"
+                  },
+                  "information": {
+                    // Invoice number
+                    "number": mobile,
+                    // Invoice data
+                    "date": formattedDate,
+                    // Invoice due date
+                    "due-date": "Paid Online"
+                  },
+                  // The products you would like to see on your invoice
+                  // Total values are being calculated automatically
+                  "products": [
+                    {
+                      "quantity": 1,
+                      "description": game,
+                      "tax-rate": 0,
+                      "price": price
+                    },
+                  ],
+                  // The message you would like to display on the bottom of your invoice
+                  "bottom-notice": "Kindly pay your invoice within 15 days.",
+                  // Settings to customize your invoice
+                  "settings": {
+                    "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+                    // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
+                    // "tax-notation": "gst", // Defaults to 'vat'
+                    // "margin-top": 25, // Defaults to '25'
+                    // "margin-right": 25, // Defaults to '25'
+                    // "margin-left": 25, // Defaults to '25'
+                    // "margin-bottom": 25, // Defaults to '25'
+                    // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
+                    // "height": "1000px", // allowed units: mm, cm, in, px
+                    // "width": "500px", // allowed units: mm, cm, in, px
+                    // "orientation": "landscape", // portrait or landscape, defaults to portrait
+                  },
+                  // Translate your invoice to your preferred language
+                  "translate": {
+                    // "invoice": "FACTUUR",  // Default to 'INVOICE'
+                    // "number": "Nummer", // Defaults to 'Number'
+                    // "date": "Datum", // Default to 'Date'
+                    // "due-date": "Verloopdatum", // Defaults to 'Due Date'
+                    // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
+                    // "products": "Producten", // Defaults to 'Products'
+                    // "quantity": "Aantal", // Default to 'Quantity'
+                    // "price": "Prijs", // Defaults to 'Price'
+                    // "product-total": "Totaal", // Defaults to 'Total'
+                    // "total": "Totaal" // Defaults to 'Total'
+                  },
+                };
+
+                //Create your invoice! Easy!
+                easyinvoice.createInvoice(data, function (result) {
+                  //The response will contain a base64 encoded PDF file
+                  console.log('PDF base64 string: ', result.pdf);
+                  easyinvoice.download('PlayStation_Invoice.pdf')
+                });
+              }
+              function downloadInvoice() {
+
+                fetch('/admin/order/details', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                }).then(response => {
+                }).then((response) => {
                   return response.json();
-                }).then(fullOrderDetails => {
+                }).then((fullOrderDetails) => {
+                  console.log(fullOrderDetails);
+                  const { state, actualPrice } = fullOrderDetails[0];
+                  console.log(state, actualPrice);
                   const date = new Date();
                   const options = { year: 'numeric', month: 'long', day: 'numeric' };
                   const formattedDate = date.toLocaleDateString('en-US', options);
@@ -607,24 +714,24 @@
                     // Customize enables you to provide your own templates
                     // Please review the documentation for instructions and examples
                     "customize": {
-                        //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+                      //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
                     },
                     "images": {
-                        // The logo on top of your invoice
-                        "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
-                        // The invoice background
-                        "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
+                      // The logo on top of your invoice
+                      "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
+                      // The invoice background
+                      "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
                     },
                     // Your own data
                     "sender": {
-                        "company": "PlayStation",
-                        "address": "15205 North Kierland Blvd. Suite 100",
-                        "zip": "85254",
-                        "city": "Scottsdale",
-                        "country": "United States"
-                        //"custom1": "custom value 1",
-                        //"custom2": "custom value 2",
-                        //"custom3": "custom value 3"
+                      "company": "PlayStation",
+                      "address": "15205 North Kierland Blvd. Suite 100",
+                      "zip": "85254",
+                      "city": "Scottsdale",
+                      "country": "United States"
+                      //"custom1": "custom value 1",
+                      //"custom2": "custom value 2",
+                      //"custom3": "custom value 3"
                     },
                     // The products you would like to see on your invoice
                     // Total values are being calculated automatically
@@ -633,33 +740,33 @@
                     "bottom-notice": "Kindly pay your invoice within 15 days.",
                     // Settings to customize your invoice
                     "settings": {
-                        "currency": "USD", 
-                        // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
-                        // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
-                        // "tax-notation": "gst", // Defaults to 'vat'
-                        // "margin-top": 25, // Defaults to '25'
-                        // "margin-right": 25, // Defaults to '25'
-                        // "margin-left": 25, // Defaults to '25'
-                        // "margin-bottom": 25, // Defaults to '25'
-                        // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
-                        // "height": "1000px", // allowed units: mm, cm, in, px
-                        // "width": "500px", // allowed units: mm, cm, in, px
-                        // "orientation": "landscape", // portrait or landscape, defaults to portrait
+                      "currency": "USD",
+                      // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+                      // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
+                      // "tax-notation": "gst", // Defaults to 'vat'
+                      // "margin-top": 25, // Defaults to '25'
+                      // "margin-right": 25, // Defaults to '25'
+                      // "margin-left": 25, // Defaults to '25'
+                      // "margin-bottom": 25, // Defaults to '25'
+                      // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
+                      // "height": "1000px", // allowed units: mm, cm, in, px
+                      // "width": "500px", // allowed units: mm, cm, in, px
+                      // "orientation": "landscape", // portrait or landscape, defaults to portrait
                     },
                     // Translate your invoice to your preferred language
                     "translate": {
-                        // "invoice": "FACTUUR",  // Default to 'INVOICE'
-                        // "number": "Nummer", // Defaults to 'Number'
-                        // "date": "Datum", // Default to 'Date'
-                        // "due-date": "Verloopdatum", // Defaults to 'Due Date'
-                        // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
-                        // "products": "Producten", // Defaults to 'Products'
-                        // "quantity": "Aantal", // Default to 'Quantity'
-                        // "price": "Prijs", // Defaults to 'Price'
-                        // "product-total": "Totaal", // Defaults to 'Total'
-                        // "total": "Totaal" // Defaults to 'Total'
+                      // "invoice": "FACTUUR",  // Default to 'INVOICE'
+                      // "number": "Nummer", // Defaults to 'Number'
+                      // "date": "Datum", // Default to 'Date'
+                      // "due-date": "Verloopdatum", // Defaults to 'Due Date'
+                      // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
+                      // "products": "Producten", // Defaults to 'Products'
+                      // "quantity": "Aantal", // Default to 'Quantity'
+                      // "price": "Prijs", // Defaults to 'Price'
+                      // "product-total": "Totaal", // Defaults to 'Total'
+                      // "total": "Totaal" // Defaults to 'Total'
                     },
-                };
+                  };
                 })
               }
             </script>
