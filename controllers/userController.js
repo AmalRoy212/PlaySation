@@ -386,29 +386,30 @@ const loadHome = async function (req, res) {
     if (today[0] == "Fri") {
       await creatingCoupon(currCoupon);
       if (req.session.user) {
-        let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon}`;
-        userUp = await userModel.findByIdAndUpdate(
+        let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon} ,
+        its only valid for today grab your oppertunity`;
+        await userModel.findByIdAndUpdate(
           { _id: req.session.user },
           { $addToSet: { coupons: currCoupon, notifications: notification } }
         );
       }
     } else {
       if (req.session.user) {
-        userModel
-          .findOneAndUpdate(
+        userModel.findOneAndUpdate(
             { _id: req.session.user },
             { $pull: { coupons: currCoupon } },
             { new: true }
           )
           .then((updatedUser) => {
-            console.log(updatedUser.favorites,"-----------------------------404");
+            userUp = updatedUser
           })
           .catch((error) => {
             console.log(error);
           });
+        userUp = await userModel.findById({_id : req.session.user});
       }
     }
-    const userNot = userUp?.notifications;
+    let userNot = userUp?.notifications
     res.render("home", {
       isLoggedIn,
       gamesData,
