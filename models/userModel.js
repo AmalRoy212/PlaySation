@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema({
         type:Array,
         default:null
     },
+    notifications:{
+        type:Array,
+        default:null
+    },
     cartItems:[
         {
             gameId:{

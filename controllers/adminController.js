@@ -572,11 +572,8 @@ const creatingCoupon = async function(req,res){
         const minAmount = req.body.mintAmount
         let date = new Date();
         date = date.toLocaleDateString();
-        console.log(req.body);
 
         const coupons = await couponModel.find({},{_id:0,couponCode:1})
-        console.log(coupons,'556 --coupon name');
-
         coupons.forEach((element)=>{
             if(element.couponCode == coupon ){
                 flag = 1;
@@ -630,12 +627,11 @@ const addingCouponsInUser = async function(req,res){
         const couponId = req.body.id;
         const user = req.body.users;
         const couponCode = await couponModel.findById({_id:couponId});
-        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode } });
+        const notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${couponCode.couponCode}`
+        const theUser = await userModel.findOneAndUpdate({ email: user }, { $addToSet: { coupons: couponCode.couponCode,notifications: notification} });
         //get the use id and manage the array of sending the user while rendering the coupon table
-
         sccMssg = 'Succesfully Sent to user'
         res.redirect('/admin/coupon/table');
-        console.log('----------------617',couponId,theUser);
     } catch (error) {
         console.log(error.message);
     }

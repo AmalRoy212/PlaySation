@@ -113,7 +113,6 @@
 
   <!-- Body -->
   <body>
-
     <!-- Header -->
     <div class="agileheader" id="agileitshome">
 
@@ -169,6 +168,26 @@
                       </span>
                     </a>
                   </li>
+                  <li class="nav-item dropdown no-arrow">
+                    <a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px; background-color: rgb(0, 0, 0, 0);" class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <img style="border-radius:7px; width: 25px;height: 25px;" src="https://cdn.dribbble.com/users/1549398/screenshots/14205548/notification.png?compress=1&resize=400x300" alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right p-1 shadow animated--grow-in"
+                      aria-labelledby="searchDropdown" style="border-radius: 10px;max-height:500px;overflow-y: auto;width:300px;">
+                        {{#each userNot}}
+                          <div style="width:100%;max-height: fit-content;padding:2%;display: flex;">
+                            <img style="height:30px;width:30px;border-radius:50px;" src="https://img.freepik.com/free-psd/vr-video-game-composition_1419-2358.jpg" alt="">
+                            <p style="color:rgb(255, 255, 255);margin-left:1rem;">{{this}}</p>
+                          </div>
+                        {{/each}}
+                      {{!-- <form action="/game/search" method="post" class="navbar-search" style="display: flex;">
+                        <input style="background-color: rgba(38, 38, 38, 0.379);width:80%;border: 1px solid rgb(0, 255, 0);color: rgb(255, 255, 255);border-radius: 10px;" type="text" name="search" placeholder="Search your Favorite Games">
+                        <button type="submit" style="width:20%;background: none;border: none;color: rgb(0, 255, 0);"><ion-icon style="font-size:30px;" name="search-circle-outline"></ion-icon></button>
+                      </form> --}}
+                    </div>
+                  </li>
+
                   {{!-- <li><a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li> --}}
                   <li class="nav-item dropdown no-arrow">
                     <a style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px; background-color: rgb(0, 0, 0, 0);" class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
