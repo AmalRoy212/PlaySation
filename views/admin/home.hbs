@@ -322,7 +322,7 @@
 
 
 
-                
+
                 <div></div>
                 <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
                 <div class="dropdown no-arrow">
@@ -340,20 +340,39 @@
                   </div>
                 </div>
               </div>
-              <div class="body-body" style="height:400px;max-width: fit-content;margin-left:auto;margin-right: auto;">
-                <h5 style="color:rgb(0, 122, 0);margin:1rem;margin-left:4rem;">Most Downloads</h5>
-                <canvas class="my-4" id="myChart" ></canvas>
 
-              </div>
               {{!-- <div class="card-body">
                 <div class="chart-area">
                   <canvas id="myAreaChart">
                   </canvas>
                 </div>
               </div> --}}
-              <div class="body-body" style="height:400px;max-width: fit-content;margin:5rem;">
-                <h5 style="color:rgb(0, 122, 0);margin:1rem;margin-left:10rem;">Game Downloads</h5>
-                <canvas class="my-4 w-100" id="myChart1" height="600" width="700" ></canvas>
+              <div class="body-body" style="max-height:fit-content;max-width: fit-content;margin: 1rem;">
+                <h5 style="color:rgb(0, 122, 0);display: flex;justify-content: center;">Game Downloads</h5>
+                {{!-- form --}}
+
+
+
+
+
+
+
+
+
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="from" aria-describedby="emailHelp" placeholder="From">
+                  </div>
+                  <div class="form-group ml-1">
+                    <input type="text" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
+
+                  </div>
+                  <div class="form-group ml-1" style="display: flex;justify-content: center;">
+                    <button type="submit" onclick="getDatas()" class="btn btn-primary">Check</button>
+
+                  </div>
+
+                <canvas class="my-4 w-100" id="myChart1" height="600" width="700"></canvas>
 
               </div>
             </div>
@@ -379,6 +398,11 @@
                 </div>
               </div>
               <div class="card-body">
+                <div class="body-body" style="height:400px;max-width: fit-content;margin-left:auto;margin-right: auto;">
+                  <h5 style="color:rgb(0, 122, 0);margin:1rem;margin-left:4rem;">Most Downloads</h5>
+                  <canvas class="my-4" id="myChart"></canvas>
+
+                </div>
                 <div class="mb-3">
                   <div class="small text-gray-500">Oblong T-Shirt
                     <div class="small float-right"><b>600 of 800 Items</b></div>
@@ -532,9 +556,32 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    function getDatas() {
+      let fromInp = document.getElementById('from').value;
+      let toInp = document.getElementById('to').value;
+      console.log(fromInp ,toInp )
+      fetch('/admin/sales/update', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+           from:fromInp,
+          to:toInp
+        })
+      }).then((response) => {
+        return response.json();
+      }).then((data) => {
+        
+      })
+      
+    }
+  </script>
+  <script>
+
     graphMng();
-    async function graphMng(){
-      const response= await fetch('/admin/sales', {
+    async function graphMng() {
+      const response = await fetch('/admin/sales', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -545,73 +592,74 @@
         barChart()    
       })*/
       const data = await response.json();
-      let gameNames= data.gameNames
-      let gameDownloads =data.gameDownloades
+      let gameNames = data.gameNames
+      let gameDownloads = data.gameDownloades
+      let monthly = data.totalPrice
 
-      barChart(gameNames,gameDownloads)
-      lineChart(gameNames,gameDownloads);
+      barChart(gameNames, gameDownloads)
+      lineChart(monthly, gameNames);
     }
 
 
-    function barChart(names,downloads){
+    function barChart(names, downloads) {
 
-            const xValues = names
-            const yValues = downloads
-            const barColors = [
-                "#b91d47",
-                "#00aba9",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145",
-                "#2b579",
-                "#C7FF33"
-            ];
-            new Chart("myChart", {
-                type: "pie",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                    }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: "Category"
-                    }
-                }
-            });
+      const xValues = names
+      const yValues = downloads
+      const barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#2b579",
+        "#C7FF33"
+      ];
+      new Chart("myChart", {
+        type: "pie",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Category"
+          }
+        }
+      });
     }
-    function lineChart(names,downloads){
+    function lineChart(monthlyPrice, names) {
 
-            const xValues = names
-            const yValues = downloads
-            const barColors = [
-                "#b91d47",
-                "#00aba9",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145",
-                "#2b579",
-                "#C7FF33"
-            ];
-            new Chart("myChart1", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                    }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: "Category"
-                    }
-                }
-            });
+      const xValues = names
+      const yValues = monthlyPrice;
+      const barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#2b579",
+        "#C7FF33"
+      ];
+      new Chart("myChart1", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "Category"
+          }
+        }
+      });
     }
 
   </script>
