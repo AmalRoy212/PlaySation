@@ -755,7 +755,9 @@ async function totalSales() {
 //managin the sales report by the time period from the admin
 const generateSales = async function (req, res) {
     try {
-       
+       console.log(req.body)
+       var date1 = new Date(req.body.from)
+       console.log(date1,'date1')
         res.json({
             amal: 'amal'
         })

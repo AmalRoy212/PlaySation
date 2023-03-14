@@ -229,12 +229,13 @@ async function creatingOrder(userId, game, orderObject, razorOrder) {
     let day = date.getDate();
 
     let formattedDate = `${day}/${month}/${year}`;
+
     const userD = await userModel.findById({ _id: userId });
     const gameD = await GamesModels.findById({ _id: game });
     const newOrder = new orderModel({
       orderId: razorOrder.id,
       userId: userId,
-      orderDate: formattedDate,
+      // orderDate: formattedDate,
       gameId: game,
       userName: razorOrder.receipt,
       userMail: userD.email,
