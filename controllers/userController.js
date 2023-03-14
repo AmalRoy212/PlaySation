@@ -375,52 +375,50 @@ const verifyingUser = async function (req, res) {
 
 //rendering home
 const loadHome = async function (req, res) {
-    try {
-        let userUp;
-        let currCoupon = "BLACKFRIDAY";
-        const banner = await bannerModel.find();
-        const gamesData = await GamesModels.find().lean();
-        let today = new Date();
-        today = today.toString();
-        today = today.split(" ");
-        if (today[0] == "Fri") {
-            await creatingCoupon(currCoupon);
-            if (req.session.user) {
-                let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon} ,
-        its only valid for today grab your oppertunity`;
-                await userModel.findByIdAndUpdate(
-                    { _id: req.session.user },
-                    { $addToSet: { coupons: currCoupon, notifications: notification } }
-                );
-            }
-        } else {
-            if (req.session.user) {
-                userModel
-                    .findOneAndUpdate(
-                        { _id: req.session.user },
-                        { $pull: { coupons: currCoupon } },
-                        { new: true }
-                    )
-                    .then((updatedUser) => {
-                        userUp = updatedUser;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-                userUp = await userModel.findById({ _id: req.session.user });
-            }
-        }
-        let userNot = userUp?.notifications;
-        res.render("home", {
-            isLoggedIn,
-            gamesData,
-            cartCount,
-            banners: banner[0],
-            userNot,
-        });
-    } catch (error) {
-        console.log(error.message);
+  try {
+    let userUp;
+    let currCoupon = "BLACKFRIDAY";
+    const banner = await bannerModel.find();
+    const gamesData = await GamesModels.find().lean();
+    let today = new Date();
+    today = today.toString();
+    today = today.split(" ");
+    if (today[0] == "Fri") {
+      await creatingCoupon(currCoupon);
+      if (req.session.user) {
+        let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon}`;
+        userUp = await userModel.findByIdAndUpdate(
+          { _id: req.session.user },
+          { $addToSet: { coupons: currCoupon, notifications: notification } }
+        );
+      }
+    } else {
+      if (req.session.user) {
+        userModel
+          .findOneAndUpdate(
+            { _id: req.session.user },
+            { $pull: { coupons: currCoupon } },
+            { new: true }
+          )
+          .then((updatedUser) => {
+            console.log(updatedUser.favorites,"-----------------------------404");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
+    const userNot = userUp.notifications;
+    res.render("home", {
+      isLoggedIn,
+      gamesData,
+      cartCount,
+      banners: banner[0],
+      userNot,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 //logging out from home

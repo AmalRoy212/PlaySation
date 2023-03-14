@@ -690,19 +690,20 @@ const activateCoupon = async function (req, res) {
 const topSaleGames = async function (req, res) {
     try {
         console.log(req.body);
-        const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean()
-        console.log(mostDown, '691')
-        let gameNames = []
+        const mostDown = await GamesModel.find({},{_id:0,name:1,downloads:1}).sort({downloads:-1}).limit(7).lean()
+        console.log(mostDown,'691')
+        let gameNames =[]
         let gameDownloades = []
-        mostDown.forEach((element) => {
+        mostDown.forEach((element)=>{
             gameNames.push(element.name)
             gameDownloades.push(element.downloads)
         })
 
-        console.log(gameNames, gameDownloades, '--692')
+        console.log(gameNames,gameDownloades,'--692')
         res.json({
             gameNames,
-            gameDownloades
+            gameDownloades,
+            totalPrice
         })
     } catch (error) {
         console.log(error.message);
@@ -714,6 +715,48 @@ const getOrderData = async function (req, res) {
     try {
         const fullOrderDetails = await OrderModel.find().lean();
         res.json(fullOrderDetails);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//function for finding the monthly sales of game and revanue
+async function totalSales() {
+    try {
+        const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean();
+        const revanueMakers = await GamesModel.aggregate([
+            {
+                $project: {
+                    _id: 0,
+                    name: 1,
+                    price: 1,
+                    downloads: 1,
+                    total: { $multiply: ["$price", "$downloads"] }
+                }
+            },
+            {
+                $sort: {
+                    total: -1
+                }
+            },
+            {
+                $limit: 7
+            }
+        ]);
+        console.log(revanueMakers, '000000000______________________728');
+        return revanueMakers
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//managin the sales report by the time period from the admin
+const generateSales = async function (req, res) {
+    try {
+       
+        res.json({
+            amal: 'amal'
+        })
     } catch (error) {
         console.log(error.message);
     }
@@ -758,7 +801,8 @@ module.exports = {
     deactivateCoupon,
     activateCoupon,
     topSaleGames,
-    getOrderData
+    getOrderData,
+    generateSales
 }
 //category adding by admin
 //user products page

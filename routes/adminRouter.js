@@ -94,9 +94,9 @@ adminRouter.post('find',auth.isAdminLogin,adminController.fidingCoupon);
 adminRouter.post('/coupon/delete',adminController.deleteCoupon);
 adminRouter.post('/coupon/deactive',adminController.deactivateCoupon);
 adminRouter.post('/coupon/activate',adminController.activateCoupon);
-adminRouter.get('/sales',adminController.topSaleGames);
+adminRouter.get('/sales',auth.isAdminLogin,adminController.topSaleGames);
 adminRouter.post('/order/details',adminController.getOrderData);
-
+adminRouter.post('/sales/update',adminController.generateSales)
 
 // adminRouter.get('*',function(req,res){
 //     try {
