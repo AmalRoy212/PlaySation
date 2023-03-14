@@ -228,32 +228,32 @@ async function creatingOrder(userId, game, orderObject, razorOrder) {
         let month = date.getMonth() + 1;
         let day = date.getDate();
 
-        let formattedDate = `${day}/${month}/${year}`;
-        const userD = await userModel.findById({ _id: userId });
-        const gameD = await GamesModels.findById({ _id: game });
-        const newOrder = new orderModel({
-            orderId: razorOrder.id,
-            userId: userId,
-            orderDate: formattedDate,
-            gameId: game,
-            userName: razorOrder.receipt,
-            userMail: userD.email,
-            gameName: gameD.name,
-            actualPrice: gameD.price,
-            country: orderObject.country,
-            zipCode: orderObject.zip,
-            state: orderObject.state,
-            disCode: orderObject.discode,
-            subTotal: orderObject.subtotal,
-            discount: orderObject.discount,
-            spacialToken: orderObject.spacialtoken,
-            total: orderObject.amount,
-        });
-        const orderCompleted = await newOrder.save();
-        return orderCompleted;
-    } catch (error) {
-        console.log(error.message);
-    }
+    let formattedDate = `${day}/${month}/${year}`;
+    const userD = await userModel.findById({ _id: userId });
+    const gameD = await GamesModels.findById({ _id: game });
+    const newOrder = new orderModel({
+      orderId: razorOrder.id,
+      userId: userId,
+      orderDate: formattedDate,
+      gameId: game,
+      userName: razorOrder.receipt,
+      userMail: userD.email,
+      gameName: gameD.name,
+      actualPrice: gameD.price,
+      country: orderObject.country,
+      zipCode: orderObject.zip,
+      state: orderObject.state,
+      disCode: orderObject.discode,
+      subTotal: orderObject.subtotal,
+      discount: orderObject.discount,
+      spacialToken: orderObject.spacialtoken,
+      total: orderObject.amount,
+    });
+    const orderCompleted = await newOrder.save();
+    return orderCompleted;
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 //cart optimizing when the user click the same game twilce want to inform the user its already exist
