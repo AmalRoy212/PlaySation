@@ -406,15 +406,18 @@ const loadHome = async function (req, res) {
           .catch((error) => {
             console.log(error);
           });
+          userUp = await userModel.findById({_id:req.session.user});
       }
     }
-    const userNot = userUp.notifications;
+    //console.log("before userNot")//COMMENTED WHILE HOSTING 
+    //const userNot = userUp.notifications;
+    //console.log(userNot,"userNot")
     res.render("home", {
       isLoggedIn,
       gamesData,
       cartCount,
       banners: banner[0],
-      userNot,
+      userNot: '0',//FIX IT FIX IT FIX IT HOSTING>>>>>>>
     });
   } catch (error) {
     console.log(error.message);
