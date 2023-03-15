@@ -689,21 +689,27 @@ const activateCoupon = async function (req, res) {
 //findin the sales report
 const topSaleGames = async function (req, res) {
     try {
-        console.log(req.body);
         const mostDown = await GamesModel.find({},{_id:0,name:1,downloads:1}).sort({downloads:-1}).limit(7).lean()
-        console.log(mostDown,'691')
         let gameNames =[]
         let gameDownloades = []
         mostDown.forEach((element)=>{
             gameNames.push(element.name)
             gameDownloades.push(element.downloads)
         })
-
-        console.log(gameNames,gameDownloades,'--692')
+        const revanue = await totalSales();
+        console.log(revanue,'0___________________________700');
+        let revanueData = [];
+        let revanueGame = [];
+        revanue.forEach((element)=>{
+            revanueData.push(element.total);
+            revanueGame.push(element.name);
+        })
+        console.log(revanueData,'--692')
         res.json({
             gameNames,
             gameDownloades,
-            totalPrice
+            revanueData,
+            revanueGame
         })
     } catch (error) {
         console.log(error.message);
@@ -743,7 +749,6 @@ async function totalSales() {
                 $limit: 7
             }
         ]);
-        console.log(revanueMakers, '000000000______________________728');
         return revanueMakers
     } catch (error) {
         console.log(error.message);

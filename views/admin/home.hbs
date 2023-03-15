@@ -358,19 +358,19 @@
 
 
 
-                <div style="display: flex;">
+
+
                   <div class="form-group">
-                    <input type="date" class="form-control" id="from" aria-describedby="emailHelp" placeholder="From">
+                    <input type="text" class="form-control" id="from" aria-describedby="emailHelp" placeholder="From">
                   </div>
                   <div class="form-group ml-1">
-                    <input type="date" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
+                    <input type="text" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
 
                   </div>
                   <div class="form-group ml-1" style="display: flex;justify-content: center;">
                     <button type="submit" onclick="getDatas()" class="btn btn-primary">Check</button>
 
                   </div>
-                </div>
 
                 <canvas class="my-4 w-100" id="myChart1" height="600" width="700"></canvas>
 
@@ -559,22 +559,22 @@
     function getDatas() {
       let fromInp = document.getElementById('from').value;
       let toInp = document.getElementById('to').value;
-      console.log(fromInp, toInp)
+      console.log(fromInp ,toInp )
       fetch('/admin/sales/update', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: fromInp,
-          to: toInp
+           from:fromInp,
+           to:toInp
         })
       }).then((response) => {
         return response.json();
       }).then((data) => {
-
+        
       })
-
+      
     }
   </script>
   <script>
@@ -592,12 +592,14 @@
         barChart()    
       })*/
       const data = await response.json();
-      let gameNames = data.gameNames
-      let gameDownloads = data.gameDownloades
-      let monthly = data.totalPrice
+      console.log(data);
+      let gameNames = data.gameNames;
+      let gameDownloads = data.gameDownloades;
+      let monthlyIncome = data.revanueData;
+      let revGames = data.revanueGame;
 
       barChart(gameNames, gameDownloads)
-      lineChart(monthly, gameNames);
+      lineChart(monthlyIncome, gameNames);
     }
 
 
