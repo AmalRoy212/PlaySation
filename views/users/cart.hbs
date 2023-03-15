@@ -340,8 +340,7 @@
         <script>
             async function deletion(id) {
                 let game = document.getElementById('gameName').value
-                console.log('njan keri', id, "userid");
-                const response = await fetch('http://localhost:3000/cart-delete', {
+                const response = await fetch('/cart-delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -351,7 +350,6 @@
                     })
                 })
                 let data = await response.json();
-                console.log(data)
                 document.getElementById("hello" + id).outerHTML = ""
                 document.getElementById("cartImg").outerHTML = data.cartCount
                 document.getElementById("list").outerHTML = data.cartCount

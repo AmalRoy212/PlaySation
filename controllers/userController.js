@@ -178,7 +178,7 @@ async function sendingVerificationMail(userName, email, userID) {
             html:
                 "<p>Hii <b>" +
                 userName +
-                '</b>, Please click  here to <a href="http://localhost:3000/verify?id=' +
+                '</b>, Please click  here to <a href="http://ke4.tech/verify?id=' +
                 userID +
                 '">verify</a> you mail Your One time Password <h5>' +
                 newOtp +
@@ -234,7 +234,6 @@ async function creatingOrder(userId, game, orderObject, razorOrder) {
     const newOrder = new orderModel({
       orderId: razorOrder.id,
       userId: userId,
-      orderDate: formattedDate,
       gameId: game,
       userName: razorOrder.receipt,
       userMail: userD.email,
