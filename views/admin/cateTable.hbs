@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title></title>
 </head>
+
 <body id="page-top">
-    <div id="wrapper">
-     <!-- Sidebar -->
+  <div id="wrapper">
+    <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="/assets/img/logo/logo2.png">
+          <img src="/images/icon.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3"></div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -135,8 +140,9 @@
                 aria-labelledby="searchDropdown">
                 <form class="navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
-                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                    <input type="text" class="form-control bg-light border-1 small"
+                      placeholder="What do you want to look for?" aria-label="Search" aria-describedby="basic-addon2"
+                      style="border-color: #3f51b5;">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -281,7 +287,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="/assets/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -306,103 +312,130 @@
           </ul>
         </nav>
         <!-- Topbar -->
-    <div style="width:80%">
-      <div class="container p-0 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
-          <div class="col-xl-9" style="margin-left:25%">
-            <div class="card" style="border-radius: 15px;margin-bottom:2rem;border:1px solid grey;">
-              <div class="card-body" style="padding:2rem;margin-left:2rem;">
-                <h5 id="heading" style="display: block;">Category</h5>
-                <h6 style="color: green;">{{adminMessage}}</h6>
-                <table class="table" style="margin-right:1rem;margin-top: 1rem;">
-                        <thead>
-                            <tr>
-                            <th scope="col">Count</th>
-                            <th scope="col">Categories</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each currentCat}}
-                                <tr>
-                                    <th scope="row">#</th>
-                                    <td>{{this.gameCategory}}</td>
-                                    <td>
-                                        <li class="dropdown" style="list-style-type:none;"> 
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i style="color:green;" class="fa-solid fa-file-pen fa-2xl"></i></a>
-                                            <div class="dropdown-menu bg-info" style="border-radius:20px;margin-left:-25rem;width:500px;">
-                                                <div class="container" style="padding:1rem;">
-                                                    <form action="/admin/editCategories" method="post">
-                                                    <div style="display:flex;flex-direction:row;">
-                                                        <h4 style="width:90%;color: white;">Edit Category</h4>
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left:10px; margin-top: 4px;"><i style="color:rgb(255, 255, 255);" class="fas fa-times fa-2xl"></i></a> 
-                                                    </div>
-                                                        <div class="form-outline">
-                                                            <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Category Name</label>
-                                                            <input type="text" name="category" required type="text" style="width:100%;height:30px;" class="form-control" />
-                                                            <input type="hidden" id="hiddenId" value="{{this.id}}" name="hiddenId">
-                                                        </div>
-                                                        <input style="margin:10px;rem;margin-left:35%;" type="submit" class="btn btn-warning" value="Edit Category">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        {{!-- <button style="border:none;background:none;" onclick="showEdit()"><i style="color:green;" class="fa-solid fa-file-pen"></i></button>
-                                        <input type="hidden" name="hiddenId" id="hiddenIdget" value="{{this._id}}"> --}}
-                                        {{!-- <a style="height:20px;font-size: smaller;" href="/admin/editCategory?id={{this._id}}"></a> --}}
-                                        {{!-- <td><a style="height:20px;font-size: smaller;" href="/deleteCategory?id={{this._id}}"><i style="color:red;" class="fa-solid fa-trash"></i></a></td> --}}
+        <div style="width:80%">
+          <div class="container p-0 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+              <div class="col-xl-9" style="margin-left:25%">
+                <div class="card" style="border-radius: 15px;margin-bottom:2rem;border:1px solid grey;">
+                  <div class="card-body" style="padding:2rem;margin-left:2rem;">
+                    <h5 id="heading" style="display: block;">Category</h5>
+                    <h6 style="color: green;">{{adminMessage}}</h6>
+                    <table class="table" style="margin-right:1rem;margin-top: 1rem;">
+                      <thead>
+                        <tr>
+                          <th scope="col">Count</th>
+                          <th scope="col">Categories</th>
+                          <th scope="col">Edit</th>
+                          <th scope="col">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each currentCat}}
+                        <tr>
+                          <th scope="row">#</th>
+                          <td>{{this.gameCategory}}</td>
+                          <td>
+                            <li class="dropdown" style="list-style-type:none;">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i
+                                  style="color:green;" class="fa-solid fa-file-pen fa-2xl"></i></a>
+                              <div class="dropdown-menu bg-info"
+                                style="border-radius:20px;margin-left:-25rem;width:500px;">
+                                <div class="container" style="padding:1rem;">
+                                  <form action="/admin/editCategories" method="post">
+                                    <div style="display:flex;flex-direction:row;">
+                                      <h4 style="width:90%;color: white;">Edit Category</h4>
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                        style="font-size: x-small; padding: 0;margin-top: -3px;margin-left:10px; margin-top: 4px;"><i
+                                          style="color:rgb(255, 255, 255);" class="fas fa-times fa-2xl"></i></a>
+                                    </div>
+                                    <div class="form-outline">
+                                      <label class="form-label" style="font-size:x-small;margin:0;"
+                                        for="form2Example1">Category Name</label>
+                                      <input type="text" name="category" required type="text"
+                                        style="width:100%;height:30px;" class="form-control" />
+                                      <input type="hidden" id="hiddenId" value="{{this.id}}" name="hiddenId">
+                                    </div>
+                                    <input style="margin:10px;rem;margin-left:35%;" type="submit"
+                                      class="btn btn-warning" value="Edit Category">
+                                  </form>
+                                </div>
+                              </div>
+                            </li>
+                            {{!-- <button style="border:none;background:none;" onclick="showEdit()"><i
+                                style="color:green;" class="fa-solid fa-file-pen"></i></button>
+                            <input type="hidden" name="hiddenId" id="hiddenIdget" value="{{this._id}}"> --}}
+                            {{!-- <a style="height:20px;font-size: smaller;"
+                              href="/admin/editCategory?id={{this._id}}"></a> --}}
+                            {{!--
+                          <td><a style="height:20px;font-size: smaller;" href="/deleteCategory?id={{this._id}}"><i
+                                style="color:red;" class="fa-solid fa-trash"></i></a></td> --}}
 
-                                    </td>
-                                    <td>
-                                        <li class="dropdown" style="list-style-type:none;"> 
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i style="color:red;" class="fa-solid fa-trash fa-xl"></i></a>
-                                            <div class="dropdown-menu bg-dark" style="border-radius:20px;margin-left:-25rem;">
-                                                <div class="container" style="padding:1rem;">
-                                                    <form action="/admin/deleteCategory" method="post">
-                                                        <p style="width:300px;margin-bottom:2rem;color:white;margin-left:5rem;">Are You Sure you Want to Delete The <br><span style="margin-left:14%;color: rgb(0, 178, 0);"><span style="color:rgb(255, 255, 255);">Category </span>{{this.gameCategory}}</span> ??</p>
-                                                        <input type="hidden" name="categoryId" value="{{this._id}}" id="">
-                                                        <!-- Submit button -->
-                                                        <div style="padding-left:20%;">
-                                                            <a href="#" class="dropdown-toggle btn btn-success btn-block mb-4" data-toggle="dropdown" style="width:30%;height:27px;font-size:x-small;margin-top:-.5rem;background-color: rgb(0, 146, 0);">Cancel</a>
-                                                            <button type="submit" style="width:30%;height:27px;margin-top:-2rem;font-size:x-small;margin-left:2rem;background-color: red;" class="btn btn-danger btn-block p-0">Delete</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
+                          </td>
+                          <td>
+                            <li class="dropdown" style="list-style-type:none;">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><i
+                                  style="color:red;" class="fa-solid fa-trash fa-xl"></i></a>
+                              <div class="dropdown-menu bg-dark" style="border-radius:20px;margin-left:-25rem;">
+                                <div class="container" style="padding:1rem;">
+                                  <form action="/admin/deleteCategory" method="post">
+                                    <p style="width:300px;margin-bottom:2rem;color:white;margin-left:5rem;">Are You Sure
+                                      you Want to Delete The <br><span
+                                        style="margin-left:14%;color: rgb(0, 178, 0);"><span
+                                          style="color:rgb(255, 255, 255);">Category </span>{{this.gameCategory}}</span>
+                                      ??</p>
+                                    <input type="hidden" name="categoryId" value="{{this._id}}" id="">
+                                    <!-- Submit button -->
+                                    <div style="padding-left:20%;">
+                                      <a href="#" class="dropdown-toggle btn btn-success btn-block mb-4"
+                                        data-toggle="dropdown"
+                                        style="width:30%;height:27px;font-size:x-small;margin-top:-.5rem;background-color: rgb(0, 146, 0);">Cancel</a>
+                                      <button type="submit"
+                                        style="width:30%;height:27px;margin-top:-2rem;font-size:x-small;margin-left:2rem;background-color: red;"
+                                        class="btn btn-danger btn-block p-0">Delete</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </li>
+                          </td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
                     </table>
-              </div>
-              
-            </div>
+                  </div>
 
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <script>
-        function showEdit(){
+        <script>
+          function showEdit() {
             const cateId = document.getElementById('hiddenIdget').value
             document.getElementById('hiddenId').value = cateId
             var x = document.getElementById("editor");
             if (x.style.display === "none") {
-                x.style.display = "block";
+              x.style.display = "block";
             } else {
-                x.style.display = "none";
+              x.style.display = "none";
             }
             var y = document.getElementById("heading");
             if (y.style.display === "none") {
-                y.style.display = "block";
+              y.style.display = "block";
             } else {
-                y.style.display = "none";
+              y.style.display = "none";
             }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+          }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+          integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+          crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+          integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+          crossorigin="anonymous"></script>
 </body>
+
 </html>

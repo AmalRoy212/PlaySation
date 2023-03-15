@@ -1,42 +1,37 @@
 {{!-- <h1>Add Games</h1>
 <form action="" method="post" enctype="multipart/form-data">
-  <input type="file" name="image" required/>
+  <input type="file" name="image" required />
   <br />
   <br />
   <input type="text" name="name" id="" placeholder="Enter the name of game" required />
   <br />
   <br />
-  <input type="text" name="downloads" id="" placeholder="Downloads of game" required/>
+  <input type="text" name="downloads" id="" placeholder="Downloads of game" required />
   <br />
   <br />
   <label for="cars">Category</label>
-  <select name="category" >
+  <select name="category">
     {{#each catNames}}
-        <option value="{{this}}">{{this}}</option>
+    <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
   <br />
   <br />
-  <input
-    type="text"
-    name="price"
-    id=""
-    placeholder="Please enter the name of game"
-  />
+  <input type="text" name="price" id="" placeholder="Please enter the name of game" />
   <br>
   <br>
   <input type="submit" value="Create One">
 </form> --}}
 
 <body id="page-top">
-    <div id="wrapper">
-      <!-- Sidebar -->
+  <div id="wrapper">
+    <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="/assets/img/logo/logo2.png">
+          <img src="/images/icon.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3"></div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -155,8 +150,9 @@
                 aria-labelledby="searchDropdown">
                 <form class="navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
-                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                    <input type="text" class="form-control bg-light border-1 small"
+                      placeholder="What do you want to look for?" aria-label="Search" aria-describedby="basic-addon2"
+                      style="border-color: #3f51b5;">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -301,7 +297,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="/assets/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -326,60 +322,74 @@
           </ul>
         </nav>
         <!-- Topbar -->
-    <div style="width:80%">
-      <div class="container h-100"  style="padding-left:20%;">
-        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
-          <div class="col-xl-9" style="margin-bottom:2rem">
-            <div class="card" style=";border-radius: 15px;">
-              <div class="card-body" style="padding:2rem;margin-left:2rem;">
-                {{!-- form --}}
-                <form action="/admin/addgames" method="post" enctype="multipart/form-data">
-                  <h4>Add New Game</h4>
-                  <div class="form-outline">
-                    <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Name</label>
-                    <input type="text" name="name" required type="text" style="width: 90%;height:30px;" class="form-control" />
-                  </div>
-                  <div class="form-outline">
-                    <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Price</label>
-                    <input type="number" name="price" required type="text" style="width: 90%;height:30px;" class="form-control" />
-                  </div>
-                  <div class="form-outline">
-                    <label for="cars" style="font-size:x-small;margin:0;">Category</label>
-                    <select class="form-select" name="category" aria-placeholder="Select Category" style="width: 90%;height:40px;" aria-label="Default select example">
-                      {{#each catNames}}
+        <div style="width:80%">
+          <div class="container h-100" style="padding-left:20%;">
+            <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+              <div class="col-xl-9" style="margin-bottom:2rem">
+                <div class="card" style=";border-radius: 15px;">
+                  <div class="card-body" style="padding:2rem;margin-left:2rem;">
+                    {{!-- form --}}
+                    <form action="/admin/addgames" method="post" enctype="multipart/form-data">
+                      <h4>Add New Game</h4>
+                      <div class="form-outline">
+                        <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                          Name</label>
+                        <input type="text" name="name" required type="text" style="width: 90%;height:30px;"
+                          class="form-control" />
+                      </div>
+                      <div class="form-outline">
+                        <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Price</label>
+                        <input type="number" name="price" required type="text" style="width: 90%;height:30px;"
+                          class="form-control" />
+                      </div>
+                      <div class="form-outline">
+                        <label for="cars" style="font-size:x-small;margin:0;">Category</label>
+                        <select class="form-select" name="category" aria-placeholder="Select Category"
+                          style="width: 90%;height:40px;" aria-label="Default select example">
+                          {{#each catNames}}
                           <option value="{{this}}">{{this}}</option>
-                      {{/each}}
-                    </select>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Images</label>
-                      <input type="file" name="images" required multiple type="text" style="width: 90%;height:30px;" class="form-control"  />
-                    </div>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Designers</label>
-                      <input type="text" name="designers" required type="text" style="width: 90%;height:30px;" class="form-control" />
-                    </div>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Developers</label>
-                      <input type="text" name="developed" required type="text" style="width: 90%;height:30px;" class="form-control" />
-                    </div>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Publishers</label>
-                      <input type="text" name="publisher" required type="text" style="width: 90%;height:30px;" class="form-control" />
-                    </div>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Discriptions</label>
-                      <input type="text" name="discription" required type="text" style="width: 90%;height:100px;" class="form-control" />
-                    </div>
+                          {{/each}}
+                        </select>
+                        <div class="form-outline">
+                          <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                            Images</label>
+                          <input type="file" name="images" required multiple type="text" style="width: 90%;height:30px;"
+                            class="form-control" />
+                        </div>
+                        <div class="form-outline">
+                          <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                            Designers</label>
+                          <input type="text" name="designers" required type="text" style="width: 90%;height:30px;"
+                            class="form-control" />
+                        </div>
+                        <div class="form-outline">
+                          <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                            Developers</label>
+                          <input type="text" name="developed" required type="text" style="width: 90%;height:30px;"
+                            class="form-control" />
+                        </div>
+                        <div class="form-outline">
+                          <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                            Publishers</label>
+                          <input type="text" name="publisher" required type="text" style="width: 90%;height:30px;"
+                            class="form-control" />
+                        </div>
+                        <div class="form-outline">
+                          <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                            Discriptions</label>
+                          <input type="text" name="discription" required type="text" style="width: 90%;height:100px;"
+                            class="form-control" />
+                        </div>
+                      </div>
+                      <input style="margin: 2rem;margin-left:30%; font-size: smaller;" type="submit"
+                        class="btn btn-primary" value="Create One">
+                    </form>
                   </div>
-                  <input style="margin: 2rem;margin-left:30%; font-size: smaller;" type="submit" class="btn btn-primary" value="Create One">
-                </form>
+                </div>
+
               </div>
             </div>
-
           </div>
         </div>
-      </div>
-    </div>
-      
-  </body>
 
+</body>

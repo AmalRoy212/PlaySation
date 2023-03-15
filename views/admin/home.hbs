@@ -8,9 +8,9 @@
   <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-icon">
-        <img src="/assets/img/logo/logo2.png">
+        <img src="/images/icon.png">
       </div>
-      <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+      <div class="sidebar-brand-text mx-3"></div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
@@ -276,7 +276,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               <img class="img-profile rounded-circle" src="/assets/img/boy.png" style="max-width: 60px">
-              <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+              <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="#">
@@ -316,15 +316,7 @@
           <div class="col-xl-8 col-lg-7">
             <div class="card mb-4">
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-
-
-
-
-
-
-
-                <div></div>
-                <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Sales</h6>
                 <div class="dropdown no-arrow">
                   <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -347,31 +339,56 @@
                   </canvas>
                 </div>
               </div> --}}
-              <div class="body-body" style="max-height:fit-content;max-width: fit-content;margin: 1rem;">
-                <h5 style="color:rgb(0, 122, 0);display: flex;justify-content: center;">Game Downloads</h5>
+              <div class="body-body col-12" style="max-height:fit-content;max-width: fit-content;margin: 1rem;">
                 {{!-- form --}}
+                <div class="container">
+                  <div class="row">
+                    <div style="display: flex;">
+                      <div class="form-group">
+                        <input type="date" class="form-control" id="from" aria-describedby="emailHelp"
+                          placeholder="From">
+                      </div>
+                      <div class="form-group ml-1">
+                        <input type="date" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
 
+                      </div>
+                      <div class="form-group ml-1" style="display: flex;justify-content: center;">
+                        <button type="submit" onclick="getDatas()" class="btn btn-primary">Check</button>
 
-
-
-
-
-
-
-
-
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="from" aria-describedby="emailHelp" placeholder="From">
+                      </div>
+                    </div>
+                     <div class="mb-3">
+                      <div class="small text-gray-500"> 
+                        <span style="color: rgb(0, 176, 188);">Sales</span>
+                        <div class="small float-right" style="color: black;"><b>{{currentSales}}%</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{currentSales}}%" aria-valuenow="80"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="small text-gray-500"> 
+                        <span style="color: rgb(128, 0, 0);">Cost</span>
+                        <div class="small float-right" style="color: black;"><b>{{cost}} %</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{cost}}%" aria-valuenow="80"
+                          aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="small text-gray-500">
+                        <span style="color: green;" >Profit Margin 90'</span>
+                        <div class="small float-right" style="color: black;"><b>{{profitMargin}} %</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{profitMargin}}%"
+                          aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group ml-1">
-                    <input type="text" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
-
-                  </div>
-                  <div class="form-group ml-1" style="display: flex;justify-content: center;">
-                    <button type="submit" onclick="getDatas()" class="btn btn-primary">Check</button>
-
-                  </div>
-
+                </div>
                 <canvas class="my-4 w-100" id="myChart1" height="600" width="700"></canvas>
 
               </div>
@@ -381,7 +398,7 @@
           <div class="col-xl-4 col-lg-5">
             <div class="card mb-4">
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Most Downloads</h6>
                 <div class="dropdown no-arrow">
                   <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -399,7 +416,6 @@
               </div>
               <div class="card-body">
                 <div class="body-body" style="height:400px;max-width: fit-content;margin-left:auto;margin-right: auto;">
-                  <h5 style="color:rgb(0, 122, 0);margin:1rem;margin-left:4rem;">Most Downloads</h5>
                   <canvas class="my-4" id="myChart"></canvas>
 
                 </div>
@@ -559,22 +575,22 @@
     function getDatas() {
       let fromInp = document.getElementById('from').value;
       let toInp = document.getElementById('to').value;
-      console.log(fromInp ,toInp )
+      console.log(fromInp, toInp)
       fetch('/admin/sales/update', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-           from:fromInp,
-           to:toInp
+          from: fromInp,
+          to: toInp
         })
       }).then((response) => {
         return response.json();
       }).then((data) => {
-        
+
       })
-      
+
     }
   </script>
   <script>
@@ -647,7 +663,7 @@
         "#C7FF33"
       ];
       new Chart("myChart1", {
-        type: "bar",
+        type: "line",
         data: {
           labels: xValues,
           datasets: [{

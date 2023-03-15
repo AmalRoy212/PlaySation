@@ -1,12 +1,12 @@
 <body id="page-top">
-    <div id="wrapper">
-      <!-- Sidebar -->
+  <div id="wrapper">
+    <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="/assets/img/logo/logo2.png">
+          <img src="/images/icon.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3"></div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -125,8 +125,9 @@
                 aria-labelledby="searchDropdown">
                 <form class="navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
-                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                    <input type="text" class="form-control bg-light border-1 small"
+                      placeholder="What do you want to look for?" aria-label="Search" aria-describedby="basic-addon2"
+                      style="border-color: #3f51b5;">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -271,7 +272,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="/assets/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                <span class="ml-2 d-none d-lg-inline text-white small">Admin</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -296,29 +297,31 @@
           </ul>
         </nav>
         <!-- Topbar -->
-    <div style="width:80%">
-      <div class="container h-100"  style="padding-left:20%;">
-        <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
-          <div class="col-xl-9" style="margin-bottom:2rem">
-            <div class="card" style=";border-radius: 15px;">
-              <div class="card-body" style="padding:2rem;margin-left:2rem;">
-                {{!-- form --}}
-                <form action="/admin/videoUpload" method="post" enctype="multipart/form-data">
-                  <h4>Upload Game Video</h4>
-                    <div class="form-outline">
-                      <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game Video</label>
-                      <input type="file" name="video" required type="text" style="width: 90%;height:30px;" class="form-control"  />
-                      <input type="hidden" name="hiddenGmId" value="{{gameId}}">
-                    </div>
-                  <input style="margin: 2rem;margin-left:30%; font-size: smaller;" type="submit" class="btn btn-primary" value="Upload Video">
-                </form>
+        <div style="width:80%">
+          <div class="container h-100" style="padding-left:20%;">
+            <div class="row d-flex justify-content-center align-items-center h-100" style="padding:0'">
+              <div class="col-xl-9" style="margin-bottom:2rem">
+                <div class="card" style=";border-radius: 15px;">
+                  <div class="card-body" style="padding:2rem;margin-left:2rem;">
+                    {{!-- form --}}
+                    <form action="/admin/videoUpload" method="post" enctype="multipart/form-data">
+                      <h4>Upload Game Video</h4>
+                      <div class="form-outline">
+                        <label class="form-label" style="font-size:x-small;margin:0;" for="form2Example1">Game
+                          Video</label>
+                        <input type="file" name="video" required type="text" style="width: 90%;height:30px;"
+                          class="form-control" />
+                        <input type="hidden" name="hiddenGmId" value="{{gameId}}">
+                      </div>
+                      <input style="margin: 2rem;margin-left:30%; font-size: smaller;" type="submit"
+                        class="btn btn-primary" value="Upload Video">
+                    </form>
+                  </div>
+                </div>
+
               </div>
             </div>
-
           </div>
         </div>
-      </div>
-    </div>
-      
-  </body>
 
+</body>

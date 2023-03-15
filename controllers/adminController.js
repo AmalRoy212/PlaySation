@@ -164,7 +164,25 @@ const verfyingAdmin = async function (req, res) {
 //loading the home page of admin
 const laodAdminHome = async function (req, res) {
     try {
-        res.render('home')
+        const mnthTrgt = 100;
+        const orderModelLength = await OrderModel.countDocuments();
+        const wholeSales = await salesAnalytics()
+        let sales = wholeSales[0];
+        let profit = wholeSales[1];
+        //finding the profit percentage
+        let profitMargin = (profit / sales) * 100;
+        profitMargin = profitMargin.toFixed(2);
+        profitMargin = parseFloat(profitMargin);
+        //finding the sales percentage
+        let currentSales = (orderModelLength / mnthTrgt) * 100;
+        currentSales = currentSales.toFixed(2);
+        currentSales = parseFloat(currentSales);
+        //finding the cost/disconunts percentage
+        let cost = (sales - profit);
+        cost = (cost/sales)*100;
+        cost = cost.toFixed(2);
+        cost = parseFloat(cost);
+        res.render('home',{profitMargin,orderModelLength,currentSales,cost});
     } catch (error) {
         console.log(error.message);
     }
@@ -689,22 +707,20 @@ const activateCoupon = async function (req, res) {
 //findin the sales report
 const topSaleGames = async function (req, res) {
     try {
-        const mostDown = await GamesModel.find({},{_id:0,name:1,downloads:1}).sort({downloads:-1}).limit(7).lean()
-        let gameNames =[]
+        const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean()
+        let gameNames = []
         let gameDownloades = []
-        mostDown.forEach((element)=>{
+        mostDown.forEach((element) => {
             gameNames.push(element.name)
             gameDownloades.push(element.downloads)
         })
         const revanue = await totalSales();
-        console.log(revanue,'0___________________________700');
         let revanueData = [];
         let revanueGame = [];
-        revanue.forEach((element)=>{
+        revanue.forEach((element) => {
             revanueData.push(element.total);
             revanueGame.push(element.name);
         })
-        console.log(revanueData,'--692')
         res.json({
             gameNames,
             gameDownloades,
@@ -758,12 +774,29 @@ async function totalSales() {
 //managin the sales report by the time period from the admin
 const generateSales = async function (req, res) {
     try {
-       console.log(req.body)
-       var date1 = new Date(req.body.from)
-       console.log(date1,'date1')
+        const from = new Date(req.body.from)
+        const to = new Date(req.body.from);
+       
         res.json({
             amal: 'amal'
         })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//finding the total sale and profit of the sales 
+const salesAnalytics = async function (req, res) {
+    try {
+        let salesAmount = await OrderModel.aggregate([
+            { $group: { _id: 0, salesAmount: { $sum: "$actualPrice" } } },
+        ]);
+        let profitAmount = await OrderModel.aggregate([
+            { $group: { _id: 0, profitAmount: { $sum: "$total" } } }
+        ]);
+        salesAmount = salesAmount[0].salesAmount
+        profitAmount = profitAmount[0].profitAmount
+        return [salesAmount, profitAmount];
     } catch (error) {
         console.log(error.message);
     }
