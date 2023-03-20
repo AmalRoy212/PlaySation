@@ -492,7 +492,7 @@
             <canvas class="my-4 w-100" id="myChart2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
             <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
               style="color: rgb(0, 255, 0);display: none;"></canvas>
-            <canvas class="my-4 w-100" id="chartid4" height="350" width="750"
+            <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
               style="color: rgb(0, 255, 0);display: none;"></canvas>
 
           </div>
@@ -615,12 +615,61 @@
         return response.json();
       }).then((data) => {
         console.log(data)
-        newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
-        document.getElementById('chartid3').style.display = "block";
-        document.getElementById('myChart2').style.display = "none";
+        if (data.dataFilter == 'month') {
+          newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
+          document.getElementById('chartid3').style.display = "block";
+          document.getElementById('myChart2').style.display = "none";
+        } else {
+          newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
+          document.getElementById('chartid5').style.display = "block";
+          document.getElementById('chartid3').style.display = "none";
+          document.getElementById('myChart2').style.display = "none";
+        }
+
       })
 
       function newChart(profitOfMonth, salesOfMonth, months,) {
+        try {
+          const xValues = months;
+          const yValues = salesOfMonth;
+
+
+          const chartData = {
+            labels: xValues,
+            datasets: [{
+              label: 'Sales',
+              data: yValues
+            }, {
+              label: 'Profit',
+              data: profitOfMonth
+            }]
+          };
+
+          const chartOptions = {
+            title: {
+              display: true,
+              text: "Category"
+            }
+          };
+
+          const chartConfig = {
+            type: "bar",
+            data: chartData,
+            options: chartOptions
+          };
+
+          const chartElement = document.getElementById("chartid5");
+          if (!chartElement) {
+            throw new Error("Could not find chart canvas element");
+          }
+
+          new Chart(chartElement, chartConfig);
+
+        } catch (error) {
+          console.error("Error creating chart:", error);
+        }
+      }
+      function yearChar(profitOfMonth, salesOfMonth, months,) {
         try {
           const xValues = months;
           const yValues = salesOfMonth;
@@ -810,7 +859,7 @@
         data: {
           labels: xValues,
           datasets: [{
-            label:'Games',
+            label: 'Games',
             backgroundColor: barColors,
             data: yValues
           }]
