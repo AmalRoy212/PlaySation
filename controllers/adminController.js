@@ -904,15 +904,9 @@ const filterData = async function (req, res) {
                 salesOfMonth.push(element.salesOfMonth);
             })
             months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-            console.log(monthly, '-------------------', months, 'sorted_____________________901');
 
         } else if (dataFilter == 'year') {
             const monthly = await OrderModel.aggregate([
-                {
-                    $match: {
-                        orderDate: { $gte: new Date(from), $lte: new Date(to) }
-                    }
-                },
                 {
                     $group: {
                         _id: { year: { $year: "$orderDate" } },
@@ -920,9 +914,6 @@ const filterData = async function (req, res) {
                         salesOfMonth: { $sum: "$total" },
                     }
                 },
-                {
-                    $sort: { month: 1 }
-                }
             ])
             monthly.sort((a, b) => {
                 return a._id.year - b._id.year
@@ -932,7 +923,7 @@ const filterData = async function (req, res) {
                 salesOfMonth.push(element.salesOfMonth);
                 months.push(element._id.year);
             })
-            if(month.length < 10){
+            if(months.length < 10){
                 for (var i=0;i<5;i++){
                     months.push(months[months[months.length]+1]);
                 }

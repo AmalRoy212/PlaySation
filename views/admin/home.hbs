@@ -489,7 +489,7 @@
               <button class="btn m-1 btn-primary" style="">Download Report</button>
               <button onclick="closeWindow()" class="btn m-1 btn-warning">Close</button>
             </div>
-            <canvas class="my-4 w-100" id="myChart2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
+            <canvas class="my-4 w-100" id="myChartid2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
             <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
               style="color: rgb(0, 255, 0);display: none;"></canvas>
             <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
@@ -600,6 +600,7 @@
   <script>
     function findData(dataFilter) {
       const dataWndow = document.getElementById('chartid2');
+      const nRes = document.getElementById('noResult');
       if (dataWndow.style.display == 'none') {
         document.getElementById('chartid2').style.display = 'block';
       }
@@ -617,59 +618,22 @@
         console.log(data)
         if (data.dataFilter == 'month') {
           newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
+          document.getElementById('myChartid2').style.display = "none";
           document.getElementById('chartid3').style.display = "block";
-          document.getElementById('myChart2').style.display = "none";
-        } else {
-          newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
+          nRes.innerHTML = 'Monthly Order Details';
+          nRes.value = 'month'
+        } else if (data.dataFilter == 'year') {
+          yearChar(data.profitOfMonth, data.salesOfMonth, data.months,);
           document.getElementById('chartid5').style.display = "block";
           document.getElementById('chartid3').style.display = "none";
-          document.getElementById('myChart2').style.display = "none";
+          document.getElementById('myChartid2').style.display = "none";
+          nRes.innerHTML = 'Yearly Order Details';
+          nRes.value = 'year';
         }
 
       })
 
       function newChart(profitOfMonth, salesOfMonth, months,) {
-        try {
-          const xValues = months;
-          const yValues = salesOfMonth;
-
-
-          const chartData = {
-            labels: xValues,
-            datasets: [{
-              label: 'Sales',
-              data: yValues
-            }, {
-              label: 'Profit',
-              data: profitOfMonth
-            }]
-          };
-
-          const chartOptions = {
-            title: {
-              display: true,
-              text: "Category"
-            }
-          };
-
-          const chartConfig = {
-            type: "bar",
-            data: chartData,
-            options: chartOptions
-          };
-
-          const chartElement = document.getElementById("chartid5");
-          if (!chartElement) {
-            throw new Error("Could not find chart canvas element");
-          }
-
-          new Chart(chartElement, chartConfig);
-
-        } catch (error) {
-          console.error("Error creating chart:", error);
-        }
-      }
-      function yearChar(profitOfMonth, salesOfMonth, months,) {
         try {
           const xValues = months;
           const yValues = salesOfMonth;
@@ -705,7 +669,48 @@
           }
 
           new Chart(chartElement, chartConfig);
+          return 'completed';
+        } catch (error) {
+          console.error("Error creating chart:", error);
+        }
+      }
+      function yearChar(profitOfMonth, salesOfMonth, months,) {
+        try {
+          const xValues = months;
+          const yValues = salesOfMonth;
 
+
+          const chartData = {
+            labels: xValues,
+            datasets: [{
+              label: 'Sales',
+              data: yValues
+            }, {
+              label: 'Profit',
+              data: profitOfMonth
+            }]
+          };
+
+          const chartOptions = {
+            title: {
+              display: true,
+              text: "Category"
+            }
+          };
+
+          const chartConfig = {
+            type: "bar",
+            data: chartData,
+            options: chartOptions
+          };
+
+          const chartElement = document.getElementById("chartid5");
+          if (!chartElement) {
+            throw new Error("Could not find chart canvas element");
+          }
+
+          new Chart(chartElement, chartConfig);
+          return 'completed';
         } catch (error) {
           console.error("Error creating chart:", error);
         }
@@ -729,6 +734,7 @@
       }).then((response) => {
         return response.json();
       }).then((data) => {
+        noR.value = 'check';
         newChart(data.orderTotal, data.gameName, data.salesPerc, data.inpCost);
         document.getElementById('chartid2').style.display = "block";
         console.log(data.newDataByDate.length, '-----------------')
@@ -770,7 +776,7 @@
             options: chartOptions
           };
 
-          const chartElement = document.getElementById("myChart2");
+          const chartElement = document.getElementById("myChartid2");
           if (!chartElement) {
             throw new Error("Could not find chart canvas element");
           }
