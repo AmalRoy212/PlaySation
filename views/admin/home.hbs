@@ -341,20 +341,22 @@
               </div> --}}
               <div class="body-body col-12" style="max-height:fit-content;max-width: fit-content;margin: 1rem;">
                 {{!-- form --}}
-                <div class="container">
-                  <div class="row">
-                    <div style="display: flex;">
+                <div class="container m-0 p-0">
+                  <div class="row m-0 p-0">
+                    <div style="display: flex;" class="m-0 p-0">
                       <div class="form-group">
-                        <input type="date" class="form-control" id="from" aria-describedby="emailHelp"
+                        <input type="date" class="form-control m-1" id="from" aria-describedby="emailHelp"
                           placeholder="From">
                       </div>
                       <div class="form-group ml-1">
-                        <input type="date" class="form-control" id="to" aria-describedby="emailHelp" placeholder="To">
+                        <input type="date" class="form-control m-1" id="to" aria-describedby="emailHelp"
+                          placeholder="To">
 
                       </div>
                       <div class="form-group ml-1" style="display: flex;justify-content: center;">
-                        <button type="submit" onclick="getDatas()" class="btn btn-primary">Check</button>
-
+                        <button type="submit" onclick="getDatas()" class="btn m-1 btn-primary">Check</button>
+                        <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
+                        <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
                       </div>
                     </div>
                     <div class="mb-3">
@@ -389,7 +391,7 @@
                     </div>
                   </div>
                 </div>
-                <canvas class="my-4 w-100" id="myChart1" height="600" width="700"></canvas>
+                <canvas class="my-4 w-100" id="myChart1" height="500" width="700"></canvas>
 
               </div>
             </div>
@@ -481,12 +483,18 @@
               <h4>Sales Report</h4>
             </div>
             <div style="display: flex;">
-              <button  class="btn btn-primary" style="">Download Report</button>
-            <h4 id="noResult" style="display: flex;justify-content: center;color: rgb(120, 0, 0);width:70%;"></h4>
-            <button style="margin-left: 2rem;" onclick="closeWindow()" class="btn btn-warning">Close</button>
-
+              <h4 id="noResult" style="display: flex;justify-content: center;color: rgb(120, 0, 0);width:60%;"></h4>
+              <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
+              <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
+              <button class="btn m-1 btn-primary" style="">Download Report</button>
+              <button onclick="closeWindow()" class="btn m-1 btn-warning">Close</button>
             </div>
             <canvas class="my-4 w-100" id="myChart2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
+            <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
+              style="color: rgb(0, 255, 0);display: none;"></canvas>
+            <canvas class="my-4 w-100" id="chartid4" height="350" width="750"
+              style="color: rgb(0, 255, 0);display: none;"></canvas>
+
           </div>
         </div>
       </section>
@@ -590,6 +598,72 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    function findData(dataFilter) {
+      const dataWndow = document.getElementById('chartid2');
+      if (dataWndow.style.display == 'none') {
+        document.getElementById('chartid2').style.display = 'block';
+      }
+      fetch('/admin/data/filter', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          dataFilter: dataFilter,
+        })
+      }).then((response) => {
+        return response.json();
+      }).then((data) => {
+        console.log(data)
+        newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
+        document.getElementById('chartid3').style.display = "block";
+        document.getElementById('myChart2').style.display = "none";
+      })
+
+      function newChart(profitOfMonth, salesOfMonth, months,) {
+        try {
+          const xValues = months;
+          const yValues = salesOfMonth;
+
+
+          const chartData = {
+            labels: xValues,
+            datasets: [{
+              label: 'Sales',
+              data: yValues
+            }, {
+              label: 'Profit',
+              data: profitOfMonth
+            }]
+          };
+
+          const chartOptions = {
+            title: {
+              display: true,
+              text: "Category"
+            }
+          };
+
+          const chartConfig = {
+            type: "bar",
+            data: chartData,
+            options: chartOptions
+          };
+
+          const chartElement = document.getElementById("chartid3");
+          if (!chartElement) {
+            throw new Error("Could not find chart canvas element");
+          }
+
+          new Chart(chartElement, chartConfig);
+
+        } catch (error) {
+          console.error("Error creating chart:", error);
+        }
+      }
+    }
+  </script>
+  <script>
     function getDatas() {
       let fromInp = document.getElementById('from').value;
       let toInp = document.getElementById('to').value;
@@ -608,7 +682,7 @@
       }).then((data) => {
         newChart(data.orderTotal, data.gameName, data.salesPerc, data.inpCost);
         document.getElementById('chartid2').style.display = "block";
-        console.log(data.newDataByDate.length,'-----------------')
+        console.log(data.newDataByDate.length, '-----------------')
         if (data.newDataByDate.length == []) {
           noR.innerHTML = 'No Datas Found';
         }
@@ -642,7 +716,7 @@
           };
 
           const chartConfig = {
-            type: "bar",
+            type: "line",
             data: chartData,
             options: chartOptions
           };
@@ -736,6 +810,7 @@
         data: {
           labels: xValues,
           datasets: [{
+            label:'Games',
             backgroundColor: barColors,
             data: yValues
           }]

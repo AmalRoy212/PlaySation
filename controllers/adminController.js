@@ -9,6 +9,7 @@ const couponModel = require('../models/couponModel');
 const { findOneAndUpdate } = require('../models/adminModel');
 const fs = require('fs');
 const { start } = require('repl');
+const { months } = require('moment-timezone');
 
 
 let adminMessage;
@@ -797,14 +798,13 @@ const generateSales = async function (req, res) {
         if (req.body) {
             newDataByDate = await OrderModel.find({ orderDate: { $gte: new Date(req.body.from), $lte: new Date(req.body.to) } }).sort({ orderDate: 1 });
             if (newDataByDate) {
-                const newDate = new Date(req.body.from);
-                const month = newDate.getMonth();
-                const year = newDate.getFullYear();
-                const backDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + '01';
-                const nMonth = newDate.getMonth() + 1;
-                const toBack = year + '-' + (nMonth < 10 ? '0' + nMonth : nMonth) + '-' + '01'
+                // const newDate = new Date(req.body.from);
+                // const month = newDate.getMonth();
+                // const year = newDate.getFullYear();
+                // const backDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + '01';
+                // const nMonth = newDate.getMonth() + 1;
+                // const toBack = year + '-' + (nMonth < 10 ? '0' + nMonth : nMonth) + '-' + '01'
                 // const lastMonth = await OrderModel.find({ orderDate: { $gte: new Date(backDate), $lte: new Date(toBack) } });
-
                 let count = 1;
                 let end = 0;
                 for (var i = 1; i <= newDataByDate.length; i++) {
@@ -865,6 +865,60 @@ const salesAnalytics = async function (req, res) {
     }
 }
 
+//filtering the data by year and month
+const filterData = async function (req, res) {
+    try {
+        const dataFilter = req.body.dataFilter;
+        let profitOfMonth = [];
+        salesOfMonth = [];
+
+        if (dataFilter == 'month') {
+        const newDate = new Date();
+        const year = newDate.getFullYear();
+        const from = year + '-' + '01-' + '01';
+        const to = year + '-' + '12-' + '31'
+
+            const monthly = await OrderModel.aggregate([
+                {
+                    $match: {
+                        orderDate: { $gte: new Date(from), $lte: new Date(to) }
+                    }
+                },
+                { 
+                    $group: {
+                        _id: { year: { $year: "$orderDate" }, month: { $month: "$orderDate" } },
+                        profitOfMonth : { $sum: "$actualPrice" },
+                        salesOfMonth : { $sum: "$total" },
+                    }
+                },
+                {
+                    $sort:{month:1}
+                }
+            ])
+            monthly.sort((a,b)=>{
+                return a._id.month - b._id.month
+            })
+            monthly.forEach((element)=>{
+                profitOfMonth.push(element.profitOfMonth);
+                salesOfMonth.push(element.salesOfMonth);
+            })
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+            console.log(monthly,'-------------------',months,'sorted_____________________901');
+
+            res.json({
+                profitOfMonth,
+                salesOfMonth,
+                months
+            })
+        } else if (dataFilter == 'year') {
+
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadLogin,
     laodAdminHome,
@@ -905,7 +959,8 @@ module.exports = {
     activateCoupon,
     topSaleGames,
     getOrderData,
-    generateSales
+    generateSales,
+    filterData
 }
 //category adding by admin
 //user products page

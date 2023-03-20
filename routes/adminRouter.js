@@ -96,7 +96,8 @@ adminRouter.post('/coupon/deactive',adminController.deactivateCoupon);
 adminRouter.post('/coupon/activate',adminController.activateCoupon);
 adminRouter.get('/sales',auth.isAdminLogin,adminController.topSaleGames);
 adminRouter.post('/order/details',adminController.getOrderData);
-adminRouter.post('/sales/update',adminController.generateSales)
+adminRouter.post('/sales/update',adminController.generateSales);
+adminRouter.post('/data/filter',adminController.filterData);
 
 // adminRouter.get('*',function(req,res){
 //     try {
