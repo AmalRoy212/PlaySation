@@ -8,6 +8,7 @@ const bannerModel = require('../models/bannerModel');
 const couponModel = require('../models/couponModel');
 const { findOneAndUpdate } = require('../models/adminModel');
 const fs = require('fs');
+const { start } = require('repl');
 
 
 let adminMessage;
@@ -166,6 +167,7 @@ const laodAdminHome = async function (req, res) {
     try {
         const mnthTrgt = 100;
         const orderModelLength = await OrderModel.countDocuments();
+        const users = await userModel.countDocuments();
         const wholeSales = await salesAnalytics()
         let sales = wholeSales[0];
         let profit = wholeSales[1];
@@ -179,10 +181,10 @@ const laodAdminHome = async function (req, res) {
         currentSales = parseFloat(currentSales);
         //finding the cost/disconunts percentage
         let cost = (sales - profit);
-        cost = (cost/sales)*100;
+        cost = (cost / sales) * 100;
         cost = cost.toFixed(2);
         cost = parseFloat(cost);
-        res.render('home',{profitMargin,orderModelLength,currentSales,cost});
+        res.render('home', { profitMargin, orderModelLength, currentSales, cost, profit, users });
     } catch (error) {
         console.log(error.message);
     }
@@ -721,11 +723,23 @@ const topSaleGames = async function (req, res) {
             revanueData.push(element.total);
             revanueGame.push(element.name);
         })
+        /*IMP__________----------This not ness cos the block which hiiden in the home is going display after getting the 
+        response from the date filtered fetch call */
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        const formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+        let ordersByDate = await OrderModel.find({ orderDate: { $gte: new Date(formattedDate) } });
+        if (!ordersByDate) {
+            ordersByDate = "No Orders For Today";
+        }
         res.json({
             gameNames,
             gameDownloades,
             revanueData,
-            revanueGame
+            revanueGame,
+            ordersByDate
         })
     } catch (error) {
         console.log(error.message);
@@ -745,7 +759,7 @@ const getOrderData = async function (req, res) {
 //function for finding the monthly sales of game and revanue
 async function totalSales() {
     try {
-        const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean();
+        // const mostDown = await GamesModel.find({}, { _id: 0, name: 1, downloads: 1 }).sort({ downloads: -1 }).limit(7).lean();
         const revanueMakers = await GamesModel.aggregate([
             {
                 $project: {
@@ -771,14 +785,63 @@ async function totalSales() {
     }
 }
 
-//managin the sales report by the time period from the admin
+//managing the sales report by the time period
 const generateSales = async function (req, res) {
     try {
-        const from = new Date(req.body.from)
-        const to = new Date(req.body.from);
-       
+        let newDataByDate;
+        let orderTotal = [];
+        let gameName = [];
+        let salesPerc = [];
+        let inpCost = [];
+
+        if (req.body) {
+            newDataByDate = await OrderModel.find({ orderDate: { $gte: new Date(req.body.from), $lte: new Date(req.body.to) } }).sort({ orderDate: 1 });
+            if (newDataByDate) {
+                const newDate = new Date(req.body.from);
+                const month = newDate.getMonth();
+                const year = newDate.getFullYear();
+                const backDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + '01';
+                const nMonth = newDate.getMonth() + 1;
+                const toBack = year + '-' + (nMonth < 10 ? '0' + nMonth : nMonth) + '-' + '01'
+                // const lastMonth = await OrderModel.find({ orderDate: { $gte: new Date(backDate), $lte: new Date(toBack) } });
+
+                let count = 1;
+                let end = 0;
+                for (var i = 1; i <= newDataByDate.length; i++) {
+                    let sum = 0;
+                    let lstum = 0;
+                    let cost = 0;
+                    let strt = 1 * i;
+                    i = count * 10;
+                    end = i
+                    for (var j = strt - 1; j < i; j++) {
+                        if (j < newDataByDate.length) {
+                            sum = sum + newDataByDate[j].actualPrice;
+                            lstum = lstum + newDataByDate[j].total;
+                            cost = newDataByDate[j].actualPrice - newDataByDate[j].total;
+                        }
+                        else
+                            break;
+                    }
+                    // if(count * 10 >= newDataByDate.length ){
+                    //     const nend = newDataByDate.length % 10 ;
+                    //     end = end - nend;
+                    // }
+                    inpCost.push(cost);
+                    salesPerc.push(lstum);
+                    orderTotal.push(sum);
+                    gameName[count - 1] = strt + ' to ' + end + ' Days';
+                    count++;
+
+                }
+            }
+        }
         res.json({
-            amal: 'amal'
+            newDataByDate,
+            orderTotal,
+            gameName,
+            salesPerc,
+            inpCost,
         })
     } catch (error) {
         console.log(error.message);

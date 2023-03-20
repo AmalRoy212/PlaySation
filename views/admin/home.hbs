@@ -357,29 +357,29 @@
 
                       </div>
                     </div>
-                     <div class="mb-3">
-                      <div class="small text-gray-500"> 
+                    <div class="mb-3">
+                      <div class="small text-gray-500">
                         <span style="color: rgb(0, 176, 188);">Sales</span>
                         <div class="small float-right" style="color: black;"><b>{{currentSales}}%</b></div>
                       </div>
                       <div class="progress" style="height: 12px;">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: {{currentSales}}%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <div class="small text-gray-500"> 
-                        <span style="color: rgb(128, 0, 0);">Cost</span>
-                        <div class="small float-right" style="color: black;"><b>{{cost}} %</b></div>
-                      </div>
-                      <div class="progress" style="height: 12px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{cost}}%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{currentSales}}%"
+                          aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                     <div class="mb-3">
                       <div class="small text-gray-500">
-                        <span style="color: green;" >Profit Margin 90'</span>
+                        <span style="color: rgb(128, 0, 0);">Cost</span>
+                        <div class="small float-right" style="color: black;"><b>{{cost}} %</b></div>
+                      </div>
+                      <div class="progress" style="height: 12px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{cost}}%"
+                          aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <div class="small text-gray-500">
+                        <span style="color: green;">Profit Margin 90'</span>
                         <div class="small float-right" style="color: black;"><b>{{profitMargin}} %</b></div>
                       </div>
                       <div class="progress" style="height: 12px;">
@@ -472,6 +472,24 @@
           </div>
         </div>
       </div>
+      <section>
+        <div
+          style="display: none;width:100%;position: fixed;top:0%;padding-top:5%;background-color: rgba(255, 255, 255, 0.5);z-index:3;height:100%;"
+          id="chartid2">
+          <div style="background-color: #d1d1d1;float: left;width:80%;height:100%;">
+            <div style="display: flex;justify-content: center;">
+              <h4>Sales Report</h4>
+            </div>
+            <div style="display: flex;">
+              <button  class="btn btn-primary" style="">Download Report</button>
+            <h4 id="noResult" style="display: flex;justify-content: center;color: rgb(120, 0, 0);width:70%;"></h4>
+            <button style="margin-left: 2rem;" onclick="closeWindow()" class="btn btn-warning">Close</button>
+
+            </div>
+            <canvas class="my-4 w-100" id="myChart2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
+          </div>
+        </div>
+      </section>
 
       <div class="row mb-3">
         <!-- Earnings (Monthly) Card Example -->
@@ -481,7 +499,7 @@
               <div class="row align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">${{profit}}</div>
                   <div class="mt-2 mb-0 text-muted text-xs">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                     <span>Since last month</span>
@@ -501,7 +519,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{orderModelLength}}</div>
                   <div class="mt-2 mb-0 text-muted text-xs">
                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
                     <span>Since last years</span>
@@ -521,7 +539,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{users}}</div>
                   <div class="mt-2 mb-0 text-muted text-xs">
                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
                     <span>Since last month</span>
@@ -575,7 +593,7 @@
     function getDatas() {
       let fromInp = document.getElementById('from').value;
       let toInp = document.getElementById('to').value;
-      console.log(fromInp, toInp)
+      let noR = document.getElementById('noResult');
       fetch('/admin/sales/update', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -588,9 +606,63 @@
       }).then((response) => {
         return response.json();
       }).then((data) => {
-
+        newChart(data.orderTotal, data.gameName, data.salesPerc, data.inpCost);
+        document.getElementById('chartid2').style.display = "block";
+        console.log(data.newDataByDate.length,'-----------------')
+        if (data.newDataByDate.length == []) {
+          noR.innerHTML = 'No Datas Found';
+        }
       })
 
+      function newChart(monthlyPrice, names, salesPerc, inpCost) {
+        try {
+          const xValues = names;
+          const yValues = monthlyPrice;
+
+
+          const chartData = {
+            labels: xValues,
+            datasets: [{
+              label: 'Sales',
+              data: yValues
+            }, {
+              label: 'Cost',
+              data: inpCost
+            }, {
+              label: 'Profit',
+              data: salesPerc
+            }]
+          };
+
+          const chartOptions = {
+            title: {
+              display: true,
+              text: "Category"
+            }
+          };
+
+          const chartConfig = {
+            type: "bar",
+            data: chartData,
+            options: chartOptions
+          };
+
+          const chartElement = document.getElementById("myChart2");
+          if (!chartElement) {
+            throw new Error("Could not find chart canvas element");
+          }
+
+          new Chart(chartElement, chartConfig);
+        } catch (error) {
+          console.error("Error creating chart:", error);
+        }
+      }
+
+
+    }
+    function closeWindow() {
+      window.location.reload();
+      document.getElementById('chartid2').style.display = "none";
     }
   </script>
   <script>
@@ -602,24 +674,21 @@
         headers: {
           'Content-Type': 'application/json',
         },
-      })/*.then(response => {
-        return response.json();
-      }).then(data => {  
-        barChart()    
-      })*/
+      })
       const data = await response.json();
       console.log(data);
       let gameNames = data.gameNames;
       let gameDownloads = data.gameDownloades;
       let monthlyIncome = data.revanueData;
       let revGames = data.revanueGame;
+      let ordersData = data.ordersByDate
 
-      barChart(gameNames, gameDownloads)
+      pieChart(gameNames, gameDownloads)
       lineChart(monthlyIncome, gameNames);
     }
 
 
-    function barChart(names, downloads) {
+    function pieChart(names, downloads) {
 
       const xValues = names
       const yValues = downloads
@@ -679,5 +748,7 @@
         }
       });
     }
+
+
 
   </script>

@@ -223,12 +223,6 @@ async function validatingOtp(currentOtp, userOtp) {
 //creating a new order
 async function creatingOrder(userId, game, orderObject, razorOrder) {
     try {
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
-
-    let formattedDate = `${day}/${month}/${year}`;
     const userD = await userModel.findById({ _id: userId });
     const gameD = await GamesModels.findById({ _id: game });
     const newOrder = new orderModel({
