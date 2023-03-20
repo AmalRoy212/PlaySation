@@ -871,12 +871,13 @@ const filterData = async function (req, res) {
         const dataFilter = req.body.dataFilter;
         let profitOfMonth = [];
         salesOfMonth = [];
+        let months = [];
 
         if (dataFilter == 'month') {
-        const newDate = new Date();
-        const year = newDate.getFullYear();
-        const from = year + '-' + '01-' + '01';
-        const to = year + '-' + '12-' + '31'
+            const newDate = new Date();
+            const year = newDate.getFullYear();
+            const from = year + '-' + '01-' + '01';
+            const to = year + '-' + '12-' + '31'
 
             const monthly = await OrderModel.aggregate([
                 {
@@ -884,35 +885,58 @@ const filterData = async function (req, res) {
                         orderDate: { $gte: new Date(from), $lte: new Date(to) }
                     }
                 },
-                { 
+                {
                     $group: {
                         _id: { year: { $year: "$orderDate" }, month: { $month: "$orderDate" } },
-                        profitOfMonth : { $sum: "$actualPrice" },
-                        salesOfMonth : { $sum: "$total" },
+                        profitOfMonth: { $sum: "$actualPrice" },
+                        salesOfMonth: { $sum: "$total" },
                     }
                 },
                 {
-                    $sort:{month:1}
+                    $sort: { month: 1 }
                 }
             ])
-            monthly.sort((a,b)=>{
+            monthly.sort((a, b) => {
                 return a._id.month - b._id.month
             })
-            monthly.forEach((element)=>{
+            monthly.forEach((element) => {
                 profitOfMonth.push(element.profitOfMonth);
                 salesOfMonth.push(element.salesOfMonth);
             })
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-            console.log(monthly,'-------------------',months,'sorted_____________________901');
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-            res.json({
-                profitOfMonth,
-                salesOfMonth,
-                months
-            })
         } else if (dataFilter == 'year') {
-
+            const monthly = await OrderModel.aggregate([
+                {
+                    $group: {
+                        _id: { year: { $year: "$orderDate" } },
+                        profitOfMonth: { $sum: "$actualPrice" },
+                        salesOfMonth: { $sum: "$total" },
+                    }
+                },
+            ])
+            monthly.sort((a, b) => {
+                return a._id.year - b._id.year
+            })
+            monthly.forEach((element) => {
+                profitOfMonth.push(element.profitOfMonth);
+                salesOfMonth.push(element.salesOfMonth);
+                months.push(element._id.year);
+            })
+            if(months.length < 10){
+                for (var i=0;i<5;i++){
+                    months.push(months[months[months.length]+1]);
+                }
+            }
         }
+
+
+        res.json({
+            profitOfMonth,
+            salesOfMonth,
+            months,
+            dataFilter
+        })
 
     } catch (error) {
         console.log(error.message);
