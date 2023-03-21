@@ -920,17 +920,15 @@ const filterData = async function (req, res) {
             })
             monthly.forEach((element) => {
                 profitOfMonth.push(element.profitOfMonth);
-                salesOfMonth.push(element.salesOfMonth);
+                salesOfMonth.push(element.profitOfMonth - element.salesOfMonth);
                 months.push(element._id.year);
             })
             if(months.length < 10){
-                for (var i=0;i<5;i++){
-                    months.push(months[months[months.length]+1]);
+                for (var i= months.length;i<10;i++){
+                    months.push(months[months.length-1]+1);
                 }
             }
         }
-
-
         res.json({
             profitOfMonth,
             salesOfMonth,
@@ -938,6 +936,87 @@ const filterData = async function (req, res) {
             dataFilter
         })
 
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+// rendering the pdf page
+// async function loadPdf(req,res){
+//     try {
+//         res.render('pdf');
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
+//managing datas and sending to the new page
+const downloadOrderPdf = async function(req,res){
+    try {
+        const filterType = req.body.dataFilter;
+        let monthly ;
+        if (filterType == 'month') {
+            const newDate = new Date();
+            const year = newDate.getFullYear();
+            const from = year + '-' + '01-' + '01';
+            const to = year + '-' + '12-' + '31'
+
+            monthly = await OrderModel.aggregate([
+                {
+                    $match: {
+                        orderDate: { $gte: new Date(from), $lte: new Date(to) }
+                    }
+                },
+                {
+                    $group: {
+                        _id: { year: { $year: "$orderDate" }, month: { $month: "$orderDate" } },
+                        profitOfMonth: { $sum: "$actualPrice" },
+                        salesOfMonth: { $sum: "$total" },
+                        salesCOunt:{ $sum:1}
+                    }
+                },
+                {
+                    $sort: { month: 1 }
+                }
+            ]);
+            monthly.sort((a, b) => {
+                return a._id.month - b._id.month
+            });
+
+        } else if (filterType == 'year') {
+            monthly = await OrderModel.aggregate([
+                {
+                    $group: {
+                        _id: { year: { $year: "$orderDate" } },
+                        profitOfMonth: { $sum: "$actualPrice" },
+                        salesOfMonth: { $sum: "$total" },
+                        salesCOunt:{ $sum:1}
+                    }
+                },
+            ]);
+            monthly.sort((a, b) => {
+                return a._id.year - b._id.year
+            });
+            
+        }else if(filterType == 'check'){
+            monthly = await OrderModel.aggregate([
+                {
+                  $match: {
+                    orderDate: { $gte: new Date(req.body.from), $lte: new Date(req.body.to) }
+                  }
+                },
+                {
+                    $project:{ _id:0 }
+                },
+              ]);
+            // monthly = await OrderModel.find({ orderDate: { $gte: new Date(req.body.from), $lte: new Date(req.body.to) } }).sort({ orderDate: 1 });
+
+        }
+        console.log(monthly,'-_________________1003');
+        res.json({
+            monthly,
+            filterType
+        })
     } catch (error) {
         console.log(error.message);
     }
@@ -984,7 +1063,8 @@ module.exports = {
     topSaleGames,
     getOrderData,
     generateSales,
-    filterData
+    filterData,
+    downloadOrderPdf
 }
 //category adding by admin
 //user products page

@@ -98,6 +98,7 @@ adminRouter.get('/sales',auth.isAdminLogin,adminController.topSaleGames);
 adminRouter.post('/order/details',adminController.getOrderData);
 adminRouter.post('/sales/update',adminController.generateSales);
 adminRouter.post('/data/filter',adminController.filterData);
+adminRouter.post('/order/pdf',adminController.downloadOrderPdf)
 
 // adminRouter.get('*',function(req,res){
 //     try {

@@ -3,6 +3,11 @@
 <a href="/admin/games">Games</a>
 <a href="">Users</a> --}}
 
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
 <div id="wrapper">
   <!-- Sidebar -->
   <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -475,29 +480,101 @@
         </div>
       </div>
       <section>
-        <div
+        {{!-- <div
           style="display: none;width:100%;position: fixed;top:0%;padding-top:5%;background-color: rgba(255, 255, 255, 0.5);z-index:3;height:100%;"
           id="chartid2">
           <div style="background-color: #d1d1d1;float: left;width:80%;height:100%;">
             <div style="display: flex;justify-content: center;">
-              <h4>Sales Report</h4>
+              <h4 style="color: green;">Sales Report</h4>
             </div>
             <div style="display: flex;">
-              <h4 id="noResult" style="display: flex;justify-content: center;color: rgb(120, 0, 0);width:60%;"></h4>
+              <h5 id="noResult" style="display: flex;justify-content: start;color: rgb(0, 0, 0);width:60%;"></h5>
               <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
               <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
-              <button class="btn m-1 btn-primary" style="">Download Report</button>
+              <button onclick="gotoDownload()" class="btn m-1 btn-primary" style="">Download Report</button>
               <button onclick="closeWindow()" class="btn m-1 btn-warning">Close</button>
             </div>
             <canvas class="my-4 w-100" id="myChartid2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
             <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
-              style="color: rgb(0, 255, 0);display: none;"></canvas>
+              style="color: rgb(0, 137, 11);display: none;"></canvas>
             <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
-              style="color: rgb(0, 255, 0);display: none;"></canvas>
-
+              style="color: rgba(34, 255, 0, 0.738);display: none;"></canvas>
           </div>
-        </div>
+        </div> --}}
       </section>
+
+      <div style="display: none;width:100%;height:100%;background-color: rgba(9, 9, 9, 0.634);position: absolute;left: 0;top:0;z-index:3;" id="hidder">
+        <div
+        style="position: fixed;top:0%;background-color: rgba(0, 0, 0, 0.595); display: none;z-index:5;justify-content: center;height:90%;left:0rem;width:95%;overflow: auto;margin:2%;border-radius:20px;"
+        id="chartid2" class="p2">
+        <div style="display: flex;justify-content: end;padding: 2%;">
+              <h5 id="noResult" style="display: flex;justify-content: center;color: rgb(26, 255, 0);width:60%;" class="p-1"></h5>
+              <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
+              <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
+              <button onclick="gotoDownload()" class="btn m-1 btn-primary" style="">Download Report</button>
+              <button onclick="closeWindow()" class="btn m-1 btn-warning" style="margin-right: 1rem;">Close</button>
+            </div>
+        <div style="background-color: #00000094;float: left;width:80%;height:100%;padding: 1rem;margin-left:3%;border-radius: 20px;">
+            <div style="display: flex;justify-content: center;">
+              <canvas class="my-4 w-100" id="myChartid2" height="350" width="750" style="color: rgb(0, 187, 0);"></canvas>
+            <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
+              style="color: rgb(0, 137, 11);display: none;"></canvas>
+            <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
+              style="color: rgba(34, 255, 0, 0.738);display: none;"></canvas>
+            </div>
+          </div>
+        {{!-- <button style="position: absolute; top:13%;background:none;color:white;border:none;"
+          id="close-button"><span><ion-icon style="font-size:25px;"
+              name="close-circle-outline"></ion-icon></span></button> --}}
+      </div>
+      <div
+        style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(95, 95, 95, 0.625); display: none;z-index:5;justify-content: center;height:85%;left: 0;width:90%;overflow: auto;margin:2%;border-radius:20px;margin-left: 3rem;margin-top:3rem;"
+        id="hidden-data">
+        <section class="rounded-3" style="background-color: #6e6e6e;position: absolute;top:2rem;width:90%;">
+          <div class="text-center container-fluid p-0 m-0">
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-default">
+                  <div style="display: flex;justify-content: end;">
+                    <button id="download" class="btn m-1 p-1 btn-primary" style=""><span><ion-icon class="m-1 mt-2"
+                          style="font-size: 20px;font-weight: 100;"
+                          name="cloud-download-outline"></ion-icon></span></button>
+                    <button onclick="closeWindow()" class="btn m-1 btn-warning">X</button>
+                  </div>
+                  <div class="card-body" id="invoice">
+                    <div>
+                      <div class="d-flex justify-content-center">
+                        <h5 class="eniac-text text-primary"><span style="color: green;">playStation</span>
+                          Ke4.tech.</h5>
+
+                      </div>
+                      <table id="reportsTable" class="table nowrap" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>Sl</th>
+                            <th>Order Date</th>
+                            <th>Sales</th>
+                            <th>Profit</th>
+                            <th>Cost</th>
+                            <th style="display: none;" id="orCount">Orders</th>
+                          </tr>
+                        </thead>
+                        <tbody class="tb-data">
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {{!-- <button style="position: absolute; top:13%;background:none;color:white;border:none;"
+          id="close-button"><span><ion-icon style="font-size:25px;"
+              name="close-circle-outline"></ion-icon></span></button> --}}
+      </div>
+      </div>
 
       <div class="row mb-3">
         <!-- Earnings (Monthly) Card Example -->
@@ -596,13 +673,116 @@
       <!-- Footer -->
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    let bg = document.getElementById('chartid2');
+    bg.addEventListener('mouseenter', () => {
+      document.body.style.overflow = 'hidden';
+    })
+  </script>
+
+  <script>
+    window.onload = function () {
+      document.getElementById("download")
+        .addEventListener("click", () => {
+          const invoice = this.document.getElementById("invoice");
+          //   console.log(invoice);
+          //   console.log(window);
+          var opt = {
+            margin: 1,
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+          };
+          html2pdf().from(invoice).set(opt).save();
+        })
+    }
+  </script>
+  <script>
+    function gotoDownload() {
+      let filterType = document.getElementById('noResult').value;
+      let tb = document.querySelector('.tb-data');
+      let hidden = document.getElementById('hidden-data');
+      let from = document.getElementById('from').value;
+      let to = document.getElementById('to').value;
+      let countSale = document.getElementById('orCount');
+
+      console.log(filterType, '____________695');
+      fetch('/admin/order/pdf', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          dataFilter: filterType,
+          from,
+          to
+        })
+      }).then((response) => {
+        return response.json();
+      }).then((data) => {
+        console.log(data.monthly);
+        let formattedDates = [];
+        if (data.filterType == 'check') {
+          document.querySelector('.tb-data').innerHTML = ' ';
+          formattedDates = data.monthly.map((element) => {
+            const date = new Date(element.orderDate);
+            return date.toLocaleDateString();
+          });
+          countSale.style.display = 'none';
+          data.monthly.forEach((element, index) => {
+            tb.innerHTML +=
+              `<tbody>
+              <tr>
+                <td>#${index + 1}</td>
+                <td>${formattedDates[index]}</td>
+                <td>₹ ${element.actualPrice}</td>
+                <td>₹ ${element.total}</td>
+                <td>₹ ${(element.actualPrice - element.total).toFixed(2)}</td>
+              </tr>
+            </tbody>`
+          })
+        } else {
+          countSale.style.display = 'block'
+          document.querySelector('.tb-data').innerHTML = ' ';
+          let years = []
+          data.monthly.forEach((element, index) => {
+            let date = element._id.month ? '01' + '-' + (element._id.month < 10 ? '0' + element._id.month : element._id.month) + '-' + element._id.year : element._id.year;
+            console.log(date, '------------------------------722');
+            years.push(date);
+          })
+          data.monthly.forEach((element, index) => {
+            tb.innerHTML +=
+              `<tbody>
+              <tr>
+                <td>#${index + 1}</td>
+                <td>${years[index]}</td>
+                <td>₹ ${element.profitOfMonth}</td>
+                <td>₹ ${element.salesOfMonth}</td>
+                <td>₹ ${(element.profitOfMonth - element.salesOfMonth).toFixed(2)}</td>
+                <td>₹ ${element.salesCOunt}</td>
+              </tr>
+            </tbody>`
+          })
+        }
+        hidden.style.display = 'block';
+      });
+    }
+
+  </script>
   <script>
     function findData(dataFilter) {
       const dataWndow = document.getElementById('chartid2');
       const nRes = document.getElementById('noResult');
       if (dataWndow.style.display == 'none') {
         document.getElementById('chartid2').style.display = 'block';
+        document.getElementById('hidder').style.display = "block";
       }
       fetch('/admin/data/filter', {
         method: 'POST', // or 'PUT'
@@ -615,18 +795,18 @@
       }).then((response) => {
         return response.json();
       }).then((data) => {
-        console.log(data)
         if (data.dataFilter == 'month') {
           newChart(data.profitOfMonth, data.salesOfMonth, data.months,);
           document.getElementById('myChartid2').style.display = "none";
+          document.getElementById('chartid5').style.display = "none";
           document.getElementById('chartid3').style.display = "block";
           nRes.innerHTML = 'Monthly Order Details';
           nRes.value = 'month'
         } else if (data.dataFilter == 'year') {
           yearChar(data.profitOfMonth, data.salesOfMonth, data.months,);
-          document.getElementById('chartid5').style.display = "block";
           document.getElementById('chartid3').style.display = "none";
           document.getElementById('myChartid2').style.display = "none";
+          document.getElementById('chartid5').style.display = "block";
           nRes.innerHTML = 'Yearly Order Details';
           nRes.value = 'year';
         }
@@ -683,15 +863,30 @@
           const chartData = {
             labels: xValues,
             datasets: [{
-              label: 'Sales',
-              data: yValues
+              label: 'Margin Profit',
+              data: profitOfMonth,
+              backgroundColor: [
+                'rgba(0, 73, 137, 0.681)'
+              ]
             }, {
-              label: 'Profit',
-              data: profitOfMonth
+              label: 'Cost',
+              data: yValues,
+              backgroundColor: [
+                'rgba(200, 0, 0, 0.681)',
+              ]
             }]
           };
-
           const chartOptions = {
+            scales: {
+              x: {
+                stacked: true,
+              },
+              y: {
+                stacked: true,
+                biginAtZero: true
+              }
+
+            },
             title: {
               display: true,
               text: "Category"
@@ -701,7 +896,7 @@
           const chartConfig = {
             type: "bar",
             data: chartData,
-            options: chartOptions
+            options: chartOptions,
           };
 
           const chartElement = document.getElementById("chartid5");
@@ -722,6 +917,8 @@
       let fromInp = document.getElementById('from').value;
       let toInp = document.getElementById('to').value;
       let noR = document.getElementById('noResult');
+      document.getElementById('from').value = fromInp;
+      document.getElementById('to').value = toInp
       fetch('/admin/sales/update', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -737,6 +934,7 @@
         noR.value = 'check';
         newChart(data.orderTotal, data.gameName, data.salesPerc, data.inpCost);
         document.getElementById('chartid2').style.display = "block";
+        document.getElementById('hidder').style.display = "block";
         console.log(data.newDataByDate.length, '-----------------')
         if (data.newDataByDate.length == []) {
           noR.innerHTML = 'No Datas Found';
@@ -790,8 +988,15 @@
 
     }
     function closeWindow() {
-      window.location.reload();
-      document.getElementById('chartid2').style.display = "none";
+      const hidden = document.getElementById('hidden-data');
+      if (hidden.style.display == 'block')
+        hidden.style.display = 'none';
+      else {
+        window.location.reload();
+        document.getElementById('chartid2').style.display = "none";
+        document.getElementById('hidder').style.display = "none";
+      }
+
     }
   </script>
   <script>
