@@ -479,101 +479,80 @@
           </div>
         </div>
       </div>
-      <section>
-        {{!-- <div
-          style="display: none;width:100%;position: fixed;top:0%;padding-top:5%;background-color: rgba(255, 255, 255, 0.5);z-index:3;height:100%;"
-          id="chartid2">
-          <div style="background-color: #d1d1d1;float: left;width:80%;height:100%;">
-            <div style="display: flex;justify-content: center;">
-              <h4 style="color: green;">Sales Report</h4>
-            </div>
-            <div style="display: flex;">
-              <h5 id="noResult" style="display: flex;justify-content: start;color: rgb(0, 0, 0);width:60%;"></h5>
-              <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
-              <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
-              <button onclick="gotoDownload()" class="btn m-1 btn-primary" style="">Download Report</button>
-              <button onclick="closeWindow()" class="btn m-1 btn-warning">Close</button>
-            </div>
-            <canvas class="my-4 w-100" id="myChartid2" height="350" width="750" style="color: rgb(0, 255, 0);"></canvas>
-            <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
-              style="color: rgb(0, 137, 11);display: none;"></canvas>
-            <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
-              style="color: rgba(34, 255, 0, 0.738);display: none;"></canvas>
-          </div>
-        </div> --}}
-      </section>
 
-      <div style="display: none;width:100%;height:100%;background-color: rgba(9, 9, 9, 0.634);position: absolute;left: 0;top:0;z-index:3;" id="hidder">
-        <div
-        style="position: fixed;top:0%;background-color: rgba(0, 0, 0, 0.595); display: none;z-index:5;justify-content: center;height:90%;left:0rem;width:95%;overflow: auto;margin:2%;border-radius:20px;"
-        id="chartid2" class="p2">
-        <div style="display: flex;justify-content: end;padding: 2%;">
-              <h5 id="noResult" style="display: flex;justify-content: center;color: rgb(26, 255, 0);width:60%;" class="p-1"></h5>
-              <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
-              <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
-              <button onclick="gotoDownload()" class="btn m-1 btn-primary" style="">Download Report</button>
-              <button onclick="closeWindow()" class="btn m-1 btn-warning" style="margin-right: 1rem;">Close</button>
-            </div>
-        <div style="background-color: #00000094;float: left;width:80%;height:100%;padding: 1rem;margin-left:3%;border-radius: 20px;">
-            <div style="display: flex;justify-content: center;">
-              <canvas class="my-4 w-100" id="myChartid2" height="350" width="750" style="color: rgb(0, 187, 0);"></canvas>
-            <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
-              style="color: rgb(0, 137, 11);display: none;"></canvas>
-            <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
-              style="color: rgba(34, 255, 0, 0.738);display: none;"></canvas>
-            </div>
-          </div>
-        {{!-- <button style="position: absolute; top:13%;background:none;color:white;border:none;"
-          id="close-button"><span><ion-icon style="font-size:25px;"
-              name="close-circle-outline"></ion-icon></span></button> --}}
-      </div>
       <div
-        style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(95, 95, 95, 0.625); display: none;z-index:5;justify-content: center;height:85%;left: 0;width:90%;overflow: auto;margin:2%;border-radius:20px;margin-left: 3rem;margin-top:3rem;"
-        id="hidden-data">
-        <section class="rounded-3" style="background-color: #6e6e6e;position: absolute;top:2rem;width:90%;">
-          <div class="text-center container-fluid p-0 m-0">
-            <div class="row">
-              <div class="col-12">
-                <div class="card card-default">
-                  <div style="display: flex;justify-content: end;">
-                    <button id="download" class="btn m-1 p-1 btn-primary" style=""><span><ion-icon class="m-1 mt-2"
-                          style="font-size: 20px;font-weight: 100;"
-                          name="cloud-download-outline"></ion-icon></span></button>
-                    <button onclick="closeWindow()" class="btn m-1 btn-warning">X</button>
-                  </div>
-                  <div class="card-body" id="invoice">
-                    <div>
-                      <div class="d-flex justify-content-center">
-                        <h5 class="eniac-text text-primary"><span style="color: green;">playStation</span>
-                          Ke4.tech.</h5>
+        style="display: none;width:100%;height:100%;background-color: rgba(9, 9, 9, 0.634);position: absolute;left: 0;top:0;z-index:3;"
+        id="hidder">
+        <div
+          style="position: fixed;top:0%;background-color: rgba(0, 0, 0, 0.595); display: none;z-index:5;justify-content: center;height:90%;left:0rem;width:95%;overflow: auto;margin:2%;border-radius:20px;"
+          id="chartid2" class="p2">
+          <div style="display: flex;justify-content: end;padding: 2%;">
+            <h5 id="noResult" style="display: flex;justify-content: center;color: rgb(26, 255, 0);width:60%;"
+              class="p-1"></h5>
+            <button onclick="findData('month')" class="btn m-1 btn-info" style="">Monthly</button>
+            <button onclick="findData('year')" class="btn m-1 btn-success" style="">Yearly</button>
+            <button onclick="gotoDownload()" class="btn m-1 btn-primary" style="">Download Report</button>
+            <button onclick="closeWindow()" class="btn m-1 btn-warning" style="margin-right: 1rem;">Close</button>
+          </div>
+          <div
+            style="background-color: #00000094;float: left;width:80%;height:100%;padding: 1rem;margin-left:3%;border-radius: 20px;">
+            <div style="display: flex;justify-content: center;">
+              <canvas class="my-4 w-100" id="myChartid2" height="350" width="750"
+                style="color: rgb(0, 187, 0);"></canvas>
+              <canvas class="my-4 w-100" id="chartid3" height="350" width="750"
+                style="color: rgb(0, 137, 11);display: none;"></canvas>
+              <canvas class="my-4 w-100" id="chartid5" height="350" width="750"
+                style="color: rgba(34, 255, 0, 0.738);display: none;"></canvas>
+            </div>
+          </div>
+        </div>
+        <div
+          style="position: fixed;top:0%;padding:5%;padding-top:8%;background-color: rgba(95, 95, 95, 0.625); display: none;z-index:5;justify-content: center;height:85%;left: 0;width:90%;overflow: auto;margin:2%;border-radius:20px;margin-left: 3rem;margin-top:3rem;"
+          id="hidden-data">
+          <section class="rounded-3" style="background-color: #6e6e6e;position: absolute;top:2rem;width:90%;">
+            <div class="text-center container-fluid p-0 m-0">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card card-default">
+                    <div style="display: flex;justify-content: end;">
+                      <button id="download" class="btn m-1 p-1 btn-primary" style=""><span><ion-icon class="m-1 mt-2"
+                            style="font-size: 20px;font-weight: 100;"
+                            name="cloud-download-outline"></ion-icon></span></button>
+                      <button onclick="closeWindow()" class="btn m-1 btn-warning">X</button>
+                    </div>
+                    <div class="card-body" id="invoice">
+                      <div>
+                        <div class="d-flex justify-content-center">
+                          <h5 class="eniac-text text-primary"><span style="color: green;">playStation</span>
+                            Ke4.tech.</h5>
 
+                        </div>
+                        <table id="reportsTable" class="table nowrap" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Sl</th>
+                              <th>Order Date</th>
+                              <th>Sales</th>
+                              <th>Profit</th>
+                              <th>Cost</th>
+                              <th style="display: none;" id="orCount">Orders</th>
+                            </tr>
+                          </thead>
+                          <tbody class="tb-data">
+
+                          </tbody>
+                        </table>
                       </div>
-                      <table id="reportsTable" class="table nowrap" style="width:100%">
-                        <thead>
-                          <tr>
-                            <th>Sl</th>
-                            <th>Order Date</th>
-                            <th>Sales</th>
-                            <th>Profit</th>
-                            <th>Cost</th>
-                            <th style="display: none;" id="orCount">Orders</th>
-                          </tr>
-                        </thead>
-                        <tbody class="tb-data">
-
-                        </tbody>
-                      </table>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        {{!-- <button style="position: absolute; top:13%;background:none;color:white;border:none;"
-          id="close-button"><span><ion-icon style="font-size:25px;"
-              name="close-circle-outline"></ion-icon></span></button> --}}
-      </div>
+          </section>
+          {{!-- <button style="position: absolute; top:13%;background:none;color:white;border:none;"
+            id="close-button"><span><ion-icon style="font-size:25px;"
+                name="close-circle-outline"></ion-icon></span></button> --}}
+        </div>
       </div>
 
       <div class="row mb-3">
