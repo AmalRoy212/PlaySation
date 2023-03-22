@@ -223,30 +223,30 @@ async function validatingOtp(currentOtp, userOtp) {
 //creating a new order
 async function creatingOrder(userId, game, orderObject, razorOrder) {
     try {
-    const userD = await userModel.findById({ _id: userId });
-    const gameD = await GamesModels.findById({ _id: game });
-    const newOrder = new orderModel({
-      orderId: razorOrder.id,
-      userId: userId,
-      gameId: game,
-      userName: razorOrder.receipt,
-      userMail: userD.email,
-      gameName: gameD.name,
-      actualPrice: gameD.price,
-      country: orderObject.country,
-      zipCode: orderObject.zip,
-      state: orderObject.state,
-      disCode: orderObject.discode,
-      subTotal: orderObject.subtotal,
-      discount: orderObject.discount,
-      spacialToken: orderObject.spacialtoken,
-      total: orderObject.amount,
-    });
-    const orderCompleted = await newOrder.save();
-    return orderCompleted;
-  } catch (error) {
-    console.log(error.message);
-  }
+        const userD = await userModel.findById({ _id: userId });
+        const gameD = await GamesModels.findById({ _id: game });
+        const newOrder = new orderModel({
+            orderId: razorOrder.id,
+            userId: userId,
+            gameId: game,
+            userName: razorOrder.receipt,
+            userMail: userD.email,
+            gameName: gameD.name,
+            actualPrice: gameD.price,
+            country: orderObject.country,
+            zipCode: orderObject.zip,
+            state: orderObject.state,
+            disCode: orderObject.discode,
+            subTotal: orderObject.subtotal,
+            discount: orderObject.discount,
+            spacialToken: orderObject.spacialtoken,
+            total: orderObject.amount,
+        });
+        const orderCompleted = await newOrder.save();
+        return orderCompleted;
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 //cart optimizing when the user click the same game twilce want to inform the user its already exist
@@ -335,18 +335,18 @@ const verifyingUser = async function (req, res) {
             if (userData.email == email) {
                 const matchPass = await bcrypt.compare(password, userData.password);
                 if (matchPass) {
-                    // if(userData.is_verified === 1){
-                    // if(userData.isBlocked == false){
-                    req.session.user = userData.id;
-                    isLoggedIn = true;
-                    userHomeId = userData._id;
-                    res.redirect("/");
-                    // }else{
-                    // userMessage ="Account temporarily blocked"
-                    // res.redirect('/login')
-                    // }
-                    // }else{
-                    //     userMessage ="Please verify Your mail"
+                    // if (userData.is_verified === 1) {
+                        if (userData.isBlocked == false) {
+                            req.session.user = userData.id;
+                            isLoggedIn = true;
+                            userHomeId = userData._id;
+                            res.redirect("/");
+                        } else {
+                            userMessage = "Account temporarily blocked"
+                            res.redirect('/login')
+                        }
+                    // } else {
+                    //     userMessage = "Please verify Your mail"
                     //     res.redirect('/login')
                     // }
                 } else {
@@ -368,53 +368,53 @@ const verifyingUser = async function (req, res) {
 
 //rendering home
 const loadHome = async function (req, res) {
-  try {
-    let userUp;
-    let currCoupon = "BLACKFRIDAY";
-    const banner = await bannerModel.find();
-    const gamesData = await GamesModels.find().lean();
-    let today = new Date();
-    today = today.toString();
-    today = today.split(" ");
-    if (today[0] == "Fri") {
-      await creatingCoupon(currCoupon);
-      if (req.session.user) {
-        let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon}`;
-        userUp = await userModel.findByIdAndUpdate(
-          { _id: req.session.user },
-          { $addToSet: { coupons: currCoupon, notifications: notification } }
-        );
-      }
-    } else {
-      if (req.session.user) {
-        userModel
-          .findOneAndUpdate(
-            { _id: req.session.user },
-            { $pull: { coupons: currCoupon } },
-            { new: true }
-          )
-          .then((updatedUser) => {
-            console.log(updatedUser.favorites,"-----------------------------404");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-          userUp = await userModel.findById({_id:req.session.user});
-      }
+    try {
+        let userUp;
+        let currCoupon = "BLACKFRIDAY";
+        const banner = await bannerModel.find();
+        const gamesData = await GamesModels.find().lean();
+        let today = new Date();
+        today = today.toString();
+        today = today.split(" ");
+        if (today[0] == "Fri") {
+            await creatingCoupon(currCoupon);
+            if (req.session.user) {
+                let notification = `You got a surprise Coupon from PlayStation. Your coupon code  ${currCoupon}`;
+                userUp = await userModel.findByIdAndUpdate(
+                    { _id: req.session.user },
+                    { $addToSet: { coupons: currCoupon, notifications: notification } }
+                );
+            }
+        } else {
+            if (req.session.user) {
+                userModel
+                    .findOneAndUpdate(
+                        { _id: req.session.user },
+                        { $pull: { coupons: currCoupon } },
+                        { new: true }
+                    )
+                    .then((updatedUser) => {
+                        console.log(updatedUser.favorites, "-----------------------------404");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                userUp = await userModel.findById({ _id: req.session.user });
+            }
+        }
+        //console.log("before userNot")//COMMENTED WHILE HOSTING 
+        //const userNot = userUp.notifications;
+        //console.log(userNot,"userNot")
+        res.render("home", {
+            isLoggedIn,
+            gamesData,
+            cartCount,
+            banners: banner[0],
+            userNot: '0',//FIX IT FIX IT FIX IT HOSTING>>>>>>>
+        });
+    } catch (error) {
+        console.log(error.message);
     }
-    //console.log("before userNot")//COMMENTED WHILE HOSTING 
-    //const userNot = userUp.notifications;
-    //console.log(userNot,"userNot")
-    res.render("home", {
-      isLoggedIn,
-      gamesData,
-      cartCount,
-      banners: banner[0],
-      userNot: '0',//FIX IT FIX IT FIX IT HOSTING>>>>>>>
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
 };
 
 //logging out from home
@@ -831,6 +831,7 @@ const onPaymentSuccess = async function (req, res) {
             { _id: usId },
             { $addToSet: { myOrders: orderData.gamId } }
         );
+        req.session.orderLast = orderData;
         res.json({ orderData });
     } catch (error) {
         console.log(error.message);
@@ -846,11 +847,13 @@ const loadPaymentSuccess = async function (req, res) {
         const theGameData = await GamesModels.findById({ _id: game });
         const theUserData = await userModel.findById({ _id: user });
         const fullname = theUserData.fname + " " + theUserData.lname;
+        const newOrderData = req.session.orderLast;
         res.render("payment", {
             theGameData,
             theUserData,
             fullname,
             cartCount,
+            newOrderData,
             orderData: order,
         });
     } catch (error) {

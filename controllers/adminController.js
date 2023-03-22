@@ -319,7 +319,8 @@ const blockManagment = async function (req, res) {
     try {
         const id = req.query.id;
         userBlocked = false;
-        const user = await userModel.findOneAndUpdate({ _id: id }, { $set: { isBlocked: true } })
+        const user = await userModel.findOneAndUpdate({ _id: id }, { $set: { isBlocked: true } });
+        req.session.users = '' ;
         res.redirect('/admin/usertable')
 
     } catch (error) {

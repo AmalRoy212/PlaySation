@@ -1,381 +1,824 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
-    <style>
-        body{
-            font-family: font-family: 'Anton', sans-serif;
-            font-family: 'Chivo Mono', monospace;
-            font-family: 'Courgette', cursive;
-            font-family: 'Teko', sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+  <style>
+    body {
+      font-family: font-family: 'Anton', sans-serif;
+      font-family: 'Chivo Mono', monospace;
+      font-family: 'Courgette', cursive;
+      font-family: 'Teko', sans-serif;
+    }
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+      font-family: 'Montserrat', sans-serif
+    }
+
+    body {
+      padding: 0
+    }
+
+    p {
+      margin: 0%
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      overflow: hidden
+    }
+
+    .box-1 {
+      max-width: 450px;
+      padding: 10px 40px;
+      user-select: none
+    }
+
+    .box-1 img.pic {
+      width: 20px;
+      height: 20px;
+      object-fit: cover
+    }
+
+    .box-1 img.mobile-pic {
+      width: 100%;
+      height: 200px;
+      object-fit: cover
+    }
+
+    .box-1 .name {
+      font-size: 11px;
+      font-weight: 600
+    }
+
+    .dis {
+      font-size: 12px;
+      font-weight: 500
+    }
+
+    .box-2 {
+      max-width: 450px;
+      padding: 10px 40px
+    }
+
+    .box-2 .box-inner-2 input.form-control {
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .box-2 .box-inner-2 .inputWithIcon {
+      position: relative
+    }
+
+    .box-2 .box-inner-2 .inputWithIcon span {
+      position: absolute;
+      left: 15px;
+      top: 8px
+    }
+
+    .box-2 .box-inner-2 .inputWithcheck {
+      position: relative
+    }
+
+    .box-2 .box-inner-2 .inputWithcheck span {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: green;
+      font-size: 12px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 15px;
+      top: 6px
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      box-shadow: none;
+      outline: none;
+      border: 1px solid #7700ff
+    }
+
+    .border:focus-within {
+      border: 1px solid #7700ff !important
+    }
+
+    .box-2 .card-atm .form-control {
+      border: none;
+      box-shadow: none
+    }
+
+    .form-select {
+      border-radius: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px
+    }
+
+    .address .form-control.zip {
+      border-radius: 0;
+      border-bottom-left-radius: 10px
+    }
+
+    .address .form-control.state {
+      border-radius: 0;
+      border-bottom-right-radius: 10px
+    }
+
+    .box-2 .box-inner-2 .btn.btn-outline-primary {
+      width: 120px;
+      padding: 10px;
+      font-size: 11px;
+      padding: 0% !important;
+      display: flex;
+      align-items: center;
+      border: none;
+      border-radius: 0;
+      background-color: whitesmoke;
+      color: black;
+      font-weight: 600
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary {
+      background-color: #7700ff;
+      color: whitesmoke;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      justify-content: center;
+      border: none;
+      padding: 10px
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary:hover {
+      background-color: #7a34ca
+    }
+
+    .box-2 .box-inner-2 .btn.btn-primary .fas {
+      font-size: 13px !important;
+      color: whitesmoke
+    }
+
+    .carousel-indicators [data-bs-target] {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
+
+    .carousel-inner {
+      width: 100%;
+      height: 200px
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 100%
+    }
+
+    .carousel-control-prev {
+      transform: translateX(-50%);
+      opacity: 1
+    }
+
+    .carousel-control-prev:hover .fas.fa-arrow-left {
+      transform: translateX(-5px)
+    }
+
+    .carousel-control-next {
+      transform: translateX(50%);
+      opacity: 1
+    }
+
+    .carousel-control-next:hover .fas.fa-arrow-right {
+      transform: translateX(5px)
+    }
+
+    .fas.fa-arrow-left,
+    .fas.fa-arrow-right {
+      font-size: 0.8rem;
+      transition: all .2s ease
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      background-color: #f8f9fa;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transform-origin: center;
+      opacity: 1
+    }
+
+    .fas.fa-times {
+      color: red
+    }
+
+    .fas,
+    .fab {
+      color: #6d6c6d
+    }
+
+    ::placeholder {
+      font-size: 12px
+    }
+
+    .couponCode {
+      text-transform: uppercase;
+      font-size: 0.7rem
+    }
+
+    #code {
+      pointer-events: none;
+      font-weight: 600
+    }
+
+    .close {
+      cursor: pointer
+    }
+
+    .info {
+      transform: translateX(-500px);
+      animation: moving 1.5s;
+      animation-fill-mode: forwards
+    }
+
+    .updates {
+      transform: translateX(-500px);
+      animation: moving 1.7s;
+      animation-fill-mode: forwards
+    }
+
+    .different {
+      transform: translateX(-500px);
+      animation: moving 1.9s;
+      animation-fill-mode: forwards
+    }
+
+    .black {
+      transform: translateX(-500px);
+      animation: moving 2.1s;
+      animation-fill-mode: forwards
+    }
+
+    .white {
+      transform: translateX(-500px);
+      animation: moving 2.3s;
+      animation-fill-mode: forwards
+    }
+
+    .pastel {
+      transform: translateX(-500px);
+      animation: moving 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .footer {
+      transform: translateX(-500px);
+      animation: moving 2.6s;
+      animation-fill-mode: forwards
+    }
+
+    @keyframes moving {
+      0% {
+        opacity: 0;
+        transform: translateX(-500px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0px)
+      }
+    }
+
+    .box-2 {
+      transform: translateY(-500px);
+      animation: img-top 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .user {
+      transform: translateY(-500px);
+      animation: img-top 2.5s;
+      animation-fill-mode: forwards
+    }
+
+    .userdetails {
+      transform: translateY(-500px);
+      animation: img-top 2.0s;
+      animation-fill-mode: forwards
+    }
+
+    .imgdetails {
+      transform: translateY(-500px);
+      animation: img-top 1.5s;
+      animation-fill-mode: forwards
+    }
+
+    @keyframes img-top {
+      0% {
+        opacity: 0;
+        transform: translateY(-500px)
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0px)
+      }
+    }
+
+    @media (max-width:768px) {
+      .container {
+        max-width: 700px;
+        margin: 10px auto
+      }
+
+      .box-1,
+      .box-2 {
+        max-width: 600px;
+        padding: 20px 90px;
+        margin: 20px auto
+      }
+
+      .box-2 {
+        transform: translateX(-500px);
+        animation: box-side 2.6s;
+        animation-fill-mode: forwards
+      }
+
+      @keyframes box-side {
+        0% {
+          opacity: 0;
+          transform: translateX(-500px)
         }
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');*{margin: 0;padding: 0;box-sizing: border-box;list-style: none;font-family: 'Montserrat', sans-serif}body{padding: 0}p{margin: 0%}.container{max-width: 900px;margin: 20px auto;overflow: hidden}.box-1{max-width: 450px;padding: 10px 40px;user-select: none}.box-1 img.pic{width: 20px;height: 20px;object-fit: cover}.box-1 img.mobile-pic{width: 100%;height: 200px;object-fit: cover}.box-1 .name{font-size: 11px;font-weight: 600}.dis{font-size: 12px;font-weight: 500}.box-2{max-width: 450px;padding: 10px 40px}.box-2 .box-inner-2 input.form-control{font-size: 12px;font-weight: 600}.box-2 .box-inner-2 .inputWithIcon{position: relative}.box-2 .box-inner-2 .inputWithIcon span{position: absolute;left: 15px;top: 8px}.box-2 .box-inner-2 .inputWithcheck{position: relative}.box-2 .box-inner-2 .inputWithcheck span{position: absolute;width: 20px;height: 20px;border-radius: 50%;background-color: green;font-size: 12px;color: white;display: flex;justify-content: center;align-items: center;right: 15px;top: 6px}.form-control:focus, .form-select:focus{box-shadow: none;outline: none;border: 1px solid #7700ff}.border:focus-within{border: 1px solid #7700ff !important}.box-2 .card-atm .form-control{border: none;box-shadow: none}.form-select{border-radius: 0;border-top-left-radius: 10px;border-top-right-radius: 10px}.address .form-control.zip{border-radius: 0;border-bottom-left-radius: 10px}.address .form-control.state{border-radius: 0;border-bottom-right-radius: 10px}.box-2 .box-inner-2 .btn.btn-outline-primary{width: 120px;padding: 10px;font-size: 11px;padding: 0% !important;display: flex;align-items: center;border: none;border-radius: 0;background-color: whitesmoke;color: black;font-weight: 600}.box-2 .box-inner-2 .btn.btn-primary{background-color: #7700ff;color: whitesmoke;font-size: 14px;display: flex;align-items: center;font-weight: 600;justify-content: center;border: none;padding: 10px}.box-2 .box-inner-2 .btn.btn-primary:hover{background-color: #7a34ca}.box-2 .box-inner-2 .btn.btn-primary .fas{font-size: 13px !important;color: whitesmoke}.carousel-indicators [data-bs-target]{width: 10px;height: 10px;border-radius: 50%}.carousel-inner{width: 100%;height: 200px}.carousel-item img{object-fit: cover;height: 100%}.carousel-control-prev{transform: translateX(-50%);opacity: 1}.carousel-control-prev:hover .fas.fa-arrow-left{transform: translateX(-5px)}.carousel-control-next{transform: translateX(50%);opacity: 1}.carousel-control-next:hover .fas.fa-arrow-right{transform: translateX(5px)}.fas.fa-arrow-left, .fas.fa-arrow-right{font-size: 0.8rem;transition: all .2s ease}.icon{width: 30px;height: 30px;background-color: #f8f9fa;color: black;display: flex;align-items: center;justify-content: center;border-radius: 50%;transform-origin: center;opacity: 1}.fas.fa-times{color: red}.fas, .fab{color: #6d6c6d}::placeholder{font-size: 12px}.couponCode{text-transform: uppercase;font-size: 0.7rem}#code{pointer-events: none;font-weight: 600}.close{cursor: pointer}.info{transform: translateX(-500px);animation: moving 1.5s;animation-fill-mode: forwards}.updates{transform: translateX(-500px);animation: moving 1.7s;animation-fill-mode: forwards}.different{transform: translateX(-500px);animation: moving 1.9s;animation-fill-mode: forwards}.black{transform: translateX(-500px);animation: moving 2.1s;animation-fill-mode: forwards}.white{transform: translateX(-500px);animation: moving 2.3s;animation-fill-mode: forwards}.pastel{transform: translateX(-500px);animation: moving 2.5s;animation-fill-mode: forwards}.footer{transform: translateX(-500px);animation: moving 2.6s;animation-fill-mode: forwards}@keyframes moving{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}.box-2{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.user{transform: translateY(-500px);animation: img-top 2.5s;animation-fill-mode: forwards}.userdetails{transform: translateY(-500px);animation: img-top 2.0s;animation-fill-mode: forwards}.imgdetails{transform: translateY(-500px);animation: img-top 1.5s;animation-fill-mode: forwards}@keyframes img-top{0%{opacity: 0;transform: translateY(-500px)}100%{opacity: 1;transform: translateY(0px)}}@media (max-width:768px){.container{max-width: 700px;margin: 10px auto}.box-1, .box-2{max-width: 600px;padding: 20px 90px;margin: 20px auto}.box-2{transform: translateX(-500px);animation: box-side 2.6s;animation-fill-mode: forwards}@keyframes box-side{0%{opacity: 0;transform: translateX(-500px)}100%{opacity: 1;transform: translateX(0px)}}}@media (max-width:426px){.box-1, .box-2{max-width: 400px;padding: 20px 10px}::placeholder{font-size: 9px}}
-    </style>
-    <script src="https://unpkg.com/easyinvoice/dist/easyinvoice.min.js"></script>
-  </head>
-  <body>
-    {{!-- <section>
-        <div class="nav" style="width:100%;height:50px;background-color: rgba(0, 0, 0, 0.606); display: flex;">
-            <h1 style="color: white;position: absolute;left:0; width:20%;font-size:x-large;margin-top:1rem;">My Profile</h1>
-            <div style=" width:90%;"></div>
-            <a href="/" style="color: white;margin-top:2rem;">GoBackToHome</a>
-        </div>
-    </section> --}}
-    <div class="w3lsnavigation">
-        <nav
-          class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default"
-        >
 
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navbar"
-              aria-expanded="false"
-              aria-controls="navbar"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Logo -->
-            <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;">
-              <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
+        100% {
+          opacity: 1;
+          transform: translateX(0px)
+        }
+      }
+    }
+
+    @media (max-width:426px) {
+
+      .box-1,
+      .box-2 {
+        max-width: 400px;
+        padding: 20px 10px
+      }
+
+      ::placeholder {
+        font-size: 9px
+      }
+    }
+  </style>
+  <script src="https://unpkg.com/easyinvoice/dist/easyinvoice.min.js"></script>
+  <style>
+    .success-animation {
+      margin: 150px auto;
+    }
+
+    .checkmark {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2;
+      stroke: #4bb71b;
+      stroke-miterlimit: 10;
+      box-shadow: inset 0px 0px 0px #4bb71b;
+      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+      position: relative;
+      top: 5px;
+      right: 5px;
+      margin: 0 auto;
+    }
+
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #4bb71b;
+      fill: #fff;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+
+    }
+
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes scale {
+
+      0%,
+      100% {
+        transform: none;
+      }
+
+      50% {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
+
+    @keyframes fill {
+      100% {
+        box-shadow: inset 0px 0px 0px 30px #4bb71b;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {{!-- <section>
+    <div class="nav" style="width:100%;height:50px;background-color: rgba(0, 0, 0, 0.606); display: flex;">
+      <h1 style="color: white;position: absolute;left:0; width:20%;font-size:x-large;margin-top:1rem;">My Profile</h1>
+      <div style=" width:90%;"></div>
+      <a href="/" style="color: white;margin-top:2rem;">GoBackToHome</a>
+    </div>
+  </section> --}}
+  <div class="w3lsnavigation">
+    <nav class="navbar navbar-inverse agilehover-effect wthreeeffect navbar-default">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Logo -->
+        <div class="logo" style="display: flex;flex-direction:row;float: left;position: absolute;top: 1.5rem;">
+          <a class="navbar-brand logo-w3l button" href="" style="color:rgb(0, 255, 0);font-family: font-family: 'Anton', sans-serif;
                 font-family: 'Chivo Mono', monospace;
                 font-family: 'Courgette', cursive;
                 font-family: 'Teko', sans-serif;">PlayStation</a>
+        </div>
+        <!-- //Logo -->
+      </div>
+
+      <div id="navbar" class="navbar-collapse navbar-right collapse">
+        <ul class="nav navbar-nav navbar-right cross-effect" id="cross-effect"
+          style="display: flex;flex-direction:row;">
+          <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
+          <li><a style="font-size: x-small;" href="/products">Products</a></li>
+          <li>
+            <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
+              <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                9
+              </span>
+            </a>
+          </li>
+          <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;"
+              href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png"
+                alt=""></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img
+                style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
+            <div class="dropdown-menu"
+              style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
+              <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
+              <form action="/logout" method="post">
+                <input type="submit" value="LogOut"
+                  style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
+              </form>
             </div>
-            <!-- //Logo -->
+          </li>
+        </ul>
+      </div><!-- //Navbar-Collapse -->
+
+    </nav>
+  </div>
+  <!-- //Navigation -->
+  <div class="wthreetabsaits" id="wthreetabsaits">
+    <h3>Payment</h3>
+    <div class="container-fluid p-0 m-0 d-lg-flex" style="justify-content: center;">
+      <div style="width: 95%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
+        <div class="container-fluid d-lg-flex" style="justify-content: center;">
+          <div class="box-1 m-0 p-0" style="width:17%;">
+            <div class="success-animation">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+              </svg>
+            </div>
           </div>
-
-          <div id="navbar" class="navbar-collapse navbar-right collapse">
-            <ul
-              class="nav navbar-nav navbar-right cross-effect"
-              id="cross-effect" style="display: flex;flex-direction:row;"
-            >
-                <li><a style="font-size: x-small;" href="/userprofile">My Profile</a></li>
-                <li><a style="font-size: x-small;" href="/products">Products</a></li>
-                <li>
-                  <a style="font-size: x-small; padding: 0; margin-top: 7px;" href="/cart">
-                    <img style="border-radius:7px; width: 25px;" src="images/Cartimg.png" alt="">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      9
-                    </span>
-                  </a>
-                </li>
-                <li><a class="scroll" style="font-size: x-small; padding: 0;margin-left: 5px; margin-top: 7px;" href="#agilecontactw3ls"><img style="border-radius:7px; width: 25px;height: 25px;" src="images/search.png" alt=""></a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: x-small; padding: 0;margin-top: -3px;margin-left: 3px; margin-top: 4px;"><img style="border-radius:7px; width: 31px;" src="images/Settings.png" alt=""><b class="caret"></b></a>
-                  <div class="dropdown-menu" style="border-radius: 20px; width: 100px;background:linear-gradient(rebeccapurple,rgb(126, 1, 84));">
-                    <a style="font-size:small;color:azure;margin-left:1.4rem;" href="/">Home</a>
-                    <form action="/logout" method="post">
-                      <input type="submit" value="LogOut" style="border: none;background: none;margin:0;color: rgb(0, 0, 0);" />
-                    </form>
-                  </div>
-                </li>
-            </ul>
-          </div><!-- //Navbar-Collapse -->
-
-        </nav>
-      </div>
-      <!-- //Navigation -->
-    <div class="wthreetabsaits" id="wthreetabsaits">
-      <h3>Payment</h3>
-      <div class="container d-lg-flex" style="margin-left:18rem;">
-        <div style="width: 70%;display: flex;border-radius: 30px;background-color: rgba(138, 138, 138, 0.725)">
-          <div class="container d-lg-flex">
-            <div class="box-1 user" style="width:40%;">
-              <img src="/images/tick.png" alt="" style="width: 100%;">
-            </div>
-              <div class="box-2 p-0" style="width:57%;margin-right: 3rem;">
-                <div class="box-inner-2" style="color:white;">
-                    <h4 class="fw-bold" style="color:rgb(72, 255, 0);">Payment Summary</h4>
-                    <h6 style="margin-bottom: 3rem;color: #ffffff;">Your payment has been successfully done ..!</h6>
-                    <table style="font-size:large;">
-                        <tbody style="color:rgb(255, 255, 255);">
-                            <tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Name</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{fullname}}</td>
-                                <input type="hidden" value="{{fullname}}"  id="name">
-                            </tr>
-                            <tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Email</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{theUserData.email}}</td>
-                                <input type="hidden" value="{{theUserData.email}}"  id="email">
-                            </tr>
-                            <tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Contact</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{theUserData.mobile}}</td>
-                                <input type="hidden" value="{{theUserData.mobile}}"  id="mobile">
-                            </tr>
-                            <tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Game</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{theGameData.name}}</td>
-                                <input type="hidden" value="{{theGameData.name}}"  id="game">
-                            </tr><tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Category</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{theGameData.category}}</td>
-                                <input type="hidden" value="{{theGameData.category}}"  id="cate">
-                            </tr>
-                            </tr>
-                            {{!-- <tr>
-                                <td style="padding-right:7rem;font-size:smaller;">Order ID</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{orderData._id}}</td>
-                            </tr> --}}
-                            {{!-- <tr>
-                                <td style="padding-right:3rem;font-size:smaller;">Order Name</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{orderData.orderName}}</td>
-                            </tr> --}}
-                            <tr>
-                                <td style="padding-right:3rem;font-size:smaller;">Discount Code</td>
-                                <td style="padding-right:7rem;font-size:smaller;">{{orderData.disCode}}</td>
-                                <input type="hidden" value="{{orderData.disCode}}"  id="dis">
-                            </tr>
-                            <tr>
-                                {{!-- <tr style="font-size: smaller;">
-                                    <td>Card Details</td>
-                                    <td>Card Holder : {{orderData.cardHolder}}</td>
-                                </tr>
-                                <tr style="font-size: smaller;">
-                                    <td></td>
-                                    <td>Card No : {{orderData.cardNumber}}</td>
-                                </tr> 
-                                <tr style="font-size: smaller;">
-                                    <td></td>
-                                    <td>Card Ex : {{orderData.cardExpr}}</td>
-                                </tr style="font-size: smaller;">
-                            </tr> --}}
-                            <tr>
-                                <tr style="font-size: smaller;">
-                                    <td>Billing Adress</td>
-                                    <td>Country : {{orderData.country}}</td>
-                                    <input type="hidden" value="{{orderData.country}}"  id="ad1">
-                                </tr>
-                                <tr style="font-size: smaller;">
-                                    <td></td>
-                                    <td>State : {{orderData.state}}</td>
-                                    <input type="hidden" value="{{orderData.state}}"  id="ad2">
-                                </tr>
-                                <tr style="font-size: smaller;">
-                                    <td></td>
-                                    <td>ZipCode : {{orderData.zipCode}}</td>
-                                    <input type="hidden" value="{{orderData.zipCode}}"  id="ad3">
-                                </tr style="font-size: smaller;">
-                            </tr>
-                            <tr>
-                                <td style="font-size: smaller;">Payment Details</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <div class="d-flex flex-column dis">
-                          <div
-                            class="d-flex align-items-center justify-content-between mb-2"
-                          >
-                            <p>Subtotal</p>
-                            <p name="subtotal"><span class="fas fa-dollar-sign"></span>19.00</p>
-                          </div>
-                          <div
-                            class="d-flex align-items-center justify-content-between mb-2"
-                          >
-                            <div class="d-flex align-items-center">
-                              <p class="pe-2">Discount
-                                <span
-                                  class="d-inline-flex align-items-center justify-content-between bg-light px-2 couponCode"
-                                >
-                                  <span id="code" class="pe-2"></span>
-                                  <span class="fas fa-times close"></span>
-                                </span>
-                              </p>
-                            </div>
-                            <p name="discount"><span class="fas fa-dollar-sign"></span>5.00</p>
-                          </div>
-                          <div
-                            class="d-flex align-items-center justify-content-between mb-2"
-                          >
-                            <p>Spacial Token<span>(20%)</span></p>
-                            <p name="spacialtoken"><span class="fas fa-dollar-sign"></span>2.80</p>
-                          </div>
-                          <div
-                            class="d-flex align-items-center justify-content-between mb-2"
-                          >
-                            <p class="fw-bold">Total</p>
-                            <p class="fw-bold"><span
-                                class="fas fa-dollar-sign"
-                                name="totalamount"
-                              ></span>16.80</p>
-                          </div>
-                          {{!-- <div type="submit" class="btn btn-primary mt-2">Pay<span
-                              class="fas fa-dollar-sign px-1"
-                            ></span>16.80
-                          </div> --}}
-                        </div>
-                    {{!-- <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;" href="/products">Countinue Shoping</a>
-                    <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;" href="/">Go to Home</a> --}}
-                    <input type="hidden" value="{{theUserData.myLastPrice}}" id="price">
+          <div class="box-2 p-0" style="width:57%;margin-right: 3rem;">
+            <div class="box-inner-2" style="color:white;">
+              <h4 class="fw-bold" style="color:rgb(72, 255, 0);">Payment Summary</h4>
+              <h6 style="margin-bottom: 3rem;color: #ffffff;">Your payment has been successfully done ..!</h6>
+              <table style="font-size:large;">
+                <tbody style="color:rgb(255, 255, 255);">
+                  <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Name</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{fullname}}</td>
+                    <input type="hidden" value="{{fullname}}" id="name">
+                  </tr>
+                  <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Email</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{theUserData.email}}</td>
+                    <input type="hidden" value="{{theUserData.email}}" id="email">
+                  </tr>
+                  <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Contact</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{theUserData.mobile}}</td>
+                    <input type="hidden" value="{{theUserData.mobile}}" id="mobile">
+                  </tr>
+                  <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Game</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{theGameData.name}}</td>
+                    <input type="hidden" value="{{theGameData.name}}" id="game">
+                  </tr>
+                  <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Category</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{theGameData.category}}</td>
+                    <input type="hidden" value="{{newOrderData.category}}" id="cate">
+                  </tr>
+                  </tr>
+                  {{!-- <tr>
+                    <td style="padding-right:7rem;font-size:smaller;">Order ID</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{orderData._id}}</td>
+                  </tr> --}}
+                  {{!-- <tr>
+                    <td style="padding-right:3rem;font-size:smaller;">Order Name</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{orderData.orderName}}</td>
+                  </tr> --}}
+                  <tr>
+                    <td style="padding-right:3rem;font-size:smaller;">Discount Code</td>
+                    <td style="padding-right:7rem;font-size:smaller;">{{newOrderData.disCode}}</td>
+                    <input type="hidden" value="{{orderData.disCode}}" id="dis">
+                  </tr>
+                  <tr>
+                    {{!--
+                  <tr style="font-size: smaller;">
+                    <td>Card Details</td>
+                    <td>Card Holder : {{orderData.cardHolder}}</td>
+                  </tr>
+                  <tr style="font-size: smaller;">
+                    <td></td>
+                    <td>Card No : {{orderData.cardNumber}}</td>
+                  </tr>
+                  <tr style="font-size: smaller;">
+                    <td></td>
+                    <td>Card Ex : {{orderData.cardExpr}}</td>
+                  </tr style="font-size: smaller;">
+                  </tr> --}}
+                  <tr>
+                  <tr style="font-size: smaller;">
+                    <td>Billing Adress</td>
+                    <td>Country : {{newOrderData.country}}</td>
+                    <input type="hidden" value="{{newOrderData.country}}" id="ad1">
+                  </tr>
+                  <tr style="font-size: smaller;">
+                    <td></td>
+                    <td>State : {{newOrderData.state}}</td>
+                    <input type="hidden" value="{{newOrderData.state}}" id="ad2">
+                  </tr>
+                  <tr style="font-size: smaller;">
+                    <td></td>
+                    <td>ZipCode : {{newOrderData.zipCode}}</td>
+                    <input type="hidden" value="{{newOrderData.zipCode}}" id="ad3">
+                  </tr style="font-size: smaller;">
+                  </tr>
+                  <tr>
+                    <td style="font-size: smaller;">Payment Details</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="d-flex flex-column dis">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <p>Subtotal</p>
+                  <p name="subtotal"><span class="fas fa-dollar-sign"></span>{{newOrderData.actualPrice}}</p>
                 </div>
-        <div style="width: 178%;margin-left: -22rem;display: flex;padding:3rem">
-          <a class="btn btn-success rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;" href="/products">Countinue Shoping</a>
-          <a class="btn btn-warning rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;" href="/">Go to Home</a>
-          <a class="btn btn-primary rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;" onclick="downloadInvoice()">Download Invoice</a>
+                {{!-- <div class="d-flex align-items-center justify-content-between mb-2">
+                  <div class="d-flex align-items-center">
+                    <p class="pe-2">Discount
+                      <span class="d-inline-flex align-items-center justify-content-between bg-light px-2 couponCode">
+                        <span id="code" class="pe-2"></span>
+                        <span class="fas fa-times close"></span>
+                      </span>
+                    </p>
+                  </div>
+                  <p name="discount"><span class="fas fa-dollar-sign"></span>100</p>
+                </div> --}}
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <p>Discount<span>(flat 100)</span></p>
+                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span>100</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <p>Coupoun<span class="p-1" style="color: #4dff00;">{{newOrderData.discount}}</span></p>
+                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span></p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <p>Spacial Token<span class="p-1" style="color: #4dff00;">GB012345B9</span></p>
+                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span>5.80</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <p class="fw-bold">Total</p>
+                  <p class="fw-bold"><span class="fas fa-dollar-sign" name="totalamount"></span>{{newOrderData.total}}</p>
+                </div>
+                {{!-- <div type="submit" class="btn btn-primary mt-2">Pay<span
+                    class="fas fa-dollar-sign px-1"></span>16.80
+                </div> --}}
+              </div>
+              {{!-- <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;"
+                href="/products">Countinue Shoping</a>
+              <a class="btn btn-primary" style="width: 40%;float: left; margin:1rem;font-size:smaller;" href="/">Go to
+                Home</a> --}}
+              <input type="hidden" value="{{theUserData.myLastPrice}}" id="price">
+            </div>
+            <div style="width: 178%;margin-left: -22rem;display: flex;padding:3rem">
+              <a class="btn btn-success rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;"
+                href="/products">Countinue Shoping</a>
+              <a class="btn btn-warning rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;"
+                href="/">Go to Home</a>
+              <a class="btn btn-primary rounded-pill" style="width: 30%;float: left; margin:1rem;font-size:small;"
+                onclick="downloadInvoice()">Download Invoice</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-        </div>
-      </div>
-      <h1>{{theUserData.myOrders.[0]}}</h1>
-    </div>
-    <script>
-      function downloadInvoice(){
-        let user = document.getElementById('name').value;
-        let email = document.getElementById('email').value;
-        let mobile = document.getElementById('mobile').value;
-        let game = document.getElementById('game').value;
-        let cate = document.getElementById('cate').value;
-        let dis = document.getElementById('dis').value;
-        let country = document.getElementById('ad1').value;
-        let state = document.getElementById('ad2').value;
-        let zip = document.getElementById('ad3').value;
-        let price = document.getElementById('price').value;
+    <h1>{{theUserData.myOrders.[0]}}</h1>
+  </div>
+  <script>
+    function downloadInvoice() {
+      let user = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let mobile = document.getElementById('mobile').value;
+      let game = document.getElementById('game').value;
+      let cate = document.getElementById('cate').value;
+      let dis = document.getElementById('dis').value;
+      let country = document.getElementById('ad1').value;
+      let state = document.getElementById('ad2').value;
+      let zip = document.getElementById('ad3').value;
+      let price = document.getElementById('price').value;
 
-        const date = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate = date.toLocaleDateString('en-US', options);
+      const date = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = date.toLocaleDateString('en-US', options);
 
-        var data = {
-          // Customize enables you to provide your own templates
-          // Please review the documentation for instructions and examples
-          "customize": {
-              //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+      var data = {
+        // Customize enables you to provide your own templates
+        // Please review the documentation for instructions and examples
+        "customize": {
+          //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+        },
+        "images": {
+          // The logo on top of your invoice
+          "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
+          // The invoice background
+          "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
+        },
+        // Your own data
+        "sender": {
+          "company": "PlayStation",
+          "address": "15205 North Kierland Blvd. Suite 100",
+          "zip": "85254",
+          "city": "Scottsdale",
+          "country": "United States"
+          //"custom1": "custom value 1",
+          //"custom2": "custom value 2",
+          //"custom3": "custom value 3"
+        },
+        // Your recipient
+        "client": {
+          "company": user,
+          "address": email,
+          "zip": zip,
+          "city": state,
+          "country": country
+          // "custom1": "custom value 1",
+          // "custom2": "custom value 2",
+          // "custom3": "custom value 3"
+        },
+        "information": {
+          // Invoice number
+          "number": mobile,
+          // Invoice data
+          "date": formattedDate,
+          // Invoice due date
+          "due-date": "Paid Online"
+        },
+        // The products you would like to see on your invoice
+        // Total values are being calculated automatically
+        "products": [
+          {
+            "quantity": 1,
+            "description": game,
+            "tax-rate": 0,
+            "price": price
           },
-          "images": {
-              // The logo on top of your invoice
-              "logo": "https://famfonts.com/wp-content/uploads/playstation-wide.png",
-              // The invoice background
-              "background": "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg"
-          },
-          // Your own data
-          "sender": {
-              "company": "PlayStation",
-              "address": "15205 North Kierland Blvd. Suite 100",
-              "zip": "85254",
-              "city": "Scottsdale",
-              "country": "United States"
-              //"custom1": "custom value 1",
-              //"custom2": "custom value 2",
-              //"custom3": "custom value 3"
-          },
-          // Your recipient
-          "client": {
-              "company": user,
-              "address": email,
-              "zip": zip,
-              "city": state,
-              "country": country
-              // "custom1": "custom value 1",
-              // "custom2": "custom value 2",
-              // "custom3": "custom value 3"
-          },
-          "information": {
-              // Invoice number
-              "number": mobile,
-              // Invoice data
-              "date": formattedDate,
-              // Invoice due date
-              "due-date": "Paid Online"
-          },
-          // The products you would like to see on your invoice
-          // Total values are being calculated automatically
-          "products": [
-              {
-                  "quantity": 1,
-                  "description": game,
-                  "tax-rate": 0,
-                  "price": price
-              },
-          ],
-          // The message you would like to display on the bottom of your invoice
-          "bottom-notice": "Kindly pay your invoice within 15 days.",
-          // Settings to customize your invoice
-          "settings": {
-              "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
-              // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
-              // "tax-notation": "gst", // Defaults to 'vat'
-              // "margin-top": 25, // Defaults to '25'
-              // "margin-right": 25, // Defaults to '25'
-              // "margin-left": 25, // Defaults to '25'
-              // "margin-bottom": 25, // Defaults to '25'
-              // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
-              // "height": "1000px", // allowed units: mm, cm, in, px
-              // "width": "500px", // allowed units: mm, cm, in, px
-              // "orientation": "landscape", // portrait or landscape, defaults to portrait
-          },
-          // Translate your invoice to your preferred language
-          "translate": {
-              // "invoice": "FACTUUR",  // Default to 'INVOICE'
-              // "number": "Nummer", // Defaults to 'Number'
-              // "date": "Datum", // Default to 'Date'
-              // "due-date": "Verloopdatum", // Defaults to 'Due Date'
-              // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
-              // "products": "Producten", // Defaults to 'Products'
-              // "quantity": "Aantal", // Default to 'Quantity'
-              // "price": "Prijs", // Defaults to 'Price'
-              // "product-total": "Totaal", // Defaults to 'Total'
-              // "total": "Totaal" // Defaults to 'Total'
-          },
+        ],
+        // The message you would like to display on the bottom of your invoice
+        "bottom-notice": "Kindly pay your invoice within 15 days.",
+        // Settings to customize your invoice
+        "settings": {
+          "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+          // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')
+          // "tax-notation": "gst", // Defaults to 'vat'
+          // "margin-top": 25, // Defaults to '25'
+          // "margin-right": 25, // Defaults to '25'
+          // "margin-left": 25, // Defaults to '25'
+          // "margin-bottom": 25, // Defaults to '25'
+          // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
+          // "height": "1000px", // allowed units: mm, cm, in, px
+          // "width": "500px", // allowed units: mm, cm, in, px
+          // "orientation": "landscape", // portrait or landscape, defaults to portrait
+        },
+        // Translate your invoice to your preferred language
+        "translate": {
+          // "invoice": "FACTUUR",  // Default to 'INVOICE'
+          // "number": "Nummer", // Defaults to 'Number'
+          // "date": "Datum", // Default to 'Date'
+          // "due-date": "Verloopdatum", // Defaults to 'Due Date'
+          // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
+          // "products": "Producten", // Defaults to 'Products'
+          // "quantity": "Aantal", // Default to 'Quantity'
+          // "price": "Prijs", // Defaults to 'Price'
+          // "product-total": "Totaal", // Defaults to 'Total'
+          // "total": "Totaal" // Defaults to 'Total'
+        },
       };
 
       //Create your invoice! Easy!
       easyinvoice.createInvoice(data, function (result) {
-          //The response will contain a base64 encoded PDF file
-          console.log('PDF base64 string: ', result.pdf);
-          easyinvoice.download('PlayStation_Invoice.pdf')
+        //The response will contain a base64 encoded PDF file
+        console.log('PDF base64 string: ', result.pdf);
+        easyinvoice.download('PlayStation_Invoice.pdf')
       });
-      }
-    </script>
-    <script>
-        var valcode = document.querySelector("#discount")
-        var namecode = document.querySelector("#code")
-        namecode.textContent = valcode.value
+    }
+  </script>
+  <script>
+    var valcode = document.querySelector("#discount")
+    var namecode = document.querySelector("#code")
+    namecode.textContent = valcode.value
 
-        var closeBtn = document.querySelector(".close")
-        var couponCode = document.querySelector(".couponCode")
-        closeBtn.addEventListener("click", function () {
-        close()
-        })
-        valcode.addEventListener("change", function () {
-        checkDiscountCoupon()
-        })
+    var closeBtn = document.querySelector(".close")
+    var couponCode = document.querySelector(".couponCode")
+    closeBtn.addEventListener("click", function () {
+      close()
+    })
+    valcode.addEventListener("change", function () {
+      checkDiscountCoupon()
+    })
 
-        function checkDiscountCoupon() {
-        if (valcode.value.length === 0) {
+    function checkDiscountCoupon() {
+      if (valcode.value.length === 0) {
         // namecode.style.display = "none"
         close()
-        }
-        else {
+      }
+      else {
         couponCode.classList.remove("d-none")
         namecode.style.display = "inline"
         namecode.textContent = valcode.value
-        }
-        }
+      }
+    }
 
-        function close() {
-        couponCode.classList.add("d-none")
-        valcode.value = ""
+    function close() {
+      couponCode.classList.add("d-none")
+      valcode.value = ""
     }     
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  </body>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
-
-
