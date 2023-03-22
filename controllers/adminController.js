@@ -643,6 +643,7 @@ const loadCoponTable = async function (req, res) {
             element.fname = element.fname + " " + element.lname;
         })
         res.render('couponTable', { coupons, user, sccMssg });
+        sccMssg = '';
     } catch (error) {
         console.log(error.message);
     }

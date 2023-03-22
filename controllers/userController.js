@@ -848,12 +848,23 @@ const loadPaymentSuccess = async function (req, res) {
         const theUserData = await userModel.findById({ _id: user });
         const fullname = theUserData.fname + " " + theUserData.lname;
         const newOrderData = req.session.orderLast;
+        let disAmount = await CouponModel.findOne({couponCode:newOrderData.discount});
+        
+        // usrCoupns.forEach((element)=>{
+        //     if(newOrderData.discount == element)
+        //         flag = 1;
+        // })
+        // flag = newOrderData.discount == theUserData.coupons[0] ? 1 : 0 ;
+        // disAmount = flag == 1 ? disAmount.couponDiscount : 0;
+        // console.log(disAmount ,'----------------852',usrCoupns,theUserData);
+        disAmount = disAmount == null ? 0 : disAmount.couponDiscount ;
         res.render("payment", {
             theGameData,
             theUserData,
             fullname,
             cartCount,
             newOrderData,
+            disAmount,
             orderData: order,
         });
     } catch (error) {

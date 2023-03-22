@@ -379,7 +379,7 @@
                     <div class="col-xl-9">
                       <div class="card" style="border-radius: 15px;background-color: grey;">
                         <div class="card-body" style="padding:2rem;">
-                          <h6 class="m-0 font-weight-bold text-success">Product Management</h6>
+                          <h6 class="m-0 font-weight-bold text-success">Coupon Management</h6>
                           <h6 style="color: green;">{{sccMssg}}</h6>
                           <h6 style="color: red;">{{adminMessage}}</h6>
                           <table class="table" style="margin-right:1rem;margin-top: 1rem;color: rgb(0, 0, 0);">
@@ -452,8 +452,8 @@
                                               style="color: rgb(0, 255, 0);">{{this.couponCode}}</span> to</p>
                                           <select style="width: 100px;height:20px;margin-top:3.5%;margin-left:1%;"
                                             name="users">
-                                            {{#each ../user}}
                                             <option value="">Select User</option>
+                                            {{#each ../user}}
                                             <option value="{{email}}">{{fname}}</option>
                                             {{/each}}
                                           </select>

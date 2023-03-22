@@ -619,7 +619,7 @@
               <div class="d-flex flex-column dis">
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <p>Subtotal</p>
-                  <p name="subtotal"><span class="fas fa-dollar-sign"></span>{{newOrderData.actualPrice}}</p>
+                  <p name="subtotal"><span style="color: #4dff00;" class="fas fa-dollar-sign"></span> {{newOrderData.actualPrice}}</p>
                 </div>
                 {{!-- <div class="d-flex align-items-center justify-content-between mb-2">
                   <div class="d-flex align-items-center">
@@ -634,19 +634,19 @@
                 </div> --}}
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <p>Discount<span>(flat 100)</span></p>
-                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span>100</p>
+                  <p name="spacialtoken"><span style="color: #4dff00;" class="fas fa-dollar-sign"></span> 100</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <p>Coupoun<span class="p-1" style="color: #4dff00;">{{newOrderData.discount}}</span></p>
-                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span></p>
+                  <p name="spacialtoken"><span style="color: #4dff00;" class="fas fa-dollar-sign"></span> {{disAmount}}</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <p>Spacial Token<span class="p-1" style="color: #4dff00;">GB012345B9</span></p>
-                  <p name="spacialtoken"><span class="fas fa-dollar-sign"></span>5.80</p>
+                  <p name="spacialtoken"><span style="color: #4dff00;" class="fas fa-dollar-sign"></span> 5.80</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-2">
                   <p class="fw-bold">Total</p>
-                  <p class="fw-bold"><span class="fas fa-dollar-sign" name="totalamount"></span>{{newOrderData.total}}</p>
+                  <p class="fw-bold"><span style="color: #4dff00;" class="fas fa-dollar-sign" name="totalamount"></span> {{newOrderData.total}}</p>
                 </div>
                 {{!-- <div type="submit" class="btn btn-primary mt-2">Pay<span
                     class="fas fa-dollar-sign px-1"></span>16.80
