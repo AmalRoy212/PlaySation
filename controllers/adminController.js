@@ -1068,11 +1068,8 @@ module.exports = {
     filterData,
     downloadOrderPdf
 }
-//category adding by admin
-//user products page
 //user categorized view 
 //admin session
-//want to check the login isblocked by admin
 
 //important
 //want to fix the users who is eligible to send the coupon
