@@ -12,9 +12,9 @@ passport.deserializeUser(function(user,done){
 
 //setting the passport calls
 passport.use(new GoogleStrategy({
-    clientID:'639704585586-52ce4ecmtabsnp5uok4h4me06p3unp6g.apps.googleusercontent.com',
-    clientSecret:'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',
-    callbackURL:'https://myplaystation.onrender.com/google/auth',
+    clientID:"16435703901-mbd7tdfsfujt096627sbpb7njpdjsfrl.apps.googleusercontent.com",
+    clientSecret:"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",
+    callbackURL:"https://myplaystation.onrender.com/google/auth",
     passReqToCallback:true
 
 }, function(request, accessToken, refreshToken, profile, done){
