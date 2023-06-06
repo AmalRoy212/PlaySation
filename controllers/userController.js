@@ -372,7 +372,7 @@ const loadHome = async function (req, res) {
         let userUp;
         let currCoupon = "BLACKFRIDAY";
         const banner = await bannerModel.find();
-        const gamesData = await GamesModels.find().lean();
+        const gamesData = await GamesModels.find({deleted:false}).lean();
         let today = new Date();
         today = today.toString();
         today = today.split(" ");
